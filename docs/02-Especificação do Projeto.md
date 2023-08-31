@@ -14,19 +14,18 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 		<TD colspan='2'>Marina Santos</TD>
 	</TR>
 	<TR>
-		<TD>Idade: 41<BR>
+		<TD>Idade: 41<BR><BR>
   Dados Principais: Marina é uma jovem empreendedora que administra uma barbearia moderna. Focada em atender homens jovens e adultos que buscam cortes de cabelo e tratamentos de barba exclusivos.
 <BR>
   Hábitos: Marina é apaixonada por design de interiores e está sempre buscando maneiras de tornar o ambiente da barbearia mais acolhedor e atraente. Ela mantém uma presença ativa nas redes sociais, postando regularmente fotos dos cortes e estilos únicos oferecidos em sua barbearia.</TD>
 </TR>
-    <TR>
-    	<TD>Hobbies<BR>
+    	<TD>Hobbies:<BR>
     Decoração de interiores, fotografia e moda masculina.</TD>
-    	<TD>Objetivos<BR>
+    	<TD>Objetivos:<BR>
     Continuar atraindo e retendo clientes jovens e modernos que valorizam serviços de alta qualidade e uma atmosfera única.
 Ampliar o menu de serviços para incluir tratamentos inovadores que atendam às necessidades em constante evolução dos clientes.
 </TD>
-  <TD>Frustrações<BR>
+  <TD>Frustrações:<BR>
     Dificuldade em manter a agenda organizada durante horários de pico, levando a atrasos e insatisfação dos clientes.
 Falta de uma ferramenta eficaz para gerenciar o estoque de produtos de barbearia.
 </TR>
