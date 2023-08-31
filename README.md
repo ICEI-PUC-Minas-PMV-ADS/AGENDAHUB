@@ -1,6 +1,6 @@
 # AGENDA HUB
 
-`CURSO`
+`CURSO` Análise e Desenvolvimento de Sistemas
 
 `DISCIPLINA`
 
