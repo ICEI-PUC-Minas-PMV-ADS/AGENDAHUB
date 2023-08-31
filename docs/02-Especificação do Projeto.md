@@ -16,6 +16,9 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 	<TR>
 		<TD>Idade: 41<BR><BR>
   Dados Principais: Marina é uma jovem empreendedora que administra uma barbearia moderna. Focada em atender homens jovens e adultos que buscam cortes de cabelo e tratamentos de barba exclusivos.
+  <TD>Aplicativos:<BR>
+• Instagram<BR>
+• Facebook
 <BR>
   Hábitos: Marina é apaixonada por design de interiores e está sempre buscando maneiras de tornar o ambiente da barbearia mais acolhedor e atraente. Ela mantém uma presença ativa nas redes sociais, postando regularmente fotos dos cortes e estilos únicos oferecidos em sua barbearia.</TD>
 </TR>
