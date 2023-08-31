@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# AGENDA HUB
 
 `CURSO`
 
@@ -6,22 +6,26 @@
 
 `SEMESTRE`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O objetivo principal da aplicação é melhorar a produtividade e eficiência dos profissionais autônomos e empresas que prestam serviços baseados em agendamento. Reduzir o desperdício de tempo em tarefas que podem ser automatizadas por meio da integração tecnológica, permitindo que os profissionais se concentrem em atividades estratégicas e de gerenciamento de negócio. 
+
+Oferecer uma experiência profissional satisfatória desde o primeiro contato com o cliente, garantindo disponibilidade nos horários desejados e evitando erros na marcação e com isso reduzir erros humanos nas marcações e nos processos de agendamento, aumentando a precisão e confiabilidade das operações.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Álvaro Gonçalves Rodrigues
+* Evellyn Andrade Alves da Silva
+* Josué Batista de Almeida
+* Lucas Gabriel Duarte Enis
+* Mariane de Oliveira Duarte
+* Roger Sato
 
 ## Orientador
 
-* Nome completo do professor 1
+* Carlos Alberto Marques Pietrobon
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação. 
 
 Não deixe de informar o link onde a aplicação estiver disponível para acesso (por exemplo: https://adota-pet.herokuapp.com/src/index.html).
 
