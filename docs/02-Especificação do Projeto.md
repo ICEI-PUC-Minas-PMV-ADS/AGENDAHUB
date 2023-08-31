@@ -19,9 +19,10 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 <BR>
   Hábitos: Marina é apaixonada por design de interiores e está sempre buscando maneiras de tornar o ambiente da barbearia mais acolhedor e atraente. Ela mantém uma presença ativa nas redes sociais, postando regularmente fotos dos cortes e estilos únicos oferecidos em sua barbearia.</TD>
 </TR>
-    	<TD>Hobbies:<BR>
-    Decoração de interiores, fotografia e moda masculina.</TD>
-    	<TD>Objetivos:<BR>
+<TD>Hobbies:<BR>
+    Decoração de interiores, fotografia e moda masculina.
+</TD>
+  <TD>Objetivos:<BR>
     Continuar atraindo e retendo clientes jovens e modernos que valorizam serviços de alta qualidade e uma atmosfera única.
 Ampliar o menu de serviços para incluir tratamentos inovadores que atendam às necessidades em constante evolução dos clientes.
 </TD>
