@@ -141,11 +141,11 @@ A partir da pesquisa realizada com as personas identificadas no projeto, foram l
 
 | EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE` | PARA ... `MOTIVO/VALOR`                |
 | -------------------- | ---------------------------------- | -------------------------------------- |
-| Marina Santos	       | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-| Sofia Almeida        | Alterar permissões                 | Permitir que possam administrar contas |
-| Pedro Carlos         | Alterar permissões                 | Permitir que possam administrar contas |
-| André Oliveira       | Alterar permissões                 | Permitir que possam administrar contas |
-| Antônio Oliveira     | Alterar permissões                 | Permitir que possam administrar contas |
+| Marina Santos	       | Manter a agenda organizada, controlar a satisfação dos clientes e assim conseguir prospectar mais clientes, além de controlar o estoque de produtos da barbearia.            | A necessidade de manter a agenda organizada é essencial para maior controle dos atendimentos e do espaçamento entre um cliente e outro, mantendo assim a satisfação, sem que haja atraso. Controlar o estoque para que diante do atendimento, não exista o risco de faltar o produto necessário para o atendimento.               |
+| Sofia Almeida        | Expandir a base de clientes, oferecer uma variedade de workshops. | Para buscar abordagens holísticas para o bem-estar mental e físico dos clientes. |
+| Pedro Carlos         | Gerenciar melhor a agenda da clínica, com atendimento personalizado para um público mais amplo. | Para otimizar a agenda, permitindo gerenciar o volume de pacientes sem comprometer a qualidade do atendimento. |
+| André Oliveira       | Gerenciar os horários de atendimento e administrar melhor os resultados financeiros. | Para alocar mais alunos e planejar o tempo gasto entre os atendimentos e deslocamento. Com a administração dos resultados financeiros será possível analisar se é viável novos investimentos em marketing e equipamentos. |
+| Antônio Oliveira     | Disponibilizar agendamento dos serviços prestados, gerenciar o tempo gasto, lembretes de manutenção e controle dos gastos e entradas de receitas. | Para otimizar o seu tempo de trabalho, gestão do gasto e receita e controlar a rotina preventiva dos clientes. |
 
 
 ## Requisitos
