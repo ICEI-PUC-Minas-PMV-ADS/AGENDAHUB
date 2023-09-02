@@ -8,7 +8,7 @@ A identificação do problema e soluções a serem tratadas neste projeto foram 
 
 <TABLE>
 	<TR>
-		<TD rowspan='2'><img src='' style='height: 100px'></TD>
+		<TD rowspan='2'><img src='img/marina.png' style='height: 100px'></TD>
 		<TD colspan='2'>Marina Santos</TD>
 	</TR>
 	<TR>
@@ -33,7 +33,7 @@ Falta de uma ferramenta eficaz para gerenciar o estoque de produtos de barbearia
 
 <TABLE>
 	<TR>
-		<TD rowspan='2'><img src='' style='height: 100px'></TD>
+		<TD rowspan='2'><img src='img/sofia.png' style='height: 100px'></TD>
 		<TD colspan='2'>Sofia Almeida</TD>
 	</TR>
 	<TR>
@@ -58,7 +58,7 @@ Oferecer uma variedade de workshops e retiros para aprofundar a compreensão dos
 
 <TABLE>
 	<TR>
-		<TD rowspan='2'><img src='' style='height: 100px'></TD>
+		<TD rowspan='2'><img src='img/pedro.png' style='height: 100px'></TD>
 		<TD colspan='2'>Pedro Carlos</TD>
 	</TR>
 	<TR>
@@ -84,7 +84,7 @@ Encontrar maneiras eficientes de monitorar e controlar os custos operacionais da
 
 <TABLE>
 	<TR>
-		<TD rowspan='2'><img src='' style='height: 100px'></TD>
+		<TD rowspan='2'><img src='img/andre.png' style='height: 100px'></TD>
 		<TD colspan='2'>André Oliveira</TD>
 	</TR>
 	<TR>
@@ -110,7 +110,7 @@ Lidar com os desafios financeiros de administrar um negócio independente, inclu
 
 <TABLE>
 	<TR>
-		<TD rowspan='2'><img src='' style='height: 100px'></TD>
+		<TD rowspan='2'><img src='img/antonio.png' style='height: 100px'></TD>
 		<TD colspan='2'>Antônio Oliveira</TD>
 	</TR>
 	<TR>
