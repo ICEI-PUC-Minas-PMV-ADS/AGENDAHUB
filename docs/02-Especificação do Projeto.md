@@ -187,15 +187,11 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 | ID  | Restrição                                             |
 | --- | ----------------------------------------------------- |
-| 01  | O projeto deverá ser entregue até o final do semestre |
-| 02  | Não pode ser desenvolvido um módulo de backend        |
+| 01  | O projeto deverá ser entregue no final do semestre letivo, não podendo extrapolar a data de 06/12/2023.|
+| 02  | O projeto deverá seguir o cronograma dos entregáveis de cada etapa, caso contrário pode haver atrasos significativos.|
+| 03  | O projeto deve ser planejado e executado dentro dos recursos financeiros disponíveis, incluindo custos associados a hardware, software, ferramentas de desenvolvimento e quaisquer outros gastos relacionados ao projeto.|
+| 04  | A equipe deverá desenvolver o projeto com base no aprendizado obtido na universidade, não podendo terceirizar o desenvolvimento do trabalho.|
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
->
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Diagrama de Casos de Uso
 
