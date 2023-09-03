@@ -184,19 +184,19 @@ Através de uma interface amigável, a aplicação oferecerá um conjunto de fun
 
 | ID      | Descrição do Requisito                                            | Prioridade |
 | ------- | ----------------------------------------------------------------- | ---------- |
-| RNF-001 | A aplicação deve ter uma página inicial para apresentar o sistema | ALTA      |
-| RNF-002 | Os dados dos usuários (incluindo informações pessoais, senhas e dados financeiros) devem ser armazenados de forma segura e criptografada.             | BAIXA      |
-| RNF-001 | As transações financeiras devem ser protegidas por medidas de segurança, como SSL/TLS, para garantir a integridade e confidencialidade. | BAIXA      |
-| RNF-002 | O sistema deve ser responsivo, com tempos de carregamento curtos para evitar frustração do usuário.            | MÉDIA      |
-| RNF-001 | O sistema deve ser capaz de lidar com um aumento no número de usuários, serviços e agendamentos sem degradação significativa do desempenho. | BAIXA      |
-| RNF-002 | Deve haver medidas de backup e recuperação em caso de falha do sistema.            | ALTA      |
-| RNF-001 | A interface do usuário deve ser intuitiva e de fácil utilização, mesmo para usuários não familiarizados com sistemas similares.  | MÉDIA      |
-| RNF-002 | O sistema deve ser compatível com uma variedade de dispositivos e navegadores populares como Chrome e Edge.             | MÉDIA      |
-| RNF-001 | O código deve ser bem estruturado e modular, facilitando a manutenção e a adição de novos recursos no futuro.  | MÉDIA      |
-| RNF-002 | O sistema deve cumprir as regulamentações de proteção de dados e privacidade, como o RGPD.             | BAIXA      |
-| RNF-001 | O sistema deve utilizar um banco de dados específico, como o SQL Server ou SQLite, para armazenar os dados do sistema. | ALTA      |
-| RNF-002 | O sistema deve utilizar a tecnologia C# e a plataforma .NET para o desenvolvimento do backend.            | ALTA      |
-| RNF-002 | O sistema deve utilizar as tecnologias básicas de desenvolvimento web front-end.            | ALTA      |
+| RNF-01 | A aplicação deve ter uma página inicial para apresentar o sistema  |ALTA|
+| RNF-02 | Os dados dos usuários (incluindo informações pessoais, senhas e dados financeiros) devem ser armazenados de forma segura e criptografada.|BAIXA|
+| RNF-03 | As transações financeiras devem ser protegidas por medidas de segurança, como SSL/TLS, para garantir a integridade e confidencialidade.|BAIXA|
+| RNF-04 | O sistema deve ser responsivo, com tempos de carregamento curtos para evitar frustração do usuário.|MÉDIA|
+| RNF-05 | O sistema deve ser capaz de lidar com um aumento no número de usuários, serviços e agendamentos sem degradação significativa do desempenho.|BAIXA|
+| RNF-06 | Deve haver medidas de backup e recuperação em caso de falha do sistema.|ALTA|
+| RNF-07 | A interface do usuário deve ser intuitiva e de fácil utilização, mesmo para usuários não familiarizados com sistemas similares.|MÉDIA|
+| RNF-08 | O sistema deve ser compatível com uma variedade de dispositivos e navegadores populares como Chrome e Edge.|MÉDIA|
+| RNF-09 | O código deve ser bem estruturado e modular, facilitando a manutenção e a adição de novos recursos no futuro.|MÉDIA|
+| RNF-10 | O sistema deve cumprir as regulamentações de proteção de dados e privacidade, como o RGPD.|BAIXA|
+| RNF-11 | O sistema deve utilizar um banco de dados específico, como o SQL Server ou SQLite, para armazenar os dados do sistema.|ALTA|
+| RNF-12 | O sistema deve utilizar a tecnologia C# e a plataforma .NET para o desenvolvimento do backend.|ALTA|
+| RNF-13 | O sistema deve utilizar as tecnologias básicas de desenvolvimento web front-end.|ALTA|
 
 
 
