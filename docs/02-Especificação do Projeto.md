@@ -148,38 +148,57 @@ A partir da pesquisa realizada com as personas identificadas no projeto, foram l
 | Antônio Oliveira     | Disponibilizar agendamento dos serviços prestados, gerenciar o tempo gasto, lembretes de manutenção e controle dos gastos e entradas de receitas. | Para otimizar o seu tempo de trabalho, gestão do gasto e receita e controlar a rotina preventiva dos clientes. |
 
 
+
+
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
+Através dos requisitos visamos desenvolver uma aplicação simples e funcional para o gerenciamento de serviços e agendamentos, fornecendo uma solução abrangente para profissionais e seus clientes. 
+
+Através de uma interface amigável, a aplicação oferecerá um conjunto de funcionalidades que abrangem desde a apresentação inicial até a gestão financeira de seu negócio.
+
+
 
 ### Requisitos Funcionais
 
 | ID     | Descrição do Requisito                  | Prioridade |
 | ------ | --------------------------------------- | ---------- |
-| RF-001 | Permitir que o usuário cadastre tarefas | ALTA       |
-| RF-002 | Emitir um relatório de tarefas no mês   | MÉDIA      |
+| RF-01 | O sistema deve permitir um usuário se cadastrar para receber acesso ao sistema | ALTA       |
+| RF-02 | O sistema deve ser protegido por autenticação de login e senha   | ALTA      |
+| RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional | ALTA       |
+| RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | ALTA      |
+| RF-05 | O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento | ALTA       |
+| RF-06 | O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira   | ALTA      |
+| RF-07 | O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador | ALTA       |
+| RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   | MÉDIA      |
+| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. | MÉDIA       |
+| RF-10 | O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos   | BAIXA      |
+| RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento | ALTA       |
+| RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional e tirar dúvidas   | ALTA      |
+| RF-13 | O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado | MÉDIA       |
+
+
+
+
 
 ### Requisitos não Funcionais
 
 | ID      | Descrição do Requisito                                            | Prioridade |
 | ------- | ----------------------------------------------------------------- | ---------- |
-| RNF-001 | O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA      |
-| RNF-002 | Deve processar requisições do usuário em no máximo 3s             | BAIXA      |
+| RNF-001 | A aplicação deve ter uma página inicial para apresentar o sistema | ALTA      |
+| RNF-002 | Os dados dos usuários (incluindo informações pessoais, senhas e dados financeiros) devem ser armazenados de forma segura e criptografada.             | BAIXA      |
+| RNF-001 | As transações financeiras devem ser protegidas por medidas de segurança, como SSL/TLS, para garantir a integridade e confidencialidade. | BAIXA      |
+| RNF-002 | O sistema deve ser responsivo, com tempos de carregamento curtos para evitar frustração do usuário.            | MÉDIA      |
+| RNF-001 | O sistema deve ser capaz de lidar com um aumento no número de usuários, serviços e agendamentos sem degradação significativa do desempenho. | BAIXA      |
+| RNF-002 | Deve haver medidas de backup e recuperação em caso de falha do sistema.            | ALTA      |
+| RNF-001 | A interface do usuário deve ser intuitiva e de fácil utilização, mesmo para usuários não familiarizados com sistemas similares.  | MÉDIA      |
+| RNF-002 | O sistema deve ser compatível com uma variedade de dispositivos e navegadores populares como Chrome e Edge.             | MÉDIA      |
+| RNF-001 | O código deve ser bem estruturado e modular, facilitando a manutenção e a adição de novos recursos no futuro.  | MÉDIA      |
+| RNF-002 | O sistema deve cumprir as regulamentações de proteção de dados e privacidade, como o RGPD.             | BAIXA      |
+| RNF-001 | O sistema deve utilizar um banco de dados específico, como o SQL Server ou SQLite, para armazenar os dados do sistema. | ALTA      |
+| RNF-002 | O sistema deve utilizar a tecnologia C# e a plataforma .NET para o desenvolvimento do backend.            | ALTA      |
+| RNF-002 | O sistema deve utilizar as tecnologias básicas de desenvolvimento web front-end.            | ALTA      |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
-- [Requisitos Funcionais
-  (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
-  correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-  Lembre-se que cada requisito deve corresponder à uma e somente uma
-  característica alvo da sua solução. Além disso, certifique-se de que
-  todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
