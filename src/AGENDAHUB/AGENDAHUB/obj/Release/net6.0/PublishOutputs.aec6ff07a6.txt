@@ -1,0 +1,7 @@
+C:\Users\Lucas\source\repos\AGENDAHUB\AGENDAHUB\obj\Release\net6.0\PubTmp\Out\AGENDAHUB.exe
+C:\Users\Lucas\source\repos\AGENDAHUB\AGENDAHUB\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\Lucas\source\repos\AGENDAHUB\AGENDAHUB\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\Lucas\source\repos\AGENDAHUB\AGENDAHUB\obj\Release\net6.0\PubTmp\Out\AGENDAHUB.dll
+C:\Users\Lucas\source\repos\AGENDAHUB\AGENDAHUB\obj\Release\net6.0\PubTmp\Out\AGENDAHUB.deps.json
+C:\Users\Lucas\source\repos\AGENDAHUB\AGENDAHUB\obj\Release\net6.0\PubTmp\Out\AGENDAHUB.runtimeconfig.json
+C:\Users\Lucas\source\repos\AGENDAHUB\AGENDAHUB\obj\Release\net6.0\PubTmp\Out\AGENDAHUB.pdb

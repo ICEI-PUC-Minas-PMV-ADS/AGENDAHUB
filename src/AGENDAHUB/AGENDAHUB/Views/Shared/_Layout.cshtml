@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AGENDAHUB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AGENDAHUB.styles.css" asp-append-version="true" />
+</head>
+
+
+<body id="body-pd">
+
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        @*         <div class="header_img"> <img src="" alt=""> </div>
+        Pode ser onde o nome do usuário fica + foto e config
+        *@
+    </header>
+
+
+    <div class="l-navbar" id="nav-bar">
+
+        <nav class="nav">
+
+            <div>
+
+                <a href="#" class="nav_logo">
+                    <img src="~/images/logoHUB.png" style="width: 3rem; height: 3rem;">
+                    <span class="nav_logo-name">AGENDAHUB</span>
+                </a>
+
+
+                <div class="nav_list">
+
+                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/calendario.png" style="width: 2rem; height: 2rem;" alt="calendar-icon" />
+                        <span class="nav_name">AGENDAMENTOS</span>
+                    </a>
+
+                    <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Clientes">
+                        <img src="~/images/clientes.png" style="width: 2rem; height: 2rem;" alt="client-icon" />
+                        <span class="nav_name">CLIENTES</span>
+                    </a> 
+
+                    <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Caixa">
+                        <img src="~/images/caixa.png" style="width: 2rem; height: 2rem;" alt="finance-icon" />
+                        <span class="nav_name">CAIXA</span>
+                    </a>
+
+                    <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Serviços">
+                        <img src="~/images/serviços.png" style="width: 2rem; height: 2rem;" alt="services-icon" />
+                        <span class="nav_name">SERVIÇOS</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="dropdown">
+
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/lucagdev.png" alt="" width="43" height="43" class="rounded-circle me-2">
+                    <strong>${User}</strong>
+                </a>
+
+
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+
+                    <li>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Configurações">
+                            <img src="~/images/config.png" style="width: 1rem; height: 1rem;">
+                            <span class="nav_name">Configurações</span>
+                        </a>
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <img src="~/images/sair.png" style="width: 1rem; height: 1rem;">
+                            <span class="nav_name">Sair</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+    <div class="main-container">
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-5 mt-5" style="margin-top: 60px;">
+            @RenderBody()
+        </main>
+
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
