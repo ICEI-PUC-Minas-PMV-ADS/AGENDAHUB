@@ -212,4 +212,12 @@ Este é o Modal que se apresenta ao cliente ao clicar em +NOVO AGENDAMENTO, onde
 
 O prótotipo interativo está disponível no link abaixo para melhor entendimento de como o sistema funcionará.
 
-https://www.figma.com/file/2LaOQ03aPkX95NucGhKfh1/AGENDAHUB?type=design&node-id=594%3A1259&mode=design&t=H0yo4IaiFH6sP5Te-1
+Para alternar entre o Fluxo do Profissional e do Cliente, no canto superior esquerdo contém a opção para a alternância.
+
+![flow prototipo](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/125372940/f132bfbb-5657-48be-bc00-1c99c7dd3628)
+
+
+https://www.figma.com/proto/2LaOQ03aPkX95NucGhKfh1/AGENDAHUB?type=design&node-id=403-378&t=11znHtyEeHX6Sfuc-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=403%3A378&show-proto-sidebar=1
+
+
+
