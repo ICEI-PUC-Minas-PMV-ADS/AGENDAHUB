@@ -6,7 +6,7 @@
 
 `SEMESTRE`
 
-O objetivo principal da aplicação é melhorar a produtividade e eficiência dos profissionais autônomos e empresas que prestam serviços baseados em agendamento. Reduzir o desperdício de tempo em tarefas que podem ser automatizadas por meio da integração tecnológica, permitindo que os profissionais se concentrem em atividades estratégicas e de gerenciamento de negócio. 
+O objetivo principal é desenvolver uma aplicação que ajude a melhorar a produtividade e eficiência dos profissionais autônomos e empresas que prestam serviços baseados em agendamento. Reduzir o desperdício de tempo em tarefas que podem ser automatizadas por meio da integração tecnológica, permitindo que os profissionais se concentrem em atividades estratégicas e de gerenciamento de negócio. 
 
 Oferecer uma experiência profissional satisfatória desde o primeiro contato com o cliente, garantindo disponibilidade nos horários desejados e evitando erros na marcação e com isso reduzir erros humanos nas marcações e nos processos de agendamento, aumentando a precisão e confiabilidade das operações.
 

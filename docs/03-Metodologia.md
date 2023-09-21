@@ -1,9 +1,18 @@
 
 # Metodologia
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
+A metodologia contempla as definições de ferramental utilizado pela equipe tanto para a manutenção dos códigos e demais artefatos quanto para a organização do time na execução das tarefas do projeto.
 
-Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela  equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
+# Relação de Ambientes de Trabalho
+
+Os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a relação dos ambientes com seu respectivo propósito é apresentada na tabela que se segue.
+
+| Ambiente | Plataforma | Link de Acesso | 
+| ------ | --------------------------------------- | ---------- |
+| Repositório de Código fonte | GitHub | [Link-Repositório](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub) |
+| Documentos do projeto | Google Drive | [DocsAgendaHub](https://drive.google.com/drive/folders/1SlFe3c0dFuuwu6Qu-7m3VEGTFdelQIwe?usp=sharing) |
+| Projeto de interface e Wireframes | Figma | [Protótipo-Figma](https://www.figma.com/proto/2LaOQ03aPkX95NucGhKfh1/AGENDAHUB?type=design&node-id=107-118&t=TEY040VKm8H17AQM-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=107%3A118&show-proto-sidebar=1) |
+| Gerenciamento do projeto | Trello | [Quadro-Kanban](https://trello.com/b/HEPpGwZN/agendahub) |
 
 ## Controle de Versão
 
@@ -14,64 +23,62 @@ foi utilizado para hospedagem do repositório.
 O projeto segue a seguinte convenção para o nome de branches:
 
 - `main`: versão estável já testada do software
-- `unstable`: versão já testada do software, porém instável
-- `testing`: versão em testes do software
-- `dev`: versão de desenvolvimento do software
+- `Develop`: Linha do tempo de desenvolvimento do próximo deploy, contendo funcionalidades não publicadas que serão posteriormente mescladas na branch "Main"
+- `feature`: Uma nova funcionalidade precisa ser introduzida
+- `Release`: Versão já testada do software, porém instável
+- `Hotfix`: Uma funcionalidade encontra-se com problemas
+- `Release`: Ambiente de homologação para mesclar as alterações da "Develop" na "Main"
 
-Quanto à gerência de issues, o projeto adota a seguinte convenção para
-etiquetas:
+As Branches mecionadas são ilustradas na figura a seguir
 
-- `documentation`: melhorias ou acréscimos à documentação
-- `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
 
-Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
+![Fluxo de controle do código fonte no repositório git](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/127361540/a0192673-bf5d-426d-b3ee-b4a7fe607c7b)
 
-> **Links Úteis**:
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
->  - [Comparando fluxos de trabalho](https://www.atlassian.com/br/git/tutorials/comparing-workflows)
-> - [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-> - [The gitflow workflow - in less than 5 mins](https://www.youtube.com/watch?v=1SXpE08hvGs)
+
+
+Fluxo de controle do código fonte no repositório git
+
 
 ## Gerenciamento de Projeto
 
+A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para definição do processo de desenvolvimento.
+
 ### Divisão de Papéis
 
-Apresente a divisão de papéis entre os membros do grupo.
+- Scrum Master: Lucas Gabriel Duarte Enis
+- Product Owner: Mariane de Oliveira Duarte
+- Equipe de Desenvolvimento
+  - Roger Sato
+  - Álvaro Gonçalves Rodrigues
+  - Josué Batista de Almeida
+  - Evellyn Andrade Alves da Silva 
+- Equipe de Design
+  - Evellyn Andrade Alves da Silva
 
-> **Links Úteis**:
-> - [11 Passos Essenciais para Implantar Scrum no seu 
-> Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
 
-### Processo
+### Gerenciamento do Product Backlog
 
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-> **Links Úteis**:
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/github/managing-your-work-on-github/about-project-boards)
-> - [Como criar Backlogs no Github](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
+- Backlog: Recebe as tarefas a serem trabalhadas e representa o Product Backlog. Todas as atividades identificadas no decorrer do projeto estão incorporadas a esta lista.
+- To Do: Esta lista representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando.
+- In Progress: Quando uma tarefa tiver sido iniciada, ela é movida para cá para ser desenvolvida ativamente.
+- Test: Checagem de Qualidade. Quando as tarefas são concluídas, eles são movidas para o “CQ”. No final da semana, eu revejo essa lista para garantir que tudo saiu como planejado.
+- Done: Nesta lista são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário. Não há mais edições ou revisões necessárias.
+- Locked: Quando alguma coisa impede a conclusão da tarefa, ela é movida para esta lista juntamente com um comentário sobre o que está travando a tarefa.
 
-### Ferramentas
+O quadro kanban do grupo desenvolvido na ferramenta de gerenciamento de projetos é apresentado, no estado atual, na figura 3 e está disponível através da URL: [Quadro-Kanban](https://trello.com/b/HEPpGwZN/agendahub)
 
-As ferramentas empregadas no projeto são:
+![Captura de tela 2023-09-20 180926](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/127361540/a00ed049-8f77-46f4-b36c-4b9c9f4178ee)
 
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
+Figura 3 - Tela do kanban utilizada pelo grupo
 
-O editor de código foi escolhido porque ele possui uma integração com o
-sistema de versão. As ferramentas de comunicação utilizadas possuem
-integração semelhante e por isso foram selecionadas. Por fim, para criar
-diagramas utilizamos essa ferramenta por melhor captar as
-necessidades da nossa solução.
 
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
- 
-> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - [Slack](https://slack.com/)
-> - [Github](https://github.com/)
+**Etiquetas:**
+A tarefas são, ainda, etiquetadas em função da natureza da atividade 
+e seguem o seguinte esquema de cores/categorias:
+- Documentação
+- Desenvolvimento           
+- Infraestrutura
+- Testes
+
+   ![Etiquetas](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/127361540/2c333ac4-7878-49cf-8ef6-f5ec6c8f7ef3)
+
