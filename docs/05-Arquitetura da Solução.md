@@ -26,8 +26,13 @@ A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
 ## Projeto da Base de Dados
 
 O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
- 
-Para mais informações, consulte o microfundamento "Modelagem de Dados".
+
+![Diagrama_ER_AgendaHub](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/130249437/359a4634-e652-4e0c-8bb6-6e6b107386da)
+
+Para uma melhor visualização do Modelo, disponibilizamos o PDF: [Diagrama_ER_AgendaHUB_BD_vs1.pdf](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/files/12685582/Diagrama_ER_AgendaHUB_BD_vs1.pdf)
+
+Para mais informações sobre as relações, disponibilizamos o PDF: [Relacao_Diagrama_ER_AgendaHUB_BD.pdf](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/files/12685603/Relacao_Diagrama_ER_AgendaHUB_BD.pdf)
+
 
 ## Tecnologias Utilizadas
 
