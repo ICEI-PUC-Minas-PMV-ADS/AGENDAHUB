@@ -9,16 +9,16 @@ Visão geral da interação do usuário pelas telas do sistema e protótipo inte
 
 ## Diagrama de Fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo e  muitas vezes sem a necessidade do desenho do design das telas da interface. Isso permite que o design das interações seja bem planejado e gere impacto na qualidade no design do wireframe interativo que será desenvolvido logo em seguida.
+Os diagramas de fluxo do AGENDAHUB foram desenvolvidos na plataforma Figma com o propósito de representar de forma precisa a sequência de telas que os usuários irão utilizar. O objetivo é proporcionar alta fidelidade para que a equipe possa ter uma orientação clara sobre a utilização do sistema.
 
-O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem internamente a indicação dos principais elementos de interface - tais como menus e acessos - e funcionalidades, tais como editar, pesquisar, filtrar, configurar - e a conexão entre esses boxes a partir do processo de interação. Você pode ver mais explicações e exemplos https://www.lucidchart.com/blog/how-to-make-a-user-flow-diagram.
+Para este projeto, foram criados dois fluxos distintos. Um deles está voltado para o acompanhamento das telas destinadas aos profissionais (empresas), enquanto o outro é direcionado aos clientes que serão atendidos por esses profissionais.
 
-![Exemplo de Diagrama de Fluxo](img/diagramafluxo2.jpg)
+### Diagrama de Fluxo do Profissional
+![Diagrama de Fluxo do Profissional](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/blob/main/docs/img/diagramaFluxoProfissional.png)
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagramas de Fluxo”.
 
-> **Links Úteis**:
-> - [Fluxograma online: seis sites para fazer gráfico sem instalar nada | Produtividade | TechTudo](https://www.techtudo.com.br/listas/2019/03/fluxograma-online-seis-sites-para-fazer-grafico-sem-instalar-nada.ghtml)
+### Diagrama de Fluxo do Cliente
+![Diagrama de Fluxo do Cliente](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/blob/main/docs/img/diagramaFluxoCliente.png)
 
 ## Wireframes
 
