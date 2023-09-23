@@ -6,13 +6,18 @@ O planejamento dos testes de usabilidade a serem realizados com usuários são d
 
 - Legenda:
   - **Método:** Artefatos a serem utilizados para realização do registro de teste de usabilidade.
-  - **Participante:** Alvo do plano de teste de usabilidade.
-  - **F-0X:** Funcionalidade x do sistema.
-  - **Prioridade:** Foco no sucesso das funcionalidades.
+  - **Participante:**
+      - Empresa/Profissional Autônomo/Prestadores de Serviços
+      - Usuários (Clientes) da Empresa
+  - **Funcionalidades em Foco:** Todas as funcionalidades listadas na tabela, dependendo do grupo de participantes.
+  - **Prioridade de Sucesso:**
+      - Alta: Funcionalidades críticas para o sucesso da plataforma.
+      - Média: Funcionalidades importantes, mas não críticas.
+      - Baixa: Funcionalidades menos críticas ou complementares.
 
 | OBJETIVO                            | Avaliar a eficácia e usabilidade da aplicação "AGENDAHUB," com ênfase nas funcionalidades.   |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| **MÉTODO**                            | **1 - Descoberta de problemas:** <br>Seu objetivo é identificar e corrigir eventuais problemas existentes na plataforma. Nos testes de descoberta de problemas, podemos averiguar quais são os obstáculos para a fluida utilização. <br><br> **2 - Testes Remotos Não Moderados de Usabilidade:** <br> Teste de usabilidade que deve ser realizado online, neste método os participantes realizam testes diretamente em seus próprios dispositivos, como tablets, smartphones e notebooks. <br><br> **3 - Avaliação Tabulada:** <br> Após realizado o método 2, será disponibilizado uma tabela para capturar os sentimentos dos usuários, é uma abordagem eficaz para identificar pontos positivos e negativos.| 
+| **MÉTODO**                            | **1 - Descoberta de problemas:** <br>Seu objetivo é identificar e corrigir eventuais problemas existentes na plataforma. Nos testes de descoberta de problemas, podemos averiguar quais são os obstáculos para a fluida utilização. <br><br> **2 - Testes Remotos Não Moderados de Usabilidade:** <br> Teste de usabilidade que deve ser realizado online, neste método os participantes realizam testes diretamente em seus próprios dispositivos, como tablets, smartphones e notebooks. <br><br> **3 - Avaliação por Formulário:** <br>Objetivo: Capturar os sentimentos dos usuários após a realização do método 2 para identificar pontos positivos e negativos.<br>Após a conclusão dos Testes Remotos de Usabilidade, disponibilizamos um [formulário](https://docs.google.com/forms/d/e/1FAIpQLSfUIvmmatQOJ244yrXPtugsn_Ar-sTq8JEl3LUHtEEsmKVWiw/viewform) aos participantes para que eles possam expressar seus sentimentos e feedback sobre a plataforma. Isso nos ajuda a compreender as experiências individuais dos usuários e a identificar pontos fortes e fracos.| 
 
 
 |  **PARTICIPANTE**  |  **Empresa/Profissional Autônomo/Prestadores de Serviços** | |
@@ -34,7 +39,7 @@ O planejamento dos testes de usabilidade a serem realizados com usuários são d
 | F-14 | Visualizar o histórico de movimentação financeira em um período de data especificado | Média |
 
 
-|  **Participante**  |  **USUÁRIOS (CLIENTES) DA EMPRESA** | |
+|  **PARTICIPANTE**  |  **USUÁRIOS (CLIENTES) DA EMPRESA** | |
 | ------------------------------------- | ------------------------------------------------|  ------------------------------------------------ |
 | **FUNCIONALIDADE** | **DESCRIÇÃO** | **PRIORIDADE DE SUCESSO** |
 | F-01 | Realizar login com as credenciais cadastradas | Alta |
