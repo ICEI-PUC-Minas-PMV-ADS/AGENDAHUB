@@ -10,7 +10,7 @@ O diagrama de classes ilustra graficamente como será a estrutura do software, e
 
 <img src="img/DiagramaDeClasses.jpeg" alt="Descrição da imagem">
 
-Para uma melhor visualização do Modelo, disponibilizamos o PDF: [DiagramaDeClasses.pdf]
+Para uma melhor visualização do Modelo, disponibilizamos o PDF: [DiagramaDeClasses.pdf](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/blob/main/docs/img/Diagrama%20de%20classes.pdf)
 
 ## Modelo ER (Projeto Conceitual)
 
