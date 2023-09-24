@@ -41,7 +41,8 @@ Apresente também uma figura explicando como as tecnologias estão relacionadas 
 
 ## Diagrama Conceitual
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/b66e7bcc-bdb5-4e97-8afc-2e9062e4e1f5)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/18887051-6d2e-47bf-8502-fadfdf6b1823)
+
 
 > **Links Úteis**:
 >
