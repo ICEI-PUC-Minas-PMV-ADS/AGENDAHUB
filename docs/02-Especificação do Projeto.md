@@ -162,7 +162,7 @@ Através de uma interface amigável, a aplicação oferecerá um conjunto de fun
 
 | ID     | Descrição do Requisito                  | Prioridade |
 | ------ | --------------------------------------- | ---------- |
-| RF-01 | O sistema deve permitir um usuário se cadastrar para receber acesso ao sistema | ALTA       |
+| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema | ALTA       |
 | RF-02 | O sistema deve ser protegido por autenticação de login e senha   | ALTA      |
 | RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional | ALTA       |
 | RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | ALTA      |

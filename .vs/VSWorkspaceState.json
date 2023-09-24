@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\AGENDAHUB",
+    "\\src\\AGENDAHUB\\AGENDAHUB",
+    "\\src\\AGENDAHUB\\AGENDAHUB\\Views",
+    "\\src\\AGENDAHUB\\AGENDAHUB\\Views\\Home"
   ],
-  "SelectedNode": "\\C:\\Users\\Lucas\\Source\\Repos\\pmv-ads-2023-2-e2-proj-int-t4-agendaHub",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
