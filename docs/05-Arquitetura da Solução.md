@@ -39,9 +39,9 @@ Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, 
 
 Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
 
-## Hospedagem
+## Diagrama Conceitual
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/b66e7bcc-bdb5-4e97-8afc-2e9062e4e1f5)
 
 > **Links Úteis**:
 >
