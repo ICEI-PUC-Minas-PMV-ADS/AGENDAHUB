@@ -1,8 +1,20 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Qh7B9/vjDI5JaPlqc61fDlCnh2LZcq2zjQ5ayxYIUo9168TVMSeWIMpBdNRqBS127j19lt9ZVwsrm+YbSf9uFA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lucas\\Source\\Repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
   "expectedPackageFiles": [],
+=======
+  "dgSpecHash": "xWt2zmXCHhXdR+fBmOAO9A/ogLN4vhvH3k3tcu1ILJPiF97pNPoMjPcJRL8mZPCsIK0WmV+L+HRmVDEmI2wwbg==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\evell\\pmv-ads-2023-2-e2-proj-int-t4-agendaHub\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\evell\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\evell\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\evell\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\evell\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.22\\microsoft.netcore.app.host.win-x64.6.0.22.nupkg.sha512"
+  ],
+>>>>>>> 236c29b8d8053db8fc9f6fccee81801c9a911f74
   "logs": []
 }

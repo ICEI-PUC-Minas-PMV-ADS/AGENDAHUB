@@ -8,32 +8,49 @@
     "net6.0": []
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Lucas\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\evell\\.nuget\\packages\\": {}
+>>>>>>> 236c29b8d8053db8fc9f6fccee81801c9a911f74
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Lucas\\Source\\Repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
       "projectName": "AGENDAHUB",
       "projectPath": "C:\\Users\\Lucas\\Source\\Repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
       "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Lucas\\Source\\Repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\obj\\",
+=======
+      "projectUniqueName": "c:\\Users\\evell\\pmv-ads-2023-2-e2-proj-int-t4-agendaHub\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
+      "projectName": "AGENDAHUB",
+      "projectPath": "c:\\Users\\evell\\pmv-ads-2023-2-e2-proj-int-t4-agendaHub\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
+      "packagesPath": "C:\\Users\\evell\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\evell\\pmv-ads-2023-2-e2-proj-int-t4-agendaHub\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\obj\\",
+>>>>>>> 236c29b8d8053db8fc9f6fccee81801c9a911f74
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+        "C:\\Users\\evell\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 236c29b8d8053db8fc9f6fccee81801c9a911f74
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+<<<<<<< HEAD
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
+=======
+        "C:\\Program Files\\dotnet\\sdk\\7.0.308\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+>>>>>>> 236c29b8d8053db8fc9f6fccee81801c9a911f74
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -62,6 +79,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.22, 6.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.22, 6.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.22, 6.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.22, 6.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -70,7 +105,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.308\\RuntimeIdentifierGraph.json"
+>>>>>>> 236c29b8d8053db8fc9f6fccee81801c9a911f74
       }
     }
   }
