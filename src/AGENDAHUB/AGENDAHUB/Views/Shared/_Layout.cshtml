@@ -14,11 +14,14 @@
 <body id="body-pd">
 
     <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        @*         <div class="header_img"> <img src="" alt=""> </div>
-        Pode ser onde o nome do usuário fica + foto e config
-        *@
+        <div class="header_img">
+            <img src="~/images/agendahub2.png">
+        </div>
+        <div class="header_toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
     </header>
+
 
 
     <div class="l-navbar" id="nav-bar">
@@ -27,15 +30,9 @@
 
             <div>
 
-                <a href="#" class="nav_logo">
-                    <img src="~/images/logoHUB.png" style="width: 3rem; height: 3rem;">
-                    <span class="nav_logo-name">AGENDAHUB</span>
-                </a>
-
-
                 <div class="nav_list">
 
-                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">
                         <img src="~/images/calendario.png" style="width: 2rem; height: 2rem;" alt="calendar-icon" />
                         <span class="nav_name">AGENDAMENTOS</span>
                     </a>
@@ -43,7 +40,7 @@
                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Clientes">
                         <img src="~/images/clientes.png" style="width: 2rem; height: 2rem;" alt="client-icon" />
                         <span class="nav_name">CLIENTES</span>
-                    </a> 
+                    </a>
 
                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Caixa">
                         <img src="~/images/caixa.png" style="width: 2rem; height: 2rem;" alt="finance-icon" />
@@ -99,6 +96,32 @@
         </main>
 
     </div>
+
+    <footer class="border-top bg-dark footer text-center text-black pt-4">
+        <div class="container d-grid justify-content-center">
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 pt-3">
+                    <img src="~/images/copy.png" style="width: 3rem; height: 3rem;"> AGENDAHUB, @DateTime.Now.Year
+                </div>
+
+                <br />
+                <div class="col-md-6 col-sm-6 text-start d-grid justify-content-end" id="contatosAgendaHub">
+                    <a class="text-black" href="mailto:agendahub@outlook.com">
+                        <img src="~/images/email.png" style="width: 1rem; height: 1rem;"> agendahub@outlook.com
+                    </a>
+                    <a class="text-black" href="https://www.instagram.com/agendahub_oficial/" target="_blank">
+                        <img src="~/images/instagram.png" style="width: 1rem; height: 1rem;"> agendahub
+                    </a>
+                    <a class="text-black" href="https://api.whatsapp.com/send?phone=313199999999" target="_blank">
+                        <img src="~/images/whatsapp.png" style="width: 1rem; height: 1rem;"> (31)9 9999-9999
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
