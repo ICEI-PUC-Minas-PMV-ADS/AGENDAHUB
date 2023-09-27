@@ -7,6 +7,12 @@ namespace AGENDAHUB.Models
 {
     public class MovimentacaoFinanceira
     {
+
+    // Construtor
+    public MovimentacaoFinanceira()
+    {
+    }
+
     public int Id { get; set; }
     public string Categoria { get; set; }
     public decimal Valor { get; set; }
@@ -14,5 +20,28 @@ namespace AGENDAHUB.Models
     public TimeSpan Hora { get; set; }
     public string Descricao { get; set; }
     public string Cliente { get; set; }
+
+
+     // Relacionamentos
+    public int ClienteId { get; set; }
+    public Cliente ClienteMovimentacaoFinanceira { get; set; }
+    public int? AgendamentoId { get; set; }
+    public Agendamento Agendamento { get; set; }
+    public DadosBancarios DadosBancarios { get; set; }
+
+    public void RegistrarTransacao()
+    {
+ 
+    }
+
+    public void AtualizarTransacao()
+    {
+  
+    }
+
+    public void RemoverTransacao()
+    {
+     
+    }
     }
 }

@@ -8,6 +8,11 @@ namespace AGENDAHUB.Models
     public class Colaborador
     {
         
+    // Construtor
+    public Colaborador()
+    {
+
+    }
     public int Id { get; set; }
     public string Nome { get; set; }
     public string Telefone { get; set; }
@@ -17,6 +22,7 @@ namespace AGENDAHUB.Models
     public string Login { get; set; }
     public string CPF { get; set; }
 
+   
 
     
     // Relacionamento com Empresa
@@ -50,7 +56,4 @@ namespace AGENDAHUB.Models
     }
 }
     
-
-
-
     }

@@ -9,49 +9,49 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AGENDAHUB
 build_property.RootNamespace = AGENDAHUB
-build_property.ProjectDir = c:\Users\evell\pmv-ads-2023-2-e2-proj-int-t4-agendaHub\AGENDAHUB\src\AGENDAHUB\AGENDAHUB\
+build_property.ProjectDir = c:\Users\evell\OneDrive\Área de Trabalho\AGENDAHUB\src\AGENDAHUB\AGENDAHUB\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\evell\pmv-ads-2023-2-e2-proj-int-t4-agendaHub\AGENDAHUB\src\AGENDAHUB\AGENDAHUB
+build_property.MSBuildProjectDirectory = c:\Users\evell\OneDrive\Área de Trabalho\AGENDAHUB\src\AGENDAHUB\AGENDAHUB
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Caixa.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Caixa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWl4YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Clientes.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Clientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDbGllbnRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Configurações.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Configurações.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb25maWd1cmHDp8O1ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Index.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Serviços.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Home/Serviços.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXJ2acOnb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Shared/Error.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/_ViewImports.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/_ViewStart.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/evell/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Shared/_Layout.cshtml]
+[c:/Users/evell/OneDrive/Área de Trabalho/AGENDAHUB/src/AGENDAHUB/AGENDAHUB/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ywr2569n3t

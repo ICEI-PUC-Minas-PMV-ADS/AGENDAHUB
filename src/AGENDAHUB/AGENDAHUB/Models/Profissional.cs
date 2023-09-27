@@ -7,6 +7,12 @@ namespace AGENDAHUB.Models
 {
     public class Profissional
     {
+
+    // Construtor
+    public Profissional()
+    {
+    }
+    
     public int Id { get; set; }
     public string Nome { get; set; }
     public string Especializacao { get; set; }
@@ -15,5 +21,36 @@ namespace AGENDAHUB.Models
     public string Senha { get; set; }
     public int Login { get; set; }
     public string CPF { get; set; }
+
+    
+
+
+    // Relacionamentos
+
+    public List<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
+    public List<MovimentacaoFinanceira> MovimentacaoFinanceiras { get; set; } = new List<MovimentacaoFinanceira>();
+    public List<Servico> Servicos { get; set; } = new List<Servico>();
+
+    public void CadastrarCliente(Cliente cliente)
+    {
+       
     }
+
+    public void CadastrarServico(Servico servico)
+    {
+        
+    }
+
+    public void CadastrarAgendamento(Agendamento agendamento)
+    {
+        
+    }
+
+    public void CadastrarMovimentacao(MovimentacaoFinanceira movimentacao)
+    {
+        
+    }
+    }
+
+
 }
