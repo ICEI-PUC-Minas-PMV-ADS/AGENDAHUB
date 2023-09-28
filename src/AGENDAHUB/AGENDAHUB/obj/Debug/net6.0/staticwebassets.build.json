@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jqTMXqH+Fmm56a8paCPZtTYq2iPTqlgL3sPDjzjDOew=",
+  "Hash": "sXpC5AYTonLvb/fOnj1SQ5YeB3PCVcwcGyeyPoVVPMw=",
   "Source": "AGENDAHUB",
   "BasePath": "_content/AGENDAHUB",
   "Mode": "Default",
@@ -255,6 +255,23 @@
       "OriginalItemSpec": "wwwroot\\images\\copy.png"
     },
     {
+      "Identity": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\editar.png",
+      "SourceId": "AGENDAHUB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
+      "BasePath": "_content/AGENDAHUB",
+      "RelativePath": "images/editar.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\editar.png"
+    },
+    {
       "Identity": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\email.png",
       "SourceId": "AGENDAHUB",
       "SourceType": "Discovered",
@@ -270,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\email.png"
+    },
+    {
+      "Identity": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\excluir.png",
+      "SourceId": "AGENDAHUB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
+      "BasePath": "_content/AGENDAHUB",
+      "RelativePath": "images/excluir.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\excluir.png"
     },
     {
       "Identity": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\filtro.png",

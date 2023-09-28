@@ -53,8 +53,16 @@
       "PackagePath": "staticwebassets\\images\\copy.png"
     },
     {
+      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\editar.png",
+      "PackagePath": "staticwebassets\\images\\editar.png"
+    },
+    {
       "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\email.png",
       "PackagePath": "staticwebassets\\images\\email.png"
+    },
+    {
+      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\excluir.png",
+      "PackagePath": "staticwebassets\\images\\excluir.png"
     },
     {
       "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\filtro.png",
