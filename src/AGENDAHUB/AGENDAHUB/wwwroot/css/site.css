@@ -39,8 +39,8 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
-    background: rgb(208, 208, 208);
-    background: linear-gradient(90deg, rgba(208,208,208,1) 0%, rgba(49,209,204,1) 100%);
+    background: rgb(208,208,208);
+    background: linear-gradient(90deg, rgba(208,208,208,1) 0%, rgba(13,202,240,1) 100%);
     z-index: var(--z-fixed);
     transition: .5s
 }
@@ -187,9 +187,9 @@ a {
         padding: 1rem 1rem 0 0
     }
 
-    .show {
+    /*.show {
         width: calc(var(--nav-width) + 156px)
-    }
+    }*/
 
     .body-pd {
         padding-left: calc(var(--nav-width) + 188px)
@@ -204,7 +204,7 @@ footer {
     width: 100%;
     white-space: nowrap;
     background: rgb(208, 208, 208);
-    background: linear-gradient(90deg, rgba(76, 209, 192, 1) 0%, rgba(208, 208, 208, 1) 100%);
+    background: linear-gradient(90deg, rgba(13, 202, 240, 1) 0%, rgba(208, 208, 208, 1) 100%);
 }
 
 #contatosAgendaHub {

@@ -1,24 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "PjA43v5hPJQfGbGItRdZjARZusvixtzUo8h1hFWOg4uTEuHvptBQrhDXyEYeeuHK457EoXFEfFgjaOqmUBgjwQ==",
-=======
-<<<<<<< HEAD
-  "dgSpecHash": "Qh7B9/vjDI5JaPlqc61fDlCnh2LZcq2zjQ5ayxYIUo9168TVMSeWIMpBdNRqBS127j19lt9ZVwsrm+YbSf9uFA==",
+  "dgSpecHash": "AJnkR4VJA1uHkF4FUkPEO73BfdsgNKIkqo0t/tKcoczUbnb9MnC0uMsrLJIy02ej9S5JWtRGt3HjAHPw2F3Rig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lucas\\Source\\Repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
+  "projectFilePath": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
   "expectedPackageFiles": [],
-=======
-  "dgSpecHash": "xWt2zmXCHhXdR+fBmOAO9A/ogLN4vhvH3k3tcu1ILJPiF97pNPoMjPcJRL8mZPCsIK0WmV+L+HRmVDEmI2wwbg==",
->>>>>>> 1cae9344917b234adbbb981e86f09849347c6a4c
-  "success": true,
-  "projectFilePath": "c:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\evell\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\evell\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\evell\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\evell\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.22\\microsoft.netcore.app.host.win-x64.6.0.22.nupkg.sha512"
-  ],
->>>>>>> 236c29b8d8053db8fc9f6fccee81801c9a911f74
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

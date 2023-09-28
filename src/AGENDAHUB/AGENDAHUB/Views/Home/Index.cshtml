@@ -2,32 +2,203 @@
     ViewData["Title"] = "Agendamentos";
 }
 
+<link rel="stylesheet" href="~/css/Agendamentos.css" asp-append-version="true" />
 
-<h1>@ViewData["Title"]</h1>
 
-<p>Agendamentos marcados.</p>
-@*  <div class="container">
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+
+<br />
+
+
+<div class="container ps-lg-5">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="d-flex justify-content-between mb-3">
-                <button type="button" class="btn btn-primary">+Novo Agendamento</button>
-                <input type="date" class="form-control align-items-center" />
+
+        @*Botão Novo Agendamento*@
+
+        <div class="col-md-3">
+            <button type="button" class="btn btn-outline-info mt-4" data-bs-toggle="modal" data-bs-target="#novoAgendamentoModal" id="btnNovoAgendamento">
+                + Novo Agendamento
+            </button>
+        </div>
+
+        @* Modal *@
+
+        <div class="modal fade" id="novoAgendamentoModal" tabindex="-1" aria-labelledby="novoAgendamentoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content" id="modalAgendamento">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center w-100" id="novoAgendamentoModalLabel">Novo Agendamento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body text-center" style="padding: 0 20%;">
+                        <form>
+                            <div class="mb-3 mt-2">
+                                <label for="cliente" class="form-label">Cliente</label>
+                                <select class="form-select" id="clienteAgendamento">
+                                    <option>Cliente 1</option>
+                                    <option>Cliente 2</option>
+                                    <option>Cliente 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="servico" class="form-label">Serviço</label>
+                                <select class="form-select" id="servicoAgendamento">
+                                    <option>Serviço 1</option>
+                                    <option>Serviço 2</option>
+                                    <option>Serviço 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="profissional" class="form-label">Profissional</label>
+                                <select class="form-select" id="profissionalAgendamento">
+                                    <option>Profissional 1</option>
+                                    <option>Profissional 2</option>
+                                    <option>Profissional 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="dataAgendamento">
+                            </div>
+                            <div class="mb-3">
+                                <label for="hora" class="form-label">Hora</label>
+                                <input type="time" class="form-control" id="horaAgendamento">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-info" id="cadastrarAgendamento">Cadastrar</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card text-center">
-                <div class="card-header">
-                    ${Tipo do serviço}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">${Data} + {Horário}</h5>
-                    <p class="card-text">S${Cliente} + {Contato}</p>
-                    <a href="#" class="btn btn-primary">${Confirmar Agendamento}</a>
+        @* Filtro de Data *@
+
+        <div class="col-md-3 text-center">
+            <label for="dataInicio">Inicio</label>
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="date" class="form-control" id="dataInicio">
+            </div>
+        </div>
+
+
+        <div class="col-md-3 text-center">
+            <label for="dataFim">Fim</label>
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="date" class="form-control" id="dataFim">
+            </div>
+        </div>
+
+
+        @* Barra de Pesquisa *@
+
+        <div class="col-md-3 text-center mt-4">
+            <div class="input-group" id="pesquisarDiv">
+                <input type="text" class="form-control" id="pesquisar">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="button" id="botaoPesquisar">
+                        <img style="height: 1.5rem; width: 2.5rem;" src="~/images/pesquisar.png" />
+                    </button>
                 </div>
             </div>
         </div>
+
+
+        @* Filtro Status *@
+
+        <div class="row">
+            <div class="col d-flex justify-content-end mt-2">
+                <div class="dropdown">
+                    <button class="btn btn-outline-info dropdown-toggle me-4" type="button" id="btnStatusAgendamento" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Status <img style="height: 1.5rem; width: 2.5rem" src="~/images/filtro.png" />
+                    </button>
+                    <div class="dropdown-menu text-center" aria-labelledby="dropdownStatus" id="dropdownStatus">
+                        <a class="dropdown-item btn-btn-outilne-succes" href="#">Concluído</a>
+                        <a class="dropdown-item" href="#">Pendente</a>
+                        <a class="dropdown-item" href="#">Cancelado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Cards Agendamentos *@
+
+        <div class="row pt-4" id="cardAgendamentos">
+
+            <div class="col-md-8 offset-md-2">
+
+                <div class="card-body" id="cardView">
+
+                    <div class="row text-center">
+
+                        <div class="col-12 text-center"><h4 class="fw-bold">${Tipo do serviço}</h4></div>
+
+                        <div class="dropdown col d-flex justify-content-end">
+
+                            <button type="button" class="btn btn-success me-2 text-black" id="statusAgendamento" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>
+                                    Concluído
+                                    <img style="height: 2rem; width: auto" src="~/images/concluido.png" />
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-6">
+
+                                <h5 class="card-title">
+                                    Nome:
+                                </h5>
+
+                                <h4><span class="fw-bold exibiçãoCliente">Lucas Gabriel</span></h4>
+
+                            </div>
+
+                            <div class="col-6">
+
+                                <h5 class="card-text">
+                                    Telefone:
+                                </h5>
+
+                                <h4><span class="fw-bold exibiçãoCliente">${Contato}</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <h5 class="card-text">
+                                    Data-Horário:
+                                </h5>
+
+                                <h4><span class="fw-bold exibiçãoCliente">${Data} - ${Horário}</span></h4>
+
+                            </div>
+
+                            <div class="col-6">
+                                <h5 class="card-text">
+                                    Valor:
+                                </h5>
+
+                                <h4><span class="fw-bold exibiçãoCliente">${Valor}</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-warning me-2">
+                                <img style="height: 2rem; width: auto" src="~/images/editar.png" class="">
+                            </button>
+                            <button type="button" class="btn btn-outline-danger">
+                                <img style="height: 2rem; width: auto" src="~/images/excluir.png" class="">
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>  *@
+</div>
