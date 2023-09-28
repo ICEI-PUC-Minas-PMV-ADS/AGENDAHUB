@@ -1,10 +1,17 @@
-# AGENDA HUB
 
-`CURSO` Análise e Desenvolvimento de Sistemas
+<div align="center">
+    <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/125372940/b17ffe49-be13-454b-ba12-b61c12240598" width="300" height="300">
+</div>
+<div align="center">
 
-`DISCIPLINA`
+### `Análise e Desenvolvimento de Sistemas` 
 
-`SEMESTRE`
+### `Projeto: Desenvolvimento de uma Aplicação Interativa - `
+
+### `Segundo Semestre - Turma 04 - 2023/2`
+</div>
+
+
 
 O objetivo principal é desenvolver uma aplicação que ajude a melhorar a produtividade e eficiência dos profissionais autônomos e empresas que prestam serviços baseados em agendamento. Reduzir o desperdício de tempo em tarefas que podem ser automatizadas por meio da integração tecnológica, permitindo que os profissionais se concentrem em atividades estratégicas e de gerenciamento de negócio. 
 

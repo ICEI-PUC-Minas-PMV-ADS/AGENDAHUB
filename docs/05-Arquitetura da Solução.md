@@ -8,10 +8,9 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 O diagrama de classes ilustra graficamente como será a estrutura do software, e como cada uma das classes da sua estrutura estarão interligadas. Essas classes servem de modelo para materializar os objetos que executarão na memória.
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Classes”.
+<img src="img/DiagramaDeClasses.jpeg" alt="Descrição da imagem">
 
-> - [Diagramas de Classes - Documentação da IBM](https://www.ibm.com/docs/pt-br/rational-soft-arch/9.6.1?topic=diagrams-class)
-> - [O que é um diagrama de classe UML? | Lucidchart](https://www.lucidchart.com/pages/pt/o-que-e-diagrama-de-classe-uml)
+Para uma melhor visualização do Modelo, disponibilizamos o PDF: [DiagramaDeClasses.pdf](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/blob/main/docs/img/Diagrama%20de%20classes.pdf)
 
 ## Modelo ER (Projeto Conceitual)
 
@@ -27,11 +26,11 @@ A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
 
 O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
 
-![Diagrama_ER_AgendaHub](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/130249437/359a4634-e652-4e0c-8bb6-6e6b107386da)
+![Diagrama_ER_AgendaHub_vs2](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/97393a84-1408-47f5-90c2-05a583491a61)
 
-Para uma melhor visualização do Modelo, disponibilizamos o PDF: [Diagrama_ER_AgendaHUB_BD_vs1.pdf](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/files/12685582/Diagrama_ER_AgendaHUB_BD_vs1.pdf)
 
-Para mais informações sobre as relações, disponibilizamos o PDF: [Relacao_Diagrama_ER_AgendaHUB_BD.pdf](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/files/12685603/Relacao_Diagrama_ER_AgendaHUB_BD.pdf)
+Para uma melhor visualização do Modelo, disponibilizamos o PDF: [Diagrama_ER_AgendaHUB_BD_vs1.pdf](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/files/12708265/Diagrama_ER_AgendaHUB_BD_vs1.pdf)
+
 
 
 ## Tecnologias Utilizadas
@@ -40,9 +39,10 @@ Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, 
 
 Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
 
-## Hospedagem
+## Diagrama Conceitual
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/18887051-6d2e-47bf-8502-fadfdf6b1823)
+
 
 > **Links Úteis**:
 >
