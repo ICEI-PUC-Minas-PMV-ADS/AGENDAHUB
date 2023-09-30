@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Lucas\\.nuget\\packages\\": {},
+    "C:\\Users\\evell\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
+      "projectUniqueName": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
       "projectName": "AGENDAHUB",
-      "projectPath": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
-      "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\obj\\",
+      "projectPath": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
+      "packagesPath": "C:\\Users\\evell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\evell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,7 +33,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -73,13 +72,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

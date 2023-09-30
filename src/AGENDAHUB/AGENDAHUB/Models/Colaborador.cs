@@ -32,7 +32,7 @@ namespace AGENDAHUB.Models
 
     
     //Funcionalidade
-     public void CadastrarServico(Serviços servico)
+     public void CadastrarServico()
     {
     
     }

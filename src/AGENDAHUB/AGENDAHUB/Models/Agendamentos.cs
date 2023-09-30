@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace AGENDAHUB.Models
 {
-    public class Agendamento
+    public class Agendamentos
     {
         // Construtor
-        public Agendamento()
+        public Agendamentos()
         {
         }
 

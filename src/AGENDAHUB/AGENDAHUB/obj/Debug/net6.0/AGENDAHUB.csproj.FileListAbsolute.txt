@@ -58,3 +58,33 @@ C:\Users\Lucas\Source\Repos\AGENDAHUB\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\r
 C:\Users\Lucas\Source\Repos\AGENDAHUB\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.pdb
 C:\Users\Lucas\Source\Repos\AGENDAHUB\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.genruntimeconfig.cache
 C:\Users\Lucas\Source\Repos\AGENDAHUB\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\ref\AGENDAHUB.dll
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.AssemblyInfoInputs.cache
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.AssemblyInfo.cs
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.csproj.CoreCompileInputs.cache
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.RazorAssemblyInfo.cache
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.RazorAssemblyInfo.cs
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.dll
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\refint\AGENDAHUB.dll
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.pdb
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\appsettings.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\AGENDAHUB.staticwebassets.runtime.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\AGENDAHUB.exe
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\AGENDAHUB.deps.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\AGENDAHUB.runtimeconfig.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\AGENDAHUB.dll
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\bin\Debug\net6.0\AGENDAHUB.pdb
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\staticwebassets\msbuild.AGENDAHUB.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\staticwebassets\msbuild.build.AGENDAHUB.props
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.AGENDAHUB.props
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.AGENDAHUB.props
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\scopedcss\bundle\AGENDAHUB.styles.css
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\scopedcss\projectbundle\AGENDAHUB.bundle.scp.css
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\AGENDAHUB.genruntimeconfig.cache
+C:\Users\evell\OneDrive\Área de Trabalho\Agenda\src\AGENDAHUB\AGENDAHUB\obj\Debug\net6.0\ref\AGENDAHUB.dll

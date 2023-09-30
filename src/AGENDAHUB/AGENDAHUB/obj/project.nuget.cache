@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AJnkR4VJA1uHkF4FUkPEO73BfdsgNKIkqo0t/tKcoczUbnb9MnC0uMsrLJIy02ej9S5JWtRGt3HjAHPw2F3Rig==",
+  "dgSpecHash": "KsPoJplUm4C5XuTB0ZkwysnwctwHyFFgef+hauhDx6gdl4J99XzO34GdkcL5Cih7iDo3C107CwNxTjCg5yO6JQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
+  "projectFilePath": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\AGENDAHUB.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

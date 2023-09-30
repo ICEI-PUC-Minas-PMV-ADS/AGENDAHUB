@@ -43,7 +43,7 @@ namespace AGENDAHUB.Models
 
         }
 
-        public void CadastrarAgendamento(Agendamento agendamento)
+        public void CadastrarAgendamento(Agendamentos agendamento)
         {
 
         }

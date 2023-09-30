@@ -1,335 +1,335 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\AGENDAHUB.bundle.scp.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\AGENDAHUB.bundle.scp.css",
       "PackagePath": "staticwebassets\\AGENDAHUB.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\Agendamentos.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\Agendamentos.css",
       "PackagePath": "staticwebassets\\css\\Agendamentos.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\site.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub.png",
       "PackagePath": "staticwebassets\\images\\agendahub.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub2.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub2.png",
       "PackagePath": "staticwebassets\\images\\agendahub2.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\caixa.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\caixa.png",
       "PackagePath": "staticwebassets\\images\\caixa.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\calendario.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\calendario.png",
       "PackagePath": "staticwebassets\\images\\calendario.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\cancelado.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\cancelado.png",
       "PackagePath": "staticwebassets\\images\\cancelado.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\clientes.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\clientes.png",
       "PackagePath": "staticwebassets\\images\\clientes.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\concluido.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\concluido.png",
       "PackagePath": "staticwebassets\\images\\concluido.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\config.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\config.png",
       "PackagePath": "staticwebassets\\images\\config.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\copy.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\copy.png",
       "PackagePath": "staticwebassets\\images\\copy.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\editar.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\editar.png",
       "PackagePath": "staticwebassets\\images\\editar.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\email.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\email.png",
       "PackagePath": "staticwebassets\\images\\email.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\excluir.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\excluir.png",
       "PackagePath": "staticwebassets\\images\\excluir.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\filtro.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\filtro.png",
       "PackagePath": "staticwebassets\\images\\filtro.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\instagram.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\instagram.png",
       "PackagePath": "staticwebassets\\images\\instagram.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoHUB.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoHUB.png",
       "PackagePath": "staticwebassets\\images\\logoHUB.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pendente.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pendente.png",
       "PackagePath": "staticwebassets\\images\\pendente.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pesquisar.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pesquisar.png",
       "PackagePath": "staticwebassets\\images\\pesquisar.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\sair.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\sair.png",
       "PackagePath": "staticwebassets\\images\\sair.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\serviços.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\serviços.png",
       "PackagePath": "staticwebassets\\images\\serviços.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\visualizar.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\visualizar.png",
       "PackagePath": "staticwebassets\\images\\visualizar.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\whatsapp.png",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\whatsapp.png",
       "PackagePath": "staticwebassets\\images\\whatsapp.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\Lucas\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\Agenda\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {

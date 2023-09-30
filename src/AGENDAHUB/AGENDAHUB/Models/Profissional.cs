@@ -27,7 +27,7 @@ namespace AGENDAHUB.Models
 
     // Relacionamentos
 
-    public List<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
+    public List<Agendamentos> Agendamentos { get; set; } = new List<Agendamentos>();
     public List<MovimentacaoFinanceira> MovimentacaoFinanceiras { get; set; } = new List<MovimentacaoFinanceira>();
     public List<Servico> Servicos { get; set; } = new List<Servico>();
 
@@ -41,7 +41,7 @@ namespace AGENDAHUB.Models
         
     }
 
-    public void CadastrarAgendamento(Agendamento agendamento)
+    public void CadastrarAgendamento(Agendamentos agendamento)
     {
         
     }

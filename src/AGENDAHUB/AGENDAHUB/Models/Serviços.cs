@@ -24,7 +24,7 @@ namespace AGENDAHUB.Models
 
     // Relacionamentos
 
-    public List<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
+    public List<Agendamentos> Agendamentos { get; set; } = new List<Agendamentos>();
     public List<MovimentacaoFinanceira> MovimentacaoFinanceiras { get; set; } = new List<MovimentacaoFinanceira>();
     public int ProfissionalId { get; set; }
     public Profissional Profissional { get; set; }
