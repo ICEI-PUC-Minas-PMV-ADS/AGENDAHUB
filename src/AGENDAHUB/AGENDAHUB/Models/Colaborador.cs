@@ -30,17 +30,14 @@ namespace AGENDAHUB.Models
     public Empresa Empresa { get; set; }
 
 
-     // Agregação de Serviços
-     public List<Servico> Servicos { get; set; } = new List<Servico>();
-
-
+    
     //Funcionalidade
-     public void CadastrarServico(Servico servico)
+     public void CadastrarServico(Serviços servico)
     {
-        Servicos.Add(servico);
+    
     }
 
-    public void CadastrarAgendamento(Agendamento agendamento)
+    public void CadastrarAgendamento(Agendamentos agendamento)
     {
         
     }

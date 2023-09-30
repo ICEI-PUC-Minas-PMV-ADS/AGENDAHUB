@@ -22,13 +22,6 @@ namespace AGENDAHUB.Models
     public string Cliente { get; set; }
 
 
-     // Relacionamentos
-    public int ClienteId { get; set; }
-    public Cliente ClienteMovimentacaoFinanceira { get; set; }
-    public int? AgendamentoId { get; set; }
-    public Agendamento Agendamento { get; set; }
-    public DadosBancarios DadosBancarios { get; set; }
-
     public void RegistrarTransacao()
     {
  

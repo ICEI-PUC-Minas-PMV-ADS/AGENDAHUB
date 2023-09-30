@@ -22,11 +22,6 @@ namespace AGENDAHUB.Models
 
 
 
-     // Relacionamentos
-    public List<MovimentacaoFinanceira> Pagamentos { get; set; } = new List<MovimentacaoFinanceira>();
-    public int EmpresaId { get; set; }
-    public Empresa EmpresaDadosBancarios{ get; set; }
-
     public void AdicionarContaBancaria()
     {
 

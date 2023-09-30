@@ -22,21 +22,5 @@ namespace AGENDAHUB.Models
     public string CPF { get; set; }
     public string Login { get; set; }
 
-    
-    
-    // Relacionamentos
-    public List<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
-    public List<MovimentacaoFinanceira> MovimentacaoFinanceira { get; set; } = new List<MovimentacaoFinanceira>();
-
-    //Funcionalidades
-    public void CadastrarAgendamento(Agendamento agendamento)
-    {
-        
-    }
-
-    public void PagarAgendamento(MovimentacaoFinanceira movimentacaoFinanceira)
-    {
-       
-    }
-    }
+}
 }
