@@ -2,7 +2,7 @@
     ViewData["Title"] = "Serviços cadastrados";
 }
 
-<link rel="stylesheet" href="~/css/Agendamentos.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
 
 
 <h1 class="text-center">@ViewData["Title"]</h1>
@@ -13,43 +13,36 @@
 @*Botão Novo Serviço*@
 
 <div class="col-md-3">
-    <button type="button" class="btn btn-outline-info mt-4" data-bs-toggle="modal" data-bs-target="#novoServiçoModal"
+    <button type="button" class=" rounded-pill  btn btn-outline-info mt-4" data-bs-toggle="modal" data-bs-target="#novoServiçoModal"
         id="btnNovoServiço">
         + Novo Serviço
     </button>
 </div>
-
+    
 
 
 @* Barra de Pesquisa *@
 
-<div class="col-md-3 text-center mt-4">
-    <div class="input-group" id="pesquisarDiv">
-        <input type="text" class="form-control" id="pesquisar">
-        <div class="input-group-append">
-            <button class="btn btn-outline-info" type="button" id="botaoPesquisar">
-                <img style="height: 1.5rem; width: 2.5rem;" src="~/images/pesquisar.png" />
+<div class="col-md-3 text-center mt-4" style="position: relative; top: -50px; left: 78%;">
+    <div class=" input-group" id="pesquisarDivServiço" >
+        <input type="text" class="form-control" id="pesquisarServiço">
+        <div class=" input-group-append">
+            <button class=" btn btn-outline-info" type="button" id="botaoPesquisarServiço">
+                <img style="height: 50%; width: 50%;" src="~/images/pesquisar.png" />
             </button>
         </div>
     </div>
 </div>
 
-
 @* Filtro Status *@
 
-<div class="row">
-    <div class="col d-flex justify-content-end mt-2">
+<div class="row" style="position: relative; top: -50px; left: 5.5%;">
+    <div class="col d-flex justify-content-end mt-2" >
         <div class="dropdown">
-            <button class="btn btn-outline-info dropdown-toggle me-4" type="button" id="btnStatusAgendamento"
+            <button class=" rounded-pill btn btn-outline-info dropdown-toggle me-4" type="button" id="btnStatusServiço"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Status <img style="height: 1.5rem; width: 2.5rem" src="~/images/filtro.png" />
+                Status <img style="height: 20%; width: 20%" src="~/images/filtro.png" />
             </button>
-            <div class="dropdown-menu text-center" aria-labelledby="dropdownStatus" id="dropdownStatus">
-                <a class="dropdown-item btn-btn-outilne-succes" href="#">Concluído</a>
-                <a class="dropdown-item" href="#">Pendente</a>
-                <a class="dropdown-item" href="#">Cancelado</a>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -106,3 +99,43 @@
         </div>
     </div>
 </div>
+
+    <div class="album py-5 bg-body-tertiary ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card custom-card card text-center mb-3" style="border-radius: 20px">
+                        <img src="~/images/imagem.png.png" class="card-img-top mx-auto rounded-" alt="Imagem 1" style="width: 90%;border-radius: 7%; margin-top: 5%">
+                        <div class="card-body">
+                            <p class="card-text">CORTE DESFARÇADO</p>
+                            <p class="card-text">Tempo de execução: 30min</p>
+                            <p class="card-text">VALOR: R$250,00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card custom-card card text-center mb-3" style="border-radius: 20px">
+                        <img src="~/images/imagem.png.png" class="card-img-top mx-auto rounded-" alt="Imagem 1" style="width: 90%;border-radius: 7%; margin-top: 5%">
+                        <div class="card-body">
+                            <p class="card-text">CORTE DESFARÇADO</p>
+                            <p class="card-text">Tempo de execução: 30min</p>
+                            <p class="card-text">VALOR: R$250,00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card custom-card card text-center mb-3" style="border-radius: 20px">
+                        <img src="~/images/imagem.png.png" class="card-img-top mx-auto rounded-" alt="Imagem 1" style="width: 90%;border-radius: 7%; margin-top: 5%">
+                        <div class="card-body">
+                            <p class="card-text">CORTE DESFARÇADO</p>
+                            <p class="card-text">Tempo de execução: 30min</p>
+                            <p class="card-text">VALOR: R$250,00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                 </div>
+
+
+
