@@ -11,68 +11,81 @@
 </head>
 
 
-<body id="body-pd">
+<body>
 
-    <header class="header" id="header">
-        <div class="header_img">
-            <img src="~/images/agendahub2.png">
-        </div>
-        <div class="header_toggle">
-            <i class='bx bx-menu' id="header-toggle"></i>
+    @* Header Logo + botão Menu *@
+
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogo">
+                </div>
+                <div class="col">
+                    <img src="~/images/menu.png" style="width: 2rem; height: 2rem;" alt="calendar-icon" id="openMenu" />
+                </div>
+            </div>
         </div>
     </header>
 
 
 
-    <div class="l-navbar" id="nav-bar">
+    @* Menu Lateral *@
 
-        <nav class="nav">
+    <div class="offcanvas offcanvas-start offCanvasMenu" tabindex="-1" id="myOffcanvas" data-bs-backdrop="false">
+        <div class="offcanvas-header d-flex justify-content-center">
+            <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogo">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar" id="closeMenu"></button>
+        </div>
 
-            <div>
+        <hr class="dropdown-divider">
 
-                <div class="nav_list">
-
+        <div class="offcanvas-body">
+            <ul class="contentMenu">
+                <li>
                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">
                         <img src="~/images/calendario.png" style="width: 2rem; height: 2rem;" alt="calendar-icon" />
-                        <span class="nav_name">AGENDAMENTOS</span>
+                        <span class="nav_name">Agendamentos</span>
                     </a>
-
-                    <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Clientes">
-                        <img src="~/images/clientes.png" style="width: 2rem; height: 2rem;" alt="client-icon" />
-                        <span class="nav_name">CLIENTES</span>
-                    </a>
-
+                </li>
+                <a class="nav_link" asp-area="" asp-controller="Clientes" asp-action="Index">
+                    <img src="~/images/clientes.png" style="width: 2rem; height: 2rem;" alt="client-icon" />
+                    <span class="nav_name">Clientes</span>
+                </a>
+                <li>
                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Caixa">
                         <img src="~/images/caixa.png" style="width: 2rem; height: 2rem;" alt="finance-icon" />
-                        <span class="nav_name">CAIXA</span>
+                        <span class="nav_name">Caixa</span>
                     </a>
+                </li>
 
+                <li>
                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Serviços">
                         <img src="~/images/serviços.png" style="width: 2rem; height: 2rem;" alt="services-icon" />
-                        <span class="nav_name">SERVIÇOS</span>
+                        <span class="nav_name">Serviços</span>
                     </a>
+                </li>
+            </ul>
 
-                </div>
-            </div>
+
+            <hr class="dropdown-divider">
 
 
-            <div class="dropdown">
+            @* Segunda linha alinhada com a parte inferior *@
 
+
+            <div class="dropdown" id="menuUser">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/lucagdev.png" alt="" width="43" height="43" class="rounded-circle me-2">
                     <strong>${User}</strong>
                 </a>
-
-
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-
                     <li>
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Configurações">
                             <img src="~/images/config.png" style="width: 1rem; height: 1rem;">
                             <span class="nav_name">Configurações</span>
                         </a>
                     </li>
-
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <a class="dropdown-item" href="#">
@@ -80,33 +93,32 @@
                             <span class="nav_name">Sair</span>
                         </a>
                     </li>
-
                 </ul>
-
             </div>
-
-        </nav>
-
+        </div>
     </div>
 
-    <div class="main-container">
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-5 mt-5 ms-5" style="margin-top: 60px;">
+
+    @* Renderização das páginas *@
+
+    <div class="main-container pt-5">
+        <main role="main" class="container-fluid p-3">
             @RenderBody()
         </main>
-
     </div>
 
-    <footer class="border-top bg-dark footer text-center text-black pt-4">
-        <div class="container d-grid justify-content-center">
 
-            <div class="row">
-                <div class="col-md-6 col-sm-6 pt-3">
+
+    @* Footer *@
+
+    <footer class="border-top footer text-center text-black pt-4">
+        <div class="container">
+            <div class="row" id="footerContatos">
+                <div class="col-xl-6 col-5 pt-3">
                     <img src="~/images/copy.png" style="width: 3rem; height: 3rem;"> AGENDAHUB, @DateTime.Now.Year
                 </div>
-
-                <br />
-                <div class="col-md-6 col-sm-6 text-start d-grid justify-content-end" id="contatosAgendaHub">
+                <div class="col-xl-6 col-7  text-start d-grid justify-content-end" id="contatosAgendaHub">
                     <a class="text-black" href="mailto:agendahub@outlook.com">
                         <img src="~/images/email.png" style="width: 1rem; height: 1rem;"> agendahub@outlook.com
                     </a>
@@ -117,7 +129,6 @@
                         <img src="~/images/whatsapp.png" style="width: 1rem; height: 1rem;"> (31)9 9999-9999
                     </a>
                 </div>
-
             </div>
         </div>
     </footer>

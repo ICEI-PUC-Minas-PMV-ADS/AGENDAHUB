@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AGENDAHUB.Models.Clientes>
+
+@{
+    ViewData["Title"] = "Clientes Cadastrados";
+}
+
+<link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
+
+<h1 class="text-center">Clientes Cadastrados</h1>
+
+@* Botão Novo Cliente *@
+<div class="col-xl-6 col-6">
+    <div class="row d-flex justify-content-start">
+        <div class="col-md-3">
+            <a asp-action="Create" class="btn btn-outline-info">+ Novo Cliente</a>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center col-xl-7">
+    <div class="">
+        <table class="table mt-3 mx-auto">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CPF)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contato)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CPF)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Contato)
+                            <a href="https://wa.me/@item.Contato" target="_blank">
+                                <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID_Cliente">
+                                <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                            </a>
+                            @*    <a asp-action="Details" asp-route-id="@item.ID_Cliente">Details</a> | *@
+                            <a asp-action="Delete" asp-route-id="@item.ID_Cliente">
+                                <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
