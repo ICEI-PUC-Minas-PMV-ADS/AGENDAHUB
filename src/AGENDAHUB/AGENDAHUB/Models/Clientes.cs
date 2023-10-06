@@ -21,6 +21,9 @@ namespace AGENDAHUB.Models
         [Required(ErrorMessage = "Obrigatório informar o Email!")]
         public string Email { get; set; }
 
+        public string Observacao { get; set; }
+
+
 
         //public string Login { get; set; }
         //public string Senha { get; set; }

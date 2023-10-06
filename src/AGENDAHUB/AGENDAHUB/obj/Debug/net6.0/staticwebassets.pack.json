@@ -21,14 +21,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub.png",
-      "PackagePath": "staticwebassets\\images\\agendahub.png"
-    },
-    {
-      "Id": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub2.png",
-      "PackagePath": "staticwebassets\\images\\agendahub2.png"
-    },
-    {
       "Id": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\caixa.png",
       "PackagePath": "staticwebassets\\images\\caixa.png"
     },
@@ -85,8 +77,12 @@
       "PackagePath": "staticwebassets\\images\\instagram.png"
     },
     {
-      "Id": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoHUB.png",
-      "PackagePath": "staticwebassets\\images\\logoHUB.png"
+      "Id": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoAgendaHub.png",
+      "PackagePath": "staticwebassets\\images\\logoAgendaHub.png"
+    },
+    {
+      "Id": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\menu.png",
+      "PackagePath": "staticwebassets\\images\\menu.png"
     },
     {
       "Id": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pendente.png",

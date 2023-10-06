@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MV5db45PMAg2nBWYKSen2ESMyvBDgRPeEHOET4pOAMo=",
+  "Hash": "yMdqXOtToK7FaCSdmU4Hd1cCeTmi3vEl2eSmqBpd63o=",
   "Source": "AGENDAHUB",
   "BasePath": "_content/AGENDAHUB",
   "Mode": "Default",
@@ -117,40 +117,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub.png",
-      "SourceId": "AGENDAHUB",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
-      "BasePath": "_content/AGENDAHUB",
-      "RelativePath": "images/agendahub.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\agendahub.png"
-    },
-    {
-      "Identity": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\agendahub2.png",
-      "SourceId": "AGENDAHUB",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
-      "BasePath": "_content/AGENDAHUB",
-      "RelativePath": "images/agendahub2.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\agendahub2.png"
     },
     {
       "Identity": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\caixa.png",
@@ -391,12 +357,12 @@
       "OriginalItemSpec": "wwwroot\\images\\instagram.png"
     },
     {
-      "Identity": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoHUB.png",
+      "Identity": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoAgendaHub.png",
       "SourceId": "AGENDAHUB",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
       "BasePath": "_content/AGENDAHUB",
-      "RelativePath": "images/logoHUB.png",
+      "RelativePath": "images/logoAgendaHub.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -405,7 +371,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\logoHUB.png"
+      "OriginalItemSpec": "wwwroot\\images\\logoAgendaHub.png"
+    },
+    {
+      "Identity": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\menu.png",
+      "SourceId": "AGENDAHUB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
+      "BasePath": "_content/AGENDAHUB",
+      "RelativePath": "images/menu.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\menu.png"
     },
     {
       "Identity": "C:\\Users\\Lucas\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pendente.png",

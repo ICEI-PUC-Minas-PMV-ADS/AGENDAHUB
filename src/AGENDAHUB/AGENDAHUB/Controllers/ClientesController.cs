@@ -1,6 +1,8 @@
 ﻿using AGENDAHUB.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AGENDAHUB.Controllers
@@ -18,6 +20,29 @@ namespace AGENDAHUB.Controllers
         {
             var Clientes = await _context.Clientes.ToListAsync();
             return View(Clientes);
+        }
+
+        //Método de pesquisa no banco de dados
+        [HttpGet("Search")]
+        public async Task<IActionResult> Index(string search)
+        {
+            var clientes = await _context.Clientes.ToListAsync();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                // Converta a palavra-chave de pesquisa para maiúsculas
+                search = search.ToLower();
+
+                clientes = clientes.Where(c =>
+                    c.Nome.ToLower().Contains(search) ||
+                    c.CPF.ToLower().Contains(search) ||
+                    c.Contato.ToLower().Contains(search) ||
+                    c.Email.ToLower().Contains(search) ||
+                    (c.Observacao != null && c.Observacao.ToLower().Contains(search)))
+                    .ToList();
+            }
+
+            return View(clientes);
         }
 
 
@@ -121,6 +146,7 @@ namespace AGENDAHUB.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
+
         }
     }
 }
