@@ -11,7 +11,23 @@
 *.suo
 .vs/AGENDAHUB/DesignTimeBuild/
 .vs/AGENDAHUB/FileContentIndex/
-	
+.vs/AGENDAHUB/FileContentIndex/055859d8-9210-491d-ae82-15eb20878d16.vsidx	
+
+# Ignorar arquivos .vsidx no diretório FileContentIndex
+.vs/AGENDAHUB/FileContentIndex/*.vsidx
+.vs/AGENDAHUB/FileContentIndex/9826f556-5a64-46f1-9513-3684fc8b5d5a.vsidx
+
+
+# Ignorar arquivos no diretório obj
+AGENDAHUB/obj/AGENDAHUB.csproj.nuget.dgspec.json
+AGENDAHUB/obj/AGENDAHUB.csproj.nuget.g.props
+AGENDAHUB/obj/Debug/net6.0/AGENDAHUB.GeneratedMSBuildEditorConfig.editorconfig
+AGENDAHUB/obj/Debug/net6.0/AGENDAHUB.assets.cache
+AGENDAHUB/obj/Debug/net6.0/AGENDAHUB.csproj.AssemblyReference.cache
+AGENDAHUB/obj/Debug/net6.0/project.razor.vs.json
+AGENDAHUB/obj/project.assets.json
+AGENDAHUB/obj/project.nuget.cache
+
 
 # Include dlls if they’re in the NuGet packages directory
 !/packages/*/lib/*.dll
