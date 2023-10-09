@@ -14,11 +14,8 @@ Para uma melhor visualização do Modelo, disponibilizamos o PDF: [DiagramaDeCla
 
 ## Modelo ER (Projeto Conceitual)
 
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/f898abf4-a3a6-44e9-8908-cba71efab95e)
 
-Sugestão de ferramentas para geração deste artefato: LucidChart e Draw.io.
-
-A referência abaixo irá auxiliá-lo na geração do artefato “Modelo ER”.
 
 > - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
 
@@ -38,10 +35,6 @@ Para uma melhor visualização do Modelo, disponibilizamos o PDF: [Diagrama_ER_A
 Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
 
 Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
-
-## Diagrama Conceitual
-
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/18887051-6d2e-47bf-8502-fadfdf6b1823)
 
 
 > **Links Úteis**:
