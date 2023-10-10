@@ -22,8 +22,12 @@
                     <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogo">
                 </div>
                 <div class="col">
-                    <img src="~/images/menu.png" style="width: 2rem; height: 2rem;" alt="calendar-icon" id="openMenu" />
+                    <div class="menu-button">
+                        <img src="~/images/menu.png" style="width: 2rem; height: 2rem;" alt="menu-icon" id="openMenu" />
+                        <span class="menu-text">MENU</span>
+                    </div>
                 </div>
+
             </div>
         </div>
     </header>
@@ -48,10 +52,12 @@
                         <span class="nav_name">Agendamentos</span>
                     </a>
                 </li>
-                <a class="nav_link" asp-area="" asp-controller="Clientes" asp-action="Index">
-                    <img src="~/images/clientes.png" style="width: 2rem; height: 2rem;" alt="client-icon" />
-                    <span class="nav_name">Clientes</span>
-                </a>
+                <li>
+                    <a class="nav_link" asp-area="" asp-controller="Clientes" asp-action="Index">
+                        <img src="~/images/clientes.png" style="width: 2rem; height: 2rem;" alt="client-icon" />
+                        <span class="nav_name">Clientes</span>
+                    </a>
+                </li>
                 <li>
                     <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Caixa">
                         <img src="~/images/caixa.png" style="width: 2rem; height: 2rem;" alt="finance-icon" />
@@ -71,12 +77,12 @@
             <hr class="dropdown-divider">
 
 
-            @* Segunda linha alinhada com a parte inferior *@
+            @* Segunda linha alinhada com a parte inferior / User Menu *@
 
 
             <div class="dropdown" id="menuUser">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/lucagdev.png" alt="" width="43" height="43" class="rounded-circle me-2">
+                    <img src="~/images/logoAgendaHub.png" alt="" width="43" height="43" class="rounded-circle me-2">
                     <strong>${User}</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">

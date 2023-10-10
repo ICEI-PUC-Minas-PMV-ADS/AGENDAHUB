@@ -24,17 +24,47 @@ main {
     position: relative;
 }
 
+.menu-button {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-text {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.menu-button:hover .menu-text {
+    opacity: 1;
+}
+
+#openMenu {
+    width: 2rem;
+    height: 2rem;
+    transition: transform 0.2s, cursor 0.2s;
+}
+
+    #openMenu:hover {
+        transform: scale(1.1); 
+        cursor: pointer; 
+    }
+
 .offCanvasMenu {
     height: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 17rem;
+    width: 13rem;
 }
 
 .contentMenu {
-    height: 85%;
+    height: 60vh;
     padding: 10px 0;
+    overflow: hidden;
 }
 
     .contentMenu li, #menuUser {
