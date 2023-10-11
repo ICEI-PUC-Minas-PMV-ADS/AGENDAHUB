@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\src",
-    "\\src\\AGENDAHUB",
-    "\\src\\AGENDAHUB\\AGENDAHUB",
-    "\\src\\AGENDAHUB\\AGENDAHUB\\Views",
-    "\\src\\AGENDAHUB\\AGENDAHUB\\Views\\Home"
+    ""
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\AGENDAHUB.sln",
   "PreviewInSolutionExplorer": false
 }
