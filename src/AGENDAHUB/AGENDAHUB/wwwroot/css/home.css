@@ -1,0 +1,10 @@
+﻿body {
+}
+
+#navhome {
+    height: 15vh;
+    background: rgb(208, 208, 208);
+    background: linear-gradient(90deg, rgba(208, 208, 208, 1) 0%, rgba(13, 202, 240, 1) 100%);
+}
+
+
