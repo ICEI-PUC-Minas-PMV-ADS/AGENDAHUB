@@ -5,21 +5,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AGENDAHUB</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+   
     <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+
 </head>
 <body>
     <header>
-        <nav class="navbar" id="navhome">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="/images/logoAgendaHub.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    AgendaHub
-                </a>
+        <nav class="navbar visible" id="navbar">
+            <img src="/images/logoAgendaHub.png" />
+            <div class="nav-items">
+                <a class="item" href="#">Home</a>
+                <a class="item" href="#">Sobre</a>
+                <a class="item" href="#">Empresa</a>
+                <button class="bn30">Login</button>
+                <button class="bn30">Cadastre-se</button>
+
             </div>
         </nav>
     </header>
+
+    
     <div>
         @RenderBody()
     </div>

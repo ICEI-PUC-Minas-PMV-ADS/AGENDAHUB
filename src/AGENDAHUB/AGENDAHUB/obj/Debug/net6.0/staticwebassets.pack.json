@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\Serviços.css"
     },
     {
+      "Id": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
       "Id": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

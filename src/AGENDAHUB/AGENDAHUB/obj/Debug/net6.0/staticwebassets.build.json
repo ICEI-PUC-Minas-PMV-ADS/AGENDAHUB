@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RHVLacNofnaxaPvKlSRQgRnEoeSQEB4Hlu0U6adkrvY=",
+  "Hash": "sK+WD74bOhEPJv2l861oJmu05wQXwj19DGjjC06NfFw=",
   "Source": "AGENDAHUB",
   "BasePath": "_content/AGENDAHUB",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Agendamentos.css"
+    },
+    {
+      "Identity": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\home.css",
+      "SourceId": "AGENDAHUB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
+      "BasePath": "_content/AGENDAHUB",
+      "RelativePath": "css/home.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\home.css"
     },
     {
       "Identity": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\css\\Serviços.css",
