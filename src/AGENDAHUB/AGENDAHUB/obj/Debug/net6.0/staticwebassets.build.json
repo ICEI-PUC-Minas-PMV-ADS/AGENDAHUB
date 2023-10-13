@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sK+WD74bOhEPJv2l861oJmu05wQXwj19DGjjC06NfFw=",
+  "Hash": "ObGyFkUJ+795VBnDa4r+5xaeqHNKolATsnag42IybFE=",
   "Source": "AGENDAHUB",
   "BasePath": "_content/AGENDAHUB",
   "Mode": "Default",
@@ -389,6 +389,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\logoAgendaHub.png"
+    },
+    {
+      "Identity": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoTeste.png",
+      "SourceId": "AGENDAHUB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\",
+      "BasePath": "_content/AGENDAHUB",
+      "RelativePath": "images/logoTeste.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logoTeste.png"
     },
     {
       "Identity": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\menu.png",

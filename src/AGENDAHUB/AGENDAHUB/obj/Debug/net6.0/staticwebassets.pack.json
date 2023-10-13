@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\images\\logoAgendaHub.png"
     },
     {
+      "Id": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\logoTeste.png",
+      "PackagePath": "staticwebassets\\images\\logoTeste.png"
+    },
+    {
       "Id": "C:\\Users\\josue\\source\\repos\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\menu.png",
       "PackagePath": "staticwebassets\\images\\menu.png"
     },
