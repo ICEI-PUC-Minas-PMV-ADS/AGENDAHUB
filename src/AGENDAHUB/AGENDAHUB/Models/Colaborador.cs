@@ -25,32 +25,6 @@ namespace AGENDAHUB.Models
    
 
     
-    // Relacionamento com Empresa
-    public int EmpresaId { get; set; }
-    public Empresa Empresa { get; set; }
-
-
-    
-    //Funcionalidade
-     public void CadastrarServico()
-    {
-    
-    }
-
-    public void CadastrarAgendamento(Agendamentos agendamento)
-    {
-        
-    }
-
-    public void CadastrarMovimentacao(MovimentacaoFinanceira movimentacao)
-    {
-        
-    }
-
-    public void CadastrarCliente(Cliente cliente)
-    {
-        
-    }
 }
     
     }

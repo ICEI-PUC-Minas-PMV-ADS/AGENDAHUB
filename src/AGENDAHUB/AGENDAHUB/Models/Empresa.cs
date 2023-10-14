@@ -25,32 +25,6 @@ namespace AGENDAHUB.Models
         public TimeSpan HorarioAtendimento { get; set; }
 
 
-        // Listas para associar colaboradores, administradores, profissionais e dados bancários à empresa
-        public List<Colaborador> Colaboradores { get; } = new List<Colaborador>();
-        public List<Administrador> Administradores { get; } = new List<Administrador>();
-        public List<Profissional> ProfissionaisAssociados { get; } = new List<Profissional>();
-        public List<DadosBancarios> DadosBancariosAssociados { get; } = new List<DadosBancarios>();
-
-
-        // Funcionalidades
-        public void AdicionarColaborador(Colaborador colaborador)
-        {
-            Colaboradores.Add(colaborador);
-        }
-
-        public void AdicionarAdministrador(Administrador administrador)
-        {
-            Administradores.Add(administrador);
-        }
-
-        public void AdicionarProfissional(Profissional profissional)
-        {
-            ProfissionaisAssociados.Add(profissional);
-        }
-
-        public void AdicionarDadosBancarios(DadosBancarios dadosBancarios)
-        {
-            DadosBancariosAssociados.Add(dadosBancarios);
-        }
+    
     }
 }

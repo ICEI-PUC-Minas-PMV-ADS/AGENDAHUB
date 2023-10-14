@@ -8,49 +8,21 @@ namespace AGENDAHUB.Models
     public class Profissional
     {
 
-    // Construtor
-    public Profissional()
-    {
+        // Construtor
+        public Profissional()
+        {
+        }
+
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Especializacao { get; set; }
+        public string Telefone { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public int Login { get; set; }
+        public string CPF { get; set; }
+
+
+
     }
-    
-    public int Id { get; set; }
-    public string Nome { get; set; }
-    public string Especializacao { get; set; }
-    public string Telefone { get; set; }
-    public string Email { get; set; }
-    public string Senha { get; set; }
-    public int Login { get; set; }
-    public string CPF { get; set; }
-
-    
-
-
-    // Relacionamentos
-
-    public List<Agendamentos> Agendamentos { get; set; } = new List<Agendamentos>();
-    public List<MovimentacaoFinanceira> MovimentacaoFinanceiras { get; set; } = new List<MovimentacaoFinanceira>();
-    public List<Servico> Servicos { get; set; } = new List<Servico>();
-
-    public void CadastrarCliente(Cliente cliente)
-    {
-       
-    }
-
-    public void CadastrarServico(Servico servico)
-    {
-        
-    }
-
-    public void CadastrarAgendamento(Agendamentos agendamento)
-    {
-        
-    }
-
-    public void CadastrarMovimentacao(MovimentacaoFinanceira movimentacao)
-    {
-        
-    }
-    }
-
-
 }
