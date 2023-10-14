@@ -29,7 +29,7 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
-        public IActionResult Serviços()
+        public IActionResult Servicos()
         {
             return View();
         }
