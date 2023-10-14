@@ -15,14 +15,54 @@
 
 }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 80px;
-    color: #2C3E50; 
-    text-align: inherit;
-    padding: 15px;
-    margin-left: 50px;
+
+.title {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50%;
+    margin-right: 60px;
 }
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 65px;
+    color: #2C3E50;
+    text-align: center;
+    margin-bottom: 0;
+   margin-right: 65px;
+   
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #2C3E50;
+    text-align: center;
+    margin-top: 0px;
+    margin-right: 65px;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    text-align: inherit;
+    margin-left: 10px;
+}
+
+.divCalendarioRelogio {
+    width: 40%;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.calendarioRelogio {
+    height: 100vh;
+    margin-left: 100px;
+   
+}
+
+
+
 
 /*Inicio Header*/
 nav {
@@ -36,8 +76,7 @@ nav {
     padding: 0 20px;
     width: 100%;
     height: 80px;
-  
-    background: rgba(52, 152, 219, 0); /* Fundo completamente transparente */
+    background: rgba(52, 152, 219, 0); 
     transition: 0.3s;
 }
 
@@ -48,8 +87,8 @@ nav {
     }
 
     nav > img {
-        width: 80px;
-        height: 80px;
+        width: 180px;
+        height: 180px;
         margin-top: 15px;
         margin-left: 80px;
     }
@@ -135,11 +174,11 @@ nav {
     margin-top: 120px;
     width: 90%;
     height: 450vh;
-    background: rgba(236, 220, 248, 0.5); /* Cor #ecf3f8 com opacidade 0.7 */
+    background: rgba(236, 220, 248, 0.5); 
     border-radius: 15px;
     margin-left: 5%;
     margin-right: 5%;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(14px);
     box-shadow: 0 4px 100px rgba(0, 0, 0, 0.4);
 }
 
@@ -150,7 +189,7 @@ nav {
     flex: 1;
     padding-top: 72px;
     position: relative;
-    min-height: calc(500vh - 72px); /* Ajusta a altura para deixar espaço para o cabeçalho */
+    min-height: calc(500vh - 72px);
     overflow: hidden;
 }
 
@@ -162,8 +201,10 @@ nav {
     height: 400px;
     background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
     border-radius: 50%;
-    overflow: hidden;
+   
 }
+
+
 
 
 
@@ -177,6 +218,7 @@ nav {
     height: 150px;
     background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
     border-radius: 50%;
+    
 }
 
 .circulo3 {
@@ -256,12 +298,12 @@ nav {
     width: 100%;
     background:  rgba(13, 202, 240, 1) 100%;
     padding-top: 60px;
-    margin-top: auto; /* Move o rodapé para o final da página */
+    margin-top: auto; 
     position: relative;
     z-index: 1;
 }
 
-/* Estilos gerais para o rodapé */
+
 footer {
     display: flex;
     align-items: flex-start;
