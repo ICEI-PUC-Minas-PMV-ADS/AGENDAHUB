@@ -42,6 +42,12 @@ h2 {
     margin-right: 65px;
 }
 
+h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
 p {
     font-family: 'Poppins', sans-serif;
     text-align: inherit;
@@ -53,19 +59,128 @@ p {
     display: flex;
     align-items: center; 
     justify-content: center;
+    margin-bottom: 0;
 }
 
 .calendarioRelogio {
-    height: 100vh;
+    height: 90vh;
     margin-left: 100px;
    
 }
 
+.video {
+    margin-top: 50px;
+}
+.servicos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 20px;
+}
 
+.titleservicos {
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5em;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+    .titleservicos h3:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 5px;
+        width: 55px;
+        background-color: #36C9C9;
+        border-radius: 50px;
+    }
+
+    .titleservicos h3:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 2px;
+        height: 1px;
+        width: 95%;
+        max-width: 255px;
+        background-color: #36C9C9;
+        border-radius: 50%;
+    }
+
+    h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 50px;
+        margin-bottom: 50px;
+    }
+
+
+/*Cards*/
+
+
+.container {
+    display: flex;
+    justify-content: center; /* Centraliza os cards horizontalmente */
+    gap: 20px; /* Adicione espaço entre os cards */
+    margin-top: 50px;
+}
+
+.card {
+    padding: 20px;
+    width: 330px;
+    min-height: 370px;
+    border-radius: 20px;
+    background: #e8e8e8;
+    box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;
+    transition: 0.4s;
+}
+
+    .card:hover {
+       translate: 0 -10px;
+    }
+
+.card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2e54a7;
+    margin: 15px 0 0 10px;
+}
+
+.card-image img {
+    min-height: 170px;
+    max-height: 200px;
+    width: 100%; /* Para garantir que a imagem se ajuste ao contêiner */
+    object-fit: cover;
+    background-color: #c9c9c9;
+    border-radius: 15px;
+    box-shadow: inset 8px 8px 10px #c3c3c3, inset -8px -8px 10px #cfcfcf;
+}
+
+.card-body {
+    margin: 1px 0 0 10px;
+    color: rgb(31, 31, 31);
+    font-size: 15px;
+    font-weight: 700;
+    color: #636363;
+}
+
+.footer {
+    float: inherit;
+    margin: 1px 0 0 10px;
+    font-size: 13px;
+    color: #636363;
+}
+
+.by-name {
+    font-weight: 700;
+}
 
 
 /*Inicio Header*/
-nav {
+    nav {
     z-index: 1;
     top: 0;
     left: 0;
@@ -76,7 +191,7 @@ nav {
     padding: 0 20px;
     width: 100%;
     height: 80px;
-    background: rgba(52, 152, 219, 0); 
+    background: rgba(52, 152, 219, 0);
     transition: 0.3s;
 }
 
