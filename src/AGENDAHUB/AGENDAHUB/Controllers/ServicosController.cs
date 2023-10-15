@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AGENDAHUB.Models;
+using System.IO;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace AGENDAHUB.Controllers
 {
@@ -21,7 +24,7 @@ namespace AGENDAHUB.Controllers
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Servicos.ToListAsync());
+            return View(await _context.Servicos.ToListAsync());
         }
 
         // GET: Servicos/Details/5
@@ -48,21 +51,52 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
+
+
+        public FileContentResult getImg(int id)
+        {
+            byte[] byteArray = _context.Servicos.Find(id).Imagem;  
+
+            return byteArray != null
+            
+                ? new FileContentResult(byteArray, "image/jpeg")
+                : null;
+        }
+
+
+
+
+
         // POST: Servicos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem")] Servicos servicos)
+        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem")] Servicos servicos, IFormFile file)
         {
             if (ModelState.IsValid)
             {
+                if (file.Headers != null && file.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(target: memoryStream);
+                        byte[] data = memoryStream.ToArray();
+                        servicos.Imagem = memoryStream.ToArray();
+                    }   
+                }
+
                 _context.Add(servicos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(servicos);
         }
+
+
+
+
 
         // GET: Servicos/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -147,14 +181,25 @@ namespace AGENDAHUB.Controllers
             {
                 _context.Servicos.Remove(servicos);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ServicosExists(int id)
         {
-          return _context.Servicos.Any(e => e.ID_Servico == id);
+            return _context.Servicos.Any(e => e.ID_Servico == id);
+
         }
+
+
+
+
     }
-}
+   }
+
+
+
+
+
+    

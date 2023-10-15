@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,8 +23,5 @@ namespace AGENDAHUB.Models
         public decimal Preco { get; set; }
         public TimeSpan TempoDeExecucao { get; set; }
         public byte[] Imagem { get; set; }
-
-
-
     }
 }

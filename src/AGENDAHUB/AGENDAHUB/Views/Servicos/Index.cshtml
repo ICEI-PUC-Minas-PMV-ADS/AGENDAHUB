@@ -9,45 +9,26 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TempoDeExecucao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagem)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempoDeExecucao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Imagem)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID_Servico">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID_Servico">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID_Servico">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col row row-cols-1 row-cols-md-2">
+                <div class="card h-50" style="width: 18rem;">
+                    <img style="width:12rem" class="rounded mx-auto d-block" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" class="card-img-top rounded" alt="servico" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nome</h5>
+                        <p class="card-text">
+                            Preço: @item.Preco<br />
+                            Tempo de Execução: @item.TempoDeExecucao
+                        </p>
+                        <a href="@Url.Action("Details", new { id = item.ID_Servico })" class="btn btn-primary">Details</a>
+                        <a href="@Url.Action("Edit", new { id = item.ID_Servico })" class="btn btn-secondary">Edit</a>
+                        <a href="@Url.Action("Delete", new { id = item.ID_Servico })" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
