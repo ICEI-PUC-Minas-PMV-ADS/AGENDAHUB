@@ -25,12 +25,24 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\Design_sem_nome-removebg-preview.png",
+      "PackagePath": "staticwebassets\\images\\Design_sem_nome-removebg-preview.png"
+    },
+    {
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\Design_sem_nome__1_-removebg-preview.png",
+      "PackagePath": "staticwebassets\\images\\Design_sem_nome__1_-removebg-preview.png"
+    },
+    {
       "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\caixa.png",
       "PackagePath": "staticwebassets\\images\\caixa.png"
     },
     {
       "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\calendario.png",
       "PackagePath": "staticwebassets\\images\\calendario.png"
+    },
+    {
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\calendarioRelogio.png",
+      "PackagePath": "staticwebassets\\images\\calendarioRelogio.png"
     },
     {
       "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\cancelado.png",
@@ -55,6 +67,14 @@
     {
       "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\corte.png",
       "PackagePath": "staticwebassets\\images\\corte.png"
+    },
+    {
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\corteBarba.jpg",
+      "PackagePath": "staticwebassets\\images\\corteBarba.jpg"
+    },
+    {
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\corteFeminino.jpg",
+      "PackagePath": "staticwebassets\\images\\corteFeminino.jpg"
     },
     {
       "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\editar.png",
@@ -95,6 +115,10 @@
     {
       "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pendente.png",
       "PackagePath": "staticwebassets\\images\\pendente.png"
+    },
+    {
+      "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\personal.jpg",
+      "PackagePath": "staticwebassets\\images\\personal.jpg"
     },
     {
       "Id": "C:\\Users\\evell\\OneDrive\\Área de Trabalho\\AGENDAHUB\\src\\AGENDAHUB\\AGENDAHUB\\wwwroot\\images\\pesquisar.png",
