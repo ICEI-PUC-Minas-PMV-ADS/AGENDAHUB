@@ -10,8 +10,11 @@ using System.IO;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 
+
 namespace AGENDAHUB.Controllers
 {
+
+
     public class ServicosController : Controller
     {
         private readonly AppDbContext _context;
@@ -26,6 +29,28 @@ namespace AGENDAHUB.Controllers
         {
             return View(await _context.Servicos.ToListAsync());
         }
+
+
+
+        // Método de pesquisa no banco de dados
+        [HttpGet("SearchServicos")]
+        public async Task<IActionResult> Index(string SearchServicos)
+        {
+            // Obtém todos os serviços do banco de dados
+            var servicos = await _context.Servicos.ToListAsync();
+
+            if (!string.IsNullOrEmpty(SearchServicos))
+            {
+                // Converta a palavra-chave de pesquisa para minúsculas
+                SearchServicos = SearchServicos.ToLower();
+
+                // Filtra os serviços com base no nome
+                servicos = servicos.Where(s => s.Nome.ToLower().Contains(SearchServicos)).ToList();
+            }
+
+            return View(servicos); // Retorna a lista de serviços filtrada
+        }
+
 
         // GET: Servicos/Details/5
         public async Task<IActionResult> Details(int? id)

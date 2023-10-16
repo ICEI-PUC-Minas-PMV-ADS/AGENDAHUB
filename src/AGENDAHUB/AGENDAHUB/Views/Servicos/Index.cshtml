@@ -1,14 +1,37 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Servicos>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Serviços Cadastrados";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Serviços Cadastrados</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@* Botão Novo Servico *@
+<div class="col-xl-6 col-6">
+    <div class="row d-flex justify-content-start">
+        <div class="col-xl-6 col-6">
+            <a asp-action="Create" class="btn btn-outline-info">+ Novo Serviço</a>
+        </div>
+    </div>
+</div>
+
+
+@* Campo de pesquisa*@
+<div style ="margin-left: 33rem; margin-top: -40px;" class="col-xl-6 col-6 d-flex justify-content-end">
+    <form asp-action="Index" method="get">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
 <div class="container">
     <div class="row">
         @foreach (var item in Model)
@@ -21,10 +44,14 @@
                         <p style="font-size: 10px" class="card-text">
                             Preço: @item.Preco<br />
                             Tempo de Execução: @item.TempoDeExecucao
-                        </p> 
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a class="btn btn-primary btn-sm " href="@Url.Action("Edit", new { id = item.ID_Servico })" >Edit</a>
-                            <a class="btn btn-secondary btn-sm" href="@Url.Action("Delete", new { id = item.ID_Servico })">Delete</a>
+                        </p>
+                        <div class="d-flex justify-content-end position-absolute bottom-0 end-0">
+                            <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                <img style="width:30%;margin-left:95%" src="images/editar.png">
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                <img style="width:40%; margin-left:50%" src="images/excluir.png">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -32,3 +59,4 @@
         }
     </div>
 </div>
+
