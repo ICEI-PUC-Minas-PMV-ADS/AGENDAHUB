@@ -1,6 +1,8 @@
 ###################
 # compiled source #
 ###################
+*.sln
+*.env
 *.com
 *.class
 *.dll
@@ -9,9 +11,17 @@
 *.dll.config
 *.cache
 *.suo
-.vs/AGENDAHUB/DesignTimeBuild/
-.vs/AGENDAHUB/FileContentIndex/
-.vs/AGENDAHUB/FileContentIndex/055859d8-9210-491d-ae82-15eb20878d16.vsidx	
+*.vscode
+*.idea
+*.vs/AGENDAHUB/DesignTimeBuild/
+*.vs/AGENDAHUB/FileContentIndex/
+*.vs/AGENDAHUB/FileContentIndex/055859d8-9210-491d-ae82-15eb20878d16.vsidx	
+
+# Pacotes NuGet
+node_modules/
+packages/
+
+
 
 # Ignorar arquivos .vsidx no diretório FileContentIndex
 .vs/AGENDAHUB/FileContentIndex/*.vsidx
@@ -19,6 +29,10 @@
 
 
 # Ignorar arquivos no diretório obj
+.vs/
+AGENDAHUB/bin/
+AGENDAHUB/obj/
+
 AGENDAHUB/obj/AGENDAHUB.csproj.nuget.dgspec.json
 AGENDAHUB/obj/AGENDAHUB.csproj.nuget.g.props
 AGENDAHUB/obj/Debug/net6.0/AGENDAHUB.GeneratedMSBuildEditorConfig.editorconfig
@@ -71,6 +85,9 @@ TestResults/
 # Logs and databases #
 ######################
 *.log
+*.pdb
+*.db
+
 *.sqlite
 # OS generated files #
 ######################
