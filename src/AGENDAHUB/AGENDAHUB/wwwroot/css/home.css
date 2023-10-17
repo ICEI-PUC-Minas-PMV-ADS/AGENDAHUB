@@ -7,6 +7,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 
@@ -116,6 +117,51 @@ p {
         font-size: 50px;
         margin-bottom: 50px;
     }
+
+
+.table-container {
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.tablet {
+    width: 600px;
+    height: 348px;
+    background-color: #ffffff;
+    border: 10px solid #999999;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.static-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilize o vídeo conforme necessário (tamanho, proporção, etc.) dentro da tela do tablet. */
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
 
 /*Cards*/
