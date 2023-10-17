@@ -257,6 +257,7 @@ _pkginfo.txt
 *.appxupload
 
 # Visual Studio cache files
+*.cache
 # files ending in .cache can be ignored
 *.[Cc]ache
 # but keep track of directories ending in .cache
@@ -401,4 +402,4 @@ FodyWeavers.xsd
 
 AGENDAHUB/obj/Debug/
 
-
+src/AGENDAHUB/AGENDAHUB/obj/Debug/net6.0/AGENDAHUB.csproj.CoreCompileInputs.cache
