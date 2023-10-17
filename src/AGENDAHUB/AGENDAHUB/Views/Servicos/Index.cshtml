@@ -1,53 +1,62 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Servicos>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Serviços Cadastrados";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Serviços Cadastrados</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TempoDeExecucao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagem)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempoDeExecucao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Imagem)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID_Servico">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID_Servico">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID_Servico">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+@* Botão Novo Servico *@
+<div class="col-xl-6 col-6">
+    <div class="row d-flex justify-content-start">
+        <div class="col-xl-6 col-6">
+            <a asp-action="Create" class="btn btn-outline-info">+ Novo Serviço</a>
+        </div>
+    </div>
+</div>
+
+
+@* Campo de pesquisa*@
+<div style ="margin-left: 33rem; margin-top: -40px;" class="col-xl-6 col-6 d-flex justify-content-end">
+    <form asp-action="Index" method="get">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card mb-4 rounded-3 shadow-sm" style="height: 80%; width: 80%">
+                    <img style="width: 8rem; height: 12rem; margin-top: 7%;" class="rounded mx-auto d-block" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" class="card-img-top rounded" alt="servico" />
+                    <div class="card-body">
+                        <h5 style="text-align:center; font-size: 16px" class="card-title text-uppercase">@item.Nome</h5>
+                        <p style="font-size: 10px" class="card-text">
+                            Preço: @item.Preco<br />
+                            Tempo de Execução: @item.TempoDeExecucao
+                        </p>
+                        <div class="d-flex justify-content-end position-absolute bottom-0 end-0">
+                            <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                <img style="width:30%;margin-left:95%" src="images/editar.png">
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                <img style="width:40%; margin-left:50%" src="images/excluir.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -32,6 +32,7 @@
             @Html.DisplayNameFor(model => model.Imagem)
         </dt>
         <dd class = "col-sm-10">
+            <img src="@Url.Action("getImg","Servicos", new{id = Model.ID_Servico})"alt="servico" />
             @Html.DisplayFor(model => model.Imagem)
         </dd>
     </dl>

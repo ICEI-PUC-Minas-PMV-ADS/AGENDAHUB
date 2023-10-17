@@ -14,7 +14,8 @@ Para uma melhor visualização do Modelo, disponibilizamos o PDF: [DiagramaDeCla
 
 ## Modelo ER (Projeto Conceitual)
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/f898abf4-a3a6-44e9-8908-cba71efab95e)
+![Diagrama OK](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/74332eb6-7fda-4b87-b246-6eeedb0e1021)
+
 
 
 > - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
