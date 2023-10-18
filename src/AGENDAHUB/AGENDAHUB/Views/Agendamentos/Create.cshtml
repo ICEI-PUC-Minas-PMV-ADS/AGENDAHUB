@@ -1,0 +1,69 @@
+﻿@model AGENDAHUB.Models.Agendamentos
+<link rel="stylesheet" href="~/css/Agendamentos.css" asp-append-version="true" />
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Novo Agendamento</h1>
+
+<h4></h4>
+<hr />
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4 text-center">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Servico" class="control-label"></label>
+                <input asp-for="Servico" class="form-control" />
+                <span asp-validation-for="Servico" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ClienteID" class="control-label"></label>
+                <select asp-for="ClienteID" asp-items="@ViewBag.Clientes" class="form-control">
+                    <option value="">Selecione um cliente</option>
+                </select>
+                <span asp-validation-for="ClienteID" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" type="date" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Hora" class="control-label"></label>
+                <input asp-for="Hora" class="form-control" type="time" />
+                <span asp-validation-for="Hora" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" asp-items="Html.GetEnumSelectList<Agendamentos.StatusAgendamento>()" class="form-control">
+                    <option value="">Selecione o status</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Profissional" class="control-label"></label>
+                <input asp-for="Profissional" class="form-control" />
+                <span asp-validation-for="Profissional" class="text-danger"></span>
+            </div>
+
+            <div class="form-group pt-4">
+                <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                <input type="submit" value="Salvar" class="btn btn-outline-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

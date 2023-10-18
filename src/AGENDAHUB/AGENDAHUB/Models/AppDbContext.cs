@@ -7,6 +7,7 @@ namespace AGENDAHUB.Models
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Servicos> Servicos { get; set; }
+        public DbSet<Agendamentos> Agendamentos { get; set; }
 
         //Adicionem aqui quando criarem controllers para o banco de dados
     }

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Clientes>
+<link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Clientes Cadastrados";
@@ -14,7 +15,7 @@
     <div class="col-xl-6 col-6">
         <div class="row d-flex justify-content-start">
             <div class="col-xl-6 col-6">
-                <a asp-action="Create" class="btn btn-outline-info">+ Novo Cliente</a>
+                <a asp-action="Create" class="btn btn-outline-info" id="btnNovoCliente">+ Novo Cliente</a>
             </div>
         </div>
     </div>
@@ -22,21 +23,22 @@
 
     @* Campo de pesquisa*@
     <div class="col-xl-6 col-6 d-flex justify-content-end">
-        <form asp-action="Index" method="get">
+        <form asp-route="SearchClientes" method="get">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" name="search" placeholder="Pesquisar cliente">
+                <input type="text" class="form-control" name="search" placeholder="Pesquisar cliente" id="pesquisar">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar"><img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" /></button>
                 </div>
             </div>
         </form>
     </div>
 
+
 </div>
 
 
-<div class="container d-flex justify-content-center col-xl-7">
-    <div class="">
+<div class="container d-flex justify-content-center col-xl-8 col-12">
+    <div class="p-3">
         <table class="table mt-3 mx-auto">
             <thead>
                 <tr>
@@ -56,6 +58,10 @@
                         @Html.DisplayNameFor(model => model.Observacao)
 
                     </th>
+                    <th>
+
+                    </th>
+
                 </tr>
             </thead>
             <tbody>
@@ -75,7 +81,7 @@
                             </a>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Email)
+                            <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Observacao)
@@ -89,7 +95,7 @@
                                 <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
                             </a>
                         </td>
-                        
+
                     </tr>
                 }
             </tbody>

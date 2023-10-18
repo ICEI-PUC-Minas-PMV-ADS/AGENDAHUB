@@ -1,0 +1,69 @@
+﻿@model AGENDAHUB.Models.Agendamentos
+<link rel="stylesheet" href="~/css/Agendamentos.css" asp-append-version="true" />
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="text-center">Tem certeza de que deseja excluir o Agendamento?</h1>
+
+<div class="container d-flex justify-content-center pt-5">
+    <div class="card mb-3 col-xl-6" id="cardView">
+        <span class="float-end text-white mb-2 @GetStatusColor(Model.Status)">
+            @Html.DisplayFor(model => model.Status)
+        </span>
+        <div class="card-header text-center">
+            <h5 class="card-title">
+                @Html.DisplayFor(model => model.Servico)
+            </h5>
+        </div>
+
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Cliente: </strong>@Html.DisplayFor(model => model.Cliente.Nome)<br>
+                <strong>Contato: </strong>@Html.DisplayFor(model => model.Cliente.Contato)
+                <a href="https://wa.me/@Model.Cliente.Contato" target="_blank">
+                    <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
+                </a>
+                <br>
+                <strong>Data: </strong>@string.Format("{0:dd MMM yyyy}", Model.Data)<br>
+                <strong>Horário: </strong>@Model.Hora.ToString(@"hh\:mm")<br>
+            </p>
+
+            <cite class="card-subtitle mb-2 text-muted">
+                <strong>Profissional: </strong>@Html.DisplayFor(model => model.Profissional)
+            </cite>
+
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <div class="btn-group items-align-center" role="group">
+                        <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                        <form asp-action="DeleteConfirmed" method="post">
+                            <input type="hidden" asp-for="Id" />
+                            <button type="submit" class="btn btn-outline-danger ms-1">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Função para deixar o Card de Status colorido *@
+@functions {
+    string GetStatusColor(AGENDAHUB.Models.Agendamentos.StatusAgendamento status)
+    {
+        switch (status)
+        {
+            case AGENDAHUB.Models.Agendamentos.StatusAgendamento.Pendente:
+                return "badge bg-warning"; // Laranja
+            case AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido:
+                return "badge bg-success"; // Verde
+            case AGENDAHUB.Models.Agendamentos.StatusAgendamento.Cancelado:
+                return "badge bg-danger";  // Vermelho
+            default:
+                return "badge bg-secondary";
+        }
+    }
+
+}
