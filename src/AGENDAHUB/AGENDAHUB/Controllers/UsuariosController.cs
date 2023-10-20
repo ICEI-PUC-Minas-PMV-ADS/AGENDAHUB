@@ -67,8 +67,8 @@ namespace AGENDAHUB.Controllers
 
                 await HttpContext.SignInAsync(principal, props);
 
-                //Aqui coloca para aonde o login redireciona
-                return RedirectToAction("Index", "Clientes");
+                //Aqui coloca para a onde o login redireciona
+                return RedirectToAction("Index", "Agendamentos");
             }
             else
             {
