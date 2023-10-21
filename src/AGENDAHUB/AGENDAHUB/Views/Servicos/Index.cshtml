@@ -37,31 +37,31 @@
 
 
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
+        <!-- Centraliza os cards -->
         @foreach (var item in Model)
         {
             <div class="col-12 col-md-4 mb-4">
-                
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })">
+                <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
+                    <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
+                    <div class="card-body">
+                        <h5 style="text-align: center; font-size: 16px" class="card-title text-uppercase">@item.Nome</h5>
+                        <p style="font-size: 10px" class="card-text">
+                            Preço: @item.Preco<br />
+                            Tempo de Execução: @item.TempoDeExecucao
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                <img style="width: 45%;" src="images/editar.png">
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                <img style="width: 60%;" src="images/excluir.png">
+                            </a>
                         </div>
-                        <p class="card-title">@item.Nome</p>
-                        <p class="card-body">Preço: R$@item.Preco</p>
-
-                        <p class="footer">
-                            Tempo de Execução: <span class="by-name">@item.TempoDeExecucao</span></p>
-                            <div class="d-flex justify-content-end position-absolute bottom-0 end-0">
-                                <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
-                                    <img style="width: 30%; margin-left: 95%;" src="images/editar.png">
-                                </a>
-                                <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
-                                    <img style="width: 40%; margin-left: 50%" src="images/excluir.png">
-                                </a>
-                            </div>
                     </div>
                 </div>
-        
+            </div>
         }
     </div>
 </div>
+
