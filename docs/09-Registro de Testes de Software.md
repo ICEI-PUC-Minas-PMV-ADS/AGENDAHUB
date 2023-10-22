@@ -11,10 +11,14 @@ RF-02 O sistema deve verificar se reconhece o usuário e permite o login de usu�
 RF-03 O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional
 
 - Objetivo do teste: Verificar se o sistema permite o administrador realizar o CRUD de um serviço oferecido pelo profissional.
-- Resultado:
+- Resultado: O agendamento foi salvo com sucesso.
 
-RF-05 O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento.
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/1fbd32ec-c5a6-46a7-b351-812714aebb40)
 
-- Objetivo do teste: Verificar se o sistema permite o administrador realizar o CRUD de um novo agendamento.
-- Resultado: 
+RF-08 O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.
+
+- Objetivo do teste: Verificar se o sistema permite o administrador alterar uma informação.
+- Resultado: O agendamento foi alterado com sucesso>
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/ad391123-5dbe-4548-ae79-8dfd081a5d4d)
 
