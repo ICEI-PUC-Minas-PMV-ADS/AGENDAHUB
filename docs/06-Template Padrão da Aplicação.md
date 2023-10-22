@@ -1,5 +1,3 @@
-# Template Padrão da Aplicação
-
 ### Template Desktop
 
 Esta apresentação destaca o template padrão do sistema, que inclui um header, um footer e um menu lateral, com um design atraente e amigável.
