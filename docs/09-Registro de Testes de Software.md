@@ -20,5 +20,6 @@ RF-08 O sistema deve permitir alterar informações sobre a empresa ex: endereç
 - Objetivo do teste: Verificar se o sistema permite o administrador alterar uma informação.
 - Resultado: O agendamento foi alterado com sucesso>
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/ad391123-5dbe-4548-ae79-8dfd081a5d4d)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/414cfb99-0e9b-428a-aeca-f35a9b38d80d)
+
 
