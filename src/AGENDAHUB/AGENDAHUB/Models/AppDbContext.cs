@@ -10,5 +10,6 @@ namespace AGENDAHUB.Models
         public DbSet<Agendamentos> Agendamentos { get; set; }
 
         //Adicionem aqui quando criarem controllers para o banco de dados
+        //teste
     }
 }
