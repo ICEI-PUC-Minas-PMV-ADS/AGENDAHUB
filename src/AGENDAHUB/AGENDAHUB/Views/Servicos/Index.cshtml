@@ -1,28 +1,31 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Servicos>
 
+
 @{
     ViewData["Title"] = "Serviços Cadastrados";
 }
 
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
+
 <h1 class="text-center">Serviços Cadastrados</h1>
 
 @* Botão Novo Servico *@
-<div class="col-xl-6 col-6">
+<div class="col-xl-6 col-6 ">
     <div class="row d-flex justify-content-start">
-        <div class="col-xl-6 col-6">
-            <a asp-action="Create" class="btn btn-outline-info">+ Novo Serviço</a>
+        <div class="col-xl-6 col-6 ">
+            <a asp-action="Create" class="btn btn-outline-info rounded-pill">+ Novo Serviço</a>
         </div>
     </div>
 </div>
 
 
-@* Campo de pesquisa*@
-<div style ="margin-left: 33rem; margin-top: -40px;" class="col-xl-6 col-6 d-flex justify-content-end">
-    <form asp-action="Index" method="get">
+@* Campo de pesquisa *@
+<div style="margin-left: 33rem; margin-top: -40px;" class="col-xl-6 col-6 d-flex justify-content-end">
+    <form asp-action="Index" method="get" style="border-radius: 20rem;">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço">
+            <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço" style="border-radius: 20rem 0 0 20rem;">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                <button class="btn btn-outline-secondary" type="submit" style="border-radius: 0 20rem 20rem 0;">Buscar</button>
             </div>
         </div>
     </form>
@@ -32,25 +35,27 @@
 
 
 
+
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
+        <!-- Centraliza os cards -->
         @foreach (var item in Model)
         {
             <div class="col-12 col-md-4 mb-4">
-                <div class="card mb-4 rounded-3 shadow-sm" style="height: 80%; width: 80%">
-                    <img style="width: 8rem; height: 12rem; margin-top: 7%;" class="rounded mx-auto d-block" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" class="card-img-top rounded" alt="servico" />
+                <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
+                    <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
                     <div class="card-body">
-                        <h5 style="text-align:center; font-size: 16px" class="card-title text-uppercase">@item.Nome</h5>
+                        <h5 style="text-align: center; font-size: 16px" class="card-title text-uppercase">@item.Nome</h5>
                         <p style="font-size: 10px" class="card-text">
                             Preço: @item.Preco<br />
                             Tempo de Execução: @item.TempoDeExecucao
                         </p>
-                        <div class="d-flex justify-content-end position-absolute bottom-0 end-0">
+                        <div class="d-flex justify-content-end">
                             <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
-                                <img style="width:30%;margin-left:95%" src="images/editar.png">
+                                <img style="width: 45%;" src="images/editar.png">
                             </a>
                             <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
-                                <img style="width:40%; margin-left:50%" src="images/excluir.png">
+                                <img style="width: 60%;" src="images/excluir.png">
                             </a>
                         </div>
                     </div>
