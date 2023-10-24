@@ -1,16 +1,21 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Clientes>
+
 <link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Clientes Cadastrados";
+    var pageSize = 5; // Número de itens por página
+    var totalItems = ViewData["TotalClientes"] as int? ?? 0;
+    var currentPage = ViewData["PageNumber"] as int? ?? 1;
+    var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+    int maxPagesToShow = 5;
+    int startPage = Math.Max(1, currentPage - maxPagesToShow / 2);
+    int endPage = Math.Min(startPage + maxPagesToShow - 1, totalPages);
 }
-
-<link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 
 <h1 class="text-center">Clientes Cadastrados</h1>
 
 <div class="row">
-
     @* Botão Novo Cliente *@
     <div class="col-xl-6 col-6">
         <div class="row d-flex justify-content-start">
@@ -20,60 +25,40 @@
         </div>
     </div>
 
-
-    @* Campo de pesquisa*@
+    @* Campo de pesquisa *@
     <div class="col-xl-6 col-6 d-flex justify-content-end">
         <form asp-route="SearchClientes" method="get">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="search" placeholder="Pesquisar cliente" id="pesquisar">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar"><img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" /></button>
+                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">
+                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" />
+                    </button>
                 </div>
             </div>
         </form>
     </div>
-
-
 </div>
 
-
 <div class="container d-flex justify-content-center col-xl-8 col-12">
-    <div class="p-3">
-        <table class="table mt-3 mx-auto">
+    <div class="table-responsive-lg p-3">
+        <table class="table table-hover mt-3 mx-auto" id="exampleTable">
             <thead>
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nome)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CPF)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Contato)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Observacao)
-
-                    </th>
-                    <th>
-
-                    </th>
-
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.CPF)</th>
+                    <th>@Html.DisplayNameFor(model => model.Contato)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.Observacao)</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CPF)
-                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CPF)</td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Contato)
                             <a href="https://wa.me/@item.Contato" target="_blank">
@@ -83,22 +68,49 @@
                         <td>
                             <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Observacao)
-                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.ID_Cliente">
                                 <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
                             </a>
-                            @*    <a asp-action="Details" asp-route-id="@item.ID_Cliente">Details</a> | *@
                             <a asp-action="Delete" asp-route-id="@item.ID_Cliente">
                                 <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
                             </a>
                         </td>
-
                     </tr>
                 }
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="text-center pt-3">
+                        Total de clientes cadastrados: @totalItems
+                    </td>
+                </tr>
+            </tfoot>
         </table>
+
+        @* Paginação *@
+        <div class="container d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item @(currentPage <= 1 ? "enabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(currentPage - 1)" aria-label="Anterior">
+                            <span aria-hidden="true">Anterior</span>
+                        </a>
+                    </li>
+                    @* <li class="page-item">
+                        <a class="page-link">@currentPage</a>
+                    </li> *@
+                    <li class="page-item @(currentPage >= totalPages ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(currentPage + 1)" aria-label="Próxima">
+                            <span aria-hidden="true">Próxima</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
 </div>
+
+
