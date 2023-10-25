@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-
-
 </head>
+
 <body>
     <header>
         <nav class="navbar visible" id="navbar">
@@ -21,10 +20,10 @@
                 <a class="item" href="#">Sobre</a>
                 <a class="item" href="#">Empresa</a>
                 <a class="nav_link" asp-area="" asp-controller="Usuarios" asp-action="Login">
-                   <button class="bn30">Login</button>
-                 </a>
+                    <button class="bn30">Login</button>
+                </a>
                 <a class="nav_link" asp-area="" asp-controller="Usuarios" asp-action="Create">
-                  <button class="bn30">Cadastre-se</button>
+                    <button class="bn30">Cadastre-se</button>
                 </a>
             </div>
         </nav>
@@ -72,10 +71,13 @@
         </footer>
     </section>
 
-
-
-    @RenderBody()
+       @RenderBody()
     @RenderSection("Scripts", required: false)
 
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
 </body>
 </html>

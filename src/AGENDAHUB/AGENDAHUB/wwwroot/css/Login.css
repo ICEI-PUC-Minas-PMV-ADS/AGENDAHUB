@@ -1,0 +1,125 @@
+﻿
+body {
+    color: #000;
+    background-color: #c0c0c0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.glassmorphism {
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    margin: auto;
+    position: relative;
+}
+
+    .glassmorphism h2 {
+        margin-bottom: 20px;
+    }
+
+    .glassmorphism .form-control {
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .glassmorphism .form-check-label {
+        color: white;
+    }
+
+    .glassmorphism .btn-primary {
+        background-color: radial-gradient(82.52% 82.52% at 63.90% 17.30%, rgba(255, 239, 97, 0.95) 0%, rgba(255, 80, 41, 0.95) 100%);
+        border: none;
+        width: 100%;
+    }
+
+.elipses {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.elipseDireita,
+.elipseEsquerda,
+.elipseBolaMaior,
+.elipseBolinha {
+    flex-shrink: 0;
+}
+
+.elipseDireita {
+    position: absolute;
+    width: 25vw;
+    height: 24.5vw;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    top: 37vh;
+    right: 1vw;
+}
+
+.elipseEsquerda {
+    position: absolute;
+    width: 27.5vw;
+    height: 27.25vw;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    top: 40vh;
+    left: 1vw;
+}
+
+.elipseBolaMaior {
+    position: absolute;
+    width: 16.5vw;
+    height: 16.25vw;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    top: 5vh;
+    left: 35vw;
+}
+
+.elipseBolinha {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    bottom: 5vh;
+    left: 50vw;
+}
+
+#formDiv {
+    height: 80vh;
+    width: 80vw;
+    border-radius: 20px;
+}
+
+#bemVindo {
+    background-color: rgba(255, 255, 255, 0.5); /* Cor branca com 50% de transparência */
+}
+
+#formInput {
+    background-color: rgba(211, 211, 211, 0.2); /* Cor cinza claro com 20% de transparência */
+}
+
+
