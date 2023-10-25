@@ -63,7 +63,7 @@
             <div class="card-body">
                 <p class="card-text">
                     <strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.Cliente.Nome)<br>
-                    <strong>Contato: </strong>@Html.DisplayFor(modelItem => item.Cliente.Contato)
+                    <strong>Contato: </strong>@item.Cliente.FormatarContato()
                     <a href="https://wa.me/@item.Cliente.Contato" target="_blank">
                         <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
                     </a>

@@ -51,9 +51,11 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                            <td>@Html.DisplayFor(modelItem => item.CPF)</td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Contato)
+                                @item.FormatarCPF()
+                            </td>
+                            <td>
+                                @item.FormatarContato()
                                 <a href="https://wa.me/@item.Contato" target="_blank">
                                     <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
                                 </a>
