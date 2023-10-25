@@ -80,10 +80,10 @@ namespace AGENDAHUB.Controllers
 
         public FileContentResult getImg(int id)
         {
-            byte[] byteArray = _context.Servicos.Find(id).Imagem;  
+            byte[] byteArray = _context.Servicos.Find(id).Imagem;
 
             return byteArray != null
-            
+
                 ? new FileContentResult(byteArray, "image/jpeg")
                 : null;
         }
@@ -109,7 +109,7 @@ namespace AGENDAHUB.Controllers
                         await file.CopyToAsync(target: memoryStream);
                         byte[] data = memoryStream.ToArray();
                         servicos.Imagem = memoryStream.ToArray();
-                    }   
+                    }
                 }
 
                 _context.Add(servicos);
@@ -231,10 +231,9 @@ namespace AGENDAHUB.Controllers
 
 
     }
-   }
+}
 
 
 
 
 
-    

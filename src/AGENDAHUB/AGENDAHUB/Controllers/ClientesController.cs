@@ -21,30 +21,14 @@ namespace AGENDAHUB.Controllers
         //Função para visualizar a página de clientes
         public async Task<IActionResult> Index(int? page)
         {
-            int pageSize = 5;
-            int pageNumber = page ?? 1;
-
-            if (pageNumber < 1)
-            {
-                pageNumber = 1;
-            }
-
-            // Obtenha o total de clientes no banco de dados
-            int totalClientes = await _context.Clientes.CountAsync();
-
-            var clientes = await _context.Clientes.ToPagedListAsync(pageNumber, pageSize);
+            var clientes = await _context.Clientes.ToListAsync();
 
             if (clientes == null)
             {
                 return NotFound();
             }
-
-            // Passe o total de clientes para a visualização
-            ViewData["TotalClientes"] = totalClientes;
-
             return View(clientes);
         }
-
 
 
 
