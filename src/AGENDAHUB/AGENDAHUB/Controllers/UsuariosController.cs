@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
 
+
 namespace AGENDAHUB.Controllers
 {
     public class UsuariosController : Controller
