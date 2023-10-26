@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace AGENDAHUB.Controllers
 {
@@ -15,12 +16,23 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
+
+
         //Função para visualizar a página de clientes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            var Clientes = await _context.Clientes.ToListAsync();
-            return View(Clientes);
+            var clientes = await _context.Clientes.ToListAsync();
+
+            if (clientes == null)
+            {
+                return NotFound();
+            }
+            return View(clientes);
         }
+
+
+
+
 
         //Método de pesquisa no banco de dados
         [HttpGet("SearchClientes", Name = "SearchClientes")]
@@ -37,14 +49,14 @@ namespace AGENDAHUB.Controllers
 
                 var clientes = await _context.Clientes.ToListAsync();
 
-                var filteredClientes = clientes
+                var filteredClientes = await _context.Clientes
                     .Where(c =>
-                        c.Nome.ToLower().Contains(search) ||
-                        c.CPF.ToLower().Contains(search) ||
-                        c.Contato.ToLower().Contains(search) ||
-                        c.Email.ToLower().Contains(search) ||
-                        (c.Observacao != null && c.Observacao.ToLower().Contains(search)))
-                    .ToList();
+                    c.Nome.ToLower().Contains(search) ||
+                    c.CPF.ToLower().Contains(search) ||
+                    c.Contato.ToLower().Contains(search) ||
+                    c.Email.ToLower().Contains(search) ||
+                    (c.Observacao != null && c.Observacao.ToLower().Contains(search)))
+                    .ToListAsync();
 
                 return View("Index", filteredClientes);
             }
@@ -88,7 +100,6 @@ namespace AGENDAHUB.Controllers
             }
 
             return View(cliente);
-
         }
 
         //Resposta HTTP para alterar um cliente cadastrado no banco de dados e redirecionar para a View
