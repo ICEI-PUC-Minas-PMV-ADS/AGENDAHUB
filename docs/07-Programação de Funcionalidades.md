@@ -8,8 +8,19 @@ Por exemplo: a tabela a seguir deverá ser preenchida considerando os artefatos 
 
 |ID    | Descrição do Requisito  | Artefato(s) produzido(s) |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | tarefas.shtml / tarefas.cs / controllertarefas.cs | 
-|RF-002| Emitir um relatório de tarefas no mês   | relatorio.shtml |
+| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema |        |
+| RF-02 | O sistema deve ser protegido por autenticação de login e senha   |       |
+| RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional |        |
+| RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | Clientes.cs, Clientes.cshtml, ClientesController.|
+| RF-05 | O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento | Agendamentos.cs, Agendamentos.cshtml, AgendamentosController.|
+| RF-06 | O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira   |       |
+| RF-07 | O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador |        |
+| RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   |       |
+| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. |        |
+| RF-10 | O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos   |       |
+| RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento |        |
+| RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional e tirar dúvidas   |       |
+| RF-13 | O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado |        |
 
 # Instruções de acesso
 
