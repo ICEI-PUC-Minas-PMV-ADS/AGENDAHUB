@@ -19,6 +19,10 @@ namespace AGENDAHUB.Models
         [Required(ErrorMessage = "Obrigatório informar o perfil")]
         public Perfil Perfil { get; set; }
 
+        [EmailAddress]
+        [Required(ErrorMessage = "Obrigatório informar o email")]
+        public string Email { get; set; }
+
     }
 
     public enum Perfil
