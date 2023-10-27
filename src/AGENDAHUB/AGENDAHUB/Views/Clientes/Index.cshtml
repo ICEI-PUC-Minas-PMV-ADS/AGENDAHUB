@@ -1,16 +1,29 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Clientes>
-<link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 
-@{
-    ViewData["Title"] = "Clientes Cadastrados";
-}
+@* DataTable *@
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
 
 <link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
+<script src="~/js/Clientes.js"></script>
+
 
 <h1 class="text-center">Clientes Cadastrados</h1>
 
 <div class="row">
-
     @* Botão Novo Cliente *@
     <div class="col-xl-6 col-6">
         <div class="row d-flex justify-content-start">
@@ -20,85 +33,52 @@
         </div>
     </div>
 
-
-    @* Campo de pesquisa*@
-    <div class="col-xl-6 col-6 d-flex justify-content-end">
-        <form asp-route="SearchClientes" method="get">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="search" placeholder="Pesquisar cliente" id="pesquisar">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar"><img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" /></button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-</div>
-
-
-<div class="container d-flex justify-content-center col-xl-8 col-12">
-    <div class="p-3">
-        <table class="table mt-3 mx-auto">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nome)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CPF)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Contato)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Observacao)
-
-                    </th>
-                    <th>
-
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="container d-flex justify-content-center col-xl-8 col-12">
+        <div class="table-responsive-lg p-3">
+            <table id="tabelaClientes" class="table table-hover mt-3 mx-auto" style="width:100%">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CPF)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Contato)
-                            <a href="https://wa.me/@item.Contato" target="_blank">
-                                <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
-                            </a>
-                        </td>
-                        <td>
-                            <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Observacao)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.ID_Cliente">
-                                <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
-                            </a>
-                            @*    <a asp-action="Details" asp-route-id="@item.ID_Cliente">Details</a> | *@
-                            <a asp-action="Delete" asp-route-id="@item.ID_Cliente">
-                                <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
-                            </a>
-                        </td>
-
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.CPF)</th>
+                        <th>@Html.DisplayNameFor(model => model.Contato)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.Observacao)</th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                            <td>
+                                @item.FormatarCPF()
+                            </td>
+                            <td>
+                                @item.FormatarContato()
+                                <a href="https://wa.me/@item.Contato" target="_blank">
+                                    <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
+                                </a>
+                            </td>
+                            <td>
+                                <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ID_Cliente">
+                                    <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.ID_Cliente">
+                                    <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+
+

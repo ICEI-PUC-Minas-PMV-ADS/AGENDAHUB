@@ -11,5 +11,6 @@ namespace AGENDAHUB.Models
         public DbSet<Usuario> Usuarios { get; set; }
 
         //Adicionem aqui quando criarem controllers para o banco de dados
+        //teste
     }
 }

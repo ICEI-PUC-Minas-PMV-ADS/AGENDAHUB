@@ -1,7 +1,7 @@
 ﻿body {
 }
 
-#btnNovoAgendamento, #dataInicio, #dataFim, #btnStatusAgendamento, #cadastrarAgendamento, select, input, #modalAgendamento {
+#btnNovoAgendamento, #dataInicio, #dataFim, #btnStatusAgendamento, #cadastrarAgendamento, select, input, #statusFilter, #modalAgendamento {
     -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);

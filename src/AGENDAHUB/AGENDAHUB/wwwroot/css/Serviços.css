@@ -1,5 +1,7 @@
 ﻿body {
+
 }
+
 
 .card {
 
@@ -9,3 +11,6 @@
     .card:hover {
         translate: 0 -10px;
     }
+
+
+

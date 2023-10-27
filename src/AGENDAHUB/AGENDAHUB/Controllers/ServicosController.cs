@@ -80,10 +80,10 @@ namespace AGENDAHUB.Controllers
 
         public FileContentResult getImg(int id)
         {
-            byte[] byteArray = _context.Servicos.Find(id).Imagem;  
+            byte[] byteArray = _context.Servicos.Find(id).Imagem;
 
             return byteArray != null
-            
+
                 ? new FileContentResult(byteArray, "image/jpeg")
                 : null;
         }
@@ -109,7 +109,7 @@ namespace AGENDAHUB.Controllers
                         await file.CopyToAsync(target: memoryStream);
                         byte[] data = memoryStream.ToArray();
                         servicos.Imagem = memoryStream.ToArray();
-                    }   
+                    }
                 }
 
                 _context.Add(servicos);
@@ -144,7 +144,7 @@ namespace AGENDAHUB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem")] Servicos servicos)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao")] Servicos servicos, IFormFile Imagem)
         {
             if (id != servicos.ID_Servico)
             {
@@ -155,6 +155,15 @@ namespace AGENDAHUB.Controllers
             {
                 try
                 {
+                    if (Imagem != null)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await Imagem.CopyToAsync(stream);
+                            servicos.Imagem = stream.ToArray();
+                        }
+                    }
+
                     _context.Update(servicos);
                     await _context.SaveChangesAsync();
                 }
@@ -173,6 +182,7 @@ namespace AGENDAHUB.Controllers
             }
             return View(servicos);
         }
+
 
         // GET: Servicos/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -221,10 +231,9 @@ namespace AGENDAHUB.Controllers
 
 
     }
-   }
+}
 
 
 
 
 
-    
