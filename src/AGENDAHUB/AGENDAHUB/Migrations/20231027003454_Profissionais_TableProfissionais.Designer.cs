@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231027003454_Profissionais_TableProfissionais")]
+    partial class Profissionais_TableProfissionais
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,11 +93,11 @@ namespace AGENDAHUB.Migrations
 
             modelBuilder.Entity("AGENDAHUB.Models.Profissionais", b =>
                 {
-                    b.Property<int>("ID_Profissionais")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Profissionais"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CPF")
                         .HasMaxLength(11)
@@ -125,7 +127,7 @@ namespace AGENDAHUB.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
-                    b.HasKey("ID_Profissionais");
+                    b.HasKey("Id");
 
                     b.ToTable("Profissionais");
                 });
@@ -137,9 +139,6 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Servico"), 1L, 1);
-
-                    b.Property<int>("ID_Profissionais")
-                        .HasColumnType("int");
 
                     b.Property<byte[]>("Imagem")
                         .HasColumnType("varbinary(max)");
@@ -155,8 +154,6 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("time");
 
                     b.HasKey("ID_Servico");
-
-                    b.HasIndex("ID_Profissionais");
 
                     b.ToTable("Servicos");
                 });
@@ -194,17 +191,6 @@ namespace AGENDAHUB.Migrations
                         .IsRequired();
 
                     b.Navigation("Cliente");
-                });
-
-            modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
-                {
-                    b.HasOne("AGENDAHUB.Models.Profissionais", "Profissional")
-                        .WithMany()
-                        .HasForeignKey("ID_Profissionais")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Profissional");
                 });
 #pragma warning restore 612, 618
         }

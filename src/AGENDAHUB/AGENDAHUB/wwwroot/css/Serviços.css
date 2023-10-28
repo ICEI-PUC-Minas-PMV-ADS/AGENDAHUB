@@ -8,9 +8,31 @@
     transition: 0.4s;
 }
 
-    .card:hover {
-        translate: 0 -10px;
-    }
+.card:hover {
+    translate: 0 -10px;
+}
 
 
 
+
+
+#btnNovoAgendamentoo {
+    -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+    -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+    box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+
+}
+
+#pesquisar {
+    -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+    -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+    box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+
+}
+
+#botaoPesquisar {
+    -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+    -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+    box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
+
+}
