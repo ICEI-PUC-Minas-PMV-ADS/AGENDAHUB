@@ -27,7 +27,8 @@ namespace AGENDAHUB.Controllers
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Servicos.ToListAsync());
+            var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
+            return View(servicos);
         }
 
 
@@ -36,20 +37,32 @@ namespace AGENDAHUB.Controllers
         [HttpGet("SearchServicos")]
         public async Task<IActionResult> Index(string SearchServicos)
         {
-            // Obtém todos os serviços do banco de dados
-            var servicos = await _context.Servicos.ToListAsync();
-
-            if (!string.IsNullOrEmpty(SearchServicos))
+            if (string.IsNullOrEmpty(SearchServicos))
             {
-                // Converta a palavra-chave de pesquisa para minúsculas
-                SearchServicos = SearchServicos.ToLower();
-
-                // Filtra os serviços com base no nome
-                servicos = servicos.Where(s => s.Nome.ToLower().Contains(SearchServicos)).ToList();
+                // Se a palavra-chave de pesquisa for vazia, retorne todos os serviços
+                var allServicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
+                return View(allServicos);
             }
+
+            // Converta a palavra-chave de pesquisa para minúsculas
+            SearchServicos = SearchServicos.ToLower();
+
+            // Passo 1: Busque os IDs dos serviços que correspondem ao critério de pesquisa
+            var serviceIds = _context.Servicos
+                .Where(s => s.Nome.ToLower().Contains(SearchServicos))
+                .Select(s => s.ID_Servico)
+                .ToList();
+
+            // Passo 2: Busque os serviços completos com base nos IDs encontrados
+            var servicos = _context.Servicos
+                .Include(s => s.Profissional)
+                .Where(s => serviceIds.Contains(s.ID_Servico))
+                .ToList();
 
             return View(servicos); // Retorna a lista de serviços filtrada
         }
+
+
 
 
         // GET: Servicos/Details/5
@@ -73,6 +86,7 @@ namespace AGENDAHUB.Controllers
         // GET: Servicos/Create
         public IActionResult Create()
         {
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
             return View();
         }
 
@@ -98,8 +112,10 @@ namespace AGENDAHUB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem")] Servicos servicos, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ProfissionaisID")] Servicos servicos, IFormFile file)
         {
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ProfissionaisID", "Nome");
+
             if (ModelState.IsValid)
             {
                 if (file.Headers != null && file.Length > 0)
@@ -136,6 +152,8 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
             return View(servicos);
         }
 
@@ -144,7 +162,7 @@ namespace AGENDAHUB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao")] Servicos servicos, IFormFile Imagem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ProfissionaisID")] Servicos servicos, IFormFile Imagem)
         {
             if (id != servicos.ID_Servico)
             {
@@ -180,6 +198,7 @@ namespace AGENDAHUB.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
             return View(servicos);
         }
 
