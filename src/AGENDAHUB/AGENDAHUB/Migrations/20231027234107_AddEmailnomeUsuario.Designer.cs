@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231027234107_AddEmailnomeUsuario")]
+    partial class AddEmailnomeUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,47 +91,6 @@ namespace AGENDAHUB.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("AGENDAHUB.Models.Profissionais", b =>
-                {
-                    b.Property<int>("ID_Profissionais")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Profissionais"), 1L, 1);
-
-                    b.Property<string>("CPF")
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Especializacao")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("Login")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefone")
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.HasKey("ID_Profissionais");
-
-                    b.ToTable("Profissionais");
-                });
-
             modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
                 {
                     b.Property<int>("ID_Servico")
@@ -137,9 +98,6 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Servico"), 1L, 1);
-
-                    b.Property<int>("ID_Profissionais")
-                        .HasColumnType("int");
 
                     b.Property<byte[]>("Imagem")
                         .HasColumnType("varbinary(max)");
@@ -155,8 +113,6 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("time");
 
                     b.HasKey("ID_Servico");
-
-                    b.HasIndex("ID_Profissionais");
 
                     b.ToTable("Servicos");
                 });
@@ -179,8 +135,7 @@ namespace AGENDAHUB.Migrations
 
                     b.Property<string>("NomeUsuario")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Perfil")
                         .HasColumnType("int");
