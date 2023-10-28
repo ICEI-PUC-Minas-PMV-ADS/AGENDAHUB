@@ -9,7 +9,7 @@ using AGENDAHUB.Models;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace AGENDAHUB.Controllers
 {
@@ -32,29 +32,29 @@ namespace AGENDAHUB.Controllers
         {
             return View();
         }
-       
+
         [HttpPost]
         public async Task<IActionResult> Login(Usuario usuario)
         {
             var dados = await _context.Usuarios
-                .FindAsync(usuario.Id);
+                .FirstOrDefaultAsync(u => u.NomeUsuario == usuario.NomeUsuario);
 
-            if(dados == null)
+            if (dados == null)
             {
-                ViewBag.Message = "Usuario e/ou senha invalidos!";
+                ViewBag.Message = "Usuário e/ou senha inválidos!";
                 return View();
             }
 
             bool senhaOk = BCrypt.Net.BCrypt.Verify(usuario.Senha, dados.Senha);
 
-           if (senhaOk)
+            if (senhaOk)
             {
                 var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, dados.Nome),
-                    new Claim(ClaimTypes.NameIdentifier, dados.Id.ToString()),
-                    new Claim(ClaimTypes.Role, dados.Perfil.ToString())
-                };
+        {
+            new Claim(ClaimTypes.Name, dados.NomeUsuario),
+            new Claim(ClaimTypes.NameIdentifier, dados.Id.ToString()),
+            new Claim(ClaimTypes.Role, dados.Perfil.ToString())
+        };
 
                 var usuarioIdentity = new ClaimsIdentity(claims, "login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(usuarioIdentity);
@@ -68,17 +68,17 @@ namespace AGENDAHUB.Controllers
 
                 await HttpContext.SignInAsync(principal, props);
 
-                //Aqui coloca para a onde o login redireciona
+                // Aqui você pode definir para onde o login deve redirecionar, por exemplo, a página inicial.
                 return RedirectToAction("Index", "Agendamentos");
             }
             else
             {
-                ViewBag.Message = "Usuario e/ou senha invalidos!";
+                ViewBag.Message = "Usuário e/ou senha inválidos!";
             }
 
             return View();
         }
-        
+
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
@@ -115,7 +115,7 @@ namespace AGENDAHUB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Senha,Perfil")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -148,7 +148,7 @@ namespace AGENDAHUB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Senha,Perfil")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
         {
             if (id != usuario.Id)
             {
@@ -220,5 +220,14 @@ namespace AGENDAHUB.Controllers
         {
           return _context.Usuarios.Any(e => e.Id == id);
         }
+
+        //Verificar se o nomeUsuario está em uso
+        [AllowAnonymous] // Isso permite que a ação seja acessada sem autenticação.
+        public IActionResult IsNomeUsuarioAvailable(string NomeUsuario)
+        {
+            bool isNomeUsuarioAvailable = !_context.Usuarios.Any(u => u.NomeUsuario == NomeUsuario);
+            return Json(isNomeUsuarioAvailable);
+        }
+
     }
 }
