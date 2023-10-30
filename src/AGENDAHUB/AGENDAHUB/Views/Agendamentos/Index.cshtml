@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Agendamentos>
 <link rel="stylesheet" href="~/css/Agendamentos.css" asp-append-version="true" />
+<script src="~/js/Agendamentos.js"></script>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-center">Agendamentos</h1>
+<h1 class="text-center pb-3">Agendamentos</h1>
 
 <div class="row">
-
-    @* Botão Novo Agendamento *@
+    <!-- Botão Novo Agendamento -->
     <div class="col-xl-6 col-6">
         <div class="row d-flex justify-content-start">
             <div class="col-xl-6 col-6">
@@ -18,25 +18,39 @@
         </div>
     </div>
 
-
-    @* Campo de pesquisa*@
+    <!-- Campo de Pesquisa -->
     <div class="col-xl-6 col-6 d-flex justify-content-end">
         <form asp-action="SearchAgendamentos" method="get">
-            <div class="input-group mb-3">
+            <div class="input-group mb-2">
                 <input type="text" class="form-control" name="search" placeholder="Pesquisar Agendamento" id="pesquisar">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar"><img src="~/images/pesquisar.png" style="height:1.5rem; width:auto"/></button>
+                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">
+                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" />
+                    </button>
                 </div>
             </div>
         </form>
     </div>
-
 </div>
+
+<div class="row d-flex justify-content-end pb-3">
+    <!-- Filtro de Status -->
+    <div class="col-xl-2 col-6" id="statusSelect">
+        <select id="statusFilter" class="form-select">
+            <option value="all">Todos</option>
+            <option value="pendente">Pendentes</option>
+            <option value="concluido">Concluídos</option>
+            <option value="cancelado">Cancelados</option>
+        </select>
+    </div>
+</div>
+
+
 
 @foreach (var item in Model)
 {
     <div class="container d-flex justify-content-center">
-        <div class="card mb-3 col-xl-6" id="cardView">
+        <div class="card mb-3 col-xl-6" id="cardView" data-status="@item.Status.ToString().ToLower()">
             <span class="float-end text-white mb-2 @GetStatusColor(item.Status)" id="spanView">
                 @Html.DisplayFor(modelItem => item.Status)
             </span>
@@ -49,7 +63,7 @@
             <div class="card-body">
                 <p class="card-text">
                     <strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.Cliente.Nome)<br>
-                    <strong>Contato: </strong>@Html.DisplayFor(modelItem => item.Cliente.Contato)
+                    <strong>Contato: </strong>@item.Cliente.FormatarContato()
                     <a href="https://wa.me/@item.Cliente.Contato" target="_blank">
                         <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
                     </a>
@@ -92,5 +106,5 @@
                 return "badge bg-secondary";
         }
     }
-
 }
+

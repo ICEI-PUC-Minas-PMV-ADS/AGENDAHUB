@@ -1,0 +1,103 @@
+﻿@model AGENDAHUB.Models.Usuario
+
+<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+@{
+    Layout = null;
+}
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="elipses">
+    <div class="elipseDireita"></div>
+    <div class="elipseEsquerda"></div>
+    <div class="elipseBolaMaior"></div>
+    <div class="elipseBolinha">
+        <svg xmlns="http://www.w3.org/2000/svg" width="160" height="159" viewBox="0 0 160 159" fill="none">
+            <defs>
+                <linearGradient id="paint0_linear_107_87" x1="120.236" y1="19.8815" x2="30.5744" y2="139.764"
+                                gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FEEA37" />
+                    <stop offset="1" stop-color="#DFA309" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+</div>
+
+<div class="glassmorphism d-flex justify-content-center align-items-center">
+
+
+
+    <div class="row fw-bold" id="formDiv">
+
+        @* Lado esquerda *@
+        <div class="col col-xl-6 col-6 text-center pt-5" id="bemVindo">
+
+            <h2 class="mb-1">Bem Vindo</h2>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="/images/logoAgendaHub.png" style="height: 15vh; width: auto;">
+            </a>
+            <p>Inscreva-se</p>
+
+            <button><a class="btn btn" asp-area="" asp-controller="Usuarios" asp-action="Login">Faça Login </a></button>
+
+        </div>
+
+        @*Lado Direito *@
+        <div class="col col-xl-6 col-6 text-center " id="formInput">
+
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               
+                <div class="mb-3 pt-5">
+                    <label asp-for="NomeUsuario" class="form-label"></label>
+                    <input asp-for="NomeUsuario" class="form-control bg-white" />
+                    <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+                </div>
+@*                 @Html.EditorFor(model => model.NomeUsuario, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @data_val_remote = "Esse Nome de Usuário já está em uso." } })
+ *@
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control bg-white" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Senha" class="form-label"></label>
+                    <input asp-for="Senha" class="form-control bg-white" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+ 
+
+                @* Define default Admin para os usuarios criados nessa page *@
+                 <input type="hidden" name="Perfil" value="Admin" />
+
+
+                <div class="form-group">
+@*                     <input type="submit" value="Create" class="btn btn-primary" />
+ *@                    <button type="submit" value="Create" class="btn btn-primary">Criar Usuário</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+                @*<div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label text-black" for="exampleCheck1">Lembrar de mim</label>
+                </div> *@

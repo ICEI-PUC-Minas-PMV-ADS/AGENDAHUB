@@ -17,12 +17,19 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
+
+
+
         // GET: Agendamentos
         public async Task<IActionResult> Index()
         {
             var agendamentos = await _context.Agendamentos.Include(a => a.Cliente).ToListAsync();
-            return View(agendamentos);
+            var agendamentosOrdenados = agendamentos.OrderBy(a => a.Data).ToList();
+            return View(agendamentosOrdenados);
         }
+
+
+
 
 
         //Método de pesquisa no banco de dados
@@ -44,7 +51,7 @@ namespace AGENDAHUB.Controllers
                 // Aplicar a filtragem no lado do servidor
                 var filteredAgendamentos = agendamentos
                     .Where(a =>
-                        a.Cliente.ToString().Contains(search) ||
+                        a.Cliente.Nome.ToLower().Contains(search) ||
                         a.Data.ToString().Contains(search) ||
                         a.Hora.ToString().Contains(search) ||
                         a.Servico.ToLower().Contains(search) ||
@@ -54,6 +61,8 @@ namespace AGENDAHUB.Controllers
                 return View("Index", filteredAgendamentos);
             }
         }
+
+
 
 
 
@@ -75,12 +84,20 @@ namespace AGENDAHUB.Controllers
             return View(agendamentos);
         }
 
+
+
+
+
         // GET: Agendamentos/Create
         public IActionResult Create()
         {
             ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
             return View();
         }
+
+
+
+
 
         // POST: Agendamentos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -100,6 +117,10 @@ namespace AGENDAHUB.Controllers
             return View(agendamentos);
         }
 
+
+
+
+
         // GET: Agendamentos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -117,6 +138,10 @@ namespace AGENDAHUB.Controllers
             ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
             return View(agendamentos);
         }
+
+
+
+
 
         // POST: Agendamentos/Edit/5
 
@@ -155,6 +180,8 @@ namespace AGENDAHUB.Controllers
 
 
 
+
+
         // GET: Agendamentos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -174,6 +201,7 @@ namespace AGENDAHUB.Controllers
 
             return View(agendamento);
         }
+
 
 
         // POST: Agendamentos/Delete/5

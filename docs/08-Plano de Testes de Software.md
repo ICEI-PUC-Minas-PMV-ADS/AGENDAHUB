@@ -12,7 +12,7 @@ Requisitos Funcionais:
 
 RF-01	O sistema deve permitir um usuário se cadastrar para receber acesso ao sistema.	
 
-RF-02	O sistema deve ser protegido por autenticação de login e senha.	
+RF-02	O sistema deve verificar se reconhece o usuário e permite o login de usuário
 
 RF-03	O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional.
 
