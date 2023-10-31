@@ -29,13 +29,6 @@ namespace AGENDAHUB.Models
         [EmailAddress(ErrorMessage = "O campo Email deve ser um endereço de email válido.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "O campo Senha é obrigatório.")]
-        [MinLength(6, ErrorMessage = "A senha deve ter pelo menos 6 caracteres.")]
-        public string Senha { get; set; }
-
-        [Range(0, 1, ErrorMessage = "O campo Login deve estar entre 0 e 1.")]
-        public int Login { get; set; }
-
         [StringLength(11, MinimumLength = 11, ErrorMessage = "O campo CPF deve conter 11 caracteres.")]
         public string CPF { get; set; }
     }

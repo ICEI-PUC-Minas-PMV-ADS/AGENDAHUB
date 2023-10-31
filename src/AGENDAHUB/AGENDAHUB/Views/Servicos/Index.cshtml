@@ -43,28 +43,29 @@
         {
             <div class="col-12 col-md-4 mb-4">
                 <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
-                    <div style="text-align: center;">
-                        @Html.DisplayFor(modelItem => item.Profissional.Nome)
+                    <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
+                        <h1 style="font-size:19px" class="card-text">@Html.DisplayFor(modelItem => item.Profissional.Nome)</h1>
                     </div>
 
                     <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
                     <div class="card-body">
                         
 
-                        <h5 style="text-align: center; font-size: 16px" class="card-title text-uppercase">@item.Nome</h5>
-                        <p style="font-size: 10px" class="card-text">
+                        <h5 style="text-align: center; " class="card-title text-uppercase">@item.Nome</h5>
+                        <p style="" class="card-text">
                             Preço: @item.Preco<br />
                             Tempo de Execução: @item.TempoDeExecucao
                             
                         </p>
                         <div class="d-flex justify-content-end">
-                            <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
-                                <img style="width: 45%;" src="images/editar.png">
+                            <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                <img style="width:40%" src="images/editar.png">
                             </a>
-                            <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
-                                <img style="width: 60%;" src="images/excluir.png">
+                            <a style="margin-right:-10%" href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                <img style="width:55%" src="images/excluir.png">
                             </a>
                         </div>
+
                     </div>
                 </div>
             </div>

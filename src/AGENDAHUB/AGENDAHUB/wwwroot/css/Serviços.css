@@ -36,3 +36,23 @@
     box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
 
 }
+
+.card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2e54a7;
+}
+.card-body {
+    margin: 1px 0 0 10px;
+    color: rgb(31, 31, 31);
+    font-size: 15px;
+    font-weight: 700;
+    color: #636363;
+}
+
+.footer {
+    float: inherit;
+    margin: 1px 0 0 10px;
+    font-size: 13px;
+    color: #636363;
+}
