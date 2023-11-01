@@ -1,54 +1,212 @@
 ﻿
 body {
-    color: #000;
-    background-color: #c0c0c0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
 }
 
-.glassmorphism {
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    width: 80%;
-    height: 80%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+h1 {
+    all: initial;
+
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 4.016444206237793px 10.04111099243164px rgba(0, 0, 0, 0.25);
+    font-family: Inter;
+    font-size: 2.383rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.71488rem;
+}
+
+h2 {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 2.383rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.35744rem;
+}
+
+h3 {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 2.37325rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.23731rem;
+}
+
+
+/*Retangulo total*/
+#boxLogin {
+    width: 64.39056rem;
+    height: 36.04281rem;
+    flex-shrink: 0;
+}
+
+#boxLogin {
+    border-radius: 1.48938rem;
+    border: 0.794px solid #FFF;
+    background: rgba(61, 53, 155, 0.10);
+    box-shadow: -63.54656px 63.54656px 79.4332px 0px rgba(0, 0, 0, 0.31);
+    backdrop-filter: blur(39.71659851074219px);
+}
+
+.divColuna {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    margin: auto;
+    flex-wrap: wrap;
+}
+
+/*Lado Esquerdo*/
+#bemVindo {
+    width: 23.77669rem;
+    height: 35.90981rem;
+    flex-shrink: 0;
+}
+
+#bemVindo {
+    border-radius: 1.48938rem 0rem 0rem 1.48938rem;
+    background: linear-gradient(196deg, rgba(255, 253, 253, 0.77) 10.17%, rgba(167, 167, 167, 0.10) 122.51%);
+}
+
+
+#logoLogin {
+    width: 11.8125rem;
+    height: 12.5625rem;
+    flex-shrink: 0;
+}
+
+.lineHorizontal {
+    display:flex;
+    margin-left: 25%;
+}
+
+#botoesLgCriar {
+    width: 16.46338rem;
+    height: 3.21944rem;
+    flex-shrink: 0;
+    /*Estilo*/
+    border: none;
+    border-radius: 3.227rem;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: -7.94332px 7.94332px 19.8583px 0px rgba(0, 0, 0, 0.25);
+}
+
+    #botoesLgCriar a {
+        width: 9.60181rem;
+        height: 1.44344rem;
+        flex-shrink: 0;
+        /*estilo*/
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 1.1915rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.17875rem;
+        text-decoration: none; /* Remover sublinhado (se desejado) */
+    }
+
+/*Lado Direito*/
+#formInput {
+    display: flex; /* Ativar o modelo de caixa flexível */
+    align-items: center; /* Alinhar verticalmente o conteúdo */
+    justify-content: center;
+    width: 100% - 23.77669rem;
+    height: auto;
+}
+
+
+#camposTextoLg {
+    width: 22.29063rem;
+    height: 3.20625rem;
+    flex-shrink: 0;
+    /*estilo*/
+    border-radius: 3.21375rem;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: -7.9108px 7.9108px 19.77699px 0px rgba(0, 0, 0, 0.25);
+    padding-left: 20%;
+}
+
+    /* Seletor específico para o input onde deseja ajustar o texto do placeholder */
+    #camposTextoLg::placeholder {
+        color: #393874;
+        font-family: Inter;
+        font-size: 1.164rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.23281rem;
+        text-indent: -40%; /*Ajuste o valor conforme necessário */
+        text-align: center;
+    }
+
+/*Interior caixas de texto*/
+.input-with-icon {
     position: relative;
 }
 
-    .glassmorphism h2 {
-        margin-bottom: 20px;
-    }
+.input-container {
+    display: flex;
+    align-items: center;
+}
 
-    .glassmorphism .form-control {
-        margin-bottom: 15px;
-        padding: 10px;
-        background-color: rgba(255, 255, 255, 0.2);
-        border: none;
-        border-radius: 8px;
-        width: 100%;
-    }
+.icon {
+    position: absolute;
+    left: 5%; /* Ajuste essa posição conforme necessário */
+    z-index: 1;
+    width: 2.37769rem;
+    height: 2.36769rem;
+    flex-shrink: 0;
+}
 
-    .glassmorphism .form-check-label {
-        color: white;
-    }
+.line {
+    position: absolute;
+    left: 15%; /* Ajuste essa posição conforme necessário */
+    z-index: 1;
+    height: 2.36769rem;
+    flex-shrink: 0;
+}
 
-    .glassmorphism .btn-primary {
-        background-color: radial-gradient(82.52% 82.52% at 63.90% 17.30%, rgba(255, 239, 97, 0.95) 0%, rgba(255, 80, 41, 0.95) 100%);
-        border: none;
-        width: 100%;
-    }
+/*Botoes*/
+.lembrarCheck {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1.24113rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.31031rem;
+}
 
+
+
+#botaoEntrar {
+    width: 9.74875rem;
+    height: 3.26894rem;
+    flex-shrink: 0;
+    /*Estilo*/
+    border-radius: 3.227rem;
+    box-shadow: -7.94332px 7.94332px 19.8583px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+}
+
+
+
+/*Circulos*/
 .elipses {
     width: 100%;
     display: flex;
@@ -59,6 +217,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    background: #C9C9C9;
+    box-shadow: 20px 20px 4px 0px rgba(0, 0, 0, 0.09);
 }
 
 .elipseDireita,
@@ -107,19 +267,3 @@ body {
     bottom: 5vh;
     left: 50vw;
 }
-
-#formDiv {
-    height: 80vh;
-    width: 80vw;
-    border-radius: 20px;
-}
-
-#bemVindo {
-    background-color: rgba(255, 255, 255, 0.5); /* Cor branca com 50% de transparência */
-}
-
-#formInput {
-    background-color: rgba(211, 211, 211, 0.2); /* Cor cinza claro com 20% de transparência */
-}
-
-
