@@ -14,9 +14,9 @@
         <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
     </div>
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
-        <form asp-action="Index" method="get">
+        <form asp-action="SearchServicos" method="get">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço" id="pesquisar">
+                <input type="text" class="form-control" name="search" placeholder="Pesquisar Serviço" id="pesquisar">
                 <div class="input-group-append">
                     <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">Buscar</button>
                 </div>
