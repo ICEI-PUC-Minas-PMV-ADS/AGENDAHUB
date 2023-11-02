@@ -32,25 +32,26 @@ namespace AGENDAHUB.Controllers
         }
 
 
-
         [HttpGet("SearchServicos")]
         public async Task<IActionResult> SearchServicos(string search)
         {
             // Obtém todos os serviços do banco de dados
-            var servicos = await _context.Servicos.ToListAsync();
+            var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
 
             if (!string.IsNullOrEmpty(search))
             {
                 // Converta a palavra-chave de pesquisa para minúsculas
                 search = search.ToLower();
 
-                // Filtra os serviços com base no nome
-                servicos = servicos.Where(s => s.Nome.ToLower().Contains(search)).ToList();
+                // Filtra os serviços com base no nome do serviço ou nome do profissional
+                servicos = servicos.Where(s =>
+                    s.Nome.ToLower().Contains(search) ||
+                    s.Profissional.Nome.ToLower().Contains(search))
+                    .ToList();
             }
 
             return View("Index", servicos); // Retorna a lista de serviços filtrada
         }
-
 
 
 
