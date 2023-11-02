@@ -9,27 +9,25 @@
 
 <h1 class="text-center">Serviços Cadastrados</h1>
 
-@* Botão Novo Servico *@
-<div class="col-xl-6 col-6 ">
-    <div class="row d-flex justify-content-start">
-        <div class="col-xl-6 col-6 ">
-            <a asp-action="Create" class="btn btn-outline-info rounded-pill" id="btnNovoAgendamento">+ Novo Serviço</a>
-        </div>
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+        <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
+        <form asp-action="Index" method="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço" id="pesquisar">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">Buscar</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
 
-@* Campo de pesquisa *@
-<div style="margin-left: 33rem; margin-top: -40px;" class="col-xl-6 col-6 d-flex justify-content-end">
-    <form asp-action="Index" method="get" style="border-radius: 20rem;">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço" style="border-radius: 20rem 0 0 20rem;" id="pesquisar">
-            <div class="input-group-append">
-                <button class="btn btn-outline-info" type="submit" style="border-radius: 0 20rem 20rem 0;" id="botaoPesquisar">Buscar</button>
-            </div>
-        </div>
-    </form>
-</div>
+
+
 
 
 
