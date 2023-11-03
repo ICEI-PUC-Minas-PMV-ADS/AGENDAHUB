@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Web;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
@@ -20,36 +19,15 @@ namespace AGENDAHUB.Controllers
     public class ServicosController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public ServicosController(AppDbContext context, UserManager<IdentityUser> userManager)
+        public ServicosController(AppDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
-            //Validação de Usuario Logado
-            var usuario = await _userManager.GetUserAsync(User);
-
-
-            if (!User.Identity.IsAuthenticated)
-            {
-                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
-                return RedirectToAction("Usuarios", "Login");
-            }
-
-            // O usuário está autenticado, continue com a lógica para buscar e exibir os dados do usuário
-           
-
-            if (usuario == null)
-            {
-                // Tratar o caso em que o usuário não está logado.
-                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
-                return RedirectToAction("Usuarios", "Login");
-            }
 
             var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
             return View(servicos);

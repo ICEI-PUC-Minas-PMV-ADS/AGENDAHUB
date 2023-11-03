@@ -12,38 +12,19 @@ namespace AGENDAHUB.Controllers
     public class ClientesController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public ClientesController(AppDbContext context, UserManager<IdentityUser> userManager)
+
+        public ClientesController(AppDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
+
 
 
 
         //Função para visualizar a página de clientes
         public async Task<IActionResult> Index(int? page)
         {
-
-            //Validação de Usuario Logado
-            var usuario = await _userManager.GetUserAsync(User);
-
-            if (!User.Identity.IsAuthenticated)
-            {
-                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
-                return RedirectToAction("Usuarios", "Login");
-            }
-
-            // O usuário está autenticado, continue com a lógica para buscar e exibir os dados do usuário
-
-
-            if (usuario == null)
-            {
-                // Tratar o caso em que o usuário não está logado.
-                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
-                return RedirectToAction("Usuarios", "Login");
-            }
 
             var clientes = await _context.Clientes.ToListAsync();
 

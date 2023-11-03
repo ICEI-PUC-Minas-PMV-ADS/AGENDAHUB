@@ -42,13 +42,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
     });
 
-
-
-
-
-
-
-
 var app = builder.Build();
 
 
