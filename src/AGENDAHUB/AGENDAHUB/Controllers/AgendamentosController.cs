@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AGENDAHUB.Controllers
@@ -17,19 +17,27 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
-
+        private bool AgendamentosExists(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+            return _context.Agendamentos.Any(a => a.ID_Agendamentos == id && a.UsuarioID == userId);
+        }
 
 
         // GET: Agendamentos
         public async Task<IActionResult> Index()
         {
-            var agendamentos = await _context.Agendamentos.Include(a => a.Cliente).ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var agendamentos = await _context.Agendamentos
+                .Where(a => a.UsuarioID == userId)
+                .Include(a => a.Cliente)
+                .Include(a => a.Servicos)
+                .Include(a => a.Profissionais)
+                .ToListAsync();
+
             var agendamentosOrdenados = agendamentos.OrderBy(a => a.Data).ToList();
             return View(agendamentosOrdenados);
         }
-
-
-
 
 
         //Método de pesquisa no banco de dados
@@ -38,7 +46,11 @@ namespace AGENDAHUB.Controllers
         {
             if (string.IsNullOrEmpty(search))
             {
-                var agendamentos = await _context.Agendamentos.Include(a => a.Cliente).ToListAsync();
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+                var agendamentos = await _context.Agendamentos
+                    .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
+                    .Include(a => a.Cliente)
+                    .ToListAsync();
                 return View("Index", agendamentos);
             }
             else
@@ -46,7 +58,11 @@ namespace AGENDAHUB.Controllers
                 search = search.ToLower();
 
                 // Trazer todos os agendamentos do banco de dados
-                var agendamentos = await _context.Agendamentos.Include(a => a.Cliente).ToListAsync();
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+                var agendamentos = await _context.Agendamentos
+                    .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
+                    .Include(a => a.Cliente)
+                    .ToListAsync();
 
                 // Aplicar a filtragem no lado do servidor
                 var filteredAgendamentos = agendamentos
@@ -54,8 +70,8 @@ namespace AGENDAHUB.Controllers
                         a.Cliente.Nome.ToLower().Contains(search) ||
                         a.Data.ToString().Contains(search) ||
                         a.Hora.ToString().Contains(search) ||
-                        a.Servico.ToLower().Contains(search) ||
-                        a.Profissional.ToLower().Contains(search))
+                        a.Servicos.ToString().Contains(search) ||
+                        a.Profissionais.ToString().Contains(search))
                     .ToList();
 
                 return View("Index", filteredAgendamentos);
@@ -63,40 +79,15 @@ namespace AGENDAHUB.Controllers
         }
 
 
-
-
-
-        // GET: Agendamentos/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Agendamentos == null)
-            {
-                return NotFound();
-            }
-
-            var agendamentos = await _context.Agendamentos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (agendamentos == null)
-            {
-                return NotFound();
-            }
-
-            return View(agendamentos);
-        }
-
-
-
-
-
         // GET: Agendamentos/Create
+        [HttpGet]
         public IActionResult Create()
         {
             ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
             return View();
         }
-
-
-
 
 
         // POST: Agendamentos/Create
@@ -104,9 +95,13 @@ namespace AGENDAHUB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Servico,ClienteID,Data,Hora,Status,Profissional")] Agendamentos agendamentos)
+        public async Task<IActionResult> Create([Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional")] Agendamentos agendamentos)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+            agendamentos.UsuarioID = userId; // Define o UsuarioID do agendamento
             ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
 
             if (ModelState.IsValid)
             {
@@ -119,11 +114,14 @@ namespace AGENDAHUB.Controllers
 
 
 
-
-
         // GET: Agendamentos/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+
             if (id == null || _context.Agendamentos == null)
             {
                 return NotFound();
@@ -135,21 +133,23 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            
             return View(agendamentos);
         }
-
-
-
 
 
         // POST: Agendamentos/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Servico,ClienteID,Data,Hora,Status,Profissional")] Agendamentos agendamentos)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional")] Agendamentos agendamentos)
         {
-            if (id != agendamentos.Id)
+            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+            if (id != agendamentos.ID_Agendamentos || agendamentos.UsuarioID != userId) // Verifica se o agendamento pertence ao usuário logado
             {
                 return NotFound();
             }
@@ -163,7 +163,7 @@ namespace AGENDAHUB.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AgendamentosExists(agendamentos.Id))
+                    if (!AgendamentosExists(agendamentos.ID_Agendamentos))
                     {
                         return NotFound();
                     }
@@ -172,27 +172,29 @@ namespace AGENDAHUB.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
             return View(agendamentos);
         }
 
 
-
-
-
         // GET: Agendamentos/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+
             if (id == null)
             {
                 return NotFound();
             }
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
             var agendamento = await _context.Agendamentos
+                .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
                 .Include(a => a.Cliente)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ID_Agendamentos == id);
 
             if (agendamento == null)
             {
@@ -202,30 +204,33 @@ namespace AGENDAHUB.Controllers
             return View(agendamento);
         }
 
-
-
         // POST: Agendamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+
             if (_context.Agendamentos == null)
             {
-                return Problem("Entity set 'AppDbContext.Agendamentos'  is null.");
+                return Problem("Entity set 'AppDbContext.Agendamentos' is null.");
             }
-            var agendamentos = await _context.Agendamentos.FindAsync(id);
-            if (agendamentos != null)
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+            var agendamento = await _context.Agendamentos
+                .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
+                .FirstOrDefaultAsync(a => a.ID_Agendamentos == id);
+
+            if (agendamento != null)
             {
-                _context.Agendamentos.Remove(agendamentos);
+                _context.Agendamentos.Remove(agendamento);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool AgendamentosExists(int id)
-        {
-            return _context.Agendamentos.Any(e => e.Id == id);
         }
     }
 }

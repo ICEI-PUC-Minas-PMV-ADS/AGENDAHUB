@@ -56,7 +56,7 @@
             </span>
             <div class="card-header text-center">
                 <h5 class="card-title">
-                    @Html.DisplayFor(modelItem => item.Servico)
+                    @Html.DisplayFor(modelItem => item.Servicos.Nome)
                 </h5>
             </div>
 
@@ -70,18 +70,20 @@
                     <br>
                     <strong>Data: </strong>@string.Format("{0:dd MMM yyyy}", item.Data)<br>
                     <strong>Horário: </strong>@item.Hora.ToString(@"hh\:mm")<br>
+                    <strong>Preço: </strong>R$ @item.Servicos.Preco.ToString("N2")<br>
+
                 </p>
 
                 <cite class="card-subtitle mb-2 text-muted">
-                    <strong>Profissional: </strong>@Html.DisplayFor(modelItem => item.Profissional)
+                    <strong>Profissional: </strong>@Html.DisplayFor(modelItem => item.Profissionais.Nome)
                 </cite>
 
                 <div class="btn-group d-flex justify-content-end" role="group">
-                    <a asp-action="Edit" asp-route-id="@item.Id">
+                    <a asp-action="Edit" asp-route-id="@item.ID_Agendamentos">
                         <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
                     </a>
                     @*   <a asp-action="Details" asp-route-id="@item.Id">Details</a> | *@
-                    <a asp-action="Delete" asp-route-id="@item.Id">
+                    <a asp-action="Delete" asp-route-id="@item.ID_Agendamentos">
                         <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
                     </a>
                 </div>

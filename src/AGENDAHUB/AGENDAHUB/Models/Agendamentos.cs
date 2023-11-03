@@ -8,14 +8,15 @@ namespace AGENDAHUB.Models
     public class Agendamentos
     {
         [Key]
-        public int Id { get; set; }
+        public int ID_Agendamentos { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar o serviço!")]
-        public string Servico { get; set; }
+        [Display(Name = "Serviço")]
+        public int ID_Servico { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar o cliente!")]
         [Display(Name = "Cliente")]
-        public int ClienteID { get; set; }        // Alterado para o tipo int para se relacionar com o Cliente
+        public int ID_Cliente { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar a data!")]
         [Column(TypeName = "date")]
@@ -28,11 +29,23 @@ namespace AGENDAHUB.Models
         public StatusAgendamento Status { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar o profissional!")]
-        public string Profissional { get; set; }
+        [Display(Name = "Profissional")]
+        public int ID_Profissional { get; set; }
+
+        // Campo de ID do usuário logado para restringir os dados
+        public string UsuarioID { get; set; }
 
         // Propriedade de navegação para o cliente
-        [ForeignKey("ClienteID")]
+        [ForeignKey("ID_Cliente")]
         public Clientes Cliente { get; set; }
+
+        // Propriedade de navegação para o serviço
+        [ForeignKey("ID_Servico")]
+        public Servicos Servicos { get; set; }
+
+        // Propriedade de navegação para o profissional
+        [ForeignKey("ID_Profissional")]
+        public Profissionais Profissionais { get; set; }
 
         public enum StatusAgendamento
         {
@@ -40,20 +53,5 @@ namespace AGENDAHUB.Models
             Concluido,
             Cancelado
         }
-
-
-        //[ForeignKey("ProfissionalAgendamento")]
-        //public int ProfissionalId { get; set; }
-        //public Profissional ProfissionalAgendamento { get; set; }
-
-        //public List<Servico> Servicos { get; set; } = new List<Servico>();
-
-        //[ForeignKey("ClienteAgendamento")]
-        //public int ClienteId { get; set; }
-        //public Clientes ClienteAgendamento { get; set; }
-
-        //[ForeignKey("MovimentacaoFinanceiraAgendamento")]
-        //public int? PagamentoId { get; set; }
-        //public MovimentacaoFinanceira MovimentacaoFinanceiraAgendamento { get; set; }
     }
 }
