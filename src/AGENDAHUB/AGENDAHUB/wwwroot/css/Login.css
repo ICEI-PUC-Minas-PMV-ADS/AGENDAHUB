@@ -174,7 +174,7 @@ h3 {
 
 .line {
     position: absolute;
-    left: 15%; /* Ajuste essa posição conforme necessário */
+    left: 18%; /* Ajuste essa posição conforme necessário */
     z-index: 1;
     height: 2.36769rem;
     flex-shrink: 0;
