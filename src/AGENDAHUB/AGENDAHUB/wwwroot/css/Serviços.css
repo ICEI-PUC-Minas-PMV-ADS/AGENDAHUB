@@ -27,14 +27,14 @@
     -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
-
+    border-radius: 20px 0 0 20px;
 }
 
 #botaoPesquisar {
     -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
-
+    border-radius: 0 20px 20px 0;
 }
 
 .card-title {
