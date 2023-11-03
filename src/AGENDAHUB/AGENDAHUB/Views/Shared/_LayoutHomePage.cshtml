@@ -1,83 +1,65 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AGENDAHUB</title>
-    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - AGENDAHUB</title>
+	<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar visible" id="navbar">
-            <img src="/images/Design_sem_nome-removebg-preview.png" />
-            <div class="nav-items">
-                <a class="item" href="#servicos">Serviços</a>
+	<header>
+		<nav class="navbar visible" id="navbar">
+			<img src="/images/Design_sem_nome-removebg-preview.png" />
+		</nav>
+	</header>
 
-                <a class="item" href="#">Sobre</a>
-                <a class="item" href="#">Empresa</a>
-                <a class="nav_link" asp-area="" asp-controller="Usuarios" asp-action="Login">
-                    <button class="bn30">Login</button>
-                </a>
-                <a class="nav_link" asp-area="" asp-controller="Usuarios" asp-action="Create">
-                    <button class="bn30">Cadastre-se</button>
-                </a>
-            </div>
-        </nav>
-    </header>
+	<section class="circles-container" id="page-section">
 
-    <section id="page-section">
-        <div class="circles-container">
-            <div class="circles-container">
-                <div class="circulo1"></div>
-                <div class="circulo2">
-                    <div class="circulo3"></div>
-                </div>
+		<div class="circles-container">
+			<div class="circulo1"></div>
+			<div class="circulo2"></div>
+			<div class="circulo3"></div>
+			<div class="circulo4"></div>
+			<div class="circulo5"></div>
+			<div class="circulo6"></div>
+			<div class="circulo7"></div>
+			<div class="circulo8"></div>
+			<div class="circulo9"></div>
+		</div>
+	</section>
 
-                <div class="circulo4">
-                    <div class="circulo5"></div>
-                    <div class="circulo6">
-                        <div class="circulo7">
-                            <div class="circulo9"></div>
-                        </div>
-                        <div class="circulo8"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section id="section-footer">
+		<footer class="top">
+			<img src="/images/logoAgendaHub.png" />
+			<div class="links">
+				<div>
+					<p class="slogan">Agenda Hub</p>
+				</div>
+			</div>
+		</footer>
+		<footer class="bottom">
+			<div class="legal">
+				<span>© 2023 Todos os direitos reservados</span>
+			</div>
+			<div class="links">
+				<a href="#" class="fa-brands fab fa-instagram"></a>
+				<a href="#" class="fa-brands far fa-envelope"></a>
+				<a href="#" class="fa-brands fab fa-whatsapp"></a>
+			</div>
+		</footer>
+	</section>
 
-    <section id="section-footer">
-        <footer class="top">
-            <img src="/images/logoAgendaHub.png" />
-            <div class="links">
-                <div>
-                    <p class="slogan">Agenda Hub</p>
-                </div>
-            </div>
-        </footer>
-        <footer class="bottom">
-            <div class="legal">
-                <span>© 2023 Todos os direitos reservados</span>
-            </div>
-            <div class="links">
-                <a href="#" class="fa-brands fab fa-instagram"></a>
-                <a href="#" class="fa-brands far fa-envelope"></a>
-                <a href="#" class="fa-brands fab fa-whatsapp"></a>
-            </div>
-        </footer>
-    </section>
+	@RenderBody()
+	@RenderSection("Scripts", required: false)
 
-       @RenderBody()
-    @RenderSection("Scripts", required: false)
-
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
-    }
+	@section Scripts {
+		@{
+			await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		}
+	}
 </body>
 </html>

@@ -1,82 +1,233 @@
-﻿body {
-    color: #4c4b5b;
+﻿/* Estilos base */
+body {
+    background: #D0D0D0;
     font-family: "Euclid Circular A", "Poppins";
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Altura mínima de 100% da viewport */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Reduza o tamanho da fonte para telas menores */
+    }
+}
 
 * {
     box-sizing: border-box;
-
 }
-
 
 .title {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    padding-top: 1rem;
+    padding-right: 8rem;
+    top: 1rem; /* 1rem é aproximadamente 10px */
+    right: 1rem; /* 1rem é aproximadamente 10px */
     width: 50%;
-    margin-right: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 65px;
+    font-size: 4vw; /* Tamanho da fonte proporcional à largura da tela */
     color: #2C3E50;
     text-align: center;
     margin-bottom: 0;
-   margin-right: 65px;
-   
+
+     
 }
 
 h2 {
     font-family: 'Poppins', sans-serif;
     color: #2C3E50;
     text-align: center;
-    margin-top: 0px;
-    margin-right: 65px;
+    margin-bottom: 1rem;
+    /* 5.2vw é aproximadamente 52px */
 }
 
 h4 {
     font-family: 'Poppins', sans-serif;
-    font-size: 50px;
-    margin-bottom: 50px;
+    font-size: 3.125vw; /* Tamanho da fonte proporcional à largura da tela */
+    margin-bottom: 5rem; /* 5rem é aproximadamente 50px */
+    color: #2C3E50;
 }
+
+.card1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.75rem;
+    background-color: white;
+    width: 300px;
+    height: 8rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+    margin-right: auto;
+}
+
+.header {
+    position: relative;
+    background-clip: border-box;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 0.75rem;
+    background-color: rgb(33 150 243);
+    box-shadow: 0 10px 15px -3px rgba(33,150,243,.4),0 4px 6px -4px rgba(33,150,243,.4);
+    height: 5rem;
+    display: flex; /* Ative o flexbox para centralizar o conteúdo verticalmente */
+    align-items: center;
+}
+
+.titleSection2 {
+    color: white;
+    letter-spacing: 0;
+    line-height: 1.375;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    margin: 0 auto;
+}
+
+
+
 
 p {
     font-family: 'Poppins', sans-serif;
-    text-align: inherit;
-    margin-left: 10px;
+    text-align:center;
+    /* 1rem é aproximadamente 10px */
 }
 
 .divCalendarioRelogio {
-    width: 40%;
+    width: 40vw; 
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     margin-bottom: 0;
 }
 
 .calendarioRelogio {
-    height: 90vh;
-    margin-left: 100px;
-   
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100vh;
 }
+
+@media (max-width: 768px) {
+    .title {
+        padding-top:3rem;
+        padding-right: 2rem;
+    }
+
+    h1 {
+        font-size: 1rem;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        color: #2C3E50;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 1rem; /* Tamanho da fonte para telas menores */
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 4vw; /* Tamanho da fonte para telas menores */
+        text-align: center;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 620px) {
+    .title {
+        padding-top: 3rem;
+        padding-right: 2rem;
+    }
+
+    h1 {
+        font-size: 0.9rem;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        color: #2C3E50;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 0.9rem; /* Tamanho da fonte para telas menores */
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 4vw; /* Tamanho da fonte para telas menores */
+        text-align: center;
+    }
+
+    p {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 412px) {
+    .title {
+        padding-top: 3rem;
+        padding-right: 2rem;
+    }
+
+    h1 {
+        font-size: 0.6rem;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        color: #2C3E50;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 0.5rem; /* Tamanho da fonte para telas menores */
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 4vw; /* Tamanho da fonte para telas menores */
+        text-align: center;
+    }
+
+    p {
+        font-size: 0.6rem;
+    }
+}
+.section-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+@media (max-width: 480px) {
+    .title {
+        padding-right: 1rem; /* Ajuste adicional para telas ainda menores */
+    }
+}
+
+
 
 .video {
     margin-top: 50px;
 }
+
 .servicos {
     display: flex;
     justify-content: center;
     align-items: center;
-    
     margin-top: 20px;
 }
 
@@ -112,11 +263,24 @@ p {
         border-radius: 50%;
     }
 
-    h3 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 50px;
-        margin-bottom: 50px;
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    margin-bottom: 50px;
+    color: #2C3E50;
+}
+
+@media (max-width: 768px) {
+    .titleservicos {
+        font-size: 24px; /* Reduza o tamanho da fonte para telas menores */
     }
+
+    h3 {
+        font-size: 36px; /* Reduza o tamanho da fonte para telas menores */
+        margin-bottom: 30px; /* Reduza a margem inferior para telas menores */
+    }
+}
+
 
 
 .table-container {
@@ -126,14 +290,38 @@ p {
 }
 
 .tablet {
-    width: 600px;
-    height: 348px;
+    width: 100%; /* Ocupará 100% da largura do container */
+    height: 0; /* A altura será controlada pela proporção do vídeo */
+    padding-bottom: 56.25%; /* Proporção de largura:altura do vídeo (16:9) */
+    padding-left: 0rem;
     background-color: #ffffff;
     border: 10px solid #999999;
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     position: relative;
 }
+
+iframe {
+    width: 100%; /* Ocupará 100% da largura do container */
+    height: 100%; /* Ocupará 100% da altura do container */
+    border: none;
+}
+
+
+/* Regra de mídia para telas menores (exemplo: largura máxima de 768px) */
+@media (max-width: 768px) {
+    .tablet {
+        width: 74.9vw; /* Usar 100% da largura da viewport para telas menores */
+        height: 20vh; /* Usar altura automática para se ajustar ao conteúdo */
+        margin: 20px; /* Adicionar margem para espaçamento em telas menores */
+    }
+
+    .table-container {
+        margin-top: 20px; /* Ajustar margem superior para telas menores */
+        margin-bottom: 20px; /* Ajustar margem inferior para telas menores */
+    }
+}
+
 
 .screen {
     width: 100%;
@@ -156,12 +344,8 @@ p {
     font-size: 16px;
 }
 
-/* Estilize o vídeo conforme necessário (tamanho, proporção, etc.) dentro da tela do tablet. */
-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+
+
 
 
 /*Cards*/
@@ -196,13 +380,14 @@ iframe {
 }
 
 .card-image img {
-    min-height: 170px;
-    max-height: 200px;
+    min-height: 11.067708333333334vw;
+    max-height: 13.020833333333334vw;
     width: 100%; /* Para garantir que a imagem se ajuste ao contêiner */
     object-fit: cover;
     background-color: #c9c9c9;
     border-radius: 15px;
     box-shadow: inset 8px 8px 10px #c3c3c3, inset -8px -8px 10px #cfcfcf;
+
 }
 
 .card-body {
@@ -224,9 +409,24 @@ iframe {
     font-weight: 700;
 }
 
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Alinhe os cards verticalmente */
+        align-items: center; /* Centralize os cards verticalmente */
+    }
 
-/*Inicio Header*/
-    nav {
+    .card {
+        width: 90%; /* Ajuste a largura para ocupar a largura da viewport */
+    }
+
+    .card-image img {
+        max-height: 150px; /* Reduza a altura máxima da imagem */
+    }
+}
+
+
+/* Estilos padrão do header */
+nav {
     z-index: 1;
     top: 0;
     left: 0;
@@ -241,7 +441,6 @@ iframe {
     transition: 0.3s;
 }
 
-
     nav.visible {
         top: 0;
         transform: translate(0);
@@ -254,17 +453,15 @@ iframe {
         margin-left: 80px;
     }
 
-
 .nav-items {
     display: flex;
     align-items: center;
     gap: 16px;
-
 }
 
 .item {
     font-size: 16px;
-    color:black;
+    color: black;
 }
 
 .nav-items > a {
@@ -279,8 +476,14 @@ iframe {
 }
 
     .nav-items > a:hover {
-        color: #4568dc; 
+        color: #4568dc;
     }
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 
 .bn30 {
     border: 5em;
@@ -327,43 +530,111 @@ iframe {
             background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
         }
 
-/*Fim Header*/
+/* Estilos para telas de até 768px (exemplo) */
+@media (max-width: 768px) {
+    nav {
+        height: 60px; /* Altura menor para telas menores */
+        padding: 0 10px; /* Espaçamento menor para telas menores */
+    }
+
+        nav > img {
+            width: 120px; /* Tamanho menor do logotipo para telas menores */
+            height: 120px;
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+
+    header {
+        display: none;
+    }
+
+    
+
+   
+}
+
+/* Outras regras de mídia para tamanhos de tela diferentes */
+@media (max-width: 480px) {
+    /* Estilos adicionais para telas ainda menores */
+}
+
 
 .main-class {
-    z-index: 0;
     position: absolute;
-    margin-top: 120px;
-    width: 90%;
-    height: 450vh;
-    background: rgba(236, 220, 248, 0.5); 
-    border-radius: 15px;
-    margin-left: 5%;
-    margin-right: 5%;
-    backdrop-filter: blur(14px);
-    box-shadow: 0 4px 100px rgba(0, 0, 0, 0.4);
+    padding-bottom: 100px;
+    margin-top: 15vh; /* Margem superior em relação à altura da viewport */
+    margin-bottom: 5vh; /* Margem inferior em relação à altura da viewport */
+    width: 90vw; /* 90% da largura da viewport */
+    height: 550vh; /*Remover depois*/
+    min-height: 100vh; /* Altura mínima de 100% da viewport */
+    margin-left: 5vw; /* Margem esquerda em relação à largura da viewport */
+    border-radius: 2.3732vw; /* Raio da borda em relação à largura da viewport */
+    border: 0.0791vw solid #FFF; /* Borda sólida branca */
+    background: rgba(61, 53, 155, 0.10); /* Cor de fundo com transparência */
+    box-shadow: -3.164vw 3.164vw 3.965vw 0px rgba(0, 0, 0, 0.31); /* Sombra em relação à largura da viewport */
+    backdrop-filter: blur(39.55398941040039px); /* Desfoque em relação à largura da viewport */
+}
+
+
+@media (max-width: 768px) {
+    .main-class {
+        width: 90%;
+        height: 450vh; /* Ajuste a altura automaticamente */
+        margin-top: 60px; /* Ajuste a margem superior */
+        margin-left: 5%; /* Remova a margem esquerda */
+        border: 0.5px solid #FFF; /* Ajuste a espessura da borda */
+        border-radius: 23.732px; /* Ajuste o raio da borda */
+        background: rgba(61, 53, 155, 0.10); /* Reduza a transparência do fundo */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra mais sutil */
+        backdrop-filter: blur(39.55398941040039px); /* Reduza o desfoque */
+    }
 }
 
 
 
     
 #page-section {
-    flex: 1;
     padding-top: 72px;
-    position: relative;
-    min-height: calc(500vh - 72px);
+    min-height: calc(600vh - 72px);
     overflow: hidden;
+}
+
+.circles-container {
+    position:relative;
+}
+
+@media (max-width: 768px) {
+    #page-section {
+        padding-top: 36px; /* Ajuste o preenchimento superior */
+        min-height: calc(500vh - 72px); /* Remova a altura mínima */
+    }
 }
 
 .circulo1 {
     position: absolute;
-    top: 100px;
-    right: 40px;
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    top: 6.25rem;
+    right: 2.083vw;
+    width: 25vw;
+    height: 25.25vw;
+    flex-shrink: 0;
+    background: radial-gradient(82.52% 82.52% at 70.75% 17.77%, rgba(219, 255, 255, 1) 0%, rgba(2, 187, 187, 1) 100%);
     border-radius: 50%;
-   
+    animation: move-up6 5s ease-in infinite alternate-reverse;
 }
+
+@keyframes move-up6 {
+    to {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes move-down1 {
+    to {
+        transform: translateY(20px);
+    }
+}
+
+
 
 
 
@@ -372,85 +643,98 @@ iframe {
 
 
 .circulo2 {
-    position: relative;
-    top: 200px;
-    left: 400px;
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    position: absolute;
+    top: 6.25rem;
+    left: 3.75rem;
+    width: 12vw;
+    height: 12vw;
+    flex-shrink: 0;
+    background: linear-gradient(217deg, #00B3BE 17.72%, #25A4AC 85.18%);
     border-radius: 50%;
-    
+    animation: move-up6 5s ease-in infinite alternate-reverse;
 }
 
 .circulo3 {
     position: absolute;
-    top: 410px;
-    left: 700px;
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    top: 44.188rem;
+    right: 20.377604166666668vw;
+    width: 14vw;
+    height: 14vw;
+    flex-shrink: 0;
+    background: linear-gradient(196deg, #25A4AC 11.06%, rgba(8, 199, 187, 0.95) 82.14%);
     border-radius: 50%;
+    animation: move-up6 5s ease-in infinite alternate-reverse;
 }
 
 .circulo4 {
-    position: relative;
-    top: 500px;
-    left: 30px;
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
+    position: absolute;
+    top: 61.5rem;
+    left: 0.2vw;
+    width: 22.70833vw;
+    height: 22.91667vw;
+    flex-shrink: 0;
+    background: linear-gradient(196deg, #56FFD6 11.06%, rgba(8, 199, 187, 0.95) 82.14%);
     border-radius: 50%;
+    animation: move-up6 5s ease-in infinite alternate-reverse;
 }
 
 
 .circulo5 {
     position: absolute;
-    top: 410px;
-    left: 165vh;
-    width: 280px;
-    height: 280px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
-    border-radius: 50%;
+    top: 67rem;
+    right: 1.063rem;
+    width: 15.64583vw;
+    height: 15.70139vw;
+    flex-shrink: 0;
+    background: linear-gradient(190deg, #9EF2F8 7.81%, rgba(185, 185, 185, 0.80) 91.38%);
+    border-radius: 27.5rem;
 }
 
 .circulo6 {
-    position: relative;
-    top: 750px;
-    left: 200px;
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
-    border-radius: 50%;
+  
+    position: absolute;
+    top: 107rem;
+    left: 33.92916666666700vw;
+    width: 25.78125vw;
+    height: 25.9765625vw;
+    flex-shrink: 0;
+    background: radial-gradient(82.52% 82.52% at 63.9% 17.3%, rgba(219, 255, 255, 1) 0%, rgba(2, 187, 187, 1) 100%);
+    border-radius: 24.9375rem;
 }
 
 .circulo7 {
-    position: relative;
-    top: 600px;
-    right: 200px;
-    width: 200px;
-    height: 200px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
-    border-radius: 50%;
+    position: absolute;
+    top: 146.063rem;
+    right: 67.90364583333333vw;
+    left: -1.5625vw;
+    width: 17.057291666666668vw;
+    height: 17.122395833333332vw;
+    flex-shrink: 0;
+    background: linear-gradient(190deg, #9EF2F8 7.81%, rgba(185, 185, 185, 0.80) 91.38%);
+    border-radius: 16.4375rem;
 }
 
 .circulo8 {
     position: absolute;
-    top: 900px;
-    left: 850px;
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
-    border-radius: 50%;
+    top: 167rem;
+    left: 60.677083333333336vw;
+    right: -3.0598958333333335vw;
+    width: 25.78125vw;
+    height: 25.9765625vw;
+    flex-shrink: 0;
+    background: radial-gradient(82.52% 82.52% at 63.9% 17.3%, rgba(219, 255, 255, 0.95) 0%, rgba(2, 187, 187, 0.95) 100%);
+    border-radius: 24.9375rem;
 }
 
 .circulo9 {
-    position: relative;
-    top: 700px;
-    left: 200px;
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(to bottom, #9CE9E9, #8BE3E3, #36C9C9);
-    border-radius: 50%;
+    position: absolute;
+    top: 196.5rem;
+    left: -1.5625vw;
+    width: 28.385416666666668vw;
+    height: 28.645833333333332vw;
+    flex-shrink: 0;
+    background: linear-gradient(196deg, #56FFD6 11.06%, rgba(8, 199, 187, 0.95) 82.14%);
+    border-radius: 27.5rem;
 }
 
 
