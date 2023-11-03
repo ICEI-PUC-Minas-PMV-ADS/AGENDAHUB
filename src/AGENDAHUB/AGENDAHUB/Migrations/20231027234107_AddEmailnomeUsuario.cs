@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -23,7 +22,7 @@ namespace AGENDAHUB.Migrations
                 nullable: false,
                 defaultValue: "");
 
-          
+
 
             migrationBuilder.CreateIndex(
                 name: "IX_Usuarios_NomeUsuario",

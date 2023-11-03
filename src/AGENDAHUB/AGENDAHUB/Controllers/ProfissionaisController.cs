@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AGENDAHUB.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using AGENDAHUB.Models;
 
 namespace AGENDAHUB.Controllers
 {
@@ -21,7 +18,7 @@ namespace AGENDAHUB.Controllers
         // GET: Profissionais
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Profissionais.ToListAsync());
+            return View(await _context.Profissionais.ToListAsync());
         }
 
         // GET: Profissionais/Details/5
@@ -147,14 +144,14 @@ namespace AGENDAHUB.Controllers
             {
                 _context.Profissionais.Remove(profissionais);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProfissionaisExists(int id)
         {
-          return _context.Profissionais.Any(e => e.ID_Profissionais == id);
+            return _context.Profissionais.Any(e => e.ID_Profissionais == id);
         }
     }
 }

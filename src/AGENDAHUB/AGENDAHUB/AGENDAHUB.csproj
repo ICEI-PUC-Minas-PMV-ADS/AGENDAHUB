@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Agendamentos\Details.cshtml" />
     <Content Remove="wwwroot\css\Login.cs" />
     <Content Remove="wwwroot\js\modal.js" />
     <Content Remove="wwwroot\js\site - Cópia.js" />

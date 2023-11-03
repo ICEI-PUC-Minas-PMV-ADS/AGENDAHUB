@@ -12,7 +12,7 @@ namespace AGENDAHUB.Models
         public DbSet<Profissionais> Profissionais { get; set; }
 
         //Para deixar unico o nome de usuario
-       protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Usuario>()
                 .HasIndex(u => u.NomeUsuario)

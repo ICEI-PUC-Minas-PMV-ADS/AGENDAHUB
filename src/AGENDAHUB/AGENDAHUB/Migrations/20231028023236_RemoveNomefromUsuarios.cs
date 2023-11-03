@@ -15,12 +15,12 @@ namespace AGENDAHUB.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-           migrationBuilder.AddColumn<string>(
-           name: "Nome",
-           table: "Usuarios",
-           type: "nvarchar(max)",
-           nullable: false,
-           defaultValue: "");
+            migrationBuilder.AddColumn<string>(
+            name: "Nome",
+            table: "Usuarios",
+            type: "nvarchar(max)",
+            nullable: false,
+            defaultValue: "");
         }
     }
 }

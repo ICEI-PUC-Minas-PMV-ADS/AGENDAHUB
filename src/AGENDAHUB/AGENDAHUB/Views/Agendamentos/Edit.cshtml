@@ -11,31 +11,40 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-md-4 text-center">
+
         <form asp-action="Edit">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ID_Agendamentos" />
             <div class="form-group">
-                <label asp-for="Servico" class="control-label"></label>
-                <input asp-for="Servico" class="form-control" />
-                <span asp-validation-for="Servico" class="text-danger"></span>
+                <label asp-for="ID_Servico" class="control-label"></label>
+                <select asp-for="ID_Servico" asp-items="@ViewBag.Servicos" class="form-control">
+                    <option value="">Selecione um Serviço</option>
+                </select>
+                <span asp-validation-for="ID_Servico" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="ClienteID" class="control-label"></label>
-                <select asp-for="ClienteID" asp-items="@ViewBag.Clientes" class="form-control">
+                <label asp-for="ID_Cliente" class="control-label"></label>
+                <select asp-for="ID_Cliente" asp-items="@ViewBag.Clientes" class="form-control">
                     <option value="">Selecione um cliente</option>
                 </select>
-                <span asp-validation-for="ClienteID" class="text-danger"></span>
+                <span asp-validation-for="ID_Cliente" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" type="date"/>
+                <input asp-for="Data" class="form-control" type="date" />
                 <span asp-validation-for="Data" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Hora" class="control-label"></label>
                 <input asp-for="Hora" class="form-control" type="time" />
                 <span asp-validation-for="Hora" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <select asp-for="Status" asp-items="Html.GetEnumSelectList<Agendamentos.StatusAgendamento>()" class="form-control">
@@ -45,15 +54,19 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Profissional" class="control-label"></label>
-                <input asp-for="Profissional" class="form-control" />
-                <span asp-validation-for="Profissional" class="text-danger"></span>
+                <label asp-for="ID_Profissional" class="control-label"></label>
+                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
+                    <option value="">Selecione um Profissional</option>
+                </select>
+                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
             </div>
+
             <div class="form-group pt-4">
                 <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
                 <input type="submit" value="Salvar" class="btn btn-outline-info" />
             </div>
         </form>
+
     </div>
 </div>
 

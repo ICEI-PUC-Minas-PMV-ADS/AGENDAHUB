@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace AGENDAHUB.Models
 {
@@ -38,7 +35,7 @@ namespace AGENDAHUB.Models
 
     public enum Perfil
     {
-        Admin, 
+        Admin,
         User
     }
 }

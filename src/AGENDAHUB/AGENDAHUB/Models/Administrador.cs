@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace AGENDAHUB.Models
 {
     public class Administrador
@@ -14,7 +9,7 @@ namespace AGENDAHUB.Models
 
         }
 
-        public int Id { get; set; }
+        public int ID_Administrador { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
