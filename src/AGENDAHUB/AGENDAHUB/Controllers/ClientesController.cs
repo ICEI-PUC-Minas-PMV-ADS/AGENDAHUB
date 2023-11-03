@@ -1,4 +1,6 @@
 ﻿using AGENDAHUB.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -6,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace AGENDAHUB.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private readonly AppDbContext _context;
-        public ClientesController(AppDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ClientesController(AppDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
 
@@ -19,6 +25,26 @@ namespace AGENDAHUB.Controllers
         //Função para visualizar a página de clientes
         public async Task<IActionResult> Index(int? page)
         {
+
+            //Validação de Usuario Logado
+            var usuario = await _userManager.GetUserAsync(User);
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
+                return RedirectToAction("Usuarios", "Login");
+            }
+
+            // O usuário está autenticado, continue com a lógica para buscar e exibir os dados do usuário
+
+
+            if (usuario == null)
+            {
+                // Tratar o caso em que o usuário não está logado.
+                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
+                return RedirectToAction("Usuarios", "Login");
+            }
+
             var clientes = await _context.Clientes.ToListAsync();
 
             if (clientes == null)

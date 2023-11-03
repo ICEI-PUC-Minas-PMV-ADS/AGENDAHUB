@@ -4,26 +4,53 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using System.Web;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 
 namespace AGENDAHUB.Controllers
 {
 
-
+    [Authorize]
     public class ServicosController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public ServicosController(AppDbContext context)
+        public ServicosController(AppDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
+            //Validação de Usuario Logado
+            var usuario = await _userManager.GetUserAsync(User);
+
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
+                return RedirectToAction("Usuarios", "Login");
+            }
+
+            // O usuário está autenticado, continue com a lógica para buscar e exibir os dados do usuário
+           
+
+            if (usuario == null)
+            {
+                // Tratar o caso em que o usuário não está logado.
+                TempData["AlertMessage"] = "Você precisa estar autenticado para acessar esta página.";
+                return RedirectToAction("Usuarios", "Login");
+            }
+
             var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
             return View(servicos);
         }
@@ -34,6 +61,9 @@ namespace AGENDAHUB.Controllers
         [HttpGet("SearchServicos")]
         public async Task<IActionResult> Index(string SearchServicos)
         {
+
+
+
             if (string.IsNullOrEmpty(SearchServicos))
             {
                 // Se a palavra-chave de pesquisa for vazia, retorne todos os serviços
@@ -57,6 +87,7 @@ namespace AGENDAHUB.Controllers
                 .ToList();
 
             return View(servicos); // Retorna a lista de serviços filtrada
+
         }
 
 
