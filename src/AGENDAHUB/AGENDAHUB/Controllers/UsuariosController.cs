@@ -25,7 +25,7 @@ namespace AGENDAHUB.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Usuarios.ToListAsync());
+            return View(await _context.Usuarios.ToListAsync());
         }
 
         public IActionResult Login()
