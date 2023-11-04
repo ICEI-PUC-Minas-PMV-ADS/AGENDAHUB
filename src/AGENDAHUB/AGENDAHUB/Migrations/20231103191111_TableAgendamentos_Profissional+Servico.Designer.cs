@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231103191111_TableAgendamentos_Profissional+Servico")]
+    partial class TableAgendamentos_ProfissionalServico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +26,14 @@ namespace AGENDAHUB.Migrations
 
             modelBuilder.Entity("AGENDAHUB.Models.Agendamentos", b =>
                 {
-                    b.Property<int>("ID_Agendamentos")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Agendamentos"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ClienteID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("date");
@@ -36,13 +41,10 @@ namespace AGENDAHUB.Migrations
                     b.Property<TimeSpan>("Hora")
                         .HasColumnType("time");
 
-                    b.Property<int>("ID_Cliente")
+                    b.Property<int>("ProfissionalID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ID_Profissional")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ID_Servico")
+                    b.Property<int>("ServicoID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -51,13 +53,13 @@ namespace AGENDAHUB.Migrations
                     b.Property<string>("UsuarioID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID_Agendamentos");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ID_Cliente");
+                    b.HasIndex("ClienteID");
 
-                    b.HasIndex("ID_Profissional");
+                    b.HasIndex("ProfissionalID");
 
-                    b.HasIndex("ID_Servico");
+                    b.HasIndex("ServicoID");
 
                     b.ToTable("Agendamentos");
                 });
@@ -195,19 +197,19 @@ namespace AGENDAHUB.Migrations
                 {
                     b.HasOne("AGENDAHUB.Models.Clientes", "Cliente")
                         .WithMany()
-                        .HasForeignKey("ID_Cliente")
+                        .HasForeignKey("ClienteID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AGENDAHUB.Models.Profissionais", "Profissionais")
                         .WithMany()
-                        .HasForeignKey("ID_Profissional")
+                        .HasForeignKey("ProfissionalID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AGENDAHUB.Models.Servicos", "Servicos")
                         .WithMany()
-                        .HasForeignKey("ID_Servico")
+                        .HasForeignKey("ServicoID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

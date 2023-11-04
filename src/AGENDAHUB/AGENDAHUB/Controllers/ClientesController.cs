@@ -1,16 +1,19 @@
 ﻿using AGENDAHUB.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
-using X.PagedList;
 
 namespace AGENDAHUB.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private readonly AppDbContext _context;
+
+
         public ClientesController(AppDbContext context)
         {
             _context = context;
@@ -18,9 +21,11 @@ namespace AGENDAHUB.Controllers
 
 
 
+
         //Função para visualizar a página de clientes
         public async Task<IActionResult> Index(int? page)
         {
+
             var clientes = await _context.Clientes.ToListAsync();
 
             if (clientes == null)
@@ -119,20 +124,7 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
-        //Exibir Detalhes dos clientes, todas as informações salvas no banco de dados renderizado na tela para consulta (Não acho necessário agora)
-        //public async Task<IActionResult> Details(int? id) 
-        //{
-        //    if (id == null)
-        //        return NotFound();
-
-        //    var cliente = await _context.Clientes.FindAsync(id);
-
-        //    if (cliente == null)
-        //        return NotFound();
-
-        //    return View(cliente);
-        //}
-
+     
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

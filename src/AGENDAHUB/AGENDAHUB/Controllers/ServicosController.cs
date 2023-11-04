@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AGENDAHUB.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AGENDAHUB.Models;
 using System.IO;
 using System.Web;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 
 namespace AGENDAHUB.Controllers
 {
 
-
+    [Authorize]
     public class ServicosController : Controller
     {
         private readonly AppDbContext _context;
@@ -27,6 +28,7 @@ namespace AGENDAHUB.Controllers
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
+
             var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
             return View(servicos);
         }
@@ -35,8 +37,15 @@ namespace AGENDAHUB.Controllers
         [HttpGet("SearchServicos")]
         public async Task<IActionResult> SearchServicos(string search)
         {
-            // Obtém todos os serviços do banco de dados
-            var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
+
+
+
+            if (string.IsNullOrEmpty(SearchServicos))
+            {
+                // Se a palavra-chave de pesquisa for vazia, retorne todos os serviços
+                var allServicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
+                return View(allServicos);
+            }
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -50,7 +59,8 @@ namespace AGENDAHUB.Controllers
                     .ToList();
             }
 
-            return View("Index", servicos); // Retorna a lista de serviços filtrada
+            return View(servicos); // Retorna a lista de serviços filtrada
+
         }
 
 

@@ -1,10 +1,6 @@
-using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AGENDAHUB.Models
 {
@@ -26,7 +22,7 @@ namespace AGENDAHUB.Models
 
         public byte[] Imagem { get; set; }
 
-        public int ProfissionaisID { get; set; } 
+        public int ProfissionaisID { get; set; }
 
         [ForeignKey("ProfissionaisID")]
         public Profissionais Profissional { get; set; }

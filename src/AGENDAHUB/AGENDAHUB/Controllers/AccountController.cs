@@ -1,21 +1,25 @@
-﻿using AGENDAHUB.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using AGENDAHUB.Models;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace AGENDAHUB.Controllers
 {
-    public class UsuariosController : Controller
+    [AllowAnonymous]
+    public class AccountController : Controller
     {
         private readonly AppDbContext _context;
 
-        public UsuariosController(AppDbContext context)
+        public AccountController(AppDbContext context)
         {
             _context = context;
         }
@@ -23,7 +27,7 @@ namespace AGENDAHUB.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuarios.ToListAsync());
+              return View(await _context.Usuarios.ToListAsync());
         }
 
         public IActionResult Login()
@@ -81,7 +85,7 @@ namespace AGENDAHUB.Controllers
         {
             await HttpContext.SignOutAsync();
 
-            return RedirectToAction("Login", "Usuarios");
+            return RedirectToAction("Login", "Account");
         }
 
         // GET: Usuarios/Details/5
@@ -209,14 +213,14 @@ namespace AGENDAHUB.Controllers
             {
                 _context.Usuarios.Remove(usuario);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UsuarioExists(int id)
         {
-            return _context.Usuarios.Any(e => e.Id == id);
+          return _context.Usuarios.Any(e => e.Id == id);
         }
 
         //Verificar se o nomeUsuario está em uso

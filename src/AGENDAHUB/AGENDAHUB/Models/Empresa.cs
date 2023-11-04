@@ -1,14 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AGENDAHUB.Models
 {
     public class Empresa
     {
 
-        
+
         // Construtor
         public Empresa()
         {
@@ -25,6 +22,6 @@ namespace AGENDAHUB.Models
         public TimeSpan HorarioAtendimento { get; set; }
 
 
-    
+
     }
 }

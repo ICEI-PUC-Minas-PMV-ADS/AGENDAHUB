@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AGENDAHUB.Models
 {
@@ -22,5 +19,5 @@ namespace AGENDAHUB.Models
         public string Cliente { get; set; }
 
 
-    }  
+    }
 }

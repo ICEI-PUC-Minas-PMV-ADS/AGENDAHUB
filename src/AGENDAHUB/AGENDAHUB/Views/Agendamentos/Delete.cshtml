@@ -14,7 +14,7 @@
         </span>
         <div class="card-header text-center">
             <h5 class="card-title">
-                @Html.DisplayFor(model => model.Servico)
+                @Html.DisplayFor(model => model.Servicos.Nome)
             </h5>
         </div>
 
@@ -31,7 +31,7 @@
             </p>
 
             <cite class="card-subtitle mb-2 text-muted">
-                <strong>Profissional: </strong>@Html.DisplayFor(model => model.Profissional)
+                <strong>Profissional: </strong>@Html.DisplayFor(model => model.Profissionais.Nome)
             </cite>
 
             <div class="row">
@@ -39,7 +39,7 @@
                     <div class="btn-group items-align-center" role="group">
                         <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
                         <form asp-action="Delete" method="post">
-                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="ID_Agendamentos" />
                             <button type="submit" class="btn btn-outline-danger ms-1">Excluir</button>
                         </form>
                     </div>
