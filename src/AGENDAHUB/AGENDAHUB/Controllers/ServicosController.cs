@@ -56,56 +56,75 @@ namespace AGENDAHUB.Controllers
 
         // Método de pesquisa no banco de dados
         [HttpGet("SearchServicos")]
-        public async Task<IActionResult> SearchServicos(string SearchServicos)
+        public async Task<IActionResult> SearchServicos(string search)
         {
-            var userId = GetUserId();
+            var userId = GetUserId(); // Valida o usuário
 
-            if (string.IsNullOrEmpty(SearchServicos))
+            if (string.IsNullOrEmpty(search))
             {
-                // Se a palavra-chave de pesquisa for vazia, retorna todos os serviços do usuário
-                var allServicos = await _context.Servicos
+                // Se a palavra-chave de pesquisa estiver em branco, redireciona para a página inicial
+                return RedirectToAction("Index");
+            }
+
+            // Converte a palavra-chave de pesquisa para minúsculas
+            search = search.ToLower();
+
+            // Verifica se a pesquisa contém apenas dígitos (números) / para pesquisar também pelo preço
+            if (search.All(char.IsDigit))
+            {
+                var priceSearch = decimal.Parse(search); // Converta a pesquisa em um valor decimal
+
+                // Obtém todos os serviços do banco de dados associados ao usuário e filtra pelo preço
+                var servicos = await _context.Servicos
                     .Where(s => s.UsuarioID == userId)
                     .Include(s => s.Profissional)
+                    .Where(s => s.Preco == priceSearch)
                     .ToListAsync();
-                return View(allServicos);
+
+                return View("Index", servicos); // Retorna a lista de serviços filtrada para o usuário logado
             }
+            else
+            {
+                var servicos = await _context.Servicos
+                    .Where(s => s.UsuarioID == userId)
+                    .Include(s => s.Profissional)
+                    .Where(s =>
+                        s.Nome.ToLower().Contains(search) ||
+                        s.Profissional.Nome.ToLower().Contains(search) ||
+                        s.Preco.ToString().Contains(search))
+                    .ToListAsync();
 
-            SearchServicos = SearchServicos.ToLower();
-
-            var serviceIds = _context.Servicos
-                .Where(s => s.UsuarioID == userId && s.Nome.ToLower().Contains(SearchServicos))
-                .Select(s => s.ID_Servico)
-                .ToList();
-
-            var servicos = _context.Servicos
-                .Include(s => s.Profissional)
-                .Where(s => serviceIds.Contains(s.ID_Servico))
-                .ToList();
-
+                return View("Index", servicos); // Retorna a lista de serviços filtrada para o usuário logado
+            }
         }
 
-        // GET: Servicos/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            var userId = GetUserId();
 
-            if (id == null || _context.Servicos == null)
-            {
-                return NotFound();
-            }
 
-            var servicos = await _context.Servicos
-                .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
-            if (servicos == null)
-            {
-                return NotFound();
-            }
 
-            return View(servicos);
-        }
+        //// GET: Servicos/Details/5
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    var userId = GetUserId();
+
+        //    if (id == null || _context.Servicos == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var servicos = await _context.Servicos
+        //        .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
+
+        //    if (servicos == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(servicos);
+        //}
 
         // GET: Servicos/Create
+
         public IActionResult Create()
         {
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");

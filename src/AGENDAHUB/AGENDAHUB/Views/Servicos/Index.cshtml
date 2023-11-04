@@ -14,7 +14,7 @@
         <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
     </div>
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
-        <form asp-action="Index" method="get">
+        <form asp-action="SearchServicos" method="get">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="SearchServicos" placeholder="Pesquisar Serviço" id="pesquisar">
                 <div class="input-group-append">
@@ -24,14 +24,6 @@
         </form>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 <div class="container">
@@ -47,13 +39,13 @@
 
                     <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
                     <div class="card-body">
-                        
+
 
                         <h5 style="text-align: center; " class="card-title text-uppercase">@item.Nome</h5>
                         <p style="" class="card-text">
                             Preço: @item.Preco<br />
                             Tempo de Execução: @item.TempoDeExecucao
-                            
+
                         </p>
                         <div class="d-flex justify-content-end">
                             <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">

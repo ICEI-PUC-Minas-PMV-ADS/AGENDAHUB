@@ -45,7 +45,12 @@
     </div>
 </div>
 
-
+@if (TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-info text-center">
+        @TempData["Message"]
+    </div>
+}
 
 @foreach (var item in Model)
 {
@@ -70,7 +75,17 @@
                     <br>
                     <strong>Data: </strong>@string.Format("{0:dd MMM yyyy}", item.Data)<br>
                     <strong>Horário: </strong>@item.Hora.ToString(@"hh\:mm")<br>
-                    <strong>Preço: </strong>R$ @item.Servicos.Preco.ToString("N2")<br>
+
+                    <strong>Preço: </strong>
+                    @if (item.Servicos != null && item.Servicos.Preco != 0)
+                    {
+                        <span>R$ @item.Servicos.Preco.ToString("N2")</span>
+                    }
+                    else
+                    {
+                        <span>Preço não definido</span>
+                    }
+                    <br>
 
                 </p>
 
@@ -82,7 +97,6 @@
                     <a asp-action="Edit" asp-route-id="@item.ID_Agendamentos">
                         <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
                     </a>
-                    @*   <a asp-action="Details" asp-route-id="@item.Id">Details</a> | *@
                     <a asp-action="Delete" asp-route-id="@item.ID_Agendamentos">
                         <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
                     </a>

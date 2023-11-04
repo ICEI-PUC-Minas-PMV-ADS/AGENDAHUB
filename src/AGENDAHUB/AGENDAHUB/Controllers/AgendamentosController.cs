@@ -14,7 +14,7 @@ namespace AGENDAHUB.Controllers
     [Authorize]
     public class AgendamentosController : Controller
     {
-       
+
 
         private readonly AppDbContext _context;
 
@@ -58,6 +58,8 @@ namespace AGENDAHUB.Controllers
                 var agendamentos = await _context.Agendamentos
                     .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
                     .Include(a => a.Cliente)
+                    .Include(a => a.Servicos)
+                    .Include(a => a.Profissionais)
                     .ToListAsync();
                 return View("Index", agendamentos);
             }
@@ -70,17 +72,31 @@ namespace AGENDAHUB.Controllers
                 var agendamentos = await _context.Agendamentos
                     .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
                     .Include(a => a.Cliente)
+                    .Include(a => a.Servicos)
+                    .Include(a => a.Profissionais)
                     .ToListAsync();
 
                 // Aplicar a filtragem no lado do servidor
-                var filteredAgendamentos = agendamentos
+                var filteredAgendamentos = await _context.Agendamentos
                     .Where(a =>
-                        a.Cliente.Nome.ToLower().Contains(search) ||
+                        a.UsuarioID == userId &&
+                        (a.Cliente.Nome.ToLower().Contains(search) ||
                         a.Data.ToString().Contains(search) ||
                         a.Hora.ToString().Contains(search) ||
-                        a.Servicos.ToString().Contains(search) ||
-                        a.Profissionais.ToString().Contains(search))
-                    .ToList();
+                        a.Servicos.Nome.ToLower().Contains(search) ||
+                        a.Servicos.Preco.ToString().Contains(search) ||
+                        a.Profissionais.Nome.ToLower().Contains(search)))
+                    .Include(a => a.Cliente)
+                    .Include(a => a.Servicos)
+                    .Include(a => a.Profissionais)
+                    .ToListAsync();
+
+
+                if (filteredAgendamentos.Count == 0)
+                {
+                    // Nenhum agendamento encontrado para a pesquisa
+                    TempData["Message"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
+                }
 
                 return View("Index", filteredAgendamentos);
             }
