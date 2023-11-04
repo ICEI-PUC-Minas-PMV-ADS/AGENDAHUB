@@ -4,12 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using System.Web;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
 namespace AGENDAHUB.Controllers
 {
+
+    [Authorize]
     public class ServicosController : Controller
     {
         private readonly AppDbContext _context;
@@ -77,7 +82,6 @@ namespace AGENDAHUB.Controllers
                 .Where(s => serviceIds.Contains(s.ID_Servico))
                 .ToList();
 
-            return View(servicos); // Retorna a lista de serviços filtrada
         }
 
         // GET: Servicos/Details/5

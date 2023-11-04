@@ -1,6 +1,97 @@
-﻿@{
-    ViewData["Title"] = "Configurações";
+﻿@model IEnumerable<AGENDAHUB.Models.Configuracao>
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
+
+@{
+    ViewData["Title"] = "CONFIGURAÇÕES";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Configurações do Administrador.</p>
+<div class="container">
+    <div class="container.cadastrais">
+        <span class="e407_849">INFORMAÇÕES CADASTRAIS</span><br />
+        <div class="container.infcad">
+            <div class="container.login">
+                <span class="login">Login</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.senha">
+                <span class="login">Senha</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.email">
+                <span class="login">Email</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class=e560_406>
+                <div class=e560_407>
+                    <div class="e560_408"></div>
+                </div><span class="e560_409">Usuários Cadastrados</span>
+            </div>
+        </div>
+    </div>
+    <div class="container.empresariais">
+        <span class="e407_850">INFORMAÇÕES EMPRESARIAIS</span>
+        <div class="container.infcad">
+            <div class="container.empresa">
+                <span class="login">Nome Empresa</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.cnpj">
+                <span class="login">CNPJ</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.endereco">
+                <span class="login">Endereço</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.contato">
+                <span class="login">Contato</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.email">
+                <span class="login">Email</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.atendimento">
+                <span class="login">Horário de Atendimento</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.dias">
+                <span class="login">Dias de Atendimento</span>
+                <div class="e407_851"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container.banco">
+        <span class="e407_870">INFORMAÇÕES BANCÁRIAS</span>
+        <div class="container.infcad">
+            <div class="container.banco">
+                <span class="login">Banco</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.ag">
+                <span class="login">Agência</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.conta">
+                <span class="login">Conta</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class="container.pix">
+                <span class="login">Chave Pix</span>
+                <div class="e407_851"></div>
+            </div>
+            <div class=e504_387>
+                <span class="e407_889">Pagamento Antecipado</span>
+                <div class="e407_890"></div><span class="e407_891">X</span>
+            </div>
+            <div class="e407_877">
+                <div class="e407_878">
+                    <div class="e407_879">
+                        <span class="e407_880">Salvar Configuração</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
