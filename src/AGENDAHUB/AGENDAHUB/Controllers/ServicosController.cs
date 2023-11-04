@@ -40,12 +40,8 @@ namespace AGENDAHUB.Controllers
 
 
 
-            if (string.IsNullOrEmpty(SearchServicos))
-            {
-                // Se a palavra-chave de pesquisa for vazia, retorne todos os serviços
-                var allServicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
-                return View(allServicos);
-            }
+            // Obtém todos os serviços do banco de dados
+            var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -59,7 +55,7 @@ namespace AGENDAHUB.Controllers
                     .ToList();
             }
 
-            return View(servicos); // Retorna a lista de serviços filtrada
+            return View("Index", servicos); // Retorna a lista de serviços filtrada
 
         }
 
