@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AGENDAHUB.Controllers
@@ -9,76 +10,89 @@ namespace AGENDAHUB.Controllers
     public class ClientesController : Controller
     {
         private readonly AppDbContext _context;
+
         public ClientesController(AppDbContext context)
         {
             _context = context;
         }
 
-
-
         //Função para visualizar a página de clientes
         public async Task<IActionResult> Index(int? page)
         {
-            var clientes = await _context.Clientes.ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var clientes = await _context.Clientes
+                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .ToListAsync();
 
             if (clientes == null)
             {
                 return NotFound();
             }
+
             return View(clientes);
         }
 
-
-
-
-
-        //Método de pesquisa no banco de dados
+        // Método de pesquisa no banco de dados
         [HttpGet("SearchClientes", Name = "SearchClientes")]
         public async Task<IActionResult> SearchClientes(string search)
         {
             if (string.IsNullOrEmpty(search))
             {
-                var clientes = await _context.Clientes.ToListAsync();
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+                var clientes = await _context.Clientes
+                    .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                    .ToListAsync();
+
                 return View("Index", clientes);
             }
             else
             {
                 search = search.ToLower();
 
-                var clientes = await _context.Clientes.ToListAsync();
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+                var clientes = await _context.Clientes
+                    .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                    .ToListAsync();
 
                 var filteredClientes = await _context.Clientes
                     .Where(c =>
-                    c.Nome.ToLower().Contains(search) ||
-                    c.CPF.ToLower().Contains(search) ||
-                    c.Contato.ToLower().Contains(search) ||
-                    c.Email.ToLower().Contains(search) ||
-                    (c.Observacao != null && c.Observacao.ToLower().Contains(search)))
+                        c.UsuarioID == userId &&
+                        (c.Nome.ToLower().Contains(search) ||
+                        c.CPF.ToLower().Contains(search) ||
+                        c.Contato.ToLower().Contains(search) ||
+                        c.Email.ToLower().Contains(search) ||
+                        (c.Observacao != null && c.Observacao.ToLower().Contains(search)))
+                    )
                     .ToListAsync();
 
                 return View("Index", filteredClientes);
             }
         }
 
-
-
-        //Função para exibir a tela de Cadastro de Clientes
+        // Função para exibir a tela de Cadastro de Clientes
         public IActionResult Create()
         {
             return View();
         }
 
-        //Resposta HTTP para adicionar um cliente cadastrado no banco de dados e redirecionar para a View
+        // Resposta HTTP para adicionar um cliente cadastrado no banco de dados e redirecionar para a View
         [HttpPost]
         public async Task<IActionResult> Create(Clientes cliente)
-
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            cliente.UsuarioID = userId; // Define o UsuarioID do cliente
+
             if (ModelState.IsValid)
             {
                 _context.Clientes.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             return View(cliente);
         }
 
@@ -90,7 +104,11 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.FindAsync(id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var cliente = await _context.Clientes
+                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .FirstOrDefaultAsync(c => c.ID_Cliente == id);
 
             if (cliente == null)
             {
@@ -100,12 +118,16 @@ namespace AGENDAHUB.Controllers
             return View(cliente);
         }
 
-        //Resposta HTTP para alterar um cliente cadastrado no banco de dados e redirecionar para a View
+        // Resposta HTTP para alterar um cliente cadastrado no banco de dados e redirecionar para a View
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Clientes cliente)
         {
             if (id != cliente.ID_Cliente)
                 return NotFound();
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            cliente.UsuarioID = userId; // Define o UsuarioID do cliente
 
             if (ModelState.IsValid)
             {
@@ -117,13 +139,17 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
-     
+        // Tela de confirmação de exclusão do cliente
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var cliente = await _context.Clientes.FindAsync(id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var cliente = await _context.Clientes
+                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .FirstOrDefaultAsync(c => c.ID_Cliente == id);
 
             if (cliente == null)
                 return NotFound();
@@ -131,15 +157,18 @@ namespace AGENDAHUB.Controllers
             return View(cliente);
         }
 
-
-        // Tela de confirmação de exclusão do cliente
+        // Resposta HTTP para excluir um cliente cadastrado no banco de dados e redirecionar para a View
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var cliente = await _context.Clientes.FindAsync(id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var cliente = await _context.Clientes
+                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .FirstOrDefaultAsync(c => c.ID_Cliente == id);
 
             if (cliente == null)
                 return NotFound();
@@ -148,7 +177,7 @@ namespace AGENDAHUB.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
-
         }
+
     }
 }

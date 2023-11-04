@@ -7,8 +7,8 @@
 
 <h1 class="text-center">Tem certeza de que deseja excluir o Agendamento?</h1>
 
-<div class="container d-flex justify-content-center pt-5">
-    <div class="card mb-3 col-xl-6" id="cardView">
+<div class="container d-flex justify-content-center">
+    <div class="card mb-3 col-xl-6" id="cardView" data-status="@Model.Status.ToString().ToLower()">
         <span class="float-end text-white mb-2 @GetStatusColor(Model.Status)">
             @Html.DisplayFor(model => model.Status)
         </span>
@@ -28,6 +28,7 @@
                 <br>
                 <strong>Data: </strong>@string.Format("{0:dd MMM yyyy}", Model.Data)<br>
                 <strong>Horário: </strong>@Model.Hora.ToString(@"hh\:mm")<br>
+                <strong>Preço: </strong>R$ @Model.Servicos.Preco.ToString("N2")<br>
             </p>
 
             <cite class="card-subtitle mb-2 text-muted">
@@ -48,6 +49,7 @@
         </div>
     </div>
 </div>
+
 
 @* Função para deixar o Card de Status colorido *@
 @functions {

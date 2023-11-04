@@ -26,5 +26,8 @@ namespace AGENDAHUB.Models
 
         [ForeignKey("ProfissionaisID")]
         public Profissionais Profissional { get; set; }
+
+        // Campo de ID do usuário logado para restringir os dados
+        public string UsuarioID { get; set; }
     }
 }

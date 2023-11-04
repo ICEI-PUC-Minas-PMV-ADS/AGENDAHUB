@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AGENDAHUB.Controllers
@@ -18,7 +19,13 @@ namespace AGENDAHUB.Controllers
         // GET: Profissionais
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Profissionais.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var profissionais = await _context.Profissionais
+                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .ToListAsync();
+
+            return View(profissionais);
         }
 
         // GET: Profissionais/Details/5
@@ -29,14 +36,18 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            var profissionais = await _context.Profissionais
-                .FirstOrDefaultAsync(m => m.ID_Profissionais == id);
-            if (profissionais == null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var profissional = await _context.Profissionais
+                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+
+            if (profissional == null)
             {
                 return NotFound();
             }
 
-            return View(profissionais);
+            return View(profissional);
         }
 
         // GET: Profissionais/Create
@@ -46,15 +57,17 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Profissionais/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Profissionais,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            profissionais.UsuarioID = userId; // Define o UsuarioID do profissional
+
             if (ModelState.IsValid)
             {
-                _context.Add(profissionais);
+                _context.Profissionais.Add(profissionais);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -69,17 +82,20 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            var profissionais = await _context.Profissionais.FindAsync(id);
-            if (profissionais == null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var profissional = await _context.Profissionais
+                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+
+            if (profissional == null)
             {
                 return NotFound();
             }
-            return View(profissionais);
+            return View(profissional);
         }
 
         // POST: Profissionais/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Profissionais,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
@@ -88,6 +104,10 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            profissionais.UsuarioID = userId; // Define o UsuarioID do profissional
 
             if (ModelState.IsValid)
             {
@@ -120,14 +140,18 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            var profissionais = await _context.Profissionais
-                .FirstOrDefaultAsync(m => m.ID_Profissionais == id);
-            if (profissionais == null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var profissional = await _context.Profissionais
+                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+
+            if (profissional == null)
             {
                 return NotFound();
             }
 
-            return View(profissionais);
+            return View(profissional);
         }
 
         // POST: Profissionais/Delete/5
@@ -137,12 +161,17 @@ namespace AGENDAHUB.Controllers
         {
             if (_context.Profissionais == null)
             {
-                return Problem("Entity set 'AppDbContext.Profissionais'  is null.");
+                return Problem("Entity set 'AppDbContext.Profissionais' is null.");
             }
-            var profissionais = await _context.Profissionais.FindAsync(id);
-            if (profissionais != null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            var profissional = await _context.Profissionais
+                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+
+            if (profissional != null)
             {
-                _context.Profissionais.Remove(profissionais);
+                _context.Profissionais.Remove(profissional);
             }
 
             await _context.SaveChangesAsync();

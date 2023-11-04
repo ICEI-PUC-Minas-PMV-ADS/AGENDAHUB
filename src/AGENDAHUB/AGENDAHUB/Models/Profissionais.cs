@@ -27,5 +27,8 @@ namespace AGENDAHUB.Models
 
         [StringLength(11, MinimumLength = 11, ErrorMessage = "O campo CPF deve conter 11 caracteres.")]
         public string CPF { get; set; }
+
+        // Campo de ID do usuário logado para restringir os dados
+        public string UsuarioID { get; set; }
     }
 }

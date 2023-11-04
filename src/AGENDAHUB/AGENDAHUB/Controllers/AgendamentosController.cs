@@ -83,11 +83,20 @@ namespace AGENDAHUB.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
-            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            // Filtra os clientes, serviços e profissionais com base no UsuarioID
+            var clientes = _context.Clientes.Where(c => c.UsuarioID == userId).ToList();
+            var servicos = _context.Servicos.Where(s => s.UsuarioID == userId).ToList();
+            var profissionais = _context.Profissionais.Where(p => p.UsuarioID == userId).ToList();
+
+            ViewBag.Clientes = new SelectList(clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(profissionais, "ID_Profissionais", "Nome");
+
             return View();
         }
+
 
 
         // POST: Agendamentos/Create
@@ -95,7 +104,7 @@ namespace AGENDAHUB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional")] Agendamentos agendamentos)
+        public async Task<IActionResult> Create([Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional,UsuarioID")] Agendamentos agendamentos)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
             agendamentos.UsuarioID = userId; // Define o UsuarioID do agendamento
@@ -113,46 +122,45 @@ namespace AGENDAHUB.Controllers
         }
 
 
-
         // GET: Agendamentos/Edit/5
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.UsuarioID = userId;
+            var agendamentos = await _context.Agendamentos.FindAsync(id);
+
+            if (agendamentos == null || agendamentos.UsuarioID != userId)
+            {
+                return NotFound();
+            }
+
             ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
             ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
 
-            if (id == null || _context.Agendamentos == null)
-            {
-                return NotFound();
-            }
-
-            var agendamentos = await _context.Agendamentos.FindAsync(id);
-            if (agendamentos == null)
-            {
-                return NotFound();
-            }
-
-            
             return View(agendamentos);
         }
 
 
         // POST: Agendamentos/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional")] Agendamentos agendamentos)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Agendamentos,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional,UsuarioID")] Agendamentos agendamentos)
         {
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
-            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
-
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-            if (id != agendamentos.ID_Agendamentos || agendamentos.UsuarioID != userId) // Verifica se o agendamento pertence ao usuário logado
+            if (id != agendamentos.ID_Agendamentos)
             {
                 return NotFound();
             }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.UsuarioID = userId;
+            agendamentos.UsuarioID = userId; // Defina o UsuarioID do agendamento
 
             if (ModelState.IsValid)
             {
@@ -172,7 +180,13 @@ namespace AGENDAHUB.Controllers
                         throw;
                     }
                 }
+                return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+
             return View(agendamentos);
         }
 
@@ -181,19 +195,17 @@ namespace AGENDAHUB.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
-            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
-
             if (id == null)
             {
                 return NotFound();
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var agendamento = await _context.Agendamentos
-                .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
+                .Where(a => a.UsuarioID == userId)
                 .Include(a => a.Cliente)
+                .Include(a => a.Servicos)
+                .Include(a => a.Profissionais)
                 .FirstOrDefaultAsync(m => m.ID_Agendamentos == id);
 
             if (agendamento == null)
@@ -209,18 +221,17 @@ namespace AGENDAHUB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
-            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
-
             if (_context.Agendamentos == null)
             {
                 return Problem("Entity set 'AppDbContext.Agendamentos' is null.");
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var agendamento = await _context.Agendamentos
-                .Where(a => a.UsuarioID == userId) // Filtra por UsuarioID
+                .Where(a => a.UsuarioID == userId)
+                .Include(a => a.Cliente)
+                .Include(a => a.Profissionais)
+                .Include(a => a.Servicos)
                 .FirstOrDefaultAsync(a => a.ID_Agendamentos == id);
 
             if (agendamento != null)
@@ -229,8 +240,8 @@ namespace AGENDAHUB.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

@@ -27,6 +27,9 @@ namespace AGENDAHUB.Models
 
         public string Observacao { get; set; }
 
+        // Campo de ID do usuário logado para restringir os dados
+        public string UsuarioID { get; set; }
+
 
         //Formatação de CPF e contato
         public string FormatarCPF()
@@ -51,27 +54,5 @@ namespace AGENDAHUB.Models
 
             return Convert.ToUInt64(contatoNumerico).ToString(@"\(00\) 0 0000-0000");
         }
-
-
-
-        //public string Login { get; set; }
-        //public string Senha { get; set; }
-
-
-
-        //// Relacionamentos
-        //public List<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
-        //public List<MovimentacaoFinanceira> MovimentacaoFinanceira { get; set; } = new List<MovimentacaoFinanceira>();
-
-        ////Funcionalidades
-        //public void CadastrarAgendamento(Agendamento agendamento)
-        //{
-
-        //}
-
-        //public void PagarAgendamento(MovimentacaoFinanceira movimentacaoFinanceira)
-        //{
-
-        //}
     }
 }

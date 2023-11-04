@@ -6,12 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Security.Claims;
 
 namespace AGENDAHUB.Controllers
 {
-
-
     public class ServicosController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,36 +19,59 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
+        private bool ServicosExists(int id, string userId)
+        {
+            return _context.Servicos.Any(s => s.ID_Servico == id && s.UsuarioID == userId);
+        }
+
+        private string GetUserId()
+        {
+            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
+
+        public FileContentResult getImg(int id)
+        {
+            byte[] byteArray = _context.Servicos.Find(id).Imagem;
+
+            return byteArray != null
+                ? new FileContentResult(byteArray, "image/jpeg")
+                : null;
+        }
+
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
-            var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
+            var userId = GetUserId();
+            var servicos = await _context.Servicos
+                .Where(s => s.UsuarioID == userId)
+                .Include(s => s.Profissional)
+                .ToListAsync();
             return View(servicos);
         }
 
-
-
         // Método de pesquisa no banco de dados
         [HttpGet("SearchServicos")]
-        public async Task<IActionResult> Index(string SearchServicos)
+        public async Task<IActionResult> SearchServicos(string SearchServicos)
         {
+            var userId = GetUserId();
+
             if (string.IsNullOrEmpty(SearchServicos))
             {
-                // Se a palavra-chave de pesquisa for vazia, retorne todos os serviços
-                var allServicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
+                // Se a palavra-chave de pesquisa for vazia, retorna todos os serviços do usuário
+                var allServicos = await _context.Servicos
+                    .Where(s => s.UsuarioID == userId)
+                    .Include(s => s.Profissional)
+                    .ToListAsync();
                 return View(allServicos);
             }
 
-            // Converta a palavra-chave de pesquisa para minúsculas
             SearchServicos = SearchServicos.ToLower();
 
-            // Passo 1: Busque os IDs dos serviços que correspondem ao critério de pesquisa
             var serviceIds = _context.Servicos
-                .Where(s => s.Nome.ToLower().Contains(SearchServicos))
+                .Where(s => s.UsuarioID == userId && s.Nome.ToLower().Contains(SearchServicos))
                 .Select(s => s.ID_Servico)
                 .ToList();
 
-            // Passo 2: Busque os serviços completos com base nos IDs encontrados
             var servicos = _context.Servicos
                 .Include(s => s.Profissional)
                 .Where(s => serviceIds.Contains(s.ID_Servico))
@@ -59,19 +80,19 @@ namespace AGENDAHUB.Controllers
             return View(servicos); // Retorna a lista de serviços filtrada
         }
 
-
-
-
         // GET: Servicos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var userId = GetUserId();
+
             if (id == null || _context.Servicos == null)
             {
                 return NotFound();
             }
 
             var servicos = await _context.Servicos
-                .FirstOrDefaultAsync(m => m.ID_Servico == id);
+                .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
+
             if (servicos == null)
             {
                 return NotFound();
@@ -87,34 +108,17 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
-
-
-        public FileContentResult getImg(int id)
-        {
-            byte[] byteArray = _context.Servicos.Find(id).Imagem;
-
-            return byteArray != null
-
-                ? new FileContentResult(byteArray, "image/jpeg")
-                : null;
-        }
-
-
-
-
-
         // POST: Servicos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ProfissionaisID")] Servicos servicos, IFormFile file)
         {
+            var userId = GetUserId();
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ProfissionaisID", "Nome");
 
             if (ModelState.IsValid)
             {
+                servicos.UsuarioID = userId; // Define o UsuarioID do serviço
                 if (file.Headers != null && file.Length > 0)
                 {
                     using (var memoryStream = new MemoryStream())
@@ -132,19 +136,19 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-
-
-
-
         // GET: Servicos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var userId = GetUserId();
+
             if (id == null || _context.Servicos == null)
             {
                 return NotFound();
             }
 
-            var servicos = await _context.Servicos.FindAsync(id);
+            var servicos = await _context.Servicos
+                .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
+
             if (servicos == null)
             {
                 return NotFound();
@@ -155,12 +159,12 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Servicos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ProfissionaisID")] Servicos servicos, IFormFile Imagem)
         {
+            var userId = GetUserId();
+
             if (id != servicos.ID_Servico)
             {
                 return NotFound();
@@ -178,13 +182,13 @@ namespace AGENDAHUB.Controllers
                             servicos.Imagem = stream.ToArray();
                         }
                     }
-
+                    servicos.UsuarioID = userId; // Define o UsuarioID do serviço
                     _context.Update(servicos);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ServicosExists(servicos.ID_Servico))
+                    if (!ServicosExists(servicos.ID_Servico, userId))
                     {
                         return NotFound();
                     }
@@ -199,17 +203,19 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-
         // GET: Servicos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            var userId = GetUserId();
+
             if (id == null || _context.Servicos == null)
             {
                 return NotFound();
             }
 
             var servicos = await _context.Servicos
-                .FirstOrDefaultAsync(m => m.ID_Servico == id);
+                .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
+
             if (servicos == null)
             {
                 return NotFound();
@@ -227,7 +233,10 @@ namespace AGENDAHUB.Controllers
             {
                 return Problem("Entity set 'AppDbContext.Servicos'  is null.");
             }
-            var servicos = await _context.Servicos.FindAsync(id);
+            var userId = GetUserId();
+            var servicos = await _context.Servicos
+                .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
+
             if (servicos != null)
             {
                 _context.Servicos.Remove(servicos);
@@ -236,20 +245,7 @@ namespace AGENDAHUB.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        private bool ServicosExists(int id)
-        {
-            return _context.Servicos.Any(e => e.ID_Servico == id);
-
-        }
-
-
-
-
     }
 }
-
-
-
 
 
