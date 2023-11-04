@@ -124,7 +124,7 @@ namespace AGENDAHUB.Controllers
                 usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Login", "Usuarios");
+                return RedirectToAction("Login", "Account");
             }
             return View(usuario);
         }
