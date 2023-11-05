@@ -1,27 +1,51 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Configuracao>
-<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
 
 @{
-    ViewData["Title"] = "CONFIGURAÇÕES";
+    ViewData["Title"] = "Index";
 }
-<h1>@ViewData["Title"]</h1>
 
-<span class="e407_849">INFORMAÇÕES CADASTRAIS</span><br/>
+<h1>Index</h1>
 
-<span class="e407_852">Login</span>
+<p>
+    <a asp-action="Edit">Edit</a>
+</p>
 
-<div class="e407_851"></div>
+<p>
+    <a asp-action="Create">Create</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      
 
-<span class="e407_854">Senha</span>
 
-<div class="e407_853"></div>
-
-<span class="e407_857">Email</span>
-
-<div class="e407_855"></div>
-
-<div class=e560_406>
-    <div class=e560_407>
-        <div class="e560_408"></div>
-    </div><span class="e560_409">Usuários Cadastrados</span>
-</div>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        if (item != null)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UsuarioID)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.ID_Configuracao">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.ID_Configuracao">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.ID_Configuracao">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                
+        
+    </tbody>
+</table>

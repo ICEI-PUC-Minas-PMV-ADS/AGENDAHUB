@@ -7,14 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Configuracao\**" />
-    <Content Remove="Views\Configuracao\**" />
-    <EmbeddedResource Remove="Views\Configuracao\**" />
-    <None Remove="Views\Configuracao\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Models\Cliente.cs" />
+    <Compile Remove="Models\ConfiguracaoUsuario.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
     <Compile Remove="Views\Home\Caixa.cshtml.cs" />
     <Compile Remove="Views\Home\Index.cshtml.cs" />
@@ -30,10 +24,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\NovaPasta\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Configuracao\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using AGENDAHUB.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
@@ -16,85 +17,94 @@ namespace AGENDAHUB.Controllers
     public class ConfiguracaoController : Controller
     {
         private readonly AppDbContext _context;
-       
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ConfiguracaoController(AppDbContext context)
+        public ConfiguracaoController(IHttpContextAccessor httpContextAccessor, AppDbContext context)
         {
+            _httpContextAccessor = httpContextAccessor;
             _context = context;
-            
         }
-
-        private bool ConfiguracaoExists(int id)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-            return _context.Configuracao.Any(a => a.ID_Configuracao == id && a.UsuarioID == userId);
-        }
+        // ... outros métodos ...
 
         public IActionResult Index()
         {
+            var userName = _httpContextAccessor.HttpContext.User.Identity.Name;
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id.ToString() == userId);
+            // Recupere outros dados do usuário do banco de dados usando seu contexto personalizado
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.NomeUsuario == userName);
 
+            // Agora, você pode acessar os dados do usuário, como usuario.Nome, usuario.Email, etc.
 
-            if (usuario == null)
-            {
-                // Trate o caso em que o usuário não é encontrado
-                return NotFound();
-            }
-
-            return View(usuario);
-
+            return View();
         }
 
-        //Função para exibir a tela de Cadastro de Clientes
         public IActionResult Create()
         {
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha")] Usuario usuario)
         {
-            if (id != usuario.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    // Atualize outras informações com base nos dados do formulário
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
+                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Configuracao");
+            }
+            return View(usuario);
+        }
 
-                    // Crie um objeto anônimo com dados de Usuario e Configuracao
-                    var modelData = new
-                    {
-                        Usuario = usuario,
-                        Configuracoes = _context.Configuracao.ToList()
-                    };
 
-                    // Passe o objeto anônimo para a View
-                    return View(modelData);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    // Trate qualquer erro de concorrência, se aplicável
-                    // Você pode adicionar manipuladores de erro específicos aqui
-                    throw;
-                }
+        public IActionResult Edit()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+
+            // Recupere o usuário com base no ID
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id.ToString() == userId);
+
+
+            if (usuario == null)
+            {
+                // Lide com o cenário em que o usuário não é encontrado
+                return NotFound();
             }
 
             return View(usuario);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Usuario usuario)
+        {
+            if(id != usuario.Id)
+            {
+                return NotFound();
+            }
 
 
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(usuario);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+            }
+
+
+            return View(usuario);
+        }
 
 
     }
+
 }

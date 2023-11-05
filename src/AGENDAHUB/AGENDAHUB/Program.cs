@@ -10,10 +10,18 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http.Features;
 using FluentAssertions.Common;
+using System.Net;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+
+
+builder.Services.AddHttpContextAccessor();
+
 
 
 
@@ -77,12 +85,22 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Configuracao}/{action=Index}/{id?}"
+    name: "default",
+    pattern: "{controller=Configuracao}/{action=Edit}/{id?}"
+);
 
-        
- );
-    
+app.MapControllerRoute(
+    name: "EditConfiguracao",
+    pattern: "Configuracao/Edit/{id?}",
+    defaults: new { controller = "Configuracao", action = "Edit" }
+);
+
+
+
+
+
+
+
 
 
 

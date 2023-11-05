@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AGENDAHUB.Models
 {
     [Table("Usuarios")]
-    public class Usuario 
+    public class Usuario
     {
         [Key]
         public int Id { get; set; }
@@ -29,7 +29,11 @@ namespace AGENDAHUB.Models
         [DataType(DataType.Password)]
         public string Senha { get; set; }
 
-    
+
+        public Configuracao Configuracao { get; set; } // Propriedade de navegação para a configuração
+
+        [Required(ErrorMessage = "Obrigatório informar o perfil")]
+        public Perfil Perfil { get; set; }
 
         public string NomeEmpresa { get; set; }
 
@@ -43,16 +47,10 @@ namespace AGENDAHUB.Models
         public TimeSpan HoraInicio { get; set; }
         public TimeSpan HoraFim { get; set; }
 
-
-
-        [Required(ErrorMessage = "Obrigatório informar o perfil")]
-        public Perfil Perfil { get; set; }
-
-
     }
 
-   
-       
+
+
 
 
     public enum Perfil

@@ -8,32 +8,24 @@ namespace AGENDAHUB.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.DropColumn(
                 name: "Cnpj",
-                table: "Usuarios",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: 0);
+                table: "Usuarios");
 
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.DropColumn(
                 name: "Endereco",
-                table: "Usuarios",
-                type: "nvarchar(max)",
-                nullable: true);
+                table: "Usuarios");
 
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.DropColumn(
                 name: "NomeEmpresa",
-                table: "Usuarios",
-                type: "nvarchar(max)",
-                nullable: true);
+                table: "Usuarios");
 
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.DropColumn(
                 name: "_Email",
-                table: "Usuarios",
-                type: "nvarchar(max)",
-                nullable: true);
+                table: "Usuarios");
 
-           
+
+
             migrationBuilder.CreateTable(
                 name: "Configuracao",
                 columns: table => new
