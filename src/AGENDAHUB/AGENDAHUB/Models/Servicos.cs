@@ -14,6 +14,7 @@ namespace AGENDAHUB.Models
         public string Nome { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "O preço deve ser maior ou igual a 0.")]
+        [Column(TypeName = "decimal(18, 2)")] // Especifica o tipo da coluna para Preco
         public decimal Preco { get; set; }
 
         [Display(Name = "Tempo de Execução")]

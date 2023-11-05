@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+
 namespace AGENDAHUB.Models
 {
     public class AppDbContext : DbContext
@@ -10,6 +11,9 @@ namespace AGENDAHUB.Models
         public DbSet<Agendamentos> Agendamentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Profissionais> Profissionais { get; set; }
+        public DbSet<Configuracao> Configuracao { get; set; }
+
+       
 
         //Para deixar unico o nome de usuario
         protected override void OnModelCreating(ModelBuilder modelBuilder)

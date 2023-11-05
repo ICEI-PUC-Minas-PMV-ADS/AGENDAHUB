@@ -9,10 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http.Features;
+using FluentAssertions.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 
 
 builder.Services.AddControllersWithViews();
@@ -73,5 +75,15 @@ app.MapControllerRoute(
     pattern: "Account/{action=Login}/{id?}",
     defaults: new { controller = "Account", action = "Login" }
 );
+
+app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Configuracao}/{action=Index}/{id?}"
+
+        
+ );
+    
+
+
 
 app.Run();
