@@ -32,8 +32,9 @@ namespace AGENDAHUB.Models
         [Display(Name = "Profissional")]
         public int ID_Profissional { get; set; }
 
-        // Campo de ID do usuário logado para restringir os dados
-        public string UsuarioID { get; set; }
+        // Propriedade de navegação para Usuario
+        public int UsuarioID { get; set; }
+        public Usuario Usuario { get; set; }
 
         // Propriedade de navegação para o cliente
         [ForeignKey("ID_Cliente")]

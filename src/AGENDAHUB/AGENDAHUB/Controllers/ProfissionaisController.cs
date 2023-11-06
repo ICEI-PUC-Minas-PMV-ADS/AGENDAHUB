@@ -24,7 +24,7 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var profissionais = await _context.Profissionais
-                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .ToListAsync();
 
             return View(profissionais);
@@ -41,7 +41,7 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var profissional = await _context.Profissionais
-                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .FirstOrDefaultAsync(p => p.ID_Profissional == id);
 
             if (profissional == null)
@@ -61,22 +61,21 @@ namespace AGENDAHUB.Controllers
         // POST: Profissionais/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Profissionais,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
+        public async Task<IActionResult> Create([Bind("ID_Profissional,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
-            profissionais.UsuarioID = userId; // Define o UsuarioID do profissional
+            profissionais.UsuarioID = int.Parse(userId); // Define o UsuarioID do profissional
 
             if (ModelState.IsValid)
             {
-                if (profissionais.Nome != null && profissionais.Email != null && profissionais.Senha != null)
+                if (!string.IsNullOrEmpty(profissionais.Nome) && !string.IsNullOrEmpty(profissionais.Email) && !string.IsNullOrEmpty(profissionais.Senha))
                 {
                     profissionais.Senha = BCrypt.Net.BCrypt.HashPassword(profissionais.Senha);
-                    _context.Add(profissionais);
+                    _context.Profissionais.Add(profissionais);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-               
             }
             return View(profissionais);
         }
@@ -92,8 +91,8 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var profissional = await _context.Profissionais
-                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
-                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+                .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
+                .FirstOrDefaultAsync(p => p.ID_Profissional == id);
 
             if (profissional == null)
             {
@@ -105,7 +104,7 @@ namespace AGENDAHUB.Controllers
         // POST: Profissionais/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Profissionais,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Profissional,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
         {
             if (id != profissionais.ID_Profissional)
             {
@@ -114,13 +113,13 @@ namespace AGENDAHUB.Controllers
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
-            profissionais.UsuarioID = userId; // Define o UsuarioID do profissional
+            profissionais.UsuarioID = int.Parse(userId); // Define o UsuarioID do profissional
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(profissionais);
+                    _context.Profissionais.Update(profissionais);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -150,7 +149,7 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var profissional = await _context.Profissionais
-                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
+                .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .FirstOrDefaultAsync(p => p.ID_Profissional == id);
 
             if (profissional == null)
@@ -170,11 +169,12 @@ namespace AGENDAHUB.Controllers
             {
                 return Problem("Entity set 'AppDbContext.Profissionais' is null.");
             }
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var profissional = await _context.Profissionais
-                .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
-                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+                .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
+                .FirstOrDefaultAsync(p => p.ID_Profissional == id);
 
             if (profissional != null)
             {

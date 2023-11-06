@@ -27,6 +27,13 @@ namespace AGENDAHUB.Models
                 .HasIndex(u => u.NomeUsuario)
                 .IsUnique();
 
+            // Configuração do relacionamento um-para-um entre Usuario e Configuracao
+            modelBuilder.Entity<Usuario>()
+                .HasOne(u => u.Configuracao)
+                .WithOne(c => c.Usuario)
+                .HasForeignKey<Configuracao>(c => c.UsuarioID);
+
+
             base.OnModelCreating(modelBuilder);
         }
 

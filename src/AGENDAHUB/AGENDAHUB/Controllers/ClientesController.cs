@@ -25,7 +25,7 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var clientes = await _context.Clientes
-                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
                 .ToListAsync();
 
             if (clientes == null)
@@ -45,7 +45,7 @@ namespace AGENDAHUB.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
                 var clientes = await _context.Clientes
-                    .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                    .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
                     .ToListAsync();
 
                 return View("Index", clientes);
@@ -57,12 +57,12 @@ namespace AGENDAHUB.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
                 var clientes = await _context.Clientes
-                    .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                    .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
                     .ToListAsync();
 
                 var filteredClientes = await _context.Clientes
                     .Where(c =>
-                        c.UsuarioID == userId &&
+                        c.UsuarioID == int.Parse(userId) &&
                         (c.Nome.ToLower().Contains(search) ||
                         c.CPF.ToLower().Contains(search) ||
                         c.Contato.ToLower().Contains(search) ||
@@ -87,7 +87,7 @@ namespace AGENDAHUB.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
-            cliente.UsuarioID = userId; // Define o UsuarioID do cliente
+            cliente.UsuarioID = int.Parse(userId); // Define o UsuarioID do cliente
 
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var cliente = await _context.Clientes
-                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
                 .FirstOrDefaultAsync(c => c.ID_Cliente == id);
 
             if (cliente == null)
@@ -130,7 +130,7 @@ namespace AGENDAHUB.Controllers
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
-            cliente.UsuarioID = userId; // Define o UsuarioID do cliente
+            cliente.UsuarioID = int.Parse(userId); // Define o UsuarioID do cliente
 
             if (ModelState.IsValid)
             {
@@ -151,7 +151,7 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var cliente = await _context.Clientes
-                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
                 .FirstOrDefaultAsync(c => c.ID_Cliente == id);
 
             if (cliente == null)
@@ -170,7 +170,7 @@ namespace AGENDAHUB.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
             var cliente = await _context.Clientes
-                .Where(c => c.UsuarioID == userId) // Restringe os clientes pelo UsuarioID
+                .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
                 .FirstOrDefaultAsync(c => c.ID_Cliente == id);
 
             if (cliente == null)
@@ -181,6 +181,5 @@ namespace AGENDAHUB.Controllers
 
             return RedirectToAction("Index");
         }
-
     }
 }

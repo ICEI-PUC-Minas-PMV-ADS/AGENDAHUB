@@ -27,8 +27,9 @@ namespace AGENDAHUB.Models
 
         public string Observacao { get; set; }
 
-        // Campo de ID do usuário logado para restringir os dados
-        public string UsuarioID { get; set; }
+        // Propriedade de navegação para Usuario
+        public int UsuarioID { get; set; }
+        public Usuario Usuario { get; set; }
 
 
         //Formatação de CPF e contato

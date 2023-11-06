@@ -1,19 +1,16 @@
 ﻿using AGENDAHUB.Models;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
-using System.Web;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AGENDAHUB.Controllers
 {
-
     [Authorize]
     public class ServicosController : Controller
     {
@@ -24,14 +21,21 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
-        private bool ServicosExists(int id, string userId)
+        private bool ServicosExists(int id, int userId)
         {
             return _context.Servicos.Any(s => s.ID_Servico == id && s.UsuarioID == userId);
         }
 
-        private string GetUserId()
+        private int GetUserId()
         {
-            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return userId;
+            }
+
+            return 0; // Default to 0 if user ID cannot be parsed
         }
 
         public FileContentResult getImg(int id)
@@ -46,7 +50,7 @@ namespace AGENDAHUB.Controllers
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
-            var userId = GetUserId();
+            int userId = GetUserId();
             var servicos = await _context.Servicos
                 .Where(s => s.UsuarioID == userId)
                 .Include(s => s.Profissional)
@@ -58,7 +62,7 @@ namespace AGENDAHUB.Controllers
         [HttpGet("SearchServicos")]
         public async Task<IActionResult> SearchServicos(string search)
         {
-            var userId = GetUserId(); // Valida o usuário
+            int userId = GetUserId(); // Valida o usuário
 
             if (string.IsNullOrEmpty(search))
             {
@@ -72,16 +76,17 @@ namespace AGENDAHUB.Controllers
             // Verifica se a pesquisa contém apenas dígitos (números) / para pesquisar também pelo preço
             if (search.All(char.IsDigit))
             {
-                var priceSearch = decimal.Parse(search); // Converta a pesquisa em um valor decimal
+                if (decimal.TryParse(search, out decimal priceSearch))
+                {
+                    // Obtém todos os serviços do banco de dados associados ao usuário e filtra pelo preço
+                    var servicos = await _context.Servicos
+                        .Where(s => s.UsuarioID == userId)
+                        .Include(s => s.Profissional)
+                        .Where(s => s.Preco == priceSearch)
+                        .ToListAsync();
 
-                // Obtém todos os serviços do banco de dados associados ao usuário e filtra pelo preço
-                var servicos = await _context.Servicos
-                    .Where(s => s.UsuarioID == userId)
-                    .Include(s => s.Profissional)
-                    .Where(s => s.Preco == priceSearch)
-                    .ToListAsync();
-
-                return View("Index", servicos); // Retorna a lista de serviços filtrada para o usuário logado
+                    return View("Index", servicos); // Retorna a lista de serviços filtrada para o usuário logado
+                }
             }
             else
             {
@@ -96,34 +101,9 @@ namespace AGENDAHUB.Controllers
 
                 return View("Index", servicos); // Retorna a lista de serviços filtrada para o usuário logado
             }
+
+            return View("Index"); // Adiciona um retorno padrão, caso nenhum dos blocos if ou else seja executado
         }
-
-
-
-
-
-        //// GET: Servicos/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    var userId = GetUserId();
-
-        //    if (id == null || _context.Servicos == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var servicos = await _context.Servicos
-        //        .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
-
-        //    if (servicos == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(servicos);
-        //}
-
-        // GET: Servicos/Create
 
         public IActionResult Create()
         {
@@ -131,12 +111,11 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
-        // POST: Servicos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
         {
-            var userId = GetUserId();
+            int userId = GetUserId();
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
 
             if (ModelState.IsValid)
@@ -159,10 +138,9 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-        // GET: Servicos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            var userId = GetUserId();
+            int userId = GetUserId();
 
             if (id == null || _context.Servicos == null)
             {
@@ -181,12 +159,11 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-        // POST: Servicos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
         {
-            var userId = GetUserId();
+            int userId = GetUserId();
 
             if (id != servicos.ID_Servico)
             {
@@ -226,10 +203,9 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-        // GET: Servicos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            var userId = GetUserId();
+            int userId = GetUserId();
 
             if (id == null || _context.Servicos == null)
             {
@@ -247,16 +223,15 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-        // POST: Servicos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Servicos == null)
             {
-                return Problem("Entity set 'AppDbContext.Servicos'  is null.");
+                return Problem("Entity set 'AppDbContext.Servicos' is null.");
             }
-            var userId = GetUserId();
+            int userId = GetUserId();
             var servicos = await _context.Servicos
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
@@ -270,5 +245,3 @@ namespace AGENDAHUB.Controllers
         }
     }
 }
-
-
