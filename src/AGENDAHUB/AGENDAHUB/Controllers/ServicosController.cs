@@ -127,17 +127,17 @@ namespace AGENDAHUB.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View();
         }
 
         // POST: Servicos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ProfissionaisID")] Servicos servicos, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
         {
             var userId = GetUserId();
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ProfissionaisID", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
 
             if (ModelState.IsValid)
             {
@@ -177,14 +177,14 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
 
         // POST: Servicos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ProfissionaisID")] Servicos servicos, IFormFile Imagem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
         {
             var userId = GetUserId();
 
@@ -222,7 +222,7 @@ namespace AGENDAHUB.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
 

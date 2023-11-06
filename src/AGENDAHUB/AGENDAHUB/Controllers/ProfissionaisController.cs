@@ -42,7 +42,7 @@ namespace AGENDAHUB.Controllers
 
             var profissional = await _context.Profissionais
                 .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
-                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+                .FirstOrDefaultAsync(p => p.ID_Profissional == id);
 
             if (profissional == null)
             {
@@ -69,9 +69,14 @@ namespace AGENDAHUB.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Profissionais.Add(profissionais);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (profissionais.Nome != null && profissionais.Email != null && profissionais.Senha != null)
+                {
+                    profissionais.Senha = BCrypt.Net.BCrypt.HashPassword(profissionais.Senha);
+                    _context.Add(profissionais);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+               
             }
             return View(profissionais);
         }
@@ -102,7 +107,7 @@ namespace AGENDAHUB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Profissionais,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
         {
-            if (id != profissionais.ID_Profissionais)
+            if (id != profissionais.ID_Profissional)
             {
                 return NotFound();
             }
@@ -120,7 +125,7 @@ namespace AGENDAHUB.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProfissionaisExists(profissionais.ID_Profissionais))
+                    if (!ProfissionaisExists(profissionais.ID_Profissional))
                     {
                         return NotFound();
                     }
@@ -146,7 +151,7 @@ namespace AGENDAHUB.Controllers
 
             var profissional = await _context.Profissionais
                 .Where(p => p.UsuarioID == userId) // Restringe os profissionais pelo UsuarioID
-                .FirstOrDefaultAsync(p => p.ID_Profissionais == id);
+                .FirstOrDefaultAsync(p => p.ID_Profissional == id);
 
             if (profissional == null)
             {
@@ -182,7 +187,7 @@ namespace AGENDAHUB.Controllers
 
         private bool ProfissionaisExists(int id)
         {
-            return _context.Profissionais.Any(e => e.ID_Profissionais == id);
+            return _context.Profissionais.Any(e => e.ID_Profissional == id);
         }
     }
 }

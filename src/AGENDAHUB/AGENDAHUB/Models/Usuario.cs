@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,11 +29,29 @@ namespace AGENDAHUB.Models
         [DataType(DataType.Password)]
         public string Senha { get; set; }
 
+
+        public Configuracao Configuracao { get; set; } // Propriedade de navegação para a configuração
+
         [Required(ErrorMessage = "Obrigatório informar o perfil")]
         public Perfil Perfil { get; set; }
 
+        public string NomeEmpresa { get; set; }
+
+        public string Cnpj { get; set; }
+
+        public string Endereco { get; set; }
+
+        public string _Email { get; set; }
+
+        public DayOfWeek DiaDaSemana { get; set; }
+        public TimeSpan HoraInicio { get; set; }
+        public TimeSpan HoraFim { get; set; }
 
     }
+
+
+
+
 
     public enum Perfil
     {

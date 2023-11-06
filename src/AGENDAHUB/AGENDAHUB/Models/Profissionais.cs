@@ -8,7 +8,7 @@ namespace AGENDAHUB.Models
     public class Profissionais
     {
         [Key]
-        public int ID_Profissionais { get; set; }
+        public int ID_Profissional { get; set; }
 
         [Required(ErrorMessage = "O campo Nome é obrigatório.")]
         [StringLength(100, ErrorMessage = "O campo Nome deve conter no máximo 100 caracteres.")]
@@ -16,7 +16,7 @@ namespace AGENDAHUB.Models
         public string Nome { get; set; }
 
         [StringLength(50, ErrorMessage = "O campo Especialização deve conter no máximo 50 caracteres.")]
-        public string Especializacao { get; set; }
+        public string Cargo { get; set; }
 
         [StringLength(11, ErrorMessage = "O campo Telefone deve conter no máximo 11 caracteres.")]
         public string Telefone { get; set; }
@@ -25,10 +25,18 @@ namespace AGENDAHUB.Models
         [EmailAddress(ErrorMessage = "O campo Email deve ser um endereço de email válido.")]
         public string Email { get; set; }
 
+        public string Senha { get; set; }
+        public string Login { get; set; }
+
         [StringLength(11, MinimumLength = 11, ErrorMessage = "O campo CPF deve conter 11 caracteres.")]
         public string CPF { get; set; }
 
-        // Campo de ID do usuário logado para restringir os dados
-        public string UsuarioID { get; set; }
+
+
+
+        // Propriedade de navegação para Usuario
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+
     }
 }

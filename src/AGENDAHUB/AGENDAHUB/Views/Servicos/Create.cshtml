@@ -14,11 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="ProfissionaisID" class="control-label">Profissional</label>
-                <select asp-for="ProfissionaisID" asp-items="@ViewBag.Profissionais" class="form-control">
+                <label asp-for="ID_Profissional" class="control-label">Profissionais</label>
+                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
                     <option value="">Selecione um Profissional</option>
                 </select>
-                <span asp-validation-for="ProfissionaisID" class="text-danger"></span>
+                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
             </div>
 
             <div class="form-group">

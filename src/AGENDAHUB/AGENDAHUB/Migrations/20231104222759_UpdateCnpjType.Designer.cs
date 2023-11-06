@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231104222759_UpdateCnpjType")]
+    partial class UpdateCnpjType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +91,6 @@ namespace AGENDAHUB.Migrations
                     b.Property<string>("Observacao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UsuarioID")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ID_Cliente");
 
                     b.ToTable("Clientes");
@@ -105,34 +104,10 @@ namespace AGENDAHUB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Configuracao"), 1L, 1);
 
-                    b.Property<string>("Cnpj")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DiaDaSemana")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Endereco")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("HoraFim")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("HoraInicio")
-                        .HasColumnType("time");
-
-                    b.Property<string>("NomeEmpresa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UsuarioID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("_Email")
+                    b.Property<string>("UsuarioID")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID_Configuracao");
-
-                    b.HasIndex("UsuarioID")
-                        .IsUnique();
 
                     b.ToTable("Configuracao");
                 });
@@ -166,9 +141,6 @@ namespace AGENDAHUB.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
-                    b.Property<string>("UsuarioID")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ID_Profissionais");
 
                     b.ToTable("Profissionais");
@@ -197,9 +169,6 @@ namespace AGENDAHUB.Migrations
 
                     b.Property<TimeSpan>("TempoDeExecucao")
                         .HasColumnType("time");
-
-                    b.Property<string>("UsuarioID")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID_Servico");
 
@@ -288,17 +257,6 @@ namespace AGENDAHUB.Migrations
                     b.Navigation("Servicos");
                 });
 
-            modelBuilder.Entity("AGENDAHUB.Models.Configuracao", b =>
-                {
-                    b.HasOne("AGENDAHUB.Models.Usuario", "Usuario")
-                        .WithOne("Configuracao")
-                        .HasForeignKey("AGENDAHUB.Models.Configuracao", "UsuarioID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
             modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
                 {
                     b.HasOne("AGENDAHUB.Models.Profissionais", "Profissional")
@@ -308,11 +266,6 @@ namespace AGENDAHUB.Migrations
                         .IsRequired();
 
                     b.Navigation("Profissional");
-                });
-
-            modelBuilder.Entity("AGENDAHUB.Models.Usuario", b =>
-                {
-                    b.Navigation("Configuracao");
                 });
 #pragma warning restore 612, 618
         }

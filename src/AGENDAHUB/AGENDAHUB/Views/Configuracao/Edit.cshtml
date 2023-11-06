@@ -1,0 +1,79 @@
+﻿@model AGENDAHUB.Models.Usuario
+
+@{
+    ViewData["Title"] = "Configurações";
+}
+
+<h1>Configuções</h1>
+
+
+
+
+<div>
+    <br />
+    @using (Html.BeginForm("Edit", "Configuracao", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Informações Cadastrais</h4>
+                <div class="form-group">
+                    <label for="NomeUsuario">Login:</label>
+                    <input type="text" class="form-control" id="NomeUsuario" name="NomeUsuario" value="@Model.NomeUsuario">
+                </div>
+
+                <div class="form-group">
+                    <label for="Email">Email:</label>
+                    <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="Senha">Senha:</label>
+                    <input type="password" class="form-control" id="Senha" name="Senha" value="@Model.Senha">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4>Informações Empresariais</h4>
+                <div class="form-group">
+                    <label for="NomeEmpresa">Nome Da Empresa:</label>
+                    <input type="text" class="form-control" id="NomeEmpresa" name="NomeEmpresa" value="@Model.NomeEmpresa">
+                </div>
+                <div class="form-group">
+                    <label for="Cnpj">CNPJ:</label>
+                    <input type="number" class="form-control" id="Cnpj" name="Cnpj" value="@Model.Cnpj">
+                </div>
+                <div class="form-group">
+                    <label for="Endereco">Endereço:</label>
+                    <input type="text" class="form-control" id="Endereco" name="Endereco" value="@Model.Endereco">
+                </div>
+                <div class="form-group">
+                    <label for="_Email">E-mail Comercial:</label>
+                    <input type="text" class="form-control" id="_Email" name="_Email" value="@Model._Email">
+                </div>
+                <div class="form-group">
+                    <label for="DiaDaSemana">Dias Atedimento:</label>
+                    <input type="text" class="form-control" id="DiaDaSemana" name="DiaDaSemana" value="@Model.DiaDaSemana">
+                </div>
+                <div class="form-group">
+                    <label for="HoraInicio">Hoario Inicio Atendimento:</label>
+                    <input type="text" class="form-control" id="HoraInicio" name="HoraInicio" value="@Model.HoraInicio">
+                </div>
+                <div class="form-group">
+                    <label for="HoraFim">Hoario Termino Atendimento:</label>
+                    <input type="text" class="form-control" id="HoraFim" name="HoraFim" value="@Model.HoraFim">
+                </div>
+            </div>
+           
+
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Salvar</button>
+        </div>
+
+    }
+
+
+
+</div>
+

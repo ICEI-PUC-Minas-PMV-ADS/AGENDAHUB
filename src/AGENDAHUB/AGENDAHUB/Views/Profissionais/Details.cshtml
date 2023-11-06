@@ -17,10 +17,10 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Especializacao)
+            @Html.DisplayNameFor(model => model.Cargo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Especializacao)
+            @Html.DisplayFor(model => model.Cargo)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Telefone)
@@ -43,6 +43,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ID_Profissionais">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.ID_Profissional">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

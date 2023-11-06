@@ -12,11 +12,12 @@
 <table class="table">
     <thead>
         <tr>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Especializacao)
+                @Html.DisplayNameFor(model => model.Cargo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Telefone)
@@ -37,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Especializacao)
+                @Html.DisplayFor(modelItem => item.Cargo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Telefone)
@@ -49,9 +50,9 @@
                 @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID_Profissionais">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID_Profissionais">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID_Profissionais">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ID_Profissional">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID_Profissional">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID_Profissional">Delete</a>
             </td>
         </tr>
 }
