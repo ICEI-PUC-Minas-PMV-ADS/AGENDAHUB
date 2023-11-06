@@ -55,6 +55,11 @@ namespace AGENDAHUB.Controllers
                 .Where(s => s.UsuarioID == userId)
                 .Include(s => s.Profissional)
                 .ToListAsync();
+
+            if (servicos.Count == 0)
+            {
+                TempData["MessageVazio"] = "Nenhum serviço cadastrado por enquanto 😕";
+            }
             return View(servicos);
         }
 

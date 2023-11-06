@@ -51,6 +51,12 @@ namespace AGENDAHUB.Controllers
                     .ToListAsync();
 
                 var agendamentosOrdenados = agendamentos.OrderBy(a => a.Data).ToList();
+
+                if (agendamentosOrdenados.Count == 0)
+                {
+                    TempData["MessageVazio"] = "Nenhum agendamento por enquanto 😕";
+                }
+
                 return View(agendamentosOrdenados);
             }
             else

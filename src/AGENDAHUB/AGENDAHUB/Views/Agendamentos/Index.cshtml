@@ -48,7 +48,26 @@
 @if (TempData.ContainsKey("Message"))
 {
     <div class="alert alert-info text-center">
-        @TempData["Message"]
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["Message"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData.ContainsKey("MessageVazio"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageVazio"]
+                </div>
+            </div>
+        </div>
     </div>
 }
 
