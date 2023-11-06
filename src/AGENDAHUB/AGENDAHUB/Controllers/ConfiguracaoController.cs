@@ -18,11 +18,15 @@ namespace AGENDAHUB.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UsuarioService _usuarioService;
 
-        public ConfiguracaoController(IHttpContextAccessor httpContextAccessor, AppDbContext context)
+
+
+        public ConfiguracaoController(UsuarioService usuarioService, IHttpContextAccessor httpContextAccessor, AppDbContext context)
         {
             _httpContextAccessor = httpContextAccessor;
             _context = context;
+            _usuarioService = usuarioService;
         }
         // ... outros métodos ...
 
@@ -43,15 +47,16 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
+        // POST: Usuarios/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
+                await _usuarioService.CriarUsuario(usuario);
                 return RedirectToAction("Index", "Configuracao");
             }
             return View(usuario);

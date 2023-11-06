@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace AGENDAHUB.Controllers
 {
-    public class UsuariosController : Controller
+    public class ColaboradorProfissional : Controller
     {
         private readonly AppDbContext _context;
 
-        public UsuariosController(AppDbContext context)
+        public ColaboradorProfissional(AppDbContext context)
         {
             _context = context;
         }

@@ -92,7 +92,7 @@ namespace AGENDAHUB.Controllers
         // GET: Servicos/Create
         public IActionResult Create()
         {
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View();
         }
 
@@ -118,9 +118,9 @@ namespace AGENDAHUB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ProfissionaisID")] Servicos servicos, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
         {
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ProfissionaisID", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
 
             if (ModelState.IsValid)
             {
@@ -159,7 +159,7 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
 
@@ -168,7 +168,7 @@ namespace AGENDAHUB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ProfissionaisID")] Servicos servicos, IFormFile Imagem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
         {
             if (id != servicos.ID_Servico)
             {
@@ -204,7 +204,7 @@ namespace AGENDAHUB.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
 

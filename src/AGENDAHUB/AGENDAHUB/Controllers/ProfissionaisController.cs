@@ -32,7 +32,7 @@ namespace AGENDAHUB.Controllers
             }
 
             var profissionais = await _context.Profissionais
-                .FirstOrDefaultAsync(m => m.ID_Profissionais == id);
+                .FirstOrDefaultAsync(m => m.ID_Profissional == id);
             if (profissionais == null)
             {
                 return NotFound();
@@ -56,9 +56,14 @@ namespace AGENDAHUB.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(profissionais);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (profissionais.Nome != null && profissionais.Email != null && profissionais.Senha != null)
+                {
+                    profissionais.Senha = BCrypt.Net.BCrypt.HashPassword(profissionais.Senha);
+                    _context.Add(profissionais);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+               
             }
             return View(profissionais);
         }
@@ -86,7 +91,7 @@ namespace AGENDAHUB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Profissionais,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
         {
-            if (id != profissionais.ID_Profissionais)
+            if (id != profissionais.ID_Profissional)
             {
                 return NotFound();
             }
@@ -100,7 +105,7 @@ namespace AGENDAHUB.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProfissionaisExists(profissionais.ID_Profissionais))
+                    if (!ProfissionaisExists(profissionais.ID_Profissional))
                     {
                         return NotFound();
                     }
@@ -123,7 +128,7 @@ namespace AGENDAHUB.Controllers
             }
 
             var profissionais = await _context.Profissionais
-                .FirstOrDefaultAsync(m => m.ID_Profissionais == id);
+                .FirstOrDefaultAsync(m => m.ID_Profissional == id);
             if (profissionais == null)
             {
                 return NotFound();
@@ -153,7 +158,7 @@ namespace AGENDAHUB.Controllers
 
         private bool ProfissionaisExists(int id)
         {
-            return _context.Profissionais.Any(e => e.ID_Profissionais == id);
+            return _context.Profissionais.Any(e => e.ID_Profissional == id);
         }
     }
 }

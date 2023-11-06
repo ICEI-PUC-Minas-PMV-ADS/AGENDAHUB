@@ -23,7 +23,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();
 
 
-
+builder.Services.AddScoped<UsuarioService>();
 
 builder.Services.AddControllersWithViews();
 
