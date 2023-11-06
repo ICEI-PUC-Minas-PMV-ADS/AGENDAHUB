@@ -114,7 +114,7 @@ namespace AGENDAHUB.Controllers
             }
             else
             {
-                return View("Index", new List<Agendamentos>()); 
+                return View("Index", new List<Agendamentos>());
             }
         }
 

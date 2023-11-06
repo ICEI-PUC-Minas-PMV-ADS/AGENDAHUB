@@ -66,30 +66,38 @@ namespace AGENDAHUB.Controllers
 
             if (string.IsNullOrEmpty(search))
             {
-                // Se a palavra-chave de pesquisa estiver em branco, redireciona para a página inicial
-                return RedirectToAction("Index");
+                // Se a pesquisa estiver vazia, exiba todos os serviços do usuário
+                var servicos = await _context.Servicos
+                    .Where(s => s.UsuarioID == userId)
+                    .Include(s => s.Profissional)
+                    .ToListAsync();
+
+                return View("Index", servicos);
             }
 
             // Converte a palavra-chave de pesquisa para minúsculas
             search = search.ToLower();
 
-            // Verifica se a pesquisa contém apenas dígitos (números) / para pesquisar também pelo preço
-            if (search.All(char.IsDigit))
+            if (decimal.TryParse(search, out decimal priceSearch))
             {
-                if (decimal.TryParse(search, out decimal priceSearch))
-                {
-                    // Obtém todos os serviços do banco de dados associados ao usuário e filtra pelo preço
-                    var servicos = await _context.Servicos
-                        .Where(s => s.UsuarioID == userId)
-                        .Include(s => s.Profissional)
-                        .Where(s => s.Preco == priceSearch)
-                        .ToListAsync();
+                // Se a pesquisa for um número (preço), filtre por preço
+                var servicos = await _context.Servicos
+                    .Where(s => s.UsuarioID == userId)
+                    .Include(s => s.Profissional)
+                    .Where(s => s.Preco == priceSearch)
+                    .ToListAsync();
 
-                    return View("Index", servicos); // Retorna a lista de serviços filtrada para o usuário logado
+                if (servicos.Count == 0)
+                {
+                    // Nenhum agendamento encontrado para a pesquisa
+                    TempData["Message"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
                 }
+
+                return View("Index", servicos);
             }
             else
             {
+                // Pesquisa pelo nome do serviço ou nome do profissional
                 var servicos = await _context.Servicos
                     .Where(s => s.UsuarioID == userId)
                     .Include(s => s.Profissional)
@@ -99,11 +107,16 @@ namespace AGENDAHUB.Controllers
                         s.Preco.ToString().Contains(search))
                     .ToListAsync();
 
-                return View("Index", servicos); // Retorna a lista de serviços filtrada para o usuário logado
-            }
+                if (servicos.Count == 0)
+                {
+                    // Nenhum agendamento encontrado para a pesquisa
+                    TempData["Message"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
+                }
 
-            return View("Index"); // Adiciona um retorno padrão, caso nenhum dos blocos if ou else seja executado
+                return View("Index", servicos);
+            }
         }
+
 
         public IActionResult Create()
         {
