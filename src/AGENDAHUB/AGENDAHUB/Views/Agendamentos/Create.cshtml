@@ -32,7 +32,7 @@
 
             <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" type="date" />
+                <input asp-for="Data" class="form-control" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="Data" class="text-danger"></span>
             </div>
 
@@ -52,7 +52,7 @@
 
             <div class="form-group">
                 <label asp-for="ID_Profissional" class="control-label"></label>
-                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissional" class="form-control">
+                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
                     <option value="">Selecione um Profissional</option>
                 </select>
                 <span asp-validation-for="ID_Profissional" class="text-danger"></span>

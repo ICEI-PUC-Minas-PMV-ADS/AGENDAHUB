@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -123,6 +124,48 @@ namespace AGENDAHUB.Controllers
                 return View("Index", new List<Agendamentos>());
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchByDate(DateTime? dataInicio, DateTime? dataFim)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int usuarioIDInt))
+            {
+                var query = _context.Agendamentos
+                    .Where(a => a.UsuarioID == usuarioIDInt);
+
+                if (dataInicio.HasValue)
+                {
+                    query = query.Where(a => a.Data >= dataInicio);
+                }
+
+                if (dataFim.HasValue)
+                {
+                    query = query.Where(a => a.Data <= dataFim);
+                }
+
+                var agendamentos = await query
+                    .Include(a => a.Cliente)
+                    .Include(a => a.Servicos)
+                    .Include(a => a.Profissionais)
+                    .ToListAsync();
+
+                var agendamentosOrdenados = agendamentos.OrderBy(a => a.Data).ToList();
+
+                if (agendamentosOrdenados.Count == 0)
+                {
+                    TempData["MessageVazio"] = "Nenhum agendamento encontrado para o período selecionado 😕";
+                }
+
+                return View("Index", agendamentosOrdenados);
+            }
+            else
+            {
+                return View("Index", new List<Agendamentos>());
+            }
+        }
+
 
 
 
@@ -295,6 +338,20 @@ namespace AGENDAHUB.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult MarcarConcluido(int id)
+        {
+            var agendamento = _context.Agendamentos.FirstOrDefault(a => a.ID_Agendamentos == id);
+
+            if (agendamento != null)
+            {
+                agendamento.Status = AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido;
+                _context.SaveChanges();
+                TempData["Message"] = "Agendamento marcado como concluído com sucesso.";
+            }
+
+            return RedirectToAction("Index");
         }
 
 
