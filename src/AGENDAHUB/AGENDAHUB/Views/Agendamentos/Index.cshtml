@@ -60,53 +60,71 @@
     </div>
 </div>
 
-@if (TempData.ContainsKey("Message"))
+@if (TempData.ContainsKey("MessageNenhumAgendamento"))
 {
     <div class="alert alert-info text-center">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6 mx-auto">
-                    @TempData["Message"]
+                    @TempData["MessageNenhumAgendamento"]
                 </div>
             </div>
         </div>
     </div>
 }
-
-@if (TempData.ContainsKey("MessageVazio"))
+@if (TempData.ContainsKey("MessageSearch"))
 {
     <div class="alert alert-info text-center">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6 mx-auto">
-                    @TempData["MessageVazio"]
+                    @TempData["MessageData"]
                 </div>
             </div>
         </div>
     </div>
 }
-
+@if (TempData.ContainsKey("MessageData"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageData"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (TempData.ContainsKey("MessageConcluido"))
+{
+    <div class="alert alert-success text-center" id="messageConcluido">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageConcluido"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 @foreach (var item in Model)
 {
     <div class="container d-flex justify-content-center">
-
         <div class="card mb-3 col-xl-6" id="cardView" data-status="@item.Status.ToString().ToLower()">
-
             <span class="text-white mb-2 @GetStatusColor(item.Status)" id="spanView">
                 @Html.DisplayFor(modelItem => item.Status)
             </span>
-
             <div class="card-header text-center">
                 <h5 class="card-title">
                     @Html.DisplayFor(modelItem => item.Servicos.Nome)
                 </h5>
             </div>
-
             <div class="card-body">
                 <p class="card-text">
                     <strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.Cliente.Nome)<br>
-                    <strong>Contato: </strong>@item.Cliente.FormatarContato()<a href="https://wa.me/@item.Cliente.Contato" target="_blank"><img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" /></a><br>
+                    <strong>Contato: </strong>@item.Cliente.FormatarContato() <a href="https://wa.me/@item.Cliente.Contato" target="_blank"><img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" /></a><br>
                     <strong>Data: </strong>@string.Format("{0:dd MMM yyyy}", item.Data)<br>
                     <strong>Horário: </strong>@item.Hora.ToString(@"hh\:mm")<br>
                     <strong>Preço: </strong>
@@ -120,11 +138,9 @@
                     }
                     <br>
                 </p>
-
                 <cite class="card-subtitle mb-2 text-muted">
                     <strong>Profissional: </strong>@Html.DisplayFor(modelItem => item.Profissionais.Nome)
                 </cite>
-
                 <div class="btn-group d-flex justify-content-end" role="group">
                     <a asp-action="Edit" asp-route-id="@item.ID_Agendamentos">
                         <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
@@ -143,7 +159,6 @@
         </div>
     </div>
 }
-
 @* Função para deixar o Card de Status colorido *@
 @functions {
     string GetStatusColor(AGENDAHUB.Models.Agendamentos.StatusAgendamento status)
@@ -161,5 +176,4 @@
         }
     }
 }
-
 <script src="~/js/Agendamentos.js"></script>

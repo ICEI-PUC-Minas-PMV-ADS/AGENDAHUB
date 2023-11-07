@@ -55,7 +55,7 @@ namespace AGENDAHUB.Controllers
 
                 if (agendamentosOrdenados.Count == 0)
                 {
-                    TempData["MessageVazio"] = "Nenhum agendamento por enquanto 😕";
+                    TempData["MessageNenhumAgendamento"] = "Nenhum agendamento por enquanto 😕";
                 }
 
                 return View(agendamentosOrdenados);
@@ -113,7 +113,7 @@ namespace AGENDAHUB.Controllers
                     if (filteredAgendamentos.Count == 0)
                     {
                         // Nenhum agendamento encontrado para a pesquisa
-                        TempData["Message"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
+                        TempData["MessageSearch"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
                     }
 
                     return View("Index", filteredAgendamentos);
@@ -155,7 +155,7 @@ namespace AGENDAHUB.Controllers
 
                 if (agendamentosOrdenados.Count == 0)
                 {
-                    TempData["MessageVazio"] = "Nenhum agendamento encontrado para o período selecionado 😕";
+                    TempData["MessageData"] = "Nenhum agendamento encontrado para o período selecionado 😕";
                 }
 
                 return View("Index", agendamentosOrdenados);
@@ -348,7 +348,7 @@ namespace AGENDAHUB.Controllers
             {
                 agendamento.Status = AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido;
                 _context.SaveChanges();
-                TempData["Message"] = "Agendamento marcado como concluído com sucesso.";
+                TempData["MessageConcluido"] = "Agendamento marcado como concluído com sucesso.";
             }
 
             return RedirectToAction("Index");
