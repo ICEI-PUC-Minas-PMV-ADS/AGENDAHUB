@@ -117,13 +117,14 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
@@ -151,6 +152,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
@@ -172,6 +174,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
@@ -216,6 +219,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             int userId = GetUserId();
@@ -236,6 +240,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

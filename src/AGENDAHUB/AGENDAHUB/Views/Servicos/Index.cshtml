@@ -10,9 +10,12 @@
 <h1 class="text-center">Serviços Cadastrados</h1>
 
 <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-        <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+            <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
     </div>
+    }
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
         <form asp-action="SearchServicos" method="get">
             <div class="input-group mb-3">
@@ -55,15 +58,17 @@
                             Tempo de Execução: @item.TempoDeExecucao
 
                         </p>
-                        <div class="d-flex justify-content-end">
-                            <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">
-                                <img style="width:40%" src="images/editar.png">
-                            </a>
-                            <a style="margin-right:-10%" href="@Url.Action("Delete", new { id = item.ID_Servico })">
-                                <img style="width:55%" src="images/excluir.png">
-                            </a>
-                        </div>
-
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="d-flex justify-content-end">
+                                <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                    <img style="width:40%" src="images/editar.png">
+                                </a>
+                                <a style="margin-right:-10%" href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                    <img style="width:55%" src="images/excluir.png">
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
