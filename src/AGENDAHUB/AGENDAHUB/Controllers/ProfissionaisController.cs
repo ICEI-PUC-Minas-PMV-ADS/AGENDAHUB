@@ -1,7 +1,9 @@
 ﻿using AGENDAHUB.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -53,15 +55,18 @@ namespace AGENDAHUB.Controllers
         }
 
         // GET: Profissionais/Create
+
+        [HttpGet]
         public IActionResult Create()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View();
         }
 
         // POST: Profissionais/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Profissional,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
+        public async Task<IActionResult> Create([Bind("ID_Profissional,Nome,Cargo,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
 
@@ -72,10 +77,13 @@ namespace AGENDAHUB.Controllers
                 if (!string.IsNullOrEmpty(profissionais.Nome) && !string.IsNullOrEmpty(profissionais.Email) && !string.IsNullOrEmpty(profissionais.Senha))
                 {
                     profissionais.Senha = BCrypt.Net.BCrypt.HashPassword(profissionais.Senha);
-                    _context.Profissionais.Add(profissionais);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+
+                   
                 }
+
+                _context.Add(profissionais);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             return View(profissionais);
         }
@@ -104,7 +112,7 @@ namespace AGENDAHUB.Controllers
         // POST: Profissionais/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Profissional,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
+        public async Task<IActionResult> Edit(int id, Profissionais profissionais)
         {
             if (id != profissionais.ID_Profissional)
             {
@@ -117,25 +125,15 @@ namespace AGENDAHUB.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Profissionais.Update(profissionais);
+                
+               
+                    _context.Update(profissionais);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProfissionaisExists(profissionais.ID_Profissional))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index));
+
+            
             }
-            return View(profissionais);
+            return View();
         }
 
         // GET: Profissionais/Delete/5
