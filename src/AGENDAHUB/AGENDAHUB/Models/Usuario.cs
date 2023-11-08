@@ -29,23 +29,18 @@ namespace AGENDAHUB.Models
         [DataType(DataType.Password)]
         public string Senha { get; set; }
 
-
-        public Configuracao Configuracao { get; set; } // Propriedade de navegação para a configuração
-
         [Required(ErrorMessage = "Obrigatório informar o perfil")]
         public Perfil Perfil { get; set; }
 
         public string NomeEmpresa { get; set; }
-
         public string Cnpj { get; set; }
-
         public string Endereco { get; set; }
-
         public string _Email { get; set; }
-
         public DayOfWeek DiaDaSemana { get; set; }
         public TimeSpan HoraInicio { get; set; }
         public TimeSpan HoraFim { get; set; }
+        public Configuracao Configuracao { get; set; } // Propriedade de navegação para a configuração
+        public Profissionais Profissionais { get; set; } // Propriedade de navegação para a configuração
 
     }
 

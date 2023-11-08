@@ -181,7 +181,8 @@ namespace AGENDAHUB.Migrations
 
                     b.HasKey("ID_Profissional");
 
-                    b.HasIndex("UsuarioID");
+                    b.HasIndex("UsuarioID")
+                        .IsUnique();
 
                     b.ToTable("Profissionais");
                 });
@@ -335,8 +336,8 @@ namespace AGENDAHUB.Migrations
             modelBuilder.Entity("AGENDAHUB.Models.Profissionais", b =>
                 {
                     b.HasOne("AGENDAHUB.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioID")
+                        .WithOne("Profissionais")
+                        .HasForeignKey("AGENDAHUB.Models.Profissionais", "UsuarioID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -365,6 +366,8 @@ namespace AGENDAHUB.Migrations
             modelBuilder.Entity("AGENDAHUB.Models.Usuario", b =>
                 {
                     b.Navigation("Configuracao");
+
+                    b.Navigation("Profissionais");
                 });
 #pragma warning restore 612, 618
         }

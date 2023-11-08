@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\UsuariosController.cs" />
+    <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.cs" />
+    <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.Designer.cs" />
     <Compile Remove="Models\Cliente.cs" />
     <Compile Remove="Models\ConfiguracaoUsuario.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
