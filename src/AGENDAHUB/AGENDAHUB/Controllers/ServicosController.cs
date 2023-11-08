@@ -122,13 +122,14 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin, User")]
         public IActionResult Create()
         {
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View();
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
@@ -156,6 +157,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
@@ -177,6 +179,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
@@ -221,6 +224,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Delete(int? id)
         {
             int userId = GetUserId();
@@ -230,7 +234,9 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
+            // Inclua a propriedade de navegação Profissional ao carregar o serviço
             var servicos = await _context.Servicos
+                .Include(s => s.Profissional)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
             if (servicos == null)
@@ -241,6 +247,8 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+
+        [Authorize(Roles = "Admin, User")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -250,7 +258,10 @@ namespace AGENDAHUB.Controllers
                 return Problem("Entity set 'AppDbContext.Servicos' is null.");
             }
             int userId = GetUserId();
+
+            // Inclua a propriedade de navegação Profissional ao carregar o serviço
             var servicos = await _context.Servicos
+                .Include(s => s.Profissional)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
             if (servicos != null)
@@ -261,5 +272,6 @@ namespace AGENDAHUB.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

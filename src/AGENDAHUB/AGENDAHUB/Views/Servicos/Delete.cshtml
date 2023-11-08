@@ -3,43 +3,45 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
 
-<h1>Delete</h1>
+<h3 class="text-center">Tem certeza que deseja excluir este serviço?</h3>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Servicos</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Preco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TempoDeExecucao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TempoDeExecucao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagem)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Imagem)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ID_Servico" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<hr />
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Centraliza os cards -->
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
+                    <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
+                    <h1 style="font-size:19px" class="card-text"> @Html.DisplayFor(model => model.Profissional.Nome)</h1>
+                    </div>
+                <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = Model.ID_Servico })" alt="servico" />
+
+                        <div class="card-body">
+
+
+                    <h5 style="text-align: center;" class="card-title text-uppercase"> @Html.DisplayFor(model => model.Nome)</h5>
+                            <p style="" class="card-text">
+                            Preço: @Html.DisplayFor(model => model.Preco) <br/>
+                            Tempo de Execução: @Html.DisplayFor(model => model.TempoDeExecucao)
+                            </p>
+                        </div>
+                    </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="btn-group items-align-center" role="group">
+                <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="ID_Servico" />
+                    <button type="submit" class="btn btn-outline-danger ms-1">Excluir</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
