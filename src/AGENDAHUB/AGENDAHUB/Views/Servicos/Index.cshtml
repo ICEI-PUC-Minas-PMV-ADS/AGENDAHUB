@@ -1,39 +1,18 @@
-﻿    @model IEnumerable<AGENDAHUB.Models.Servicos>
+﻿@model IEnumerable<AGENDAHUB.Models.Servicos>
 
 
-    @{
-        ViewData["Title"] = "Serviços Cadastrados";
-    }
+@{
+    ViewData["Title"] = "Serviços Cadastrados";
+}
 
-    <link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
 
-<<<<<<< HEAD
 <h1 class="text-center pb-3">Serviços Cadastrados</h1>
-=======
-    <h1 class="text-center">Serviços Cadastrados</h1>
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
 
-<<<<<<< HEAD
 <div class="row">
-<<<<<<< HEAD
-    @if (User.Identity.IsAuthenticated)
-    {
-        if (User.IsInRole("Admin") || User.IsInRole("User"))
-        {
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-                <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
-            </div>
-        }
-    }
-
-=======
-    @if (User.IsInRole("Admin"))
-    {
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-            <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+        <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
     </div>
-    }
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
         <form asp-action="SearchServicos" method="get">
             <div class="input-group mb-3">
@@ -81,103 +60,30 @@
                 <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
                     <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
                         <h1 style="font-size:19px" class="card-text">@Html.DisplayFor(modelItem => item.Profissional.Nome)</h1>
-=======
-    <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-            <a asp-action="Create" class="btn btn-outline-info rounded-pill">Novo Serviço</a>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
-            <form asp-action="SearchServicos" method="get">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="search" placeholder="Pesquisar Serviço" id="pesquisar">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">Buscar</button>
->>>>>>> a173f6d08adfc8df720f2bbd53bdfb77be2d80e5
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
 
-<<<<<<< HEAD
                     <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
                     <div class="card-body">
 
 
-                        <h5 style="text-align: center;" class="card-title text-uppercase">@item.Nome</h5>
+                        <h5 style="text-align: center; " class="card-title text-uppercase">@item.Nome</h5>
                         <p style="" class="card-text">
-                            Preço: @item.Preco.ToString("N2")<br />
+                            Preço: @item.Preco<br />
                             Tempo de Execução: @item.TempoDeExecucao
                         </p>
-<<<<<<< HEAD
 
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            if (User.IsInRole("Admin") || User.IsInRole("User"))
-                            {
-                                <div class="d-flex justify-content-end">
-                                    <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">
-                                        <img style="width:40%" src="images/editar.png">
-                                    </a>
-                                    <a style="margin-right:-10%" href="@Url.Action("Delete", new { id = item.ID_Servico })">
-                                        <img style="width:55%" src="images/excluir.png">
-                                    </a>
-                                </div>
-                            }
-                        }
-=======
-                        @if (User.IsInRole("Admin"))
-                        {
-=======
-
-
-
-
-
-
-
-
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <!-- Centraliza os cards -->
-            @foreach (var item in Model)
-            {
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
-                        <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
-                            <h1 style="font-size:19px" class="card-text">@Html.DisplayFor(modelItem => item.Profissional.Nome)</h1>
+                        <div class="d-flex justify-content-end">
+                            <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                <img style="width:40%" src="images/editar.png">
+                            </a>
+                            <a style="margin-right:-10%" href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                <img style="width:55%" src="images/excluir.png">
+                            </a>
                         </div>
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
 
-                        <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
-                        <div class="card-body">
-                        
-
-                            <h5 style="text-align: center; " class="card-title text-uppercase">@item.Nome</h5>
-                            <p style="" class="card-text">
-                                Preço: @item.Preco<br />
-                                Tempo de Execução: @item.TempoDeExecucao
-                            
-                            </p>
->>>>>>> a173f6d08adfc8df720f2bbd53bdfb77be2d80e5
-                            <div class="d-flex justify-content-end">
-                                <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">
-                                    <img style="width:40%" src="images/editar.png">
-                                </a>
-                                <a style="margin-right:-10%" href="@Url.Action("Delete", new { id = item.ID_Servico })">
-                                    <img style="width:55%" src="images/excluir.png">
-                                </a>
-                            </div>
-<<<<<<< HEAD
-                        }
-=======
-
-                        </div>
->>>>>>> a173f6d08adfc8df720f2bbd53bdfb77be2d80e5
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
-
+</div>

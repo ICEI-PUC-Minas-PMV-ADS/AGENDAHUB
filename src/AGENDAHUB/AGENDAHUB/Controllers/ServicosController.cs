@@ -26,7 +26,6 @@ namespace AGENDAHUB.Controllers
             return _context.Servicos.Any(s => s.ID_Servico == id && s.UsuarioID == userId);
         }
 
-<<<<<<< HEAD
         private int GetUserId()
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
@@ -39,59 +38,6 @@ namespace AGENDAHUB.Controllers
             return 0; // Default to 0 if user ID cannot be parsed
         }
 
-=======
-
-        [HttpGet("SearchServicos")]
-        public async Task<IActionResult> SearchServicos(string search)
-        {
-            // Obtém todos os serviços do banco de dados
-            var servicos = await _context.Servicos.Include(s => s.Profissional).ToListAsync();
-
-            if (!string.IsNullOrEmpty(search))
-            {
-                // Converta a palavra-chave de pesquisa para minúsculas
-                search = search.ToLower();
-
-                // Filtra os serviços com base no nome do serviço ou nome do profissional
-                servicos = servicos.Where(s =>
-                    s.Nome.ToLower().Contains(search) ||
-                    s.Profissional.Nome.ToLower().Contains(search))
-                    .ToList();
-            }
-
-            return View("Index", servicos); // Retorna a lista de serviços filtrada
-        }
-
-
-
-        // GET: Servicos/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Servicos == null)
-            {
-                return NotFound();
-            }
-
-            var servicos = await _context.Servicos
-                .FirstOrDefaultAsync(m => m.ID_Servico == id);
-            if (servicos == null)
-            {
-                return NotFound();
-            }
-
-            return View(servicos);
-        }
-
-        // GET: Servicos/Create
-        public IActionResult Create()
-        {
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissionais", "Nome");
-            return View();
-        }
-
-
-
->>>>>>> a173f6d08adfc8df720f2bbd53bdfb77be2d80e5
         public FileContentResult getImg(int id)
         {
             byte[] byteArray = _context.Servicos.Find(id).Imagem;
@@ -176,22 +122,13 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-<<<<<<< HEAD
         [Authorize(Roles = "Admin, User")]
-=======
-        [Authorize(Roles = "Admin")]
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
         public IActionResult Create()
         {
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View();
         }
-
-<<<<<<< HEAD
         [Authorize(Roles = "Admin, User")]
-=======
-        [Authorize(Roles = "Admin")]
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
@@ -219,11 +156,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-<<<<<<< HEAD
         [Authorize(Roles = "Admin, User")]
-=======
-        [Authorize(Roles = "Admin")]
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
@@ -244,12 +177,7 @@ namespace AGENDAHUB.Controllers
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
-
-<<<<<<< HEAD
         [Authorize(Roles = "Admin, User")]
-=======
-        [Authorize(Roles = "Admin")]
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
@@ -293,12 +221,7 @@ namespace AGENDAHUB.Controllers
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
-
-<<<<<<< HEAD
         [Authorize(Roles = "Admin, User")]
-=======
-        [Authorize(Roles = "Admin")]
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
         public async Task<IActionResult> Delete(int? id)
         {
             int userId = GetUserId();
@@ -320,13 +243,7 @@ namespace AGENDAHUB.Controllers
 
             return View(servicos);
         }
-
-<<<<<<< HEAD
-
         [Authorize(Roles = "Admin, User")]
-=======
-        [Authorize(Roles = "Admin")]
->>>>>>> 3b563a57ab0b50c174dab10d6b80c6b47ada177c
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -350,6 +267,5 @@ namespace AGENDAHUB.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

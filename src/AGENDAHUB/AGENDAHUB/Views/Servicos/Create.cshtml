@@ -7,7 +7,7 @@
 
 <hr />
 <div class="row d-flex justify-content-center">
-    <div class ="col-md-4 text-center">
+    <div class="col-md-4 text-center">
 
         <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -50,5 +50,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
