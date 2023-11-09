@@ -46,7 +46,7 @@ Para uma melhor visualização do Modelo, disponibilizamos o PDF: [Diagrama_ER_A
 * SQL Server (Azure SQL)
 
 ### Estrutura
-*MVC(Model, View and Controller)
+* MVC (Model, View and Controller)
 
 ### Versionamento de código
 * GIT
