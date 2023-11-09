@@ -69,7 +69,7 @@ namespace AGENDAHUB.Controllers
                 {
                     new Claim(ClaimTypes.Name, profissionalDados.Nome),
                     new Claim(ClaimTypes.NameIdentifier, profissionalDados.UsuarioID.ToString()),
-                    new Claim(ClaimTypes.Role, "Profissional") 
+                    new Claim(ClaimTypes.Role, "Profissional")
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -107,7 +107,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(usuario);
         }
 
@@ -118,8 +117,6 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
@@ -151,8 +148,6 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
@@ -200,7 +195,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(usuario);
         }
 
@@ -218,7 +212,6 @@ namespace AGENDAHUB.Controllers
             {
                 _context.Usuarios.Remove(usuario);
             }
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -235,6 +228,5 @@ namespace AGENDAHUB.Controllers
             bool isNomeUsuarioAvailable = !_context.Usuarios.Any(u => u.NomeUsuario == NomeUsuario);
             return Json(isNomeUsuarioAvailable);
         }
-
     }
 }

@@ -65,22 +65,18 @@ namespace AGENDAHUB.Controllers
                 };
 
                 await HttpContext.SignInAsync(principal, props);
-
-                // Aqui você pode definir para onde o login deve redirecionar, por exemplo, a página inicial.
                 return RedirectToAction("Index", "Agendamentos");
             }
             else
             {
                 ViewBag.Message = "Usuário e/ou senha inválidos!";
             }
-
             return View();
         }
 
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-
             return RedirectToAction("Login", "Usuarios");
         }
 
@@ -98,7 +94,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(usuario);
         }
 
@@ -109,8 +104,6 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
@@ -142,8 +135,6 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
@@ -209,7 +200,6 @@ namespace AGENDAHUB.Controllers
             {
                 _context.Usuarios.Remove(usuario);
             }
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

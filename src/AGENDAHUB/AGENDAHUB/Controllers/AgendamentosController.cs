@@ -16,8 +16,6 @@ namespace AGENDAHUB.Controllers
     [Authorize]
     public class AgendamentosController : Controller
     {
-
-
         private readonly AppDbContext _context;
 
         public AgendamentosController(AppDbContext context)
@@ -57,7 +55,6 @@ namespace AGENDAHUB.Controllers
                 {
                     TempData["MessageNenhumAgendamento"] = "Nenhum agendamento por enquanto 😕";
                 }
-
                 return View(agendamentosOrdenados);
             }
             else
@@ -86,7 +83,6 @@ namespace AGENDAHUB.Controllers
                 else
                 {
                     search = search.ToLower();
-
                     // Trazer todos os agendamentos do banco de dados
                     var agendamentos = await _context.Agendamentos
                         .Where(a => a.UsuarioID == usuarioIDInt) // Filtra por UsuarioID
@@ -115,7 +111,6 @@ namespace AGENDAHUB.Controllers
                         // Nenhum agendamento encontrado para a pesquisa
                         TempData["MessageSearch"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
                     }
-
                     return View("Index", filteredAgendamentos);
                 }
             }
@@ -166,9 +161,6 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-
-
-
         // GET: Agendamentos/Create
         [HttpGet]
         public IActionResult Create()
@@ -197,8 +189,6 @@ namespace AGENDAHUB.Controllers
 
 
         // POST: Agendamentos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional")] Agendamentos agendamentos)
@@ -239,7 +229,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
             ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
@@ -309,7 +298,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(agendamento);
         }
 
@@ -336,7 +324,6 @@ namespace AGENDAHUB.Controllers
                 _context.Agendamentos.Remove(agendamento);
                 await _context.SaveChangesAsync();
             }
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -350,10 +337,7 @@ namespace AGENDAHUB.Controllers
                 _context.SaveChanges();
                 TempData["MessageConcluido"] = "Agendamento marcado como concluído com sucesso.";
             }
-
             return RedirectToAction("Index");
         }
-
-
     }
 }
