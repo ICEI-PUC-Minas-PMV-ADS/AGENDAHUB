@@ -17,24 +17,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
-
-
 builder.Services.AddHttpContextAccessor();
-
-
 builder.Services.AddScoped<UsuarioService>();
-
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
-
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -42,7 +30,6 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
-
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -54,8 +41,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 var app = builder.Build();
 
-
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -66,11 +51,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-
-
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -94,14 +75,5 @@ app.MapControllerRoute(
     pattern: "Configuracao/Edit/{id?}",
     defaults: new { controller = "Configuracao", action = "Edit" }
 );
-
-
-
-
-
-
-
-
-
 
 app.Run();

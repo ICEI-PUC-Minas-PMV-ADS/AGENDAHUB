@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AGENDAHUB.styles.css" asp-append-version="true" />
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
 </head>
-
 
 <body>
 
     @* Header Logo + botão Menu *@
-
     <header>
         <div class="container-fluid">
             <div class="row">
@@ -33,9 +32,7 @@
     </header>
 
 
-
     @* Menu Lateral *@
-
     <div class="offcanvas offcanvas-start offCanvasMenu" tabindex="-1" id="myOffcanvas" data-bs-backdrop="false">
         <div class="offcanvas-header d-flex justify-content-center">
             <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogo">
@@ -64,7 +61,6 @@
                         <span class="nav_name">Caixa</span>
                     </a>
                 </li>
-
                 <li>
                     <a class="nav_link" asp-area="" asp-controller="Servicos" asp-action="Index">
                         <img src="~/images/serviços.png" style="width: 2rem; height: 2rem;" alt="services-icon" />
@@ -73,13 +69,9 @@
                 </li>
             </ul>
 
-
             <hr class="dropdown-divider">
 
-
             @* Segunda linha alinhada com a parte inferior / User Menu *@
-
-
             <div class="dropdown" id="menuUser">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="~/images/logoAgendaHub.png" alt="" width="43" height="43" class="rounded-circle me-2">
@@ -104,20 +96,14 @@
         </div>
     </div>
 
-
-
     @* Renderização das páginas *@
-
     <div class="main-container pt-5">
         <main role="main" class="container-fluid p-3">
             @RenderBody()
         </main>
     </div>
 
-
-
     @* Footer *@
-
     <footer class="border-top footer text-center text-black pt-4">
         <div class="container">
             <div class="row" id="footerContatos">
@@ -139,12 +125,9 @@
         </div>
     </footer>
 
-
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>
