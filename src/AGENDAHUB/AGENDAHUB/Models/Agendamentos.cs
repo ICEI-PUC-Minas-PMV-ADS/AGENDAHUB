@@ -48,6 +48,9 @@ namespace AGENDAHUB.Models
         [ForeignKey("ID_Profissional")]
         public Profissionais Profissionais { get; set; }
 
+        // Propriedade de navegação para o caixa
+        public Caixa Caixa { get; set; }
+
         public enum StatusAgendamento
         {
             Pendente,
