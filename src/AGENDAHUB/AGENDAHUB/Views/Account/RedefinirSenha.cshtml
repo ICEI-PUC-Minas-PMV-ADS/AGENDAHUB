@@ -1,8 +1,7 @@
-﻿@model AGENDAHUB.Models.Usuario
+﻿@model AGENDAHUB.Models.RedefinirSenhaModel
 
 <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 @* Fonte de letra:*@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,9 +9,11 @@
 @{
     Layout = null;
 }
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Redefinir Senha";
 }
+
 
 <div class="elipses">
     <div class="elipseDireita"></div>
@@ -31,87 +32,69 @@
     </div>
 </div>
 
-<div class="align-items-center" id="boxLogin">
+<div id="boxLogin">
 
     <div class="divColuna fw-bold">
-
         @* Lado esquerda *@
         <div class="col-4 text-center pt-5" id="bemVindo">
 
-            <h2 class="mb-1">BEM VINDO</h2>
+            <h2>BEM VINDO</h2>
 
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">
                 <img src="/images/logoAgendaHub.png" id="logoLogin">
             </a>
-
             <div class="text-container mb-5">
-                <h3>Inscreva-se</h3>
+                <h3>Novo Login</h3>
                 <img src="~/images/LineHorizontal.png" alt="Ícone de liknha Horizontal" class="lineHorizontal" />
             </div>
 
-            <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Login">Faça Login </a></button>
+            <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Create">Criar conta </a></button>
 
         </div>
-
         @*Lado Direito *@
+
 
         <div class="col text-center " id="formInput">
 
-            <form asp-action="Create">
+            <form asp-action="EnviarLinkParaRedefinirSenha" asp-controller="Account">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <h1>CADASTRE-SE</h1>
+                <h2>REDEFINA SUA SENHA</h2>
 
-                <div class="mb-3 pt-3 input-with-icon">
+                <div class="mb-3  pt-3 input-with-icon">
                     <div class="input-container">
-                        <img src="~/images/iconUsuarios.png" alt="Ícone de usuário" class="iconC" />
-                        <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
+                        <img src="~/images/iconUsuarios.png" alt="Ícone de usuário" class="icon" />
+                        <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="line" />
                         <input asp-for="NomeUsuario" class="form-control" id="camposTextoLg" placeholder="USUÁRIO" />
                     </div>
                 </div>
 
-                <div class="mb-3  pt-3 input-with-icon">
-                    <div class="input-container">
-                        <img src="~/images/emailLogin.png" alt="Ícone de email" class="iconC" />
-                        <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
+                <div class="mb-3  pt-3 input-with-icon ">
+                        <div class="input-container">
+                        <img src="~/images/emailLogin.png" alt="Ícone de email" class="icon" />
+                        <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="line" />
                         <input asp-for="Email" class="form-control" id="camposTextoLg" placeholder="EMAIL" />
                     </div>
                 </div>
 
-                <div class="mb-3  pt-3 input-with-icon">
-                    <div class="input-container">
-                        <img src="~/images/cadeado.png" alt="Ícone de cadeado" class="iconC" />
-                        <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
-                        <input asp-for="Senha" class="form-control" id="camposTextoLg" placeholder="SENHA" />
-                    </div>
-                </div>
-
-                @* Define default Admin para os usuarios criados nessa page *@
-                <input type="hidden" name="Perfil" value="Admin" />
-
+  
 
                 <div class="form-group pt-2">
-                    <button type="submit" value="Create" class="btn btn-secondary" id="botaoEntrar">Criar Usuário</button>
+                    <button id="botaoVoltar"><a asp-area="" asp-controller="Account" asp-action="Login">Voltar</a></button>
+                    <button type="submit" value="Acessar" class="btn btn-secondary" id="botaoEntrar">Redefinir senha</button>
                 </div>
-
             </form>
         </div>
 
-
     </div>
+
 </div>
+
+
 
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
-
-
-
-
-@*<div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label text-black" for="exampleCheck1">Lembrar de mim</label>
-                </div> *@
+    }

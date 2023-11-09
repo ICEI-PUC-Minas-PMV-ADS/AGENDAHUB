@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using AGENDAHUB.Migrations;
 
 namespace AGENDAHUB.Controllers
 {
@@ -27,13 +28,19 @@ namespace AGENDAHUB.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Usuarios.ToListAsync());
+            return View(await _context.Usuarios.ToListAsync());
         }
 
         public IActionResult Login()
         {
             return View();
         }
+
+        public IActionResult RedefinirSenha()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(Usuario usuario)
@@ -213,14 +220,14 @@ namespace AGENDAHUB.Controllers
             {
                 _context.Usuarios.Remove(usuario);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UsuarioExists(int id)
         {
-          return _context.Usuarios.Any(e => e.Id == id);
+            return _context.Usuarios.Any(e => e.Id == id);
         }
 
         //Verificar se o nomeUsuario está em uso
@@ -231,5 +238,35 @@ namespace AGENDAHUB.Controllers
             return Json(isNomeUsuarioAvailable);
         }
 
+        //Enviar Link Para Redefinir Senha
+      /*  [HttpPost]
+        public IActionResult EnviarLinkParaRedefinirSenha(RedefinirSenhaModel redefinirSenhaModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Usuario usuario _usuarioRepositorio.BuscarPorLogin(loginModel.Login);
+
+                    if (usuario != null)
+                    {
+
+                    }
+
+                    TempData["MensagemErro"] = $"Não conseguimos redefinir sua senha. Por favor, verifique os dados informados";
+                }
+
+                return View("Index");
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemError"] = $"Ops, não conseguimos redefinir sua senha, tente novamente, detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+
+        }*/
+
     }
+
 }
+
