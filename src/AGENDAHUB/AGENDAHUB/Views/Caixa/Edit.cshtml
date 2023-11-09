@@ -14,7 +14,7 @@
 
         <form asp-action="Edit">
             <input type="hidden" asp-for="ID_Caixa" />
-
+            <input type="hidden" asp-for="UsuarioID" value="@ViewBag.UsuarioID" />
             <div class="form-group">
                 <label asp-for="Categoria">Categoria</label>
                 <select asp-for="Categoria" class="form-control">

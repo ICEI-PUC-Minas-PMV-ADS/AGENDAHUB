@@ -24,6 +24,10 @@ namespace AGENDAHUB.Models
 
         public string Descricao { get; set; }
 
+        // Propriedade de navegação para Usuario
+        public int UsuarioID { get; set; }
+        public Usuario Usuario { get; set; }
+
         // Propriedade de navegação para Agendamento
         public int? ID_Agendamento { get; set; }
         public Agendamentos Agendamento { get; set; }

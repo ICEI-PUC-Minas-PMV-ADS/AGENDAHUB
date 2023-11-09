@@ -12,6 +12,7 @@
 <div class="row d-flex justify-content-center">
     <div class="col-md-4 text-center">
         <form asp-action="Create">
+            <input type="hidden" asp-for="UsuarioID" value="@ViewBag.UsuarioID" />
             <div class="form-group">
                 <label asp-for="Categoria">Categoria</label>
                 <select asp-for="Categoria" class="form-control">

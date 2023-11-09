@@ -28,6 +28,7 @@
 <div class="row mt-3">
     <div class="col d-flex justify-content-center">
         <form asp-action="Delete">
+            <input type="hidden" asp-for="UsuarioID" value="@ViewBag.UsuarioID" />
             <input type="hidden" asp-for="ID_Caixa" />
             <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
             <input type="submit" value="Excluir" class="btn btn-outline-danger" />

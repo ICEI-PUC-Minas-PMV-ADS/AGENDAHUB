@@ -185,9 +185,6 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-
-
-
         // POST: Agendamentos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -330,6 +327,12 @@ namespace AGENDAHUB.Controllers
         public async Task<IActionResult> MarcarConcluido(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Forbid();
+            }
+
             var agendamento = await _context.Agendamentos
                 .Where(a => a.UsuarioID == int.Parse(userId))
                 .Include(a => a.Cliente)
@@ -355,6 +358,7 @@ namespace AGENDAHUB.Controllers
                     TempData["ErrorMessage"] = $"Ocorreu um erro ao marcar o agendamento como concluído: {ex.Message}";
                 }
             }
+
             return RedirectToAction("Index");
         }
 
@@ -395,7 +399,8 @@ namespace AGENDAHUB.Controllers
                         Descricao = $"Pagamento pelo serviço: {agendamento.Servicos.Nome}",
                         Valor = agendamento.Servicos.Preco,
                         Data = agendamento.Data,
-                        ID_Agendamento = agendamento.ID_Agendamentos
+                        ID_Agendamento = agendamento.ID_Agendamentos,
+                        UsuarioID = agendamento.UsuarioID // Adicione esta linha para associar o usuário ao registro do Caixa
                     };
 
                     _context.Caixa.Add(caixaEntrada);
