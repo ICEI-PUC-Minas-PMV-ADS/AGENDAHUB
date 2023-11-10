@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231109171343_Table_Caixa_Created")]
+    partial class Table_Caixa_Created
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,11 +68,14 @@ namespace AGENDAHUB.Migrations
 
             modelBuilder.Entity("AGENDAHUB.Models.Caixa", b =>
                 {
-                    b.Property<int>("ID_Caixa")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Caixa"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int?>("AgendamentoID_Agendamentos")
+                        .HasColumnType("int");
 
                     b.Property<int>("Categoria")
                         .HasColumnType("int");
@@ -84,19 +89,12 @@ namespace AGENDAHUB.Migrations
                     b.Property<int?>("ID_Agendamento")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsuarioID")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Valor")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("ID_Caixa");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ID_Agendamento")
-                        .IsUnique()
-                        .HasFilter("[ID_Agendamento] IS NOT NULL");
-
-                    b.HasIndex("UsuarioID");
+                    b.HasIndex("AgendamentoID_Agendamentos");
 
                     b.ToTable("Caixa");
                 });
@@ -351,18 +349,10 @@ namespace AGENDAHUB.Migrations
             modelBuilder.Entity("AGENDAHUB.Models.Caixa", b =>
                 {
                     b.HasOne("AGENDAHUB.Models.Agendamentos", "Agendamento")
-                        .WithOne("Caixa")
-                        .HasForeignKey("AGENDAHUB.Models.Caixa", "ID_Agendamento");
-
-                    b.HasOne("AGENDAHUB.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AgendamentoID_Agendamentos");
 
                     b.Navigation("Agendamento");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Clientes", b =>
@@ -415,11 +405,6 @@ namespace AGENDAHUB.Migrations
                     b.Navigation("Profissional");
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("AGENDAHUB.Models.Agendamentos", b =>
-                {
-                    b.Navigation("Caixa");
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Usuario", b =>

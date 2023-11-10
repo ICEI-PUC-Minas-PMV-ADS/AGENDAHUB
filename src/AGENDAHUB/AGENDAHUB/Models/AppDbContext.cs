@@ -13,12 +13,9 @@ namespace AGENDAHUB.Models
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Profissionais> Profissionais { get; set; }
         public DbSet<Configuracao> Configuracao { get; set; }
-
-
-
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Caixa> Caixa { get; set; }
 
-     
 
         //Para deixar unico o nome de usuario
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,11 +30,14 @@ namespace AGENDAHUB.Models
                 .WithOne(c => c.Usuario)
                 .HasForeignKey<Configuracao>(c => c.UsuarioID);
 
+            modelBuilder.Entity<Agendamentos>()
+                .HasOne(a => a.Caixa)
+                .WithOne(c => c.Agendamento)
+                .HasForeignKey<Caixa>(c => c.ID_Agendamento);
+
+
 
             base.OnModelCreating(modelBuilder);
         }
-
-        //Adicionem aqui quando criarem controllers para o banco de dados
-        //teste
     }
 }

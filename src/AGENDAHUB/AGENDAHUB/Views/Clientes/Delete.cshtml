@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Excluir Cliente";
 }
 
 <link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
@@ -14,43 +14,24 @@
         <table class="table mt-3 mx-auto">
             <thead>
                 <tr>
-                    <th>
-@Html.DisplayNameFor(model => model.Nome)
-                    </th>
-                    <th>
-@Html.DisplayNameFor(model => model.CPF)
-                    </th>
-                    <th>
-@Html.DisplayNameFor(model => model.Contato)
-                    </th>
-                    <th>
-@Html.DisplayNameFor(model => model.Email)
-                    </th>
-                    <th>
-@Html.DisplayNameFor(model => model.Observacao)
-                    </th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.CPF)</th>
+                    <th>@Html.DisplayNameFor(model => model.Contato)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.Observacao)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>
-@Html.DisplayFor(model => model.Nome)
-                    </td>
-                    <td>
-@Html.DisplayFor(model => model.CPF)
-                    </td>
-                    <td>
-@Html.DisplayFor(model => model.Contato)
+                    <td>@Html.DisplayFor(model => model.Nome)</td>
+                    <td>@Html.DisplayFor(model => model.CPF)</td>
+                    <td>@Html.DisplayFor(model => model.Contato)
                         <a href="https://wa.me/@Model.Contato" target="_blank">
                             <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
                         </a>
                     </td>
-                    <td>
-        @Html.DisplayFor(model => model.Email)
-                    </td>
-                    <td>
-        @Html.DisplayFor(model => model.Observacao)
-                    </td>
+                    <td>@Html.DisplayFor(model => model.Email)</td>
+                    <td>@Html.DisplayFor(model => model.Observacao)</td>
                 </tr>
             </tbody>
         </table>

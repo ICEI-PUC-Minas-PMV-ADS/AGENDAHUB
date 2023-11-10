@@ -15,7 +15,6 @@ namespace AGENDAHUB.Controllers
     public class ServicosController : Controller
     {
         private readonly AppDbContext _context;
-
         public ServicosController(AppDbContext context)
         {
             _context = context;
@@ -29,19 +28,16 @@ namespace AGENDAHUB.Controllers
         private int GetUserId()
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-
             if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
             {
                 return userId;
             }
-
-            return 0; // Default to 0 if user ID cannot be parsed
+            return 0;
         }
 
         public FileContentResult getImg(int id)
         {
             byte[] byteArray = _context.Servicos.Find(id).Imagem;
-
             return byteArray != null
                 ? new FileContentResult(byteArray, "image/jpeg")
                 : null;
@@ -82,10 +78,9 @@ namespace AGENDAHUB.Controllers
 
             // Converte a palavra-chave de pesquisa para minúsculas
             search = search.ToLower();
-
             if (decimal.TryParse(search, out decimal priceSearch))
             {
-                // Se a pesquisa for um número (preço), filtre por preço
+                // Se a pesquisa for um número (preço), realiza a filtragem
                 var servicos = await _context.Servicos
                     .Where(s => s.UsuarioID == userId)
                     .Include(s => s.Profissional)
@@ -94,10 +89,8 @@ namespace AGENDAHUB.Controllers
 
                 if (servicos.Count == 0)
                 {
-                    // Nenhum agendamento encontrado para a pesquisa
                     TempData["Message"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
                 }
-
                 return View("Index", servicos);
             }
             else
@@ -114,21 +107,20 @@ namespace AGENDAHUB.Controllers
 
                 if (servicos.Count == 0)
                 {
-                    // Nenhum agendamento encontrado para a pesquisa
                     TempData["Message"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
                 }
-
                 return View("Index", servicos);
             }
         }
 
-
+        [Authorize(Roles = "Admin, User")]
         public IActionResult Create()
         {
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View();
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
@@ -138,7 +130,7 @@ namespace AGENDAHUB.Controllers
 
             if (ModelState.IsValid)
             {
-                servicos.UsuarioID = userId; // Define o UsuarioID do serviço
+                servicos.UsuarioID = userId;
                 if (file.Headers != null && file.Length > 0)
                 {
                     using (var memoryStream = new MemoryStream())
@@ -148,7 +140,6 @@ namespace AGENDAHUB.Controllers
                         servicos.Imagem = memoryStream.ToArray();
                     }
                 }
-
                 _context.Add(servicos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -156,15 +147,14 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
-
             if (id == null || _context.Servicos == null)
             {
                 return NotFound();
             }
-
             var servicos = await _context.Servicos
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
@@ -172,17 +162,16 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
         {
             int userId = GetUserId();
-
             if (id != servicos.ID_Servico)
             {
                 return NotFound();
@@ -200,7 +189,7 @@ namespace AGENDAHUB.Controllers
                             servicos.Imagem = stream.ToArray();
                         }
                     }
-                    servicos.UsuarioID = userId; // Define o UsuarioID do serviço
+                    servicos.UsuarioID = userId;
                     _context.Update(servicos);
                     await _context.SaveChangesAsync();
                 }
@@ -220,7 +209,7 @@ namespace AGENDAHUB.Controllers
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
-
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Delete(int? id)
         {
             int userId = GetUserId();
@@ -229,18 +218,18 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             var servicos = await _context.Servicos
+                .Include(s => s.Profissional)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
             if (servicos == null)
             {
                 return NotFound();
             }
-
             return View(servicos);
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -251,13 +240,12 @@ namespace AGENDAHUB.Controllers
             }
             int userId = GetUserId();
             var servicos = await _context.Servicos
+                .Include(s => s.Profissional)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
-
             if (servicos != null)
             {
                 _context.Servicos.Remove(servicos);
             }
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -24,15 +24,11 @@ namespace AGENDAHUB.Models
         [Required(ErrorMessage = "O campo Email é obrigatório.")]
         [EmailAddress(ErrorMessage = "O campo Email deve ser um endereço de email válido.")]
         public string Email { get; set; }
-
         public string Senha { get; set; }
         public string Login { get; set; }
 
         [StringLength(11, MinimumLength = 11, ErrorMessage = "O campo CPF deve conter 11 caracteres.")]
         public string CPF { get; set; }
-
-
-
 
         // Propriedade de navegação para Usuario
         public int UsuarioID { get; set; }

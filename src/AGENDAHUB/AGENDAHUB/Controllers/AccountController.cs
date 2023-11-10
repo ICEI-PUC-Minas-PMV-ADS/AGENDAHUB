@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using AGENDAHUB.Migrations;
 
 namespace AGENDAHUB.Controllers
@@ -45,47 +46,51 @@ namespace AGENDAHUB.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Usuario usuario)
         {
-            var dados = await _context.Usuarios
+            var usuarioDados = await _context.Usuarios
                 .FirstOrDefaultAsync(u => u.NomeUsuario == usuario.NomeUsuario);
 
-            if (dados == null)
-            {
-                ViewBag.Message = "Usuário e/ou senha inválidos!";
-                return View();
-            }
+            var profissionalDados = await _context.Profissionais
+                .FirstOrDefaultAsync(p => p.Login == usuario.NomeUsuario);
 
-            bool senhaOk = BCrypt.Net.BCrypt.Verify(usuario.Senha, dados.Senha);
-
-            if (senhaOk)
+            if (usuarioDados != null && BCrypt.Net.BCrypt.Verify(usuario.Senha, usuarioDados.Senha))
             {
+                // Usuário encontrado na tabela de Usuarios
                 var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, dados.NomeUsuario),
-            new Claim(ClaimTypes.NameIdentifier, dados.Id.ToString()),
-            new Claim(ClaimTypes.Role, dados.Perfil.ToString())
-        };
-
-                var usuarioIdentity = new ClaimsIdentity(claims, "login");
-                ClaimsPrincipal principal = new ClaimsPrincipal(usuarioIdentity);
-
-                var props = new AuthenticationProperties
                 {
-                    AllowRefresh = true,
-                    ExpiresUtc = DateTime.UtcNow.ToLocalTime().AddHours(8),
-                    IsPersistent = true,
+                    new Claim(ClaimTypes.Name, usuarioDados.NomeUsuario),
+                    new Claim(ClaimTypes.NameIdentifier, usuarioDados.Id.ToString()),
+                    new Claim(ClaimTypes.Role, usuarioDados.Perfil.ToString())
                 };
 
-                await HttpContext.SignInAsync(principal, props);
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
 
-                // Aqui você pode definir para onde o login deve redirecionar, por exemplo, a página inicial.
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                return RedirectToAction("Index", "Agendamentos");
+            }
+            else if (profissionalDados != null && BCrypt.Net.BCrypt.Verify(usuario.Senha, profissionalDados.Senha))
+            {
+                // Profissional encontrado na tabela de Profissionais
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, profissionalDados.Nome),
+                    new Claim(ClaimTypes.NameIdentifier, profissionalDados.UsuarioID.ToString()),
+                    new Claim(ClaimTypes.Role, "Profissional")
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
                 return RedirectToAction("Index", "Agendamentos");
             }
             else
             {
                 ViewBag.Message = "Usuário e/ou senha inválidos!";
+                return View();
             }
-
-            return View();
         }
 
         public async Task<IActionResult> Logout()
@@ -109,7 +114,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(usuario);
         }
 
@@ -120,8 +124,6 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
@@ -153,8 +155,6 @@ namespace AGENDAHUB.Controllers
         }
 
         // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
@@ -202,7 +202,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(usuario);
         }
 
@@ -220,7 +219,6 @@ namespace AGENDAHUB.Controllers
             {
                 _context.Usuarios.Remove(usuario);
             }
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -237,6 +235,7 @@ namespace AGENDAHUB.Controllers
             bool isNomeUsuarioAvailable = !_context.Usuarios.Any(u => u.NomeUsuario == NomeUsuario);
             return Json(isNomeUsuarioAvailable);
         }
+    }
 
         //Enviar Link Para Redefinir Senha
       /*  [HttpPost]

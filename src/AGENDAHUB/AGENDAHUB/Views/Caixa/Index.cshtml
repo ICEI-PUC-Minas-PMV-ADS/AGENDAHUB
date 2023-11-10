@@ -1,0 +1,139 @@
+﻿@model IEnumerable<AGENDAHUB.Models.Caixa>
+
+@*ChartJs*@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+@* DataTable *@
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+<link rel="stylesheet" href="~/css/Caixa.css" asp-append-version="true" />
+<script src="~/js/Caixa.js"></script>
+
+@{
+    ViewData["Title"] = "Fluxo de Caixa";
+}
+
+<h2 class="text-center pb-3">@ViewData["Title"]</h2>
+
+<div class="col-xl-4 col-12">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-6 col-12">
+            <a asp-action="Create" class="btn btn-outline-info" id="btnNovaMovimentação">+ Nova Movimentação</a>
+        </div>
+    </div>
+</div>
+
+<div class="container col-lg-6 col-sm-6" id="paiDoGrafico">
+    <!-- DIV DO GRÁFICO -->
+    <div class="row flex-row" id="grafico">
+        <div class="col-lg-12 mb-4 p-5">
+            <div class="col-xl-12 col-12 d-flex justify-content-center pb-3 form-inline">
+                <form asp-action="SearchByDate" method="get" class="w-100">
+                    <div class="input-group w-100">
+                        <label class="mt-2 me-2" for="dataInicio">Início:</label>
+                        <input class="form-control me-2 text-center" type="date" name="dataInicio" id="dataInicio" />
+                        <label class="mt-2 me-2" for="dataFim">Fim:</label>
+                        <input class="form-control text-center" type="date" name="dataFim" id="dataFim" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">
+                                <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" />
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <canvas id="myChart" class="pt-3">
+                @*Gráfico*@
+            </canvas>
+        </div>
+    </div>
+
+</div>
+
+@*Gráfico*@
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var entradas = @Json.Serialize(ViewBag.Entradas);
+    var saidas = @Json.Serialize(ViewBag.Saidas);
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Entradas', 'Saídas'],
+            datasets: [{
+                label: 'Valores',
+                data: [entradas, saidas],
+                backgroundColor: ['rgb(2, 187, 187)', 'rgb(177, 177, 177)'],
+                borderColor: ['rgb(2, 187, 187)', 'rgb(177, 177, 177)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
+
+<h2 class="text-center mt-5 pt-5">Registros das Movimentações</h2>
+
+<div class="container d-flex justify-content-center col-xl-12 col-12 mt-4">
+    <div class="table-responsive-lg p-3">
+        <table id="tabelaCaixa" class="table table-hover mt-3 mx-auto" style="width:100%">
+            <thead>
+                <tr>
+                    <th> @Html.DisplayNameFor(model => model.Categoria)</th>
+                    <th>@Html.DisplayNameFor(model => model.Valor)</th>
+                    <th>@Html.DisplayNameFor(model => model.Data)</th>
+                    <th> @Html.DisplayNameFor(model => model.Descricao)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                        <td>@string.Format("{0:dd MMM yyyy}", item.Data)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                        <td>
+                            <div class="btn-group d-flex justify-content-end" role="group">
+
+                                <a asp-action="Details" asp-route-id="@item.ID_Caixa">
+                                    <img class="btn btn-outline-info" src="~/images/details.png" alt="Detalhes" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.ID_Caixa">
+                                    <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.ID_Caixa">
+                                    <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

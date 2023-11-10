@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231109203031_Tentativa_Relação_Caixa_Agendamento")]
+    partial class Tentativa_Relação_Caixa_Agendamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,9 +86,6 @@ namespace AGENDAHUB.Migrations
                     b.Property<int?>("ID_Agendamento")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsuarioID")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Valor")
                         .HasColumnType("decimal(18,2)");
 
@@ -95,8 +94,6 @@ namespace AGENDAHUB.Migrations
                     b.HasIndex("ID_Agendamento")
                         .IsUnique()
                         .HasFilter("[ID_Agendamento] IS NOT NULL");
-
-                    b.HasIndex("UsuarioID");
 
                     b.ToTable("Caixa");
                 });
@@ -354,15 +351,7 @@ namespace AGENDAHUB.Migrations
                         .WithOne("Caixa")
                         .HasForeignKey("AGENDAHUB.Models.Caixa", "ID_Agendamento");
 
-                    b.HasOne("AGENDAHUB.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Agendamento");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Clientes", b =>

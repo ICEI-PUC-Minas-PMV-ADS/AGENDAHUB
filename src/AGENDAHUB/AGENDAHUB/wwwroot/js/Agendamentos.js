@@ -13,4 +13,10 @@
             card.style.display = shouldDisplay ? 'block' : 'none';
         });
     });
+    setTimeout(function () {
+        var messageConcluido = document.getElementById("messageConcluido");
+        if (messageConcluido) {
+            messageConcluido.style.display = "none";
+        }
+    }, 2000); // 2000 milissegundos (2 segundos)
 });

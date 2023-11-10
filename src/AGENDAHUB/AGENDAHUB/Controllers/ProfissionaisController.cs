@@ -1,7 +1,9 @@
 ﻿using AGENDAHUB.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -22,11 +24,9 @@ namespace AGENDAHUB.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-
             var profissionais = await _context.Profissionais
                 .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .ToListAsync();
-
             return View(profissionais);
         }
 
@@ -39,7 +39,6 @@ namespace AGENDAHUB.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-
             var profissional = await _context.Profissionais
                 .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .FirstOrDefaultAsync(p => p.ID_Profissional == id);
@@ -48,23 +47,24 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(profissional);
         }
 
         // GET: Profissionais/Create
+
+        [HttpGet]
         public IActionResult Create()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View();
         }
 
         // POST: Profissionais/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Profissional,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
+        public async Task<IActionResult> Create([Bind("ID_Profissional,Nome,Cargo,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-
             profissionais.UsuarioID = int.Parse(userId); // Define o UsuarioID do profissional
 
             if (ModelState.IsValid)
@@ -72,10 +72,11 @@ namespace AGENDAHUB.Controllers
                 if (!string.IsNullOrEmpty(profissionais.Nome) && !string.IsNullOrEmpty(profissionais.Email) && !string.IsNullOrEmpty(profissionais.Senha))
                 {
                     profissionais.Senha = BCrypt.Net.BCrypt.HashPassword(profissionais.Senha);
-                    _context.Profissionais.Add(profissionais);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
                 }
+
+                _context.Add(profissionais);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             return View(profissionais);
         }
@@ -89,11 +90,9 @@ namespace AGENDAHUB.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-
             var profissional = await _context.Profissionais
                 .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .FirstOrDefaultAsync(p => p.ID_Profissional == id);
-
             if (profissional == null)
             {
                 return NotFound();
@@ -104,7 +103,7 @@ namespace AGENDAHUB.Controllers
         // POST: Profissionais/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Profissional,Nome,Especializacao,Telefone,Email,Senha,Login,CPF")] Profissionais profissionais)
+        public async Task<IActionResult> Edit(int id, Profissionais profissionais)
         {
             if (id != profissionais.ID_Profissional)
             {
@@ -112,30 +111,14 @@ namespace AGENDAHUB.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-
             profissionais.UsuarioID = int.Parse(userId); // Define o UsuarioID do profissional
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Profissionais.Update(profissionais);
+                    _context.Update(profissionais);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProfissionaisExists(profissionais.ID_Profissional))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index));
             }
-            return View(profissionais);
+            return View();
         }
 
         // GET: Profissionais/Delete/5
@@ -147,16 +130,13 @@ namespace AGENDAHUB.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-
             var profissional = await _context.Profissionais
                 .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .FirstOrDefaultAsync(p => p.ID_Profissional == id);
-
             if (profissional == null)
             {
                 return NotFound();
             }
-
             return View(profissional);
         }
 
@@ -171,16 +151,13 @@ namespace AGENDAHUB.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-
             var profissional = await _context.Profissionais
                 .Where(p => p.UsuarioID == int.Parse(userId)) // Restringe os profissionais pelo UsuarioID
                 .FirstOrDefaultAsync(p => p.ID_Profissional == id);
-
             if (profissional != null)
             {
                 _context.Profissionais.Remove(profissional);
             }
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

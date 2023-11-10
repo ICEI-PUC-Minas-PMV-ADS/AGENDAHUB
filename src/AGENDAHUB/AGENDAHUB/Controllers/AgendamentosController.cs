@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -15,8 +16,6 @@ namespace AGENDAHUB.Controllers
     [Authorize]
     public class AgendamentosController : Controller
     {
-
-
         private readonly AppDbContext _context;
 
         public AgendamentosController(AppDbContext context)
@@ -54,9 +53,8 @@ namespace AGENDAHUB.Controllers
 
                 if (agendamentosOrdenados.Count == 0)
                 {
-                    TempData["MessageVazio"] = "Nenhum agendamento por enquanto 😕";
+                    TempData["MessageNenhumAgendamento"] = "Nenhum agendamento por enquanto 😕";
                 }
-
                 return View(agendamentosOrdenados);
             }
             else
@@ -85,7 +83,6 @@ namespace AGENDAHUB.Controllers
                 else
                 {
                     search = search.ToLower();
-
                     // Trazer todos os agendamentos do banco de dados
                     var agendamentos = await _context.Agendamentos
                         .Where(a => a.UsuarioID == usuarioIDInt) // Filtra por UsuarioID
@@ -112,9 +109,8 @@ namespace AGENDAHUB.Controllers
                     if (filteredAgendamentos.Count == 0)
                     {
                         // Nenhum agendamento encontrado para a pesquisa
-                        TempData["Message"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
+                        TempData["MessageSearch"] = $"Nenhum agendamento encontrado para a pesquisa '{search}'";
                     }
-
                     return View("Index", filteredAgendamentos);
                 }
             }
@@ -124,7 +120,46 @@ namespace AGENDAHUB.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> SearchByDate(DateTime? dataInicio, DateTime? dataFim)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int usuarioIDInt))
+            {
+                var query = _context.Agendamentos
+                    .Where(a => a.UsuarioID == usuarioIDInt);
+
+                if (dataInicio.HasValue)
+                {
+                    query = query.Where(a => a.Data >= dataInicio);
+                }
+
+                if (dataFim.HasValue)
+                {
+                    query = query.Where(a => a.Data <= dataFim);
+                }
+
+                var agendamentos = await query
+                    .Include(a => a.Cliente)
+                    .Include(a => a.Servicos)
+                    .Include(a => a.Profissionais)
+                    .ToListAsync();
+
+                var agendamentosOrdenados = agendamentos.OrderBy(a => a.Data).ToList();
+
+                if (agendamentosOrdenados.Count == 0)
+                {
+                    TempData["MessageData"] = "Nenhum agendamento encontrado para o período selecionado 😕";
+                }
+
+                return View("Index", agendamentosOrdenados);
+            }
+            else
+            {
+                return View("Index", new List<Agendamentos>());
+            }
+        }
 
         // GET: Agendamentos/Create
         [HttpGet]
@@ -150,12 +185,7 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-
-
-
         // POST: Agendamentos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional")] Agendamentos agendamentos)
@@ -196,7 +226,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
             ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
@@ -266,7 +295,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
             return View(agendamento);
         }
 
@@ -293,10 +321,104 @@ namespace AGENDAHUB.Controllers
                 _context.Agendamentos.Remove(agendamento);
                 await _context.SaveChangesAsync();
             }
-
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> MarcarConcluido(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Forbid();
+            }
+
+            var agendamento = await _context.Agendamentos
+                .Where(a => a.UsuarioID == int.Parse(userId))
+                .Include(a => a.Cliente)
+                .Include(a => a.Profissionais)
+                .Include(a => a.Servicos)
+                .Include(a => a.Caixa)
+                .FirstOrDefaultAsync(a => a.ID_Agendamentos == id);
+
+            if (agendamento != null)
+            {
+                var statusAntigo = agendamento.Status; // Salva o status antigo
+
+                agendamento.Status = AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    AtualizarCaixaEGráfico(agendamento, statusAntigo);
+                    TempData["MessageConcluido"] = "Agendamento marcado como concluído com sucesso.";
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = $"Ocorreu um erro ao marcar o agendamento como concluído: {ex.Message}";
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        private void AtualizarCaixaEGráfico(Agendamentos agendamento, Agendamentos.StatusAgendamento statusAntigo)
+        {
+            if (agendamento != null && agendamento.Servicos != null)
+            {
+                if (statusAntigo == Agendamentos.StatusAgendamento.Concluido &&
+                    (agendamento.Status == Agendamentos.StatusAgendamento.Pendente ||
+                     agendamento.Status == Agendamentos.StatusAgendamento.Cancelado))
+                {
+                    // Remover o registro do Caixa se o agendamento estava concluído e agora está pendente ou cancelado
+                    var caixaEntrada = _context.Caixa
+                        .FirstOrDefault(c => c.ID_Agendamento == agendamento.ID_Agendamentos);
+
+                    if (caixaEntrada != null)
+                    {
+                        _context.Caixa.Remove(caixaEntrada);
+
+                        try
+                        {
+                            _context.SaveChanges();
+                            Console.WriteLine($"Registro do Caixa removido para o agendamento: {agendamento.ID_Agendamentos}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Erro ao remover registro do Caixa: {ex.Message}");
+                        }
+                    }
+                }
+                else if (statusAntigo != Agendamentos.StatusAgendamento.Concluido &&
+                         agendamento.Status == Agendamentos.StatusAgendamento.Concluido)
+                {
+                    // Adicionar o registro no Caixa se o agendamento estava pendente ou cancelado e agora está concluído
+                    var caixaEntrada = new Caixa
+                    {
+                        Categoria = Caixa.CategoriaMovimentacao.Entrada,
+                        Descricao = $"Pagamento pelo serviço: {agendamento.Servicos.Nome}",
+                        Valor = agendamento.Servicos.Preco,
+                        Data = agendamento.Data,
+                        ID_Agendamento = agendamento.ID_Agendamentos,
+                        UsuarioID = agendamento.UsuarioID // Adicione esta linha para associar o usuário ao registro do Caixa
+                    };
+
+                    _context.Caixa.Add(caixaEntrada);
+
+                    try
+                    {
+                        _context.SaveChanges();
+                        Console.WriteLine(caixaEntrada);
+                        Console.WriteLine(agendamento.Servicos.Nome);
+                        Console.WriteLine(agendamento.Servicos.Preco);
+                        Console.WriteLine(agendamento.Data);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao adicionar entrada no caixa: {ex.Message}");
+                    }
+                }
+            }
+        }
     }
 }

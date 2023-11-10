@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\UsuariosController.cs" />
+    <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.cs" />
+    <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.Designer.cs" />
     <Compile Remove="Models\Cliente.cs" />
     <Compile Remove="Models\ConfiguracaoUsuario.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
@@ -30,6 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Chart.js" Version="3.7.1" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.22" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.22" />
