@@ -12,7 +12,7 @@ Os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a 
 | Repositório de Código fonte | GitHub | [Link-Repositório](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub) |
 | Documentos do projeto | Google Drive | [DocsAgendaHub](https://drive.google.com/drive/folders/1SlFe3c0dFuuwu6Qu-7m3VEGTFdelQIwe?usp=sharing) |
 | Projeto de interface e Wireframes | Figma | [Protótipo-Figma](https://www.figma.com/proto/2LaOQ03aPkX95NucGhKfh1/AGENDAHUB?type=design&node-id=107-118&t=TEY040VKm8H17AQM-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=107%3A118&show-proto-sidebar=1) |
-| Gerenciamento do projeto | Trello | [Quadro-Kanban](https://trello.com/b/HEPpGwZN/agendahub) |
+| Gerenciamento do projeto | GitHub | [Quadro-Kanban](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/575) |
 
 ## Controle de Versão
 
@@ -65,20 +65,22 @@ A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para def
 - Done: Nesta lista são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário. Não há mais edições ou revisões necessárias.
 - Locked: Quando alguma coisa impede a conclusão da tarefa, ela é movida para esta lista juntamente com um comentário sobre o que está travando a tarefa.
 
-O quadro kanban do grupo desenvolvido na ferramenta de gerenciamento de projetos é apresentado, no estado atual, na figura 3 e está disponível através da URL: [Quadro-Kanban](https://trello.com/b/HEPpGwZN/agendahub)
+O quadro kanban do grupo desenvolvido na ferramenta de gerenciamento de projetos é apresentado, no estado atual, na figura 3 e está disponível através da URL: [Quadro-Kanban](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/575/views/1)
 
-![Captura de tela 2023-09-20 180926](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/127361540/a00ed049-8f77-46f4-b36c-4b9c9f4178ee)
 
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/004d2864-65eb-42af-959b-91d715aa62f5)
 Figura 3 - Tela do kanban utilizada pelo grupo
+
 
 
 **Etiquetas:**
 A tarefas são, ainda, etiquetadas em função da natureza da atividade 
 e seguem o seguinte esquema de cores/categorias:
 - Documentação
-- Desenvolvimento           
-- Infraestrutura
-- Testes
+- Desenvolvimento
+- Bug           
 
-   ![Etiquetas](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e2-proj-int-t4-agendaHub/assets/127361540/2c333ac4-7878-49cf-8ef6-f5ec6c8f7ef3)
+
+   ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/a844a293-7737-49c2-a10c-9154acbb2cac)
+
 
