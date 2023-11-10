@@ -23,10 +23,15 @@ namespace AGENDAHUB.Controllers
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<Usuario> _userManager;
+        private readonly IEmailService _emailService;
 
-        public AccountController(AppDbContext context)
+        // Construtor para injetar o DbContext, UserManager e IEmailService
+        public AccountController(AppDbContext context, UserManager<Usuario> userManager, IEmailService emailService)
         {
             _context = context;
+            _userManager = userManager;
+            _emailService = emailService;
         }
 
         // GET: Usuarios
@@ -241,23 +246,6 @@ namespace AGENDAHUB.Controllers
 
 
         //Enviar Link Para Redefinir Senha
-
-        private readonly UserManager<Usuario> _userManager;
-
-        // Construtor para injetar o UserManager
-        public AccountController(UserManager<Usuario> userManager)
-        {
-            _userManager = userManager;
-        }
-
-
-        private readonly IEmailService _emailService;
-
-        public AccountController(UserManager<Usuario> userManager, IEmailService emailService)
-        {
-            _userManager = userManager;
-            _emailService = emailService;
-        }
 
         [HttpPost]
         [AllowAnonymous]

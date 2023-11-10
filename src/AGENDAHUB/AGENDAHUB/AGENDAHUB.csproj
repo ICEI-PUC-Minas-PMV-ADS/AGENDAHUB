@@ -13,6 +13,7 @@
     <Compile Remove="Models\Cliente.cs" />
     <Compile Remove="Models\ConfiguracaoUsuario.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
+    <Compile Remove="Models\UsuarioService.cs" />
     <Compile Remove="Views\Account\RedefinirSenha.cshtml.cs" />
     <Compile Remove="Views\Home\Caixa.cshtml.cs" />
     <Compile Remove="Views\Home\Index.cshtml.cs" />
