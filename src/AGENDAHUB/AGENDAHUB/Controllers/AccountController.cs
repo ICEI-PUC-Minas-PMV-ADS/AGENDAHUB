@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AGENDAHUB.Migrations;
+using System.Security.Policy;
+using static AGENDAHUB.Controllers.AccountController;
+
 
 namespace AGENDAHUB.Controllers
 {
@@ -235,37 +238,50 @@ namespace AGENDAHUB.Controllers
             bool isNomeUsuarioAvailable = !_context.Usuarios.Any(u => u.NomeUsuario == NomeUsuario);
             return Json(isNomeUsuarioAvailable);
         }
-    }
+
 
         //Enviar Link Para Redefinir Senha
-      /*  [HttpPost]
-        public IActionResult EnviarLinkParaRedefinirSenha(RedefinirSenhaModel redefinirSenhaModel)
+
+        private readonly UserManager<Usuario> _userManager;
+
+        // Construtor para injetar o UserManager
+        public AccountController(UserManager<Usuario> userManager)
         {
-            try
+            _userManager = userManager;
+        }
+
+
+        private readonly IEmailService _emailService;
+
+        public AccountController(UserManager<Usuario> userManager, IEmailService emailService)
+        {
+            _userManager = userManager;
+            _emailService = emailService;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(string email)
+        {
+            // Verificar se o e-mail fornecido existe na base de dados
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
-                if (ModelState.IsValid)
-                {
-                    Usuario usuario _usuarioRepositorio.BuscarPorLogin(loginModel.Login);
-
-                    if (usuario != null)
-                    {
-
-                    }
-
-                    TempData["MensagemErro"] = $"Não conseguimos redefinir sua senha. Por favor, verifique os dados informados";
-                }
-
-                return View("Index");
-            }
-            catch (Exception erro)
-            {
-                TempData["MensagemError"] = $"Ops, não conseguimos redefinir sua senha, tente novamente, detalhe do erro: {erro.Message}";
-                return RedirectToAction("Index");
+                // Não revele que o usuário não existe ou não está confirmado
+                return View("ForgotPasswordConfirmation");
             }
 
-        }*/
+            // Gerar e enviar o token de redefinição de senha
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+            await _emailService.SendEmailAsync(user.Email, "Redefinir Senha", $"Por favor, redefina sua senha clicando <a href='{callbackUrl}'>aqui</a>");
+
+            return View("ForgotPasswordConfirmation");
+        }
 
     }
-
 }
+
+
 

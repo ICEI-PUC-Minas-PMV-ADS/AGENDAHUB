@@ -27,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\Account\jmknfnqv.txa~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\NovaPasta\" />
   </ItemGroup>
 
