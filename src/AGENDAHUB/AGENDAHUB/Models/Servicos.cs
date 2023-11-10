@@ -10,26 +10,24 @@ namespace AGENDAHUB.Models
         [Key]
         public int ID_Servico { get; set; }
 
-        [Required(ErrorMessage = "Obrigatório informar o nome!")]
+        [Required(ErrorMessage = "Obrigat?rio informar o nome!")]
         public string Nome { get; set; }
-
-        [DataType(DataType.Currency)]
         [Range(0, double.MaxValue, ErrorMessage = "O preço deve ser maior ou igual a 0.")]
         [Column(TypeName = "decimal(18, 2)")] // Especifica o tipo da coluna para Preco
         public decimal Preco { get; set; }
 
-        [Display(Name = "Tempo de Execução")]
+        [Display(Name = "Tempo de Execu??o")]
         [DataType(DataType.Time)]
         public TimeSpan TempoDeExecucao { get; set; }
 
         public byte[] Imagem { get; set; }
 
-        public int ID_Profissional { get; set; }    
+        public int ID_Profissional { get; set; }
 
         [ForeignKey("ID_Profissional")]
         public Profissionais Profissional { get; set; }
 
-        // Propriedade de navegação para Usuario
+        // Propriedade de navega??o para Usuario
         public int UsuarioID { get; set; }
         public Usuario Usuario { get; set; }
     }

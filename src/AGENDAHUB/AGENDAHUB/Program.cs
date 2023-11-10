@@ -11,9 +11,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http.Features;
 using FluentAssertions.Common;
 using System.Net;
+using System.Globalization;
 
-
+// Configura a cultura para português do Brasil
+var culture = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentCulture = culture;
+CultureInfo.DefaultThreadCurrentUICulture = culture;
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -75,5 +80,7 @@ app.MapControllerRoute(
     pattern: "Configuracao/Edit/{id?}",
     defaults: new { controller = "Configuracao", action = "Edit" }
 );
+
+
 
 app.Run();
