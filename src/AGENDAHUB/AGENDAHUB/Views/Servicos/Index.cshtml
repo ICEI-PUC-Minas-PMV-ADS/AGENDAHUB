@@ -71,18 +71,18 @@
 
                         <h5 style="text-align: center; " class="card-title text-uppercase">@item.Nome</h5>
                         <p style="" class="card-text">
-                            Preço: @item.Preco<br />
-                            Tempo de Execução: @item.TempoDeExecucao
+                            Preço: R$ @item.Preco<br />
+                            Tempo de Execução: @item.TempoDeExecucao.ToString("h\\h\\ mm\\m")
                         </p>
 
                         @if (User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Profissional"))
                         {
                             <div class="d-flex justify-content-end">
-                                <a style="margin-right:-8%" href="@Url.Action("Edit", new { id = item.ID_Servico })">
-                                    <img style="width:40%" src="images/editar.png">
+                                <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                    <img class="btn btn-outline-warning" style="height: 2rem; width: auto" src="images/editar.png">
                                 </a>
-                                <a style="margin-right:-10%" href="@Url.Action("Delete", new { id = item.ID_Servico })">
-                                    <img style="width:55%" src="images/excluir.png">
+                                <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                    <img class="btn btn-outline-danger" style="height: 2rem; width: auto" src="images/excluir.png">
                                 </a>
                             </div>
                         }
