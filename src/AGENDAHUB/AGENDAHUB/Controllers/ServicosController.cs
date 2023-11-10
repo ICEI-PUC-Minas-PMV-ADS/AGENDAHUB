@@ -147,7 +147,7 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-        [Authorize(Roles = "Admin, User, Profissional")]
+        [Authorize(Roles = "Admin, User , Profissional")]
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
