@@ -84,3 +84,7 @@ input[type="date"] {
     line-height: 1.5;
     border-radius: 0.25rem;
 }
+
+.dropdown-menu{
+    min-width: 5.9rem
+}

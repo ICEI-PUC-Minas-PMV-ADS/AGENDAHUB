@@ -7,7 +7,7 @@
 <h1 class="text-center pb-3">Agendamentos</h1>
 
 <!-- Botão Novo Agendamento -->
-<div class="row d-flex justify-content-between">
+<div class="row d-flex justify-content-center">
     <div class="col-xl-4 col-12">
         <div class="row d-flex justify-content-center">
             <div class="col-xl-6 col-12">
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Filtro de data -->
-    <div class="col-xl-4 col-12 d-flex justify-content-center pb-3 form-inline">
+    <div class="col-xl-4 col-8 d-flex justify-content-center pb-3 form-inline">
         <form asp-action="SearchByDate" method="get" class="w-100">
             <div class="input-group w-100">
                 <label class="mt-2 me-2" for="dataInicio">Início:</label>
@@ -26,7 +26,7 @@
                 <input class="form-control text-center" type="date" name="dataFim" id="dataFim" />
                 <div class="input-group-append">
                     <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">
-                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" />
+                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" title="Pesquisar" />
                     </button>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <input type="text" class="form-control" name="search" placeholder="Pesquisar Agendamento" id="pesquisar">
                 <div class="input-group-append">
                     <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">
-                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" />
+                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" title="Pesquisar" />
                     </button>
                 </div>
             </div>
@@ -50,7 +50,7 @@
 
 <!-- Filtro Status -->
 <div class="row d-flex justify-content-center pb-3">
-    <div class="col-xl-3 col-12 ms-4" id="statusSelect">
+    <div class="col-xl-3 col-8" id="statusSelect">
         <select id="statusFilter" class="form-select w-100">
             <option value="all">Todos</option>
             <option value="pendente">Pendentes</option>
@@ -142,17 +142,49 @@
                     <strong>Profissional: </strong>@Html.DisplayFor(modelItem => item.Profissionais.Nome)
                 </cite>
                 <div class="btn-group d-flex justify-content-end" role="group">
-                    <a asp-action="Edit" asp-route-id="@item.ID_Agendamentos">
+                    <a asp-action="Edit" asp-route-id="@item.ID_Agendamentos" title="Editar">
                         <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
                     </a>
-                    <a asp-action="Delete" asp-route-id="@item.ID_Agendamentos">
+                    <a asp-action="Delete" asp-route-id="@item.ID_Agendamentos" title="Excluir">
                         <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
                     </a>
                     @if (item.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Pendente)
                     {
-                        <a asp-action="MarcarConcluido" asp-route-id="@item.ID_Agendamentos">
+                        <a asp-action="MarcarConcluido" asp-route-id="@item.ID_Agendamentos" title="Concluir">
                             <img class="btn btn-outline-success" src="~/images/concluido.png" alt="Concluir" style="height: 2rem; width: auto" />
                         </a>
+                    }
+                    @if (item.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido)
+                    {
+                        <div class="dropdown btn-group dropend d-inline">
+                            <button title="Mais Opções" class="btn btn-outline-info btn-sm dropdown-toggle bg-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 2rem; width: auto">
+                                <img class="pb-2 ms-1" src="~/images/mais.png" style="height: 2rem; width: auto" />
+                            </button>
+                            <div class="dropdown-menu p-0 mb-2">
+                                <a asp-action="MarcarPendente" asp-route-id="@item.ID_Agendamentos" title="Marcar como Pendente">
+                                    <img class="btn btn-outline-warning" src="~/images/pendente.png" alt="Pendente" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="MarcarCancelado" asp-route-id="@item.ID_Agendamentos" title="Cancelar" title="Marcar como Cancelado">
+                                    <img class="btn btn-outline-danger" src="~/images/cancelado.png" alt="Cancelar" style="height: 2rem; width: auto" />
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    @if (item.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Cancelado)
+                    {
+                        <div class="dropdown btn-group dropend">
+                            <button title="Mais Opções" class="btn btn-outline-info btn-sm dropdown-toggle bg-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 2rem; width: auto">
+                                <img class="pb-2 ms-1" src="~/images/mais.png" style="height: 2rem; width: auto" />
+                            </button>
+                            <div class="dropdown-menu p-0 mb-2">
+                                <a asp-action="MarcarConcluido" asp-route-id="@item.ID_Agendamentos" title="Marcar como Concluído">
+                                    <img class="btn btn-outline-success" src="~/images/concluido.png" alt="Concluir" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="MarcarPendente" asp-route-id="@item.ID_Agendamentos" title="Marcar como Pendente">
+                                    <img class="btn btn-outline-warning" src="~/images/pendente.png" alt="Pendente" style="height: 2rem; width: auto" />
+                                </a>
+                            </div>
+                        </div>
                     }
                 </div>
             </div>

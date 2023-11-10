@@ -69,12 +69,14 @@
                             </td>
                             <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.ID_Cliente">
-                                    <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
-                                </a>
-                                <a asp-action="Delete" asp-route-id="@item.ID_Cliente">
-                                    <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
-                                </a>
+                                <div class="btn-group d-flex justify-content-end" role="group">
+                                    <a asp-action="Edit" asp-route-id="@item.ID_Cliente">
+                                        <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.ID_Cliente">
+                                        <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }

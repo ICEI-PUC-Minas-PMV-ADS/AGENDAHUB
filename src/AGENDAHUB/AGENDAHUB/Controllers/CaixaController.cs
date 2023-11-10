@@ -88,7 +88,7 @@ namespace AGENDAHUB.Controllers
             var userId = GetUserId();
             ViewBag.UsuarioID = userId;
 
-            if (userId == 0 || userId == null)
+            if (userId == 0)
             {
                 return Forbid();
             }

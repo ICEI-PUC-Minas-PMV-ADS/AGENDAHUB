@@ -324,6 +324,88 @@ namespace AGENDAHUB.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> MarcarPendente(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Forbid();
+            }
+
+            var agendamento = await _context.Agendamentos
+                .Where(a => a.UsuarioID == int.Parse(userId))
+                .Include(a => a.Cliente)
+                .Include(a => a.Profissionais)
+                .Include(a => a.Servicos)
+                .Include(a => a.Caixa)
+                .FirstOrDefaultAsync(a => a.ID_Agendamentos == id);
+
+            if (agendamento != null)
+            {
+                var statusAntigo = agendamento.Status;
+
+                if (agendamento.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido)
+                {
+                    agendamento.Status = AGENDAHUB.Models.Agendamentos.StatusAgendamento.Pendente;
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                        RemoverDoCaixa(agendamento);
+                        TempData["MessageMarcarPendente"] = "Agendamento marcado como pendente com sucesso.";
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["ErrorMessage"] = $"Ocorreu um erro ao marcar o agendamento como pendente: {ex.Message}";
+                    }
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> MarcarCancelado(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Forbid();
+            }
+
+            var agendamento = await _context.Agendamentos
+                .Where(a => a.UsuarioID == int.Parse(userId))
+                .Include(a => a.Cliente)
+                .Include(a => a.Profissionais)
+                .Include(a => a.Servicos)
+                .Include(a => a.Caixa)
+                .FirstOrDefaultAsync(a => a.ID_Agendamentos == id);
+
+            if (agendamento != null)
+            {
+                var statusAntigo = agendamento.Status;
+
+                if (agendamento.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido || agendamento.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Pendente)
+                {
+                    agendamento.Status = AGENDAHUB.Models.Agendamentos.StatusAgendamento.Cancelado;
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                        RemoverDoCaixa(agendamento);
+                        TempData["MessageMarcarCancelado"] = "Agendamento marcado como cancelado com sucesso.";
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["ErrorMessage"] = $"Ocorreu um erro ao marcar o agendamento como cancelado: {ex.Message}";
+                    }
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> MarcarConcluido(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -343,14 +425,14 @@ namespace AGENDAHUB.Controllers
 
             if (agendamento != null)
             {
-                var statusAntigo = agendamento.Status; // Salva o status antigo
+                var status = agendamento.Status;
 
                 agendamento.Status = AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido;
 
                 try
                 {
                     await _context.SaveChangesAsync();
-                    AtualizarCaixaEGráfico(agendamento, statusAntigo);
+                    AtualizarCaixaEGráfico(agendamento, status);
                     TempData["MessageConcluido"] = "Agendamento marcado como concluído com sucesso.";
                 }
                 catch (Exception ex)
@@ -370,55 +452,102 @@ namespace AGENDAHUB.Controllers
                     (agendamento.Status == Agendamentos.StatusAgendamento.Pendente ||
                      agendamento.Status == Agendamentos.StatusAgendamento.Cancelado))
                 {
-                    // Remover o registro do Caixa se o agendamento estava concluído e agora está pendente ou cancelado
-                    var caixaEntrada = _context.Caixa
-                        .FirstOrDefault(c => c.ID_Agendamento == agendamento.ID_Agendamentos);
-
-                    if (caixaEntrada != null)
-                    {
-                        _context.Caixa.Remove(caixaEntrada);
-
-                        try
-                        {
-                            _context.SaveChanges();
-                            Console.WriteLine($"Registro do Caixa removido para o agendamento: {agendamento.ID_Agendamentos}");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Erro ao remover registro do Caixa: {ex.Message}");
-                        }
-                    }
+                    RemoverDoCaixa(agendamento);
                 }
                 else if (statusAntigo != Agendamentos.StatusAgendamento.Concluido &&
                          agendamento.Status == Agendamentos.StatusAgendamento.Concluido)
                 {
-                    // Adicionar o registro no Caixa se o agendamento estava pendente ou cancelado e agora está concluído
-                    var caixaEntrada = new Caixa
-                    {
-                        Categoria = Caixa.CategoriaMovimentacao.Entrada,
-                        Descricao = $"Pagamento pelo serviço: {agendamento.Servicos.Nome}",
-                        Valor = agendamento.Servicos.Preco,
-                        Data = agendamento.Data,
-                        ID_Agendamento = agendamento.ID_Agendamentos,
-                        UsuarioID = agendamento.UsuarioID // Adicione esta linha para associar o usuário ao registro do Caixa
-                    };
+                    AdicionarAoCaixa(agendamento);
+                }
+            }
+        }
 
-                    _context.Caixa.Add(caixaEntrada);
+        private void AdicionarAoCaixa(Agendamentos agendamento)
+        {
+            var caixaEntrada = new Caixa
+            {
+                Categoria = Caixa.CategoriaMovimentacao.Entrada,
+                Descricao = "Pagamento pelo serviço: <strong>" + agendamento.Servicos.Nome + "</strong>",
+                Valor = agendamento.Servicos.Preco,
+                Data = agendamento.Data,
+                ID_Agendamento = agendamento.ID_Agendamentos,
+                UsuarioID = agendamento.UsuarioID
+            };
+
+            _context.Caixa.Add(caixaEntrada);
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao adicionar entrada no caixa: {ex.Message}");
+            }
+        }
+
+        public async Task<IActionResult> DesmarcarConcluido(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Forbid();
+            }
+
+            var agendamento = await _context.Agendamentos
+                .Where(a => a.UsuarioID == int.Parse(userId))
+                .Include(a => a.Cliente)
+                .Include(a => a.Profissionais)
+                .Include(a => a.Servicos)
+                .Include(a => a.Caixa)
+                .FirstOrDefaultAsync(a => a.ID_Agendamentos == id);
+
+            if (agendamento != null)
+            {
+                var statusAntigo = agendamento.Status;
+
+                if (agendamento.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido)
+                {
+                    agendamento.Status = AGENDAHUB.Models.Agendamentos.StatusAgendamento.Pendente;
 
                     try
                     {
-                        _context.SaveChanges();
-                        Console.WriteLine(caixaEntrada);
-                        Console.WriteLine(agendamento.Servicos.Nome);
-                        Console.WriteLine(agendamento.Servicos.Preco);
-                        Console.WriteLine(agendamento.Data);
+                        await _context.SaveChangesAsync();
+                        RemoverDoCaixa(agendamento);
+                        TempData["MessageDesmarcarConcluido"] = "Agendamento desmarcado como concluído com sucesso.";
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Erro ao adicionar entrada no caixa: {ex.Message}");
+                        TempData["ErrorMessage"] = $"Ocorreu um erro ao desmarcar o agendamento como concluído: {ex.Message}";
                     }
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        private void RemoverDoCaixa(Agendamentos agendamento)
+        {
+            var caixaEntrada = _context.Caixa
+                .FirstOrDefault(c => c.ID_Agendamento == agendamento.ID_Agendamentos);
+
+            if (caixaEntrada != null)
+            {
+                _context.Caixa.Remove(caixaEntrada);
+
+                try
+                {
+                    _context.SaveChanges();
+                    Console.WriteLine($"Registro do Caixa removido para o agendamento: {agendamento.ID_Agendamentos}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao remover registro do Caixa: {ex.Message}");
                 }
             }
         }
     }
 }
+
+
