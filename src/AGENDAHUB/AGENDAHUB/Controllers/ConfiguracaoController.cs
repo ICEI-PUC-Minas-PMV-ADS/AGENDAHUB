@@ -124,6 +124,8 @@ namespace AGENDAHUB.Controllers
                     usuario.Configuracao.Cnpj = configuracao.Cnpj;
                     usuario.Configuracao.Endereco = configuracao.Endereco;
                     usuario.Configuracao._Email = configuracao._Email;
+                    usuario.Configuracao.Usuario.NomeUsuario = usuario.NomeUsuario;
+                    usuario.Configuracao.Usuario.Email = usuario.Email;
 
                     _context.Entry(usuario).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
@@ -140,7 +142,43 @@ namespace AGENDAHUB.Controllers
             return View(configuracao);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditDadosEmpresariais(Configuracao configuracao)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
+                    if (usuario == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Atualizar propriedades da entidade Configuracao com base no modelo do formulário
+                  
+                    usuario.Configuracao.Usuario.NomeUsuario = usuario.NomeUsuario;
+                    usuario.Configuracao.Usuario.Email = usuario.Email;
+
+                    _context.Entry(usuario).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Configuracao");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
+                }
+            }
+
+            // Se houver erros de validação, retorne para a View com os dados existentes
+            return View(configuracao);
+        }
+
+        /*
         [HttpGet]
         public IActionResult EditInformacoesEmpresariais()
         {
@@ -196,6 +234,7 @@ namespace AGENDAHUB.Controllers
             }
             return View("Index", usuario.Configuracao);
         }
+        */
 
     }
 }
