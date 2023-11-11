@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -16,14 +15,20 @@ namespace AGENDAHUB.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UsuarioService _usuarioService;
+       
 
-        public ConfiguracaoController(UsuarioService usuarioService, IHttpContextAccessor httpContextAccessor, AppDbContext context)
+        public ConfiguracaoController(IHttpContextAccessor httpContextAccessor, AppDbContext context)
         {
             _httpContextAccessor = httpContextAccessor;
             _context = context;
-            _usuarioService = usuarioService;
+           
         }
+        public class UsuarioConfiguracaoViewModel
+        {
+            public Usuario Usuario { get; set; }
+            public List<Configuracao> Configuracoes { get; set; }
+        }
+
 
         public IActionResult Index()
         {
@@ -35,12 +40,20 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            // Retorna uma lista contendo apenas a Configuracao do Usuario para a View
-            return View(new List<Configuracao> { usuario.Configuracao });
+            var viewModel = new UsuarioConfiguracaoViewModel
+            {
+                Usuario = usuario,
+                Configuracoes = new List<Configuracao> { usuario.Configuracao }
+            };
+
+            // Retorna o ViewModel para a View
+            return View(viewModel);
         }
 
 
+
         // GET: Configuracao/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -69,7 +82,7 @@ namespace AGENDAHUB.Controllers
                     usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
                     usuario.Configuracao.Cnpj = configuracao.Cnpj;
                     usuario.Configuracao.Endereco = configuracao.Endereco;
-                    usuario.Configuracao._Email = configuracao._Email;
+                    usuario.Configuracao.Email = configuracao.Email;
 
                     _context.Update(usuario.Configuracao);
                 }
@@ -123,7 +136,9 @@ namespace AGENDAHUB.Controllers
                     usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
                     usuario.Configuracao.Cnpj = configuracao.Cnpj;
                     usuario.Configuracao.Endereco = configuracao.Endereco;
-                    usuario.Configuracao._Email = configuracao._Email;
+                    usuario.Configuracao.Email = configuracao.Email;
+                    usuario.Configuracao.Usuario.NomeUsuario = usuario.NomeUsuario;
+                    usuario.Configuracao.Usuario.Email = usuario.Email;
 
                     _context.Entry(usuario).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
@@ -140,61 +155,55 @@ namespace AGENDAHUB.Controllers
             return View(configuracao);
         }
 
-
         [HttpGet]
-        public IActionResult EditInformacoesEmpresariais()
+        public async Task<IActionResult> Delete(int? id)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
-
-            if (usuario == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            // Corrige aqui para passar a configuração diretamente para a View
-            return View("Index", usuario.Configuracao);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // Recupere a configuração do usuário
+            var configuracao = await _context.Configuracao
+                .Where(a => a.UsuarioID == int.Parse(userId))
+                .FirstOrDefaultAsync(m => m.ID_Configuracao == id);
+
+            // Se a configuração não existir, retorne NotFound
+            if (configuracao == null)
+            {
+                return NotFound();
+            }
+
+            return View(configuracao);
         }
 
 
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditInformacoesEmpresariais(int id, Usuario usuario)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (id != usuario.Id)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuario = _context.Usuarios
+                .Include(u => u.Configuracao)
+                .FirstOrDefault(u => u.Id.ToString() == userId);
+
+            if (usuario == null || usuario.Configuracao == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            // Verifique se o ID da configuração corresponde ao ID fornecido
+            if (usuario.Configuracao.ID_Configuracao != id)
             {
-                try
-                {
-                    var existingUsuario = await _context.Usuarios.Include(u => u.Configuracao).FirstOrDefaultAsync(u => u.Id == id);
-
-                    if (existingUsuario == null)
-                    {
-                        return NotFound();
-                    }
-
-                    existingUsuario.Configuracao.NomeEmpresa = usuario.Configuracao.NomeEmpresa;
-                    existingUsuario.Configuracao.Cnpj = usuario.Configuracao.Cnpj;
-                    existingUsuario.Configuracao.Endereco = usuario.Configuracao.Endereco;
-                    existingUsuario.Configuracao._Email = usuario.Configuracao._Email;
-
-                    _context.Entry(existingUsuario).State = EntityState.Modified;
-
-                    await _context.SaveChangesAsync();
-
-                    // Altere a linha abaixo para redirecionar para o método adequado
-                    return RedirectToAction("Edit", "ConfiguracaoController");
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
-                }
+                return NotFound();
             }
-            return View("Index", usuario.Configuracao);
+
+            _context.Configuracao.Remove(usuario.Configuracao);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
 
     }

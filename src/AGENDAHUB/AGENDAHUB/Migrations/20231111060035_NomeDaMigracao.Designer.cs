@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231111060035_NomeDaMigracao")]
+    partial class NomeDaMigracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,9 +154,6 @@ namespace AGENDAHUB.Migrations
                     b.Property<int>("DiaDaSemana")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
 
@@ -165,11 +164,13 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("time");
 
                     b.Property<string>("NomeEmpresa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioID")
                         .HasColumnType("int");
+
+                    b.Property<string>("_Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID_Configuracao");
 
@@ -269,12 +270,27 @@ namespace AGENDAHUB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Cnpj")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiaDaSemana")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Imagem")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Endereco")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("HoraFim")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("HoraInicio")
+                        .HasColumnType("time");
+
+                    b.Property<string>("NomeEmpresa")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeUsuario")
                         .IsRequired()
@@ -286,6 +302,9 @@ namespace AGENDAHUB.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("_Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -1,0 +1,15 @@
+﻿@model AGENDAHUB.Models.Usuario
+
+<h2>Excluir Usuário</h2>
+
+<div>
+    <h4>Você tem certeza que deseja excluir este usuário?</h4>
+    <h3>@Model.NomeUsuario</h3>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            <a asp-action="Index">Voltar para a Lista</a>
+        </div>
+    </form>
+</div>

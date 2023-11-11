@@ -1,0 +1,53 @@
+﻿@* @model IEnumerable<AGENDAHUB.Models.Usuario>
+
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagem)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => usuario.NomeUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => usuario.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => usuario.Perfil)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => usuario.Imagem)
+
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@usuario.Id">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@usuario.Id">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhum usuário disponível.</p>
+} *@

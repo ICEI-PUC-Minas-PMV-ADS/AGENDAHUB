@@ -1,16 +1,11 @@
 ﻿@model AGENDAHUB.Models.Usuario
 
-@{
-    ViewData["Title"] = "Create";
-}
+<h2>Criar Usuário</h2>
 
-<h1>Create</h1>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4 text-center">
 
-<h4>Usuario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NomeUsuario" class="control-label"></label>
@@ -29,29 +24,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="Perfil" class="control-label"></label>
-                <select asp-for="Perfil" class="form-control"></select>
+                <select asp-for="Perfil" class="form-control">
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
                 <span asp-validation-for="Perfil" class="text-danger"></span>
             </div>
-<<<<<<< HEAD
-     
-=======
             <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
                 <input type="file" name="file" asp-for="Imagem" class="form-control" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
->>>>>>> 562c1d6779628da39f40832f2635fec8c4149f8a
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

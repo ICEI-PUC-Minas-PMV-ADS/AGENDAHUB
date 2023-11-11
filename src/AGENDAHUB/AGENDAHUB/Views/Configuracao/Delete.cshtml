@@ -1,0 +1,44 @@
+﻿@model AGENDAHUB.Models.Configuracao
+
+@{
+    ViewData["Title"] = "Excluir Configuração";
+}
+
+<h1 class="text-center">Excluir Configuração</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Delete" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="NomeEmpresa" class="control-label">Nome da Empresa</label>
+                <input asp-for="NomeEmpresa" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cnpj" class="control-label">CNPJ</label>
+                <input asp-for="Cnpj" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Endereco" class="control-label">Endereço</label>
+                <input asp-for="Endereco" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <p>Tem certeza que deseja excluir esta configuração?</p>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Excluir" class="btn btn-danger" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

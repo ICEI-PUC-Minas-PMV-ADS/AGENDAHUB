@@ -10,6 +10,8 @@
     <Compile Remove="Controllers\UsuariosController.cs" />
     <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.cs" />
     <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.Designer.cs" />
+    <Compile Remove="Migrations\20231111060035_NomeDaMigracao.cs" />
+    <Compile Remove="Migrations\20231111060035_NomeDaMigracao.Designer.cs" />
     <Compile Remove="Models\Cliente.cs" />
     <Compile Remove="Models\ConfiguracaoUsuario.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
@@ -18,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Models\UsuarioConfiguracaoViewModel.cshtml" />
     <Content Remove="Views\Home\Clientes.cshtml" />
     <Content Remove="Views\Home\Configurações.cshtml" />
     <Content Remove="wwwroot\css\Login.cs" />

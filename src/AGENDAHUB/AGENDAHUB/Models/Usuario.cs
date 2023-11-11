@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,10 +16,6 @@ namespace AGENDAHUB.Models
         [MaxLength(50)]
         public string NomeUsuario { get; set; }
 
-
-        //[Required(ErrorMessage ="Obrigatório informar o nome")]
-        //public string Nome { get; set; }
-
         [EmailAddress]
         [Required(ErrorMessage = "Obrigatório informar o email")]
         public string Email { get; set; }
@@ -31,14 +26,11 @@ namespace AGENDAHUB.Models
 
         [Required(ErrorMessage = "Obrigatório informar o perfil")]
         public Perfil Perfil { get; set; }
+        public byte[] Imagem { get; set; }
+
         public Configuracao Configuracao { get; set; } // Propriedade de navegação para a configuração
         public Profissionais Profissionais { get; set; } // Propriedade de navegação para a configuração
-
     }
-
-
-
-
 
     public enum Perfil
     {

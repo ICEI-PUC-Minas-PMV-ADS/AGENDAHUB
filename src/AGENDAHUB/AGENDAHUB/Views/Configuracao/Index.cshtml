@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AGENDAHUB.Models.Configuracao>
+﻿@model AGENDAHUB.Controllers.ConfiguracaoController.UsuarioConfiguracaoViewModel
 
 @{
     ViewData["Title"] = "Configurações";
@@ -11,44 +11,67 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-md-7">
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
+
             <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home-tab-pane" role="tab" aria-controls="home-tab-pane" aria-selected="true">Informações Empresariais</a>
+                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home-tab-pane" role="tab" aria-controls="home-tab-pane" aria-selected="true">Informações Cadastrais</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile-tab-pane" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Informações Cadastrais</a>
+                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile-tab-pane" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Informações Empresariais</a>
             </li>
             <li class="nav-item" role="presentation">
                 <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact-tab-pane" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Informações Bancarias</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="disabled-tab" data-bs-toggle="tab" href="#disabled-tab-pane" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Informações de Atendimento</a>
+                <a class="nav-link" id="disabled-tab" data-bs-toggle="tab" href="#disabled-tab-pane" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Informações de Atendimento</a>
             </li>
+
         </ul>
 
         <div class="tab-content" id="myTabContent">
 
+            <!-- Conteúdo da aba Informações Cadastrais -->
+            <div class="tab-pane fade active show" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
+                @if (Model != null && Model.Usuario != null)
+                {
+                    @await Html.PartialAsync("_UsuariosPartial", new List<Usuario> { Model.Usuario })
+                }
+                else
+                {
+                    <div class="text-center">
+                        <p>Nenhuma informação disponível.</p>
+                    </div>
+                }
+            </div>
+
+
             <!-- Conteúdo da aba Informações Empresariais -->
-            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
-                    @if (Model != null && Model.Any())
+                    @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                     {
-                        foreach (var configuracao in Model)
+                        foreach (var configuracao in Model.Configuracoes)
                         {
                             if (configuracao != null)
                             {
-                                <div class="col-md-4 mb-4">
+                                <div class="col-xl-12 mb-4">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">@configuracao.NomeEmpresa</h5>
                                             <p class="card-text">
-                                                <strong>CNPJ:</strong> @configuracao.Cnpj <br />
+                                                <strong>CNPJ:</strong> @configuracao.FormatarCNPJ()<br />
                                                 <strong>Endereço:</strong> @configuracao.Endereco <br />
-                                                <strong>Email:</strong> @configuracao._Email
+                                                <strong>Email:</strong> @configuracao.Email
                                             </p>
-                                            <a asp-action="Edit" asp-route-id="@configuracao.ID_Configuracao" class="btn btn-primary">Edit</a>
-                                            <a asp-action="Details" asp-route-id="@configuracao.ID_Configuracao" class="btn btn-secondary">Details</a>
-                                            <a asp-action="Delete" asp-route-id="@configuracao.ID_Configuracao" class="btn btn-danger">Delete</a>
+                                            <div class="btn-group d-flex justify-content-end" role="group">
+                                                <a asp-action="Edit" asp-route-id="@configuracao.ID_Configuracao">
+                                                    <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@configuracao.ID_Configuracao">
+                                                    <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -65,46 +88,25 @@
                 </div>
             </div>
 
-            <!-- Conteúdo da aba Informações Cadastrais -->
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
-                @if (Model == null || !Model.Any())
-                {
-                    <div class="text-center">
-                        <p>Nenhuma informação disponível.</p>
-                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Cadastrais</a>
-                    </div>
-                }
-            </div>
-
-            <!-- Conteúdo da aba Informações Cadastrais -->
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
-                @if (Model == null || !Model.Any())
-                {
-                    <div class="text-center">
-                        <p>Nenhuma informação disponível.</p>
-                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Cadastrais</a>
-                    </div>
-                }
-            </div>
 
             <!-- Conteúdo da aba Informações Bancárias -->
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab">
-                @if (Model == null || !Model.Any())
+                @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                 {
                     <div class="text-center">
                         <p>Nenhuma informação disponível.</p>
-                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Bancários</a>
+                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Informações Bancárias</a>
                     </div>
                 }
             </div>
 
             <!-- Conteúdo da aba Informações de Atendimento -->
             <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab">
-                @if (Model == null || !Model.Any())
+                @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                 {
                     <div class="text-center">
                         <p>Nenhuma informação disponível.</p>
-                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados de Atendimento</a>
+                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Informações de Atendimento</a>
                     </div>
                 }
             </div>

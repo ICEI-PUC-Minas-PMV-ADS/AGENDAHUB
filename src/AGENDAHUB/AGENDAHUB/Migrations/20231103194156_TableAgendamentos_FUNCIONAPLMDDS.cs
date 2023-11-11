@@ -8,7 +8,7 @@ namespace AGENDAHUB.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
+
             migrationBuilder.DropForeignKey(
                 name: "FK_Agendamentos_Profissionais_ProfissionalID",
                 table: "Agendamentos");
