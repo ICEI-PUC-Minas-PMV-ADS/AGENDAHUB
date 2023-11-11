@@ -16,8 +16,9 @@
                     <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
                     <h1 style="font-size:19px" class="card-text"> @Html.DisplayFor(model => model.Profissional.Nome)</h1>
                     </div>
-                <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = Model.ID_Servico })" alt="servico" />
-
+                    <div class="card-image">
+                    <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = Model.ID_Servico })" alt="servico" />
+                    </div>
                         <div class="card-body">
 
 

@@ -1,12 +1,16 @@
 ﻿body {
-
+   
 }
 
 
 .card {
-
+    background: #e8e8e8;
+    box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #dadada;
     transition: 0.4s;
 }
+
+
+
 
 .card:hover {
     translate: 0 -10px;
@@ -55,4 +59,30 @@
     margin: 1px 0 0 10px;
     font-size: 13px;
     color: #636363;
+}
+
+.card-image img {
+    min-height: 11.067708333333334vw;
+    max-height: 13.020833333333334vw;
+    width: 100%; /* Para garantir que a imagem se ajuste ao contêiner */
+    object-fit: cover;
+    background-color: #c9c9c9;
+    border-radius: 15px;
+    box-shadow: inset 8px 8px 10px #c3c3c3, inset -8px -8px 10px #cfcfcf;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Alinhe os cards verticalmente */
+        align-items: center; /* Centralize os cards verticalmente */
+    }
+
+    .card {
+        width: 90%; /* Ajuste a largura para ocupar a largura da viewport */
+    }
+
+    /* Aumente o max-height para telas menores */
+    .card-image img {
+        max-height: 200px; /* Ajuste este valor conforme necessário */
+    }
 }
