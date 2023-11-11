@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Models\UsuarioConfiguracaoViewModel.cshtml" />
     <Content Remove="Views\Home\Clientes.cshtml" />
     <Content Remove="Views\Home\Configurações.cshtml" />
     <Content Remove="wwwroot\css\Login.cs" />

@@ -133,12 +133,10 @@ namespace AGENDAHUB.Controllers
                 servicos.UsuarioID = userId;
                 if (file.Headers != null && file.Length > 0)
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(target: memoryStream);
-                        byte[] data = memoryStream.ToArray();
-                        servicos.Imagem = memoryStream.ToArray();
-                    }
+                    using var memoryStream = new MemoryStream();
+                    await file.CopyToAsync(target: memoryStream);
+                    byte[] data = memoryStream.ToArray();
+                    servicos.Imagem = memoryStream.ToArray();
                 }
                 _context.Add(servicos);
                 await _context.SaveChangesAsync();
@@ -189,11 +187,9 @@ namespace AGENDAHUB.Controllers
                 {
                     if (Imagem != null)
                     {
-                        using (var stream = new MemoryStream())
-                        {
-                            await Imagem.CopyToAsync(stream);
-                            servicos.Imagem = stream.ToArray();
-                        }
+                        using var stream = new MemoryStream();
+                        await Imagem.CopyToAsync(stream);
+                        servicos.Imagem = stream.ToArray();
                     }
                     servicos.UsuarioID = userId;
                     _context.Update(servicos);
@@ -215,6 +211,8 @@ namespace AGENDAHUB.Controllers
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
+
+
         [Authorize(Roles = "Admin, User, Profissional")]
         public async Task<IActionResult> Delete(int? id)
         {

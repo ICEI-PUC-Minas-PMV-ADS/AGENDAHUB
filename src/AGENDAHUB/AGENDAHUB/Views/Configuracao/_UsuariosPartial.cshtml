@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AGENDAHUB.Models.Usuario>
+
+@foreach (var usuario in Model)
+{
+    <div class="col-xl-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-title"><strong>Usuário: </strong>@usuario.NomeUsuario</p>
+                <p class="card-text">
+                    <strong>Email:</strong> @usuario.Email <br />
+                    <strong>Perfil:</strong> @usuario.Perfil <br />
+                </p>
+                @if (usuario.Imagem != null && usuario.Imagem.Length > 0)
+                {
+                    <img src="data:image/png;base64,@Convert.ToBase64String(usuario.Imagem)" alt="Imagem do Usuário" class="img-fluid" />
+                }
+
+                <div class="btn-group d-flex justify-content-end" role="group">
+                    <a asp-controller="Usuario" asp-action="Edit" asp-route-id="@usuario.Id">
+                        <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                    </a>
+                    <a asp-controller="Usuario" asp-action="Delete" asp-route-id="@usuario.Id">
+                        <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
