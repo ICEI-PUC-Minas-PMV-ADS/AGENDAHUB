@@ -41,7 +41,6 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            // Cria um ViewModel que contém informações tanto de Usuario quanto de Configuracao
             var viewModel = new UsuarioConfiguracaoViewModel
             {
                 Usuario = usuario,
@@ -51,6 +50,8 @@ namespace AGENDAHUB.Controllers
             // Retorna o ViewModel para a View
             return View(viewModel);
         }
+
+
 
         // GET: Configuracao/Create
         [HttpGet]
@@ -152,5 +153,58 @@ namespace AGENDAHUB.Controllers
             // Se houver erros de validação, retorne para a View com os dados existentes
             return View(configuracao);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // Recupere a configuração do usuário
+            var configuracao = await _context.Configuracao
+                .Where(a => a.UsuarioID == int.Parse(userId))
+                .FirstOrDefaultAsync(m => m.ID_Configuracao == id);
+
+            // Se a configuração não existir, retorne NotFound
+            if (configuracao == null)
+            {
+                return NotFound();
+            }
+
+            return View(configuracao);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuario = _context.Usuarios
+                .Include(u => u.Configuracao)
+                .FirstOrDefault(u => u.Id.ToString() == userId);
+
+            if (usuario == null || usuario.Configuracao == null)
+            {
+                return NotFound();
+            }
+
+            // Verifique se o ID da configuração corresponde ao ID fornecido
+            if (usuario.Configuracao.ID_Configuracao != id)
+            {
+                return NotFound();
+            }
+
+            _context.Configuracao.Remove(usuario.Configuracao);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Configuracao");
+        }
+
+
     }
 }

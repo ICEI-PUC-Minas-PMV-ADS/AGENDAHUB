@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AGENDAHUB.Models.Configuracao>
+﻿@model AGENDAHUB.Controllers.ConfiguracaoController.UsuarioConfiguracaoViewModel
 
 @{
     ViewData["Title"] = "Configurações";
@@ -33,20 +33,9 @@
 
             <!-- Conteúdo da aba Informações Cadastrais -->
             <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
-                @if (Model != null && Model.Any())
+                @if (Model != null && Model.Usuario != null)
                 {
-                    var usuarios = Model.Where(usuario => usuario != null).ToList();
-                    if (usuarios.Any())
-                    {
-                        <!-- Inclua a tabela de usuários aqui -->
-                        @await Html.PartialAsync("_UsuariosPartial", usuarios)
-                    }
-                    else
-                    {
-                        <div class="text-center">
-                            <p>Nenhuma informação disponível.</p>
-                        </div>
-                    }
+                    @await Html.PartialAsync("_UsuariosPartial", new List<Usuario> { Model.Usuario })
                 }
                 else
                 {
@@ -60,9 +49,9 @@
             <!-- Conteúdo da aba Informações Empresariais -->
             <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
-                    @if (Model != null && Model.Any())
+                    @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                     {
-                        foreach (var configuracao in Model)
+                        foreach (var configuracao in Model.Configuracoes)
                         {
                             if (configuracao != null)
                             {
@@ -102,7 +91,7 @@
 
             <!-- Conteúdo da aba Informações Bancárias -->
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab">
-                @if (Model == null || !Model.Any())
+                @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                 {
                     <div class="text-center">
                         <p>Nenhuma informação disponível.</p>
@@ -113,7 +102,7 @@
 
             <!-- Conteúdo da aba Informações de Atendimento -->
             <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab">
-                @if (Model == null || !Model.Any())
+                @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                 {
                     <div class="text-center">
                         <p>Nenhuma informação disponível.</p>
