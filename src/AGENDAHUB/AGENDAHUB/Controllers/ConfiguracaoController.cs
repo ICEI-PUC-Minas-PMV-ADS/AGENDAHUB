@@ -40,7 +40,6 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            // Cria um ViewModel que contém informações tanto de Usuario quanto de Configuracao
             var viewModel = new UsuarioConfiguracaoViewModel
             {
                 Usuario = usuario,
@@ -50,6 +49,8 @@ namespace AGENDAHUB.Controllers
             // Retorna o ViewModel para a View
             return View(viewModel);
         }
+
+
 
         // GET: Configuracao/Create
         [HttpGet]
@@ -155,123 +156,56 @@ namespace AGENDAHUB.Controllers
         }
 
         [HttpGet]
-        [ActionName("EditDadosEmpresariais")]
-        public IActionResult EditDadosEmpresariais()
+        public async Task<IActionResult> Delete(int? id)
         {
-            // Lógica para obter os dados necessários (se houver) e exibi-los na View
-
-            // Exemplo:
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id.ToString() == userId);
-
-            if (usuario == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            return View(usuario);
-        }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            // Recupere a configuração do usuário
+            var configuracao = await _context.Configuracao
+                .Where(a => a.UsuarioID == int.Parse(userId))
+                .FirstOrDefaultAsync(m => m.ID_Configuracao == id);
 
-        [HttpPost]
-        [ActionName("EditDadosEmpresariais")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditDadosEmpresariais(Usuario usuario)
-        {
-            if (ModelState.IsValid)
+            // Se a configuração não existir, retorne NotFound
+            if (configuracao == null)
             {
-                try
-                {
-                    // Obtenha o ID do usuário logado
-                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-                    // Busque o usuário na base de dados
-                    var userInDatabase = await _context.Usuarios.FindAsync(userId);
-
-                    if (userInDatabase == null)
-                    {
-                        return NotFound();
-                    }
-
-                    // Atualize as informações do usuário com base no modelo do formulário
-                    userInDatabase.NomeUsuario = usuario.NomeUsuario;
-                    userInDatabase.Email = usuario.Email;
-
-                    // Atualize a base de dados
-                    await _context.SaveChangesAsync();
-
-                    // Redirecione para a ação Index após a edição
-                    return RedirectToAction("Index", "Configuracao");
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
-                }
+                return NotFound();
             }
 
-            // Se houver erros de validação, retorne para a View com os dados existentes
-            return View(usuario);
+            return View(configuracao);
         }
 
 
-
-        /*
-        [HttpGet]
-        public IActionResult EditInformacoesEmpresariais()
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+            var usuario = _context.Usuarios
+                .Include(u => u.Configuracao)
+                .FirstOrDefault(u => u.Id.ToString() == userId);
 
-            if (usuario == null)
+            if (usuario == null || usuario.Configuracao == null)
             {
                 return NotFound();
             }
 
-            // Corrige aqui para passar a configuração diretamente para a View
-            return View("Index", usuario.Configuracao);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditInformacoesEmpresariais(int id, Usuario usuario)
-        {
-            if (id != usuario.Id)
+            // Verifique se o ID da configuração corresponde ao ID fornecido
+            if (usuario.Configuracao.ID_Configuracao != id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var existingUsuario = await _context.Usuarios.Include(u => u.Configuracao).FirstOrDefaultAsync(u => u.Id == id);
+            _context.Configuracao.Remove(usuario.Configuracao);
+            await _context.SaveChangesAsync();
 
-                    if (existingUsuario == null)
-                    {
-                        return NotFound();
-                    }
-
-                    existingUsuario.Configuracao.NomeEmpresa = usuario.Configuracao.NomeEmpresa;
-                    existingUsuario.Configuracao.Cnpj = usuario.Configuracao.Cnpj;
-                    existingUsuario.Configuracao.Endereco = usuario.Configuracao.Endereco;
-                    existingUsuario.Configuracao._Email = usuario.Configuracao._Email;
-
-                    _context.Entry(existingUsuario).State = EntityState.Modified;
-
-                    await _context.SaveChangesAsync();
-
-                    // Altere a linha abaixo para redirecionar para o método adequado
-                    return RedirectToAction("Edit", "ConfiguracaoController");
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
-                }
-            }
-            return View("Index", usuario.Configuracao);
+            return RedirectToAction("Index", "Configuracao");
         }
-        */
+
 
     }
 }

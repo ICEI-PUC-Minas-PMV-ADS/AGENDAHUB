@@ -1,4 +1,4 @@
-﻿@model AGENDAHUB.Models.ConfiguracaoUsuarioViewModel
+﻿@model AGENDAHUB.Controllers.ConfiguracaoController.UsuarioConfiguracaoViewModel
 
 @{
     ViewData["Title"] = "Configurações";
@@ -30,81 +30,20 @@
         </ul>
 
         <div class="tab-content" id="myTabContent">
-            @foreach (var usuario in Model.Usuario)
-            {
-                   <!-- Conteúdo da aba Informações Cadastrais -->
-                <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="row">
-                        <form asp-action="EditDadosEmpresariais" asp-controller="Configuracao" method="post">
 
-                            <div class="form-group pt-2">
-                                <label asp-for="@usuario.NomeUsuario" class="pt-2"></label>
-                                <div class="pt-2">
-                                    <input asp-for="@usuario.NomeUsuario" class="form-control" />
-                                    <span asp-validation-for="@usuario.NomeUsuario" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group pt-2">
-                                <label asp-for="@usuario.Email" class="pt-2"></label>
-                                <div class="pt-2">
-                                    <input asp-for="@usuario.Email" class="form-control" />
-                                    <span asp-validation-for="@usuario.Email" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="justify-content-center">
-                                <div class="form-group pt-4">
-                                    <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
-                                    <button type="submit" class="btn btn-outline-info">Salvar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    @*
-                @if (Model == null || !Model.Any())
+            <!-- Conteúdo da aba Informações Cadastrais -->
+            <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
+                @if (Model != null && Model.Usuario != null)
                 {
-                <div class="text-center">
-                <p>Nenhuma informação disponível.</p>
-                <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Cadastrais</a>
-                </div>
+                    @await Html.PartialAsync("_UsuariosPartial", new List<Usuario> { Model.Usuario })
                 }
-                *@
-                </div>
-}
-                @foreach (var configuracao in Model.Configuracao)
+                else
                 {
-                    
-               
-            <!-- Conteúdo da aba Informações Empresariais -->
-                <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="home-tab">
-                <div class="row">
-                        <form asp-action="Edit" asp-controller="Configuracao" method="post">
-
-                            <div class="form-group pt-2">
-                                <label asp-for="@configuracao.NomeEmpresa" class="pt-2"></label>
-                                <div class="pt-2">
-                                    <input asp-for="@configuracao.NomeEmpresa" class="form-control" />
-                                    <span asp-validation-for="@configuracao.NomeEmpresa" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                        <div class="form-group pt-2">
-                            <label asp-for="@configuracao.Cnpj" class="pt-2"></label>
-                            <div class="pt-2">
-                                <input asp-for="@configuracao.Cnpj" class="form-control" />
-                                <span asp-validation-for="@configuracao.Cnpj" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group pt-2">
-                            <label asp-for="@configuracao.Endereco" class="pt-2"></label>
-                            <div class="pt-2">
-                                <input asp-for="@configuracao.Endereco" class="form-control" />
-                                <span asp-validation-for="@configuracao.Endereco" class="text-danger"></span>
-                            </div>
-                        </div>
+                    <div class="text-center">
+                        <p>Nenhuma informação disponível.</p>
+                    </div>
+                }
+            </div>
 
                         <div class="form-group pt-2">
                             <label asp-for="@configuracao._Email" class="pt-2"></label>
@@ -114,34 +53,51 @@
                             </div>
                         </div>
 
-                        <div class="justify-content-center">
-                            <div class="form-group pt-4">
-                                <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
-                                <button type="submit" class="btn btn-outline-info">Salvar</button>
-                            </div>
+            <!-- Conteúdo da aba Informações Empresariais -->
+            <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                    @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
+                    {
+                        foreach (var configuracao in Model.Configuracoes)
+                        {
+                            if (configuracao != null)
+                            {
+                                <div class="col-xl-12 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@configuracao.NomeEmpresa</h5>
+                                            <p class="card-text">
+                                                <strong>CNPJ:</strong> @configuracao.FormatarCNPJ()<br />
+                                                <strong>Endereço:</strong> @configuracao.Endereco <br />
+                                                <strong>Email:</strong> @configuracao.Email
+                                            </p>
+                                            <div class="btn-group d-flex justify-content-end" role="group">
+                                                <a asp-action="Edit" asp-route-id="@configuracao.ID_Configuracao">
+                                                    <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@configuracao.ID_Configuracao">
+                                                    <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-12 text-center">
+                            <p>Nenhuma informação disponível.</p>
+                            <a asp-action="Create" class="btn btn-outline-info">Cadastrar Informações Empresariais</a>
                         </div>
-                    </form>
+                    }
                 </div>
-            </div>
-
-             
-}
-            
-@*
-            <!-- Conteúdo da aba Informações Cadastrais -->
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
-                @if (Model == null || !Model.Any())
-                {
-                    <div class="text-center">
-                        <p>Nenhuma informação disponível.</p>
-                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Cadastrais</a>
-                    </div>
-                }
             </div>
 
             <!-- Conteúdo da aba Informações Bancárias -->
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab">
-                @if (Model == null || !Model.Any())
+                @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                 {
                     <div class="text-center">
                         <p>Nenhuma informação disponível.</p>
@@ -152,7 +108,7 @@
 
             <!-- Conteúdo da aba Informações de Atendimento -->
             <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab">
-                @if (Model == null || !Model.Any())
+                @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                 {
                     <div class="text-center">
                         <p>Nenhuma informação disponível.</p>
