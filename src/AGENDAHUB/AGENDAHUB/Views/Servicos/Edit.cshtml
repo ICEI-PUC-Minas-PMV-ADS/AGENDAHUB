@@ -36,7 +36,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
-                <input asp-for="Imagem" type="file" name="Imagem" id="Imagem" class="form-control" />
+
+                @if (ViewBag.HasExistingImage)
+                {
+                    <div style="text-align: center; margin-bottom: 3%">
+                        <img style="width: 10rem; height: 11rem; border-radius: 0.7rem;" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
+                    </div>
+                }
+
+                <input asp-for="Imagem" type="file" class="form-control" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
         <div class="form-group pt-4">
