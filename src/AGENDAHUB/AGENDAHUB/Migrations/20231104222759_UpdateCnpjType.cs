@@ -28,7 +28,7 @@ namespace AGENDAHUB.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)"
                 );
-               
+
         }
     }
 }

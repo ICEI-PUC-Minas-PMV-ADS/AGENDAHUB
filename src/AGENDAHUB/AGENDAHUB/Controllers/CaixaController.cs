@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AGENDAHUB.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using AGENDAHUB.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using static AGENDAHUB.Models.Caixa;
 
 namespace AGENDAHUB.Controllers

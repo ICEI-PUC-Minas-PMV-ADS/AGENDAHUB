@@ -24,7 +24,7 @@ namespace AGENDAHUB.Models
 
         public byte[] Imagem { get; set; }
 
-        public int ID_Profissional { get; set; }    
+        public int ID_Profissional { get; set; }
 
         [ForeignKey("ID_Profissional")]
         public Profissionais Profissional { get; set; }

@@ -1,0 +1,52 @@
+﻿@model AGENDAHUB.Models.Configuracao
+
+@{
+    ViewData["Title"] = "Dados Empresariais";
+}
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4 text-center">
+
+        <form asp-action="Edit">
+
+            <div class="form-group pt-2">
+                <label asp-for="NomeEmpresa" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="NomeEmpresa" class="form-control" />
+                    <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group pt-2">
+                <label asp-for="Cnpj" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="Cnpj" class="form-control" />
+                    <span asp-validation-for="Cnpj" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group pt-2">
+                <label asp-for="Endereco" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="Endereco" class="form-control" />
+                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group pt-2">
+                <label asp-for="_Email" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="_Email" class="form-control" />
+                    <span asp-validation-for="_Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="justify-content-center">
+                <div class="form-group pt-4">
+                    <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                    <button type="submit" class="btn btn-outline-info">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
