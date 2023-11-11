@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace AGENDAHUB.Models
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<Usuario, IdentityRole<int>, int>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -30,14 +32,21 @@ namespace AGENDAHUB.Models
                 .WithOne(c => c.Usuario)
                 .HasForeignKey<Configuracao>(c => c.UsuarioID);
 
+            // Configuração do relacionamento um-para-um entre Profissionais e Usuario
+            modelBuilder.Entity<Profissionais>()
+                .HasOne(p => p.Usuario)
+                .WithOne(u => u.Profissionais)
+                .HasForeignKey<Profissionais>(p => p.UsuarioID);
+
             modelBuilder.Entity<Agendamentos>()
                 .HasOne(a => a.Caixa)
                 .WithOne(c => c.Agendamento)
                 .HasForeignKey<Caixa>(c => c.ID_Agendamento);
 
-
+            modelBuilder.Entity<Usuario>().ToTable("Usuarios");
 
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

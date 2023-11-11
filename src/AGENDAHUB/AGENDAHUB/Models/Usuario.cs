@@ -7,10 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AGENDAHUB.Models
 {
     [Table("Usuarios")]
-    public class Usuario
+    public class Usuario : IdentityUser<int>
     {
         [Key]
-        public int Id { get; set; }
+        public new int Id { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar o Nome do Usuário")]
         [Remote("IsNomeUsuarioAvailable", "Usuario", ErrorMessage = "Esse Nome de Usuário já está em uso.")]
@@ -18,12 +18,9 @@ namespace AGENDAHUB.Models
         public string NomeUsuario { get; set; }
 
 
-        //[Required(ErrorMessage ="Obrigatório informar o nome")]
-        //public string Nome { get; set; }
-
         [EmailAddress]
         [Required(ErrorMessage = "Obrigatório informar o email")]
-        public string Email { get; set; }
+        public new string Email { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar a senha")]
         [DataType(DataType.Password)]

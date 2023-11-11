@@ -250,10 +250,12 @@ namespace AGENDAHUB.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(string email)
+        public async Task<ActionResult> ForgotPassword(string Email)
         {
             // Verificar se o e-mail fornecido existe na base de dados
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(Email);
+            //var user = await _userManager.FindByNameAsync(Email);
+
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
                 // Não revele que o usuário não existe ou não está confirmado

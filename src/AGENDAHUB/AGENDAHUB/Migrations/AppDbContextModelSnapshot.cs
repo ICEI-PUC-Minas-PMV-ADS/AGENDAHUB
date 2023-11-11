@@ -61,7 +61,7 @@ namespace AGENDAHUB.Migrations
 
                     b.HasIndex("UsuarioID");
 
-                    b.ToTable("Agendamentos");
+                    b.ToTable("Agendamentos", (string)null);
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Caixa", b =>
@@ -98,7 +98,7 @@ namespace AGENDAHUB.Migrations
 
                     b.HasIndex("UsuarioID");
 
-                    b.ToTable("Caixa");
+                    b.ToTable("Caixa", (string)null);
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Clientes", b =>
@@ -135,7 +135,7 @@ namespace AGENDAHUB.Migrations
 
                     b.HasIndex("UsuarioID");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Configuracao", b =>
@@ -175,7 +175,7 @@ namespace AGENDAHUB.Migrations
                     b.HasIndex("UsuarioID")
                         .IsUnique();
 
-                    b.ToTable("Configuracao");
+                    b.ToTable("Configuracao", (string)null);
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Profissionais", b =>
@@ -221,7 +221,7 @@ namespace AGENDAHUB.Migrations
                     b.HasIndex("UsuarioID")
                         .IsUnique();
 
-                    b.ToTable("Profissionais");
+                    b.ToTable("Profissionais", (string)null);
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
@@ -257,7 +257,7 @@ namespace AGENDAHUB.Migrations
 
                     b.HasIndex("UsuarioID");
 
-                    b.ToTable("Servicos");
+                    b.ToTable("Servicos", (string)null);
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Usuario", b =>
@@ -310,7 +310,7 @@ namespace AGENDAHUB.Migrations
                     b.HasIndex("NomeUsuario")
                         .IsUnique();
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Agendamentos", b =>
