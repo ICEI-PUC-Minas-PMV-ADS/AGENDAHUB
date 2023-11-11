@@ -1,44 +1,54 @@
-﻿@model AGENDAHUB.Models.Usuario
+﻿@model AGENDAHUB.Models.Configuracao
 
 @{
-    ViewData["Title"] = "Criar Usuário";
+    ViewData["Title"] = "Cadastrar Dados Empresariais";
 }
 
-<h1>Create</h1>
+<h1 class="text-center">Cadastrar Dados Empresariais</h1>
 
-<h4>Usuario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NomeUsuario" class="control-label"></label>
-                <input asp-for="NomeUsuario" class="form-control" />
-                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4 text-center">
+
+        <form asp-action="Create" method="post">
+
+            <div class="form-group pt-2">
+                <label asp-for="NomeEmpresa" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="NomeEmpresa" class="form-control" />
+                    <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+
+            <div class="form-group pt-2">
+                <label asp-for="Cnpj" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="Cnpj" class="form-control" />
+                    <span asp-validation-for="Cnpj" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
+
+            <div class="form-group pt-2">
+                <label asp-for="Endereco" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="Endereco" class="form-control" />
+                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                </div>
             </div>
-      
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="form-group pt-2">
+                <label asp-for="_Email" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="_Email" class="form-control" />
+                    <span asp-validation-for="_Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="justify-content-center">
+                <div class="form-group pt-4">
+                    <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                    <button type="submit" class="btn btn-outline-info">Salvar</button>
+                </div>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

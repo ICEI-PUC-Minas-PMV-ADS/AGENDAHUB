@@ -4,49 +4,110 @@
     ViewData["Title"] = "Configurações";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Configurações</h1>
 
-<p>
-    <a asp-action="Edit">Dados Cadastrais</a>
-</p>
-
-<p>
-    <a asp-controller="Profissionais" asp-action="Index">Cadastrar Usuario</a>
-
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioID)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-      
+<a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
 
 
-                @if (Model != null)
-                {
-                    foreach (var item in Model)
+<div class="row d-flex justify-content-center">
+    <div class="col-md-7">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home-tab-pane" role="tab" aria-controls="home-tab-pane" aria-selected="true">Informações Empresariais</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile-tab-pane" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Informações Cadastrais</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact-tab-pane" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Informações Bancarias</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="disabled-tab" data-bs-toggle="tab" href="#disabled-tab-pane" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Informações de Atendimento</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+
+            <!-- Conteúdo da aba Informações Empresariais -->
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                    @if (Model != null && Model.Any())
                     {
-                        if (item != null)
+                        foreach (var configuracao in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UsuarioID)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.ID_Configuracao">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.ID_Configuracao">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.ID_Configuracao">Delete</a>
-                                </td>
-                            </tr>
+                            if (configuracao != null)
+                            {
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@configuracao.NomeEmpresa</h5>
+                                            <p class="card-text">
+                                                <strong>CNPJ:</strong> @configuracao.Cnpj <br />
+                                                <strong>Endereço:</strong> @configuracao.Endereco <br />
+                                                <strong>Email:</strong> @configuracao._Email
+                                            </p>
+                                            <a asp-action="Edit" asp-route-id="@configuracao.ID_Configuracao" class="btn btn-primary">Edit</a>
+                                            <a asp-action="Details" asp-route-id="@configuracao.ID_Configuracao" class="btn btn-secondary">Details</a>
+                                            <a asp-action="Delete" asp-route-id="@configuracao.ID_Configuracao" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                     }
+                    else
+                    {
+                        <div class="col-md-12 text-center">
+                            <p>Nenhuma informação disponível.</p>
+                            <a asp-action="Create" class="btn btn-outline-info">Cadastrar Informações Empresariais</a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Conteúdo da aba Informações Cadastrais -->
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
+                @if (Model == null || !Model.Any())
+                {
+                    <div class="text-center">
+                        <p>Nenhuma informação disponível.</p>
+                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Cadastrais</a>
+                    </div>
                 }
-                
-        
-    </tbody>
-</table>
+            </div>
+
+            <!-- Conteúdo da aba Informações Cadastrais -->
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
+                @if (Model == null || !Model.Any())
+                {
+                    <div class="text-center">
+                        <p>Nenhuma informação disponível.</p>
+                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Cadastrais</a>
+                    </div>
+                }
+            </div>
+
+            <!-- Conteúdo da aba Informações Bancárias -->
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab">
+                @if (Model == null || !Model.Any())
+                {
+                    <div class="text-center">
+                        <p>Nenhuma informação disponível.</p>
+                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados Bancários</a>
+                    </div>
+                }
+            </div>
+
+            <!-- Conteúdo da aba Informações de Atendimento -->
+            <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab">
+                @if (Model == null || !Model.Any())
+                {
+                    <div class="text-center">
+                        <p>Nenhuma informação disponível.</p>
+                        <a asp-action="Create" class="btn btn-outline-info">Cadastrar Dados de Atendimento</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
