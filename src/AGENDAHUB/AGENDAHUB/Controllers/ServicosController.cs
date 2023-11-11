@@ -147,14 +147,15 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-        [Authorize(Roles = "Admin, User , Profissional")]
+        [Authorize(Roles = "Admin, User, Profissional")]
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
-            if (id == null || _context.Servicos == null)
+            if (id == null)
             {
                 return NotFound();
             }
+
             var servicos = await _context.Servicos
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
@@ -162,7 +163,12 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
+
+            // Adiciona uma informação sobre a existência da imagem à ViewBag
+            ViewBag.HasExistingImage = (servicos.Imagem != null && servicos.Imagem.Length > 0);
+
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
+
             return View(servicos);
         }
 
