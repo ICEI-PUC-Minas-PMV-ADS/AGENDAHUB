@@ -32,7 +32,7 @@
         <div class="tab-content" id="myTabContent">
 
             <!-- Conteúdo da aba Informações Cadastrais -->
-            <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade active show" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
                 @if (Model != null && Model.Usuario != null)
                 {
                     @await Html.PartialAsync("_UsuariosPartial", new List<Usuario> { Model.Usuario })
@@ -45,16 +45,9 @@
                 }
             </div>
 
-                        <div class="form-group pt-2">
-                            <label asp-for="@configuracao._Email" class="pt-2"></label>
-                            <div class="pt-2">
-                                <input asp-for="@configuracao._Email" class="form-control" />
-                                <span asp-validation-for="@configuracao._Email" class="text-danger"></span>
-                            </div>
-                        </div>
 
             <!-- Conteúdo da aba Informações Empresariais -->
-            <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
                     @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
                     {
@@ -95,6 +88,7 @@
                 </div>
             </div>
 
+
             <!-- Conteúdo da aba Informações Bancárias -->
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab">
                 @if (Model != null && Model.Configuracoes != null && Model.Configuracoes.Any())
@@ -118,5 +112,4 @@
             </div>
         </div>
     </div>
-            *@
 </div>

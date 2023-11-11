@@ -136,7 +136,7 @@ namespace AGENDAHUB.Controllers
                     usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
                     usuario.Configuracao.Cnpj = configuracao.Cnpj;
                     usuario.Configuracao.Endereco = configuracao.Endereco;
-                    usuario.Configuracao._Email = configuracao._Email;
+                    usuario.Configuracao.Email = configuracao.Email;
                     usuario.Configuracao.Usuario.NomeUsuario = usuario.NomeUsuario;
                     usuario.Configuracao.Usuario.Email = usuario.Email;
 
@@ -203,9 +203,8 @@ namespace AGENDAHUB.Controllers
             _context.Configuracao.Remove(usuario.Configuracao);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Configuracao");
+            return RedirectToAction("Index");
         }
-
 
     }
 }
