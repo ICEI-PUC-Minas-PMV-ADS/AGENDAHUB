@@ -1,9 +1,7 @@
 ﻿using AGENDAHUB.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -114,9 +112,9 @@ namespace AGENDAHUB.Controllers
             profissionais.UsuarioID = int.Parse(userId); // Define o UsuarioID do profissional
             if (ModelState.IsValid)
             {
-                    _context.Update(profissionais);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                _context.Update(profissionais);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
             return View();
         }

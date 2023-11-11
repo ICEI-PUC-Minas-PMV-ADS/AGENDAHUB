@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -16,13 +15,13 @@ namespace AGENDAHUB.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UsuarioService _usuarioService;
+       
 
-        public ConfiguracaoController(UsuarioService usuarioService, IHttpContextAccessor httpContextAccessor, AppDbContext context)
+        public ConfiguracaoController(IHttpContextAccessor httpContextAccessor, AppDbContext context)
         {
             _httpContextAccessor = httpContextAccessor;
             _context = context;
-            _usuarioService = usuarioService;
+           
         }
 
         public IActionResult Index()
@@ -142,30 +141,53 @@ namespace AGENDAHUB.Controllers
             return View(configuracao);
         }
 
+        [HttpGet]
+        [ActionName("EditDadosEmpresariais")]
+        public IActionResult EditDadosEmpresariais()
+        {
+            // Lógica para obter os dados necessários (se houver) e exibi-los na View
+
+            // Exemplo:
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id.ToString() == userId);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
+
+
         [HttpPost]
+        [ActionName("EditDadosEmpresariais")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditDadosEmpresariais(Configuracao configuracao)
+        public async Task<IActionResult> EditDadosEmpresariais(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // Obtenha o ID do usuário logado
                     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
-                    if (usuario == null)
+                    // Busque o usuário na base de dados
+                    var userInDatabase = await _context.Usuarios.FindAsync(userId);
+
+                    if (userInDatabase == null)
                     {
                         return NotFound();
                     }
 
-                    // Atualizar propriedades da entidade Configuracao com base no modelo do formulário
-                  
-                    usuario.Configuracao.Usuario.NomeUsuario = usuario.NomeUsuario;
-                    usuario.Configuracao.Usuario.Email = usuario.Email;
+                    // Atualize as informações do usuário com base no modelo do formulário
+                    userInDatabase.NomeUsuario = usuario.NomeUsuario;
+                    userInDatabase.Email = usuario.Email;
 
-                    _context.Entry(usuario).State = EntityState.Modified;
+                    // Atualize a base de dados
                     await _context.SaveChangesAsync();
 
+                    // Redirecione para a ação Index após a edição
                     return RedirectToAction("Index", "Configuracao");
                 }
                 catch (DbUpdateConcurrencyException)
@@ -175,8 +197,10 @@ namespace AGENDAHUB.Controllers
             }
 
             // Se houver erros de validação, retorne para a View com os dados existentes
-            return View(configuracao);
+            return View(usuario);
         }
+
+
 
         /*
         [HttpGet]

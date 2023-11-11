@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AGENDAHUB.Models.Configuracao>
+﻿@model AGENDAHUB.Models.ConfiguracaoUsuarioViewModel
 
 @{
     ViewData["Title"] = "Configurações";
@@ -27,7 +27,7 @@
         </ul>
 
         <div class="tab-content" id="myTabContent">
-            @foreach (var configuracao in Model)
+            @foreach (var usuario in Model.Usuario)
             {
                    <!-- Conteúdo da aba Informações Cadastrais -->
                 <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
@@ -35,18 +35,18 @@
                         <form asp-action="EditDadosEmpresariais" asp-controller="Configuracao" method="post">
 
                             <div class="form-group pt-2">
-                                <label asp-for="@configuracao.Usuario.NomeUsuario" class="pt-2"></label>
+                                <label asp-for="@usuario.NomeUsuario" class="pt-2"></label>
                                 <div class="pt-2">
-                                    <input asp-for="@configuracao.Usuario.NomeUsuario" class="form-control" />
-                                    <span asp-validation-for="@configuracao.Usuario.NomeUsuario" class="text-danger"></span>
+                                    <input asp-for="@usuario.NomeUsuario" class="form-control" />
+                                    <span asp-validation-for="@usuario.NomeUsuario" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-group pt-2">
-                                <label asp-for="@configuracao.Usuario.Email" class="pt-2"></label>
+                                <label asp-for="@usuario.Email" class="pt-2"></label>
                                 <div class="pt-2">
-                                    <input asp-for="@configuracao.Usuario.Email" class="form-control" />
-                                    <span asp-validation-for="@configuracao.Usuario.Email" class="text-danger"></span>
+                                    <input asp-for="@usuario.Email" class="form-control" />
+                                    <span asp-validation-for="@usuario.Email" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -70,7 +70,7 @@
                 *@
                 </div>
 }
-                @foreach (var configuracao in Model)
+                @foreach (var configuracao in Model.Configuracao)
                 {
                     
                
