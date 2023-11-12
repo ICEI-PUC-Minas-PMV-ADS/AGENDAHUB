@@ -1,13 +1,12 @@
 ﻿@model AGENDAHUB.Models.Configuracao
 
-@{
-    ViewData["Title"] = "Dados Empresariais";
-}
 
 <div class="row d-flex justify-content-center">
     <div class="col-md-4 text-center">
 
-        <form asp-action="Edit">
+
+        <form asp-action="EditInformacoesEmpresariais" asp-controller="Configuracao" method="post">
+            @Html.AntiForgeryToken()
 
             <div class="form-group pt-2">
                 <label asp-for="NomeEmpresa" class="pt-2"></label>
@@ -48,5 +47,7 @@
                 </div>
             </div>
         </form>
+
+
     </div>
 </div>

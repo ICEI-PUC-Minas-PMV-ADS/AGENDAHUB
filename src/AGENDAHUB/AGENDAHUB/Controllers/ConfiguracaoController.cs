@@ -40,15 +40,16 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            var viewModel = new UsuarioConfiguracaoViewModel
+            var viewModel = new ConfiguracaoUsuarioViewModel
             {
-                Usuario = usuario,
-                Configuracoes = new List<Configuracao> { usuario.Configuracao }
+                Usuario = new List<Usuario> { usuario },  // Criar uma lista contendo apenas o usuário
+                Configuracao = new List<Configuracao> { usuario.Configuracao }
             };
 
             // Retorna o ViewModel para a View
             return View(viewModel);
         }
+
 
 
 
@@ -102,8 +103,67 @@ namespace AGENDAHUB.Controllers
         }
 
 
+
+
+         [HttpGet]
+         public IActionResult Edit()
+         {
+             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+             if (usuario == null)
+             {
+                 return NotFound();
+             }
+
+            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                var url = Url.Action("Index", "Configuracao");
+                return PartialView("_UsuariosPartial", usuario);
+            }
+
+            return View(usuario);
+         }
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var usuarioDados = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+                    if (usuarioDados == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Atualizar propriedades da entidade Usuario com base no modelo do formulário
+                    usuarioDados.NomeUsuario = usuario.NomeUsuario;
+                    usuarioDados.Email = usuario.Email;
+
+                    _context.Entry(usuarioDados).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Configuracao");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
+                }
+            }
+
+            return View(usuario);
+        }
+
+
+
+
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult EditInformacoesEmpresariais()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
@@ -113,12 +173,20 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
+            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("_InforEmpresaPartial", usuario.Configuracao);
+            }
+            // Aqui você pode incluir lógica adicional se necessário
+
             return View(usuario.Configuracao);
         }
 
+
         [HttpPost]
+        [ActionName("EditInformacoesEmpresariais")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Configuracao configuracao)
+        public async Task<IActionResult> EditInformacoesEmpresariais([FromForm] Configuracao configuracao)
         {
             if (ModelState.IsValid)
             {

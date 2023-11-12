@@ -1,55 +1,84 @@
-﻿@model AGENDAHUB.Models.Configuracao
-
+﻿@model AGENDAHUB.Models.Usuario
 
 @{
     ViewData["Title"] = "Dados Empresariais";
 }
 
-<h1 class="text-center">Alterar Dados Empresariais</h1>
 
-<div class="row d-flex justify-content-center">
-    <div class="col-md-4 text-center">
 
-        <form asp-action="Edit">
 
-            <div class="form-group pt-2">
-                <label asp-for="NomeEmpresa" class="pt-2"></label>
-                <div class="pt-2">
-                    <input asp-for="NomeEmpresa" class="form-control" />
-                    <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="container">
+                <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
+                <ul class="contentMenu">
+                  
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial active" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesCadastrais">
+                                Informações Cadastrais
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInformacoesEmpresariais" asp-route-section="InformacoesEmpresariais">
+                                Informações Empresariais
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesBancarias">
+                                Informações Bancarias
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesAtendimento">
+                                Informações de Atendimento
+                            </a>
+                        </li>
+                 
+
+                </ul>
             </div>
+        </div>
 
-            <div class="form-group pt-2">
-                <label asp-for="Cnpj" class="pt-2"></label>
-                <div class="pt-2">
-                    <input asp-for="Cnpj" class="form-control" />
-                    <span asp-validation-for="Cnpj" class="text-danger"></span>
-                </div>
-            </div>
+        <div class="col-md-4">
+            <h2 class="text-center">Configurações da Conta</h2>
+            <form asp-action="Edit" asp-controller="Configuracao" method="post">
 
-            <div class="form-group pt-2">
-                <label asp-for="Endereco" class="pt-2"></label>
-                <div class="pt-2">
-                    <input asp-for="Endereco" class="form-control" />
-                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                <div class="form-group pt-2">
+                    <label class="mt-2 me-2" for="NomeUsuario">Usuario</label>
+                    <div class="pt-2">
+                        <input asp-for="NomeUsuario" class="form-control" />
+                        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group pt-2">
-                <label asp-for="Email" class="pt-2"></label>
-                <div class="pt-2">
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="form-group pt-2">
+                    <label asp-for="Email" class="pt-2"></label>
+                    <div class="pt-2">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="justify-content-center">
-                <div class="form-group pt-4">
-                    <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
-                    <button type="submit" class="btn btn-outline-info">Salvar</button>
+                <div class="form-group pt-2">
+                    <label asp-for="Senha" class="pt-2"></label>
+                    <div class="pt-2">
+                        <input asp-for="Senha" class="form-control" />
+                        <span asp-validation-for="Senha" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-        </form>
+
+                <div class="text-center">
+                    <div class="form-group pt-4">
+                       
+                        <button type="submit" class="btn btn-outline-info">Salvar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>
+
+
+
