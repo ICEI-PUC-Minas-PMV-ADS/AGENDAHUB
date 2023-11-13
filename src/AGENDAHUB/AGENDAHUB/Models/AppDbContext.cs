@@ -35,6 +35,16 @@ namespace AGENDAHUB.Models
                 .WithOne(c => c.Agendamento)
                 .HasForeignKey<Caixa>(c => c.ID_Agendamento);
 
+            modelBuilder.Entity<Configuracao>()
+        .Property(c => c.DiasDaSemanaJson)
+        .HasColumnName("DiasDaSemanaJson")
+        .IsRequired();
+
+            modelBuilder.Entity<Configuracao>()
+                .Property(c => c.HoraInicio)
+                .IsRequired();
+
+
 
 
             base.OnModelCreating(modelBuilder);

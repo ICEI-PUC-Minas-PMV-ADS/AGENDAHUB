@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -40,15 +42,16 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            var viewModel = new UsuarioConfiguracaoViewModel
+            var viewModel = new ConfiguracaoUsuarioViewModel
             {
-                Usuario = usuario,
-                Configuracoes = new List<Configuracao> { usuario.Configuracao }
+                Usuario = new List<Usuario> { usuario },  // Criar uma lista contendo apenas o usuário
+                Configuracao = new List<Configuracao> { usuario.Configuracao }
             };
 
             // Retorna o ViewModel para a View
             return View(viewModel);
         }
+
 
 
 
@@ -102,8 +105,136 @@ namespace AGENDAHUB.Controllers
         }
 
 
+
+
+         [HttpGet]
+         public IActionResult Edit()
+         {
+             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+             if (usuario == null)
+             {
+                 return NotFound();
+             }
+
+            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                var url = Url.Action("Index", "Configuracao");
+                return PartialView("_UsuariosPartial", usuario);
+            }
+
+            return View(usuario);
+         }
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var usuarioDados = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+                    if (usuarioDados == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Atualizar propriedades da entidade Usuario com base no modelo do formulário
+                    usuarioDados.NomeUsuario = usuario.NomeUsuario;
+                    usuarioDados.Email = usuario.Email;
+
+                    _context.Entry(usuarioDados).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Configuracao");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
+                }
+            }
+
+            return View(usuario);
+        }
+
+
+
+
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult EditInformacoesEmpresariais()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("_InforEmpresaPartial", usuario.Configuracao);
+            }
+            // Aqui você pode incluir lógica adicional se necessário
+
+            return View(usuario.Configuracao);
+        }
+
+
+        [HttpPost]
+        [ActionName("EditInformacoesEmpresariais")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditInformacoesEmpresariais([FromForm] Configuracao configuracao)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+                    if (usuario.Configuracao == null)
+                    {
+                        // Se não existir, é uma operação de criação
+                        //Cria associando ao UsuarioID
+                        configuracao.UsuarioID = int.Parse(userId);
+                        _context.Configuracao.Add(configuracao);
+                    }
+                    else
+                    {
+                        // Se existir, é uma operação de atualização
+                        usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
+                        usuario.Configuracao.Cnpj = configuracao.Cnpj;
+                        usuario.Configuracao.Endereco = configuracao.Endereco;
+                        usuario.Configuracao.Email = configuracao.Email;
+
+                        _context.Entry(usuario).State = EntityState.Detached; // Desanexar o objeto existente
+                        _context.Entry(usuario.Configuracao).State = EntityState.Modified;
+                    }
+
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Configuracao");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
+                }
+            }
+
+            // Se houver erros de validação ou outras razões, retorne para a View com os dados existentes ou mensagens de erro
+            return View(configuracao);
+        }
+
+
+
+        [HttpGet]
+        [ActionName("EditInforAtendimento")]
+        public IActionResult EditInforAtendimento()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
@@ -117,8 +248,9 @@ namespace AGENDAHUB.Controllers
         }
 
         [HttpPost]
+        [ActionName("EditInforAtendimento")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Configuracao configuracao)
+        public async Task<IActionResult> EditInforAtendimento([FromForm] Configuracao configuracao)
         {
             if (ModelState.IsValid)
             {
@@ -132,15 +264,12 @@ namespace AGENDAHUB.Controllers
                         return NotFound();
                     }
 
-                    // Atualizar propriedades da entidade Configuracao com base no modelo do formulário
-                    usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
-                    usuario.Configuracao.Cnpj = configuracao.Cnpj;
-                    usuario.Configuracao.Endereco = configuracao.Endereco;
-                    usuario.Configuracao.Email = configuracao.Email;
-                    usuario.Configuracao.Usuario.NomeUsuario = usuario.NomeUsuario;
-                    usuario.Configuracao.Usuario.Email = usuario.Email;
+                    // Deserializar a string JSON antes de atribuir ao modelo
+                    usuario.Configuracao.DiaAtendimento = JsonConvert.DeserializeObject<List<DiasAtendimento>>(configuracao.DiasDaSemanaJson);
 
-                    _context.Entry(usuario).State = EntityState.Modified;
+                    usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
+                    usuario.Configuracao.HoraFim = configuracao.HoraFim;
+
                     await _context.SaveChangesAsync();
 
                     return RedirectToAction("Index", "Configuracao");
@@ -154,6 +283,13 @@ namespace AGENDAHUB.Controllers
             // Se houver erros de validação, retorne para a View com os dados existentes
             return View(configuracao);
         }
+
+
+
+
+
+
+
 
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)

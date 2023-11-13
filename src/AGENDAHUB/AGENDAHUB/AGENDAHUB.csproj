@@ -23,6 +23,7 @@
     <Content Remove="Models\UsuarioConfiguracaoViewModel.cshtml" />
     <Content Remove="Views\Home\Clientes.cshtml" />
     <Content Remove="Views\Home\Configurações.cshtml" />
+    <Content Remove="Views\Shared\_EditPartial.cshtml" />
     <Content Remove="wwwroot\css\Login.cs" />
     <Content Remove="wwwroot\js\modal.js" />
     <Content Remove="wwwroot\js\site - Cópia.js" />

@@ -149,8 +149,8 @@ namespace AGENDAHUB.Migrations
                 b.Property<string>("Cnpj")
                     .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("DiasDaSemanaJson")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("DiasDaSemanaJson")
+                        .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("Email")
                     .HasColumnType("nvarchar(max)");
