@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -195,18 +197,80 @@ namespace AGENDAHUB.Controllers
                     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                     var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
+                    if (usuario.Configuracao == null)
+                    {
+                        // Se não existir, é uma operação de criação
+                        //Cria associando ao UsuarioID
+                        configuracao.UsuarioID = int.Parse(userId);
+                        _context.Configuracao.Add(configuracao);
+                    }
+                    else
+                    {
+                        // Se existir, é uma operação de atualização
+                        usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
+                        usuario.Configuracao.Cnpj = configuracao.Cnpj;
+                        usuario.Configuracao.Endereco = configuracao.Endereco;
+                        usuario.Configuracao.Email = configuracao.Email;
+
+                        _context.Entry(usuario).State = EntityState.Detached; // Desanexar o objeto existente
+                        _context.Entry(usuario.Configuracao).State = EntityState.Modified;
+                    }
+
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Configuracao");
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
+                }
+            }
+
+            // Se houver erros de validação ou outras razões, retorne para a View com os dados existentes ou mensagens de erro
+            return View(configuracao);
+        }
+
+
+
+        [HttpGet]
+        [ActionName("EditInforAtendimento")]
+        public IActionResult EditInforAtendimento()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario.Configuracao);
+        }
+
+        [HttpPost]
+        [ActionName("EditInforAtendimento")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditInforAtendimento([FromForm] Configuracao configuracao)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
                     if (usuario == null)
                     {
                         return NotFound();
                     }
 
-                    // Atualizar propriedades da entidade Configuracao com base no modelo do formulário
-                    usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
-                    usuario.Configuracao.Cnpj = configuracao.Cnpj;
-                    usuario.Configuracao.Endereco = configuracao.Endereco;
-                    usuario.Configuracao.Email = configuracao.Email;
-                    usuario.Configuracao.Usuario.NomeUsuario = usuario.NomeUsuario;
-                    usuario.Configuracao.Usuario.Email = usuario.Email;
+                    // Deserializar a string JSON antes de atribuir ao modelo
+                    configuracao.DiaAtendimento = JsonConvert.DeserializeObject<List<DiasAtendimento>>(configuracao.DiasDaSemanaJson);
+
+                    // Ajuste a propriedade DiaDaSemana
+                    usuario.Configuracao.DiaAtendimento = configuracao.DiaAtendimento;
+
+                    usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
 
                     _context.Entry(usuario).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
@@ -222,6 +286,11 @@ namespace AGENDAHUB.Controllers
             // Se houver erros de validação, retorne para a View com os dados existentes
             return View(configuracao);
         }
+
+
+
+
+
 
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)

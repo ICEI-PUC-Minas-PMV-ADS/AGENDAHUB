@@ -1,0 +1,25 @@
+﻿@model AGENDAHUB.Models.Configuracao
+
+<h2>Configuração</h2>
+
+<form asp-action="EditInforAtendimento" asp-controller="Configuracao" method="post">
+    <div class="form-group">
+        <label asp-for="DiaAtendimento" class="control-label"></label>
+        <br />
+        @foreach (var dia in Enum.GetValues(typeof(DiasAtendimento)))
+        {
+            <div class="form-check form-check-inline">
+                <input type="checkbox" name="DiaAtendimento" value="@dia" @(Model.DiaAtendimento.Contains((DiasAtendimento)dia) ? "checked" : "") class="form-check-input" />
+                <label class="form-check-label">@dia</label>
+            </div>
+        }
+        <span asp-validation-for="DiaAtendimento" class="text-danger"></span>
+    </div>
+
+    <div class="text-center">
+        <div class="form-group pt-4">
+            <button type="submit" class="btn btn-outline-info">Salvar</button>
+        </div>
+    </div>
+</form>
+

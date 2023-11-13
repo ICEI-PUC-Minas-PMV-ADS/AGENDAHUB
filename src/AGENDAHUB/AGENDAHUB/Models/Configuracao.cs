@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AGENDAHUB.Models
 {
+
     public class Configuracao
     {
         //internal static object AddDefaultIdentity<T>(Func<object, object> value)
@@ -24,8 +26,34 @@ namespace AGENDAHUB.Models
         public string Cnpj { get; set; }
         public string Endereco { get; set; }
         public string Email { get; set; }
-        public DayOfWeek DiaDaSemana { get; set; }
+
+        public string DiasDaSemanaJson { get; set; }
+
+
+        [NotMapped]
+        public List<DiasAtendimento> DiaAtendimento{
+            get
+            {
+                if (string.IsNullOrEmpty(DiasDaSemanaJson))
+                {
+                    return new List<DiasAtendimento>();
+                }
+
+                return JsonConvert.DeserializeObject<List<DiasAtendimento>>(DiasDaSemanaJson);
+            }
+            set
+            {
+                DiasDaSemanaJson = JsonConvert.SerializeObject(value);
+            }
+        }
+
+
+        [Display(Name = "Hora de Início")]
+        [DataType(DataType.Time)]
         public TimeSpan HoraInicio { get; set; }
+
+        [Display(Name = "Hora de Fim")]
+        [DataType(DataType.Time)]
         public TimeSpan HoraFim { get; set; }
 
         // Campo de ID do usuário logado para restringir os dados
@@ -48,5 +76,16 @@ namespace AGENDAHUB.Models
             }
             return cnpjNumero.ToString("00\\.000\\.000/0000-00");
         }
+    }
+
+    public enum DiasAtendimento
+    {
+        Domingo = 0,
+        Segunda = 1,
+        Terca = 2,
+        Quarta = 3,
+        Quinta = 4,
+        Sexta = 5,
+        Sabado = 6
     }
 }
