@@ -47,6 +47,21 @@
                 <input asp-for="Imagem" type="file" class="form-control" onchange="previewImage(this)" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
+            <script>
+                function previewImage(input) {
+                    var existingImage = document.getElementById('existingImage');
+
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            existingImage.src = e.target.result;
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
             <div class="form-group pt-4">
                 <a asp-controller="Configuracao" asp-action="Index" class="btn btn-outline-warning">Voltar</a>
                 <input type="submit" value="Salvar" class="btn btn-outline-info" />
