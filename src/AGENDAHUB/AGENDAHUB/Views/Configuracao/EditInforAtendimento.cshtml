@@ -2,24 +2,70 @@
 
 <h2>Configuração</h2>
 
-<form asp-action="EditInforAtendimento" asp-controller="Configuracao" method="post">
-    <div class="form-group">
-        <label asp-for="DiaAtendimento" class="control-label"></label>
-        <br />
-        @foreach (var dia in Enum.GetValues(typeof(DiasAtendimento)))
-        {
-            <div class="form-check form-check-inline">
-                <input type="checkbox" name="DiaAtendimento" value="@dia" @(Model.DiaAtendimento.Contains((DiasAtendimento)dia) ? "checked" : "") class="form-check-input" />
-                <label class="form-check-label">@dia</label>
-            </div>
-        }
-        <span asp-validation-for="DiaAtendimento" class="text-danger"></span>
-    </div>
 
-    <div class="text-center">
-        <div class="form-group pt-4">
-            <button type="submit" class="btn btn-outline-info">Salvar</button>
-        </div>
-    </div>
-</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+           
+                <div class="container">
+                    <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
+                    <ul class="contentMenu">
+
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial active" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesCadastrais">
+                                Informações Cadastrais
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInformacoesEmpresariais" asp-route-section="InformacoesEmpresariais">
+                                Informações Empresariais
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesBancarias">
+                                Informações Bancarias
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInforAtendimento" asp-route-section="EditInforAtendimento">
+                                Informações de Atendimento
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        <div class="col-md-4">
+            <form asp-action="EditInforAtendimento" asp-controller="Configuracao" method="post">
+                <div class="form-group">
+                    <label asp-for="DiaAtendimento" class="control-label"></label>
+                    <br />
+                    @foreach (var dia in Enum.GetValues(typeof(DiasAtendimento)))
+                    {
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" name="DiasAtendimento" value="@dia" @(Model.DiaAtendimento.Contains((DiasAtendimento)dia) ? "checked" : "") class="form-check-input" />
+                            <label class="form-check-label">@dia</label>
+                        </div>
+                    }
+                    <input type="hidden" asp-for="DiasDaSemanaJson" />
+                    <span asp-validation-for="DiaAtendimento" class="text-danger"></span>
+                </div>
+
+                
+
+                <div class="text-center">
+                    <div class="form-group pt-4">
+                        <button type="submit" class="btn btn-outline-info">Salvar</button>
+                    </div>
+                </div>
+            </form>
+
+
+
+
+</div>
+</div>
+</div>
 

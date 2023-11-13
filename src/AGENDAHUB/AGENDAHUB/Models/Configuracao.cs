@@ -47,6 +47,7 @@ namespace AGENDAHUB.Models
             }
         }
 
+       
 
         [Display(Name = "Hora de Início")]
         [DataType(DataType.Time)]
@@ -61,6 +62,10 @@ namespace AGENDAHUB.Models
         public int UsuarioID { get; set; }
         public Usuario Usuario { get; set; } // Propriedade de navegação
 
+        public Configuracao()
+        {
+            DiaAtendimento = new List<DiasAtendimento>();
+        }
 
         public class UsuarioConfiguracaoViewModel
         {
@@ -88,4 +93,6 @@ namespace AGENDAHUB.Models
         Sexta = 5,
         Sabado = 6
     }
+
+
 }

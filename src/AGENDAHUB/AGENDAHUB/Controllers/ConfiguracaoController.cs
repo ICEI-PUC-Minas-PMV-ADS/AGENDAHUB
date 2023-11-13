@@ -265,14 +265,11 @@ namespace AGENDAHUB.Controllers
                     }
 
                     // Deserializar a string JSON antes de atribuir ao modelo
-                    configuracao.DiaAtendimento = JsonConvert.DeserializeObject<List<DiasAtendimento>>(configuracao.DiasDaSemanaJson);
-
-                    // Ajuste a propriedade DiaDaSemana
-                    usuario.Configuracao.DiaAtendimento = configuracao.DiaAtendimento;
+                    usuario.Configuracao.DiaAtendimento = JsonConvert.DeserializeObject<List<DiasAtendimento>>(configuracao.DiasDaSemanaJson);
 
                     usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
+                    usuario.Configuracao.HoraFim = configuracao.HoraFim;
 
-                    _context.Entry(usuario).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
                     return RedirectToAction("Index", "Configuracao");
@@ -286,6 +283,8 @@ namespace AGENDAHUB.Controllers
             // Se houver erros de validação, retorne para a View com os dados existentes
             return View(configuracao);
         }
+
+
 
 
 
