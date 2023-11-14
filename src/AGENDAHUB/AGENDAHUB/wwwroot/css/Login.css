@@ -128,7 +128,7 @@ h3 {
 }
 
 
-#camposTextoLg {
+.camposTextoLg {
     width: 22.29063rem;
     height: 3.20625rem;
     flex-shrink: 0;
@@ -137,10 +137,12 @@ h3 {
     background: rgba(255, 255, 255, 0.35);
     box-shadow: -7.9108px 7.9108px 19.77699px 0px rgba(0, 0, 0, 0.25);
     padding-left: 20%;
+    border: none;
 }
 
+
     /* Seletor específico para o input onde deseja ajustar o texto do placeholder */
-    #camposTextoLg::placeholder {
+    .camposTextoLg::placeholder {
         color: #393874;
         font-family: Inter;
         font-size: 1.164rem;
@@ -150,6 +152,7 @@ h3 {
         letter-spacing: 0.23281rem;
         text-indent: 5%; /*Ajuste o valor conforme necessário */
     }
+
 
 /*Interior caixas de texto*/
 .input-with-icon {

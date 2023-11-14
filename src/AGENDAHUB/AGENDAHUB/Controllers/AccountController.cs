@@ -253,6 +253,7 @@ namespace AGENDAHUB.Controllers
         public async Task<ActionResult> ForgotPassword(string Email)
         {
             // Verificar se o e-mail fornecido existe na base de dados
+            //identityOptions.User.RequireUniqueEmail;
             var user = await _userManager.FindByEmailAsync(Email);
             //var user = await _userManager.FindByNameAsync(Email);
 
