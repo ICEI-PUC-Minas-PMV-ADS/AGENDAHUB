@@ -184,6 +184,15 @@ h3 {
     flex-shrink: 0;
 }
 
+.iconeOlho {
+    z-index: 1;
+    width: 1.37769rem;
+    height: 1.36769rem;
+    flex-shrink: 0;
+    position: absolute;
+    right: 16%; /* Ajuste conforme necessário */
+}
+
 .iconC {
     position: absolute;
     left: 10%; /* Ajuste essa posição conforme necessário */
@@ -200,6 +209,8 @@ h3 {
     height: 2.36769rem;
     flex-shrink: 0;
 }
+
+
 
 .redefinirSenha {
     color: #000;

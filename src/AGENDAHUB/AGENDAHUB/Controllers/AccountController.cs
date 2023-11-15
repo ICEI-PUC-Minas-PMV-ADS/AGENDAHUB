@@ -247,6 +247,7 @@ namespace AGENDAHUB.Controllers
 
         //Enviar Link Para Redefinir Senha
 
+        /*
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -269,6 +270,37 @@ namespace AGENDAHUB.Controllers
             await _emailService.SendEmailAsync(user.Email, "Redefinir Senha", $"Por favor, redefina sua senha clicando <a href='{callbackUrl}'>aqui</a>");
 
             return View("ForgotPasswordConfirmation");
+        }*/
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(string Email)
+        {
+            try
+            {
+                // Verificar se o e-mail fornecido existe na base de dados
+
+                var user = await _userManager.FindByEmailAsync(Email).ConfigureAwait(true);
+
+
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    // Não revele que o usuário não existe ou não está confirmado
+                    return View("ForgotPasswordConfirmation");
+                }
+
+                // Gerar e enviar o token de redefinição de senha
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                await _emailService.SendEmailAsync(user.Email, "Redefinir Senha", $"Por favor, redefina sua senha clicando <a href='{callbackUrl}'>aqui</a>");
+
+                return View("ForgotPasswordConfirmation");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
     }

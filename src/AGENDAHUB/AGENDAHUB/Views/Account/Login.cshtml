@@ -13,6 +13,7 @@
     ViewData["Title"] = "Login";
 }
 
+<script src="~/js/MostrarSenha.js"></script>
 
 <div class="elipses">
     <div class="elipseDireita"></div>
@@ -72,11 +73,10 @@
                     <div class="input-container">
                         <img src="~/images/cadeado.png" alt="Ícone de cadeado" class="icon" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="line" />
-                        <input asp-for="Senha" class="camposTextoLg" id="textSenha" placeholder="SENHA" />
+                        <input asp-for="Senha" class="camposTextoLg" id="textSenha" placeholder="SENHA"/>
+                        <img src="~/images/hideEye.png" id="iconeSenha" class="iconeOlho" onclick="MostrarSenha()" />
                     </div>
                 </div>
-
-                <button type="button" onclick="MostrarSenha()" class="btn btn-link">Mostrar Senha</button>
 
                 <div class="mb-3 pt-2">
 
@@ -99,10 +99,10 @@
 
 
 
-<script src="~/js/MostrarSenha.js"></script>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
     }
