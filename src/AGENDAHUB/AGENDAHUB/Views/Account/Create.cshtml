@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<script src="~/js/MostrarSenha.js"></script>
 @* Fonte de letra:*@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,7 +82,8 @@
                     <div class="input-container">
                         <img src="~/images/cadeado.png" alt="Ícone de cadeado" class="iconC" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
-                        <input asp-for="Senha" class="camposTextoLg" placeholder="SENHA" />
+                        <input asp-for="Senha" class="camposTextoLg" id="textSenha" placeholder="SENHA" />
+                        <img src="~/images/hideEye.png" id="iconeSenha" class="iconeOlho" onclick="MostrarSenha()" />
                     </div>
                 </div>
 
