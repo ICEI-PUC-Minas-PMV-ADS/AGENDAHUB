@@ -61,7 +61,8 @@ public class UsuarioController : Controller
         return View(usuario);
     }
 
-    // GET: Usuario/Edit/5
+
+
     [HttpGet]
     public async Task<IActionResult> Edit(int? id)
     {
@@ -127,10 +128,12 @@ public class UsuarioController : Controller
                 }
             }
         }
+
+        // Se o modelo não for válido, redefina ViewBag.HasExistingImage para evitar problemas na View
+        ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
+
         return View(usuario);
     }
-
-
 
 
     // GET: Usuario/Delete/5

@@ -1,13 +1,10 @@
 ﻿@model AGENDAHUB.Models.Configuracao
 
-<h2>Configuração</h2>
-
 
 
 <div class="container">
     <div class="row">
         <div class="col-md-5">
-           
                 <div class="container">
                     <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
                     <ul class="contentMenu">
@@ -23,11 +20,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesBancarias">
-                                Informações Bancarias
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInforAtendimento" asp-route-section="EditInforAtendimento">
                                 Informações de Atendimento
                             </a>
@@ -38,14 +30,20 @@
                 </div>
             </div>
         <div class="col-md-4">
+
             <form asp-action="EditInforAtendimento" asp-controller="Configuracao" method="post">
                 <div class="form-group">
-                    <label asp-for="DiaAtendimento" class="control-label"></label>
+                    <label asp-for="DiaAtendimento" class="control-label text-center">
+                        <h2 class="text-center">Dias de Atendimento</h2>
+                    </label>
+
                     <br />
+                    <br />
+
                     @foreach (var dia in Enum.GetValues(typeof(DiasAtendimento)))
                     {
-                        <div class="form-check form-check-inline">
-                            <input type="checkbox" name="DiasAtendimento" value="@dia" @(Model.DiaAtendimento.Contains((DiasAtendimento)dia) ? "checked" : "") class="form-check-input" />
+                        <div class="form-check form-check-inline d-flex justify-content-start">
+                            <input type="checkbox" name="DiasAtendimento" value="@dia" @(Model?.DiaAtendimento?.Contains((DiasAtendimento)dia) ?? false ? "checked" : "") class="form-check-input" />
                             <label class="form-check-label">@dia</label>
                         </div>
                     }

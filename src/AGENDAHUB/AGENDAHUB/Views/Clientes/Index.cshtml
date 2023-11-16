@@ -3,26 +3,29 @@
 @{
     ViewData["Title"] = "Clientes";
 }
+<link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 
 @* DataTable *@
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+
 
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
-
-<link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 <script src="~/js/Clientes.js"></script>
+<link rel="stylesheet" href="~/css/Clientes.css" asp-append-version="true" />
 
 
 <h1 class="text-center">Clientes Cadastrados</h1>
@@ -42,6 +45,7 @@
             <table id="tabelaClientes" class="table table-hover mt-3 mx-auto" style="width:100%">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>@Html.DisplayNameFor(model => model.Nome)</th>
                         <th>@Html.DisplayNameFor(model => model.CPF)</th>
                         <th>@Html.DisplayNameFor(model => model.Contato)</th>
@@ -54,18 +58,22 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td></td>
                             <td>@Html.DisplayFor(modelItem => item.Nome)</td>
                             <td>
                                 @item.FormatarCPF()
                             </td>
                             <td>
-                                @item.FormatarContato()
                                 <a href="https://wa.me/@item.Contato" target="_blank">
                                     <img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" />
                                 </a>
+                                @item.FormatarContato()
                             </td>
                             <td>
-                                <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                                <a href="mailto:@Html.DisplayFor(modelItem => item.Email)" style="text-decoration: none;">
+                                    <img src="~/images/email.png" style="width: 1rem; height: 1rem;">
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </a>
                             </td>
                             <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
                             <td>

@@ -47,8 +47,6 @@ namespace AGENDAHUB.Models
             }
         }
 
-       
-
         [Display(Name = "Hora de Início")]
         [DataType(DataType.Time)]
         public TimeSpan HoraInicio { get; set; }
@@ -93,6 +91,4 @@ namespace AGENDAHUB.Models
         Sexta = 5,
         Sabado = 6
     }
-
-
 }

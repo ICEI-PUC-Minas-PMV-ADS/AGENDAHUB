@@ -1,10 +1,8 @@
 ﻿@model AGENDAHUB.Models.Usuario
 
 @{
-    ViewData["Title"] = "Dados Empresariais";
+    ViewData["Title"] = "Dados Cadastrais";
 }
-
-
 
 
 <div class="container">
@@ -13,36 +11,29 @@
             <div class="container">
                 <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
                 <ul class="contentMenu">
-                  
-                        <li class="nav-item">
-                            <a class="nav-link form-Partial active" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesCadastrais">
-                                Informações Cadastrais
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInformacoesEmpresariais" asp-route-section="InformacoesEmpresariais">
-                                Informações Empresariais
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesBancarias">
-                                Informações Bancarias
-                            </a>
-                        </li>
-                        <li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link form-Partial active" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesCadastrais">
+                            Informações Cadastrais
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInformacoesEmpresariais" asp-route-section="InformacoesEmpresariais">
+                            Informações Empresariais
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInforAtendimento" asp-route-section="EditInforAtendimento">
-                                Informações de Atendimento
-                            </a>
-                        </li>
-                 
-
+                            Informações de Atendimento
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
 
         <div class="col-md-4">
             <h2 class="text-center">Configurações da Conta</h2>
-            <form asp-action="Edit" asp-controller="Configuracao" method="post">
+
+            <form asp-action="Edit" asp-controller="Configuracao" method="post" enctype="multipart/form-data">
 
                 <div class="form-group pt-2">
                     <label class="mt-2 me-2" for="NomeUsuario">Usuario</label>
@@ -67,18 +58,44 @@
                         <span asp-validation-for="Senha" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label asp-for="Imagem" class="control-label"></label>
 
+                    @if (ViewBag.HasExistingImage)
+                    {
+                        <div class="card-image" style="text-align: center; margin-bottom: 3%">
+                            <img id="existingImage" style="width: 10rem; height: 11rem; border-radius: 0.7rem;" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
+                        </div>
+                    }
+
+                    <input asp-for="Imagem" type="file" class="form-control" onchange="previewImage(this)" />
+                    <span asp-validation-for="Imagem" class="text-danger"></span>
+                </div>
+
+                <script>
+                    function previewImage(input) {
+                        var existingImage = document.getElementById('existingImage');
+
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                existingImage.src = e.target.result;
+                            };
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                </script>
                 <div class="text-center">
                     <div class="form-group pt-4">
-                       
+
                         <button type="submit" class="btn btn-outline-info">Salvar</button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>
 </div>
-
 
 

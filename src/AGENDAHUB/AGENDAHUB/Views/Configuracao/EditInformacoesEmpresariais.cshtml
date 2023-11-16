@@ -1,39 +1,33 @@
 ﻿@model AGENDAHUB.Models.Configuracao
 
-
 <div class="container">
     <div class="row">
         <div class="col-md-5">
-            <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
-            <ul class="contentMenu">
-
-                <li class="nav-item">
-                    <a class="nav-link form-Partial active" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesCadastrais">
-                        Informações Cadastrais
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInformacoesEmpresariais" asp-route-section="InformacoesEmpresariais">
-                        Informações Empresariais
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesBancarias">
-                        Informações Bancarias
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInforAtendimento" asp-route-section="EditInforAtendimento">
-                        Informações de Atendimento
-                    </a>
-                </li>
-
-
-            </ul>
+            <div class="container">
+                <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
+                <ul class="contentMenu">
+                    <li class="nav-item">
+                        <a class="nav-link form-Partial active" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesCadastrais">
+                            Informações Cadastrais
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInformacoesEmpresariais" asp-route-section="InformacoesEmpresariais">
+                            Informações Empresariais
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link form-Partial" asp-area="" asp-controller="Configuracao" asp-action="EditInforAtendimento" asp-route-section="EditInforAtendimento">
+                            Informações de Atendimento
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        
 
         <div class="col-md-4">
+            <h2 class="text-center">Configurações da Empresa</h2>
+
             <form asp-action="EditInformacoesEmpresariais" asp-controller="Configuracao" method="post">
                 @Html.AntiForgeryToken()
 
@@ -69,15 +63,12 @@
                     </div>
                 </div>
 
-                <div class="justify-content-center">
+                <div class="text-center">
                     <div class="form-group pt-4">
-                        
                         <button type="submit" class="btn btn-outline-info">Salvar</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    </div>
-
-
+</div>

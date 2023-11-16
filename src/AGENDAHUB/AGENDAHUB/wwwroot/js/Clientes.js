@@ -1,11 +1,34 @@
 ﻿$(document).ready(function () {
-    new DataTable('#tabelaClientes', {
+    var table = new DataTable('#tabelaClientes', {
         "language": {
             "url": "/lib/dataTable_PT_BR.json"
         },
+        columnDefs: [
+            {
+                targets: 0,
+                data: null,
+                defaultContent: '',
+                orderable: false,
+                className: 'select-checkbox'
+            }
+        ],
+        select: {
+            info: false,
+            style: 'multi',
+            selector: 'td:first-child'
+        },
+        order: [[1, 'asc']],
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            {
+                extend: 'copy',
+                text: 'Copiar Selecionados'
+            },
+            {
+                extend: 'selectNone',
+                text: 'Desmarcar Selecionados'
+            },
+            'csv', 'excel', 'pdf', 'print'
         ],
     });
 });

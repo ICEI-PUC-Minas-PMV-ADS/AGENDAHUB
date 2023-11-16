@@ -1,4 +1,5 @@
 ﻿using AGENDAHUB.Models;
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,13 +19,13 @@ namespace AGENDAHUB.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-       
+
 
         public ConfiguracaoController(IHttpContextAccessor httpContextAccessor, AppDbContext context)
         {
             _httpContextAccessor = httpContextAccessor;
             _context = context;
-           
+
         }
         public class UsuarioConfiguracaoViewModel
         {
@@ -53,115 +55,173 @@ namespace AGENDAHUB.Controllers
         }
 
 
+        //// GET: Configuracao/Create
+        //[HttpGet]
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(Configuracao configuracao)
+        //{
+        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    configuracao.UsuarioID = int.Parse(userId); // Define o UsuarioID da configuracao
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+        //        if (usuario == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        // Verifique se já existe uma configuração para o usuário
+        //        if (usuario.Configuracao != null)
+        //        {
+        //            // Atualize as propriedades da configuração existente
+        //            usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
+        //            usuario.Configuracao.Cnpj = configuracao.Cnpj;
+        //            usuario.Configuracao.Endereco = configuracao.Endereco;
+        //            usuario.Configuracao.Email = configuracao.Email;
+
+        //            _context.Update(usuario.Configuracao);
+        //        }
+        //        else
+        //        {
+        //            // Adicione uma nova configuração
+        //            _context.Add(configuracao);
+        //        }
+
+        //        await _context.SaveChangesAsync();
+
+        //        return RedirectToAction("Index", "Configuracao");
+        //    }
+
+        //    // Se houver erros de validação, retorne para a View com os dados existentes
+        //    return View(configuracao);
+        //}
 
 
-        // GET: Configuracao/Create
-        [HttpGet]
-        public IActionResult Create()
+
+        // Imagem
+        public FileContentResult GetImg(int id)
         {
-            return View();
+            byte[] byteArray = _context.Usuario.Find(id).Imagem;
+            return byteArray != null
+                ? new FileContentResult(byteArray, "image/jpeg")
+                : null;
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Configuracao configuracao)
+
+        [HttpGet]
+        public IActionResult Edit()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            configuracao.UsuarioID = int.Parse(userId); // Define o UsuarioID da configuracao
 
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(userId))
             {
-                var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
-
-                if (usuario == null)
-                {
-                    return NotFound();
-                }
-
-                // Verifique se já existe uma configuração para o usuário
-                if (usuario.Configuracao != null)
-                {
-                    // Atualize as propriedades da configuração existente
-                    usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
-                    usuario.Configuracao.Cnpj = configuracao.Cnpj;
-                    usuario.Configuracao.Endereco = configuracao.Endereco;
-                    usuario.Configuracao.Email = configuracao.Email;
-
-                    _context.Update(usuario.Configuracao);
-                }
-                else
-                {
-                    // Adicione uma nova configuração
-                    _context.Add(configuracao);
-                }
-
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("Index", "Configuracao");
+                // Se o userId é nulo ou vazio, algo deu errado
+                return NotFound();
             }
 
-            // Se houver erros de validação, retorne para a View com os dados existentes
-            return View(configuracao);
-        }
+            var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
-
-
-
-         [HttpGet]
-         public IActionResult Edit()
-         {
-             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
-
-             if (usuario == null)
-             {
-                 return NotFound();
-             }
+            if (usuario == null)
+            {
+                // Se o usuário não for encontrado no banco de dados, retorne NotFound
+                return NotFound();
+            }
 
             if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
-                var url = Url.Action("Index", "Configuracao");
+                var url = Url.Action("Edit", "Configuracao");
                 return PartialView("_UsuariosPartial", usuario);
             }
 
+            ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
+
+            Console.WriteLine("Senha do Usuário: " + usuario.Senha);
+
             return View(usuario);
-         }
-       
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Usuario usuario)
+        public async Task<IActionResult> Edit([Bind("Id,NomeUsuario,Email,Senha,Perfil,Imagem")] Usuario usuario, IFormFile Imagem)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    var usuarioDados = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+                    // Verifica se a senha foi alterada
+                    var usuarioNoBanco = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
-                    if (usuarioDados == null)
+                    if (usuarioNoBanco == null)
                     {
                         return NotFound();
                     }
 
-                    // Atualizar propriedades da entidade Usuario com base no modelo do formulário
-                    usuarioDados.NomeUsuario = usuario.NomeUsuario;
-                    usuarioDados.Email = usuario.Email;
+                    // Verifica se a senha foi alterada
+                    if (!string.IsNullOrEmpty(usuario.Senha) && usuario.Senha != usuarioNoBanco.Senha)
+                    {
+                        // A senha foi alterada, então re-hasha a nova senha
+                        usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                    }
 
-                    _context.Entry(usuarioDados).State = EntityState.Modified;
-                    await _context.SaveChangesAsync();
+                    // Se a imagem é fornecida e existe uma imagem no banco, atualize-a
+                    if (Imagem != null && Imagem.Length > 0)
+                    {
+                        using var memoryStream = new MemoryStream();
+                        await Imagem.CopyToAsync(memoryStream);
+                        usuario.Imagem = memoryStream.ToArray();
+                    }
+                    else if (usuarioNoBanco.Imagem != null && usuarioNoBanco.Imagem.Length > 0)
+                    {
+                        // Se a imagem não for fornecida, mas já existe uma no banco, mantenha a imagem existente
+                        usuario.Imagem = usuarioNoBanco.Imagem;
+                    }
 
-                    return RedirectToAction("Index", "Configuracao");
+                    _context.Entry(usuario).State = EntityState.Modified;
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        // Recarrega a entidade do banco de dados
+                        _context.Entry(usuario).Reload();
+
+                        // Aplica as modificações novamente
+                        _context.Entry(usuario).State = EntityState.Modified;
+                        await _context.SaveChangesAsync();
+                    }
+
+                    return RedirectToAction("Edit", "Configuracao");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
+                    if (!UsuarioExists(usuario.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
 
+            // Se o modelo não for válido, redefina ViewBag.HasExistingImage para evitar problemas na View
+            ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
+
             return View(usuario);
         }
-
-
 
 
         [HttpGet]
@@ -218,7 +278,7 @@ namespace AGENDAHUB.Controllers
 
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Index", "Configuracao");
+                    return RedirectToAction("Edit", "Configuracao");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -272,7 +332,7 @@ namespace AGENDAHUB.Controllers
 
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Index", "Configuracao");
+                    return RedirectToAction("Edit", "Configuracao");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -339,7 +399,12 @@ namespace AGENDAHUB.Controllers
             _context.Configuracao.Remove(usuario.Configuracao);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit");
+        }
+
+        private bool UsuarioExists(int id)
+        {
+            return _context.Usuarios.Any(e => e.Id == id);
         }
 
     }

@@ -9,7 +9,7 @@
 <hr />
 <div class="row d-flex justify-content-center">
     <div class="col-md-4 text-center">
-        <form asp-action="Edit"  method="post" enctype="multipart/form-data">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID_Servico" />
             <div class="form-group">
@@ -63,7 +63,7 @@
                     }
                 }
             </script>
-        <div class="form-group pt-4">
+            <div class="form-group pt-4">
                 <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
                 <input type="submit" value="Salvar" class="btn btn-outline-info" />
             </div>
@@ -71,8 +71,8 @@
     </div>
 </div>
 
-
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
