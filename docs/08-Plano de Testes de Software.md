@@ -28,3 +28,22 @@ Critérios de Êxito:
 > - A home deve deve ser responsiva no mobile e no computador.
 > - O usuário conseguir obter informações da aplicação.
 > - O usuário conseguir encontrar o local para efetuar login e criar conta.
+
+## CT - 02 - Cadastro e Login.
+Requisitos Associados:
+> - RF – 01 - O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema.
+> - RF - 02 - O sistema deve ser protegido por autenticação de login e senha.
+> - RF - 09 - O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail.
+
+
+Objetivo do Teste:
+> - Verificar se é possível efetuar um novo cadastro e após efetuar o login utilizando as mesmas credenciais, obetendo êxito, o sistema deve permitir alterar as informações cadastrais iniciais. 
+
+Passos:
+> - 
+> - 
+
+Critérios de Êxito:
+> - O sistema deve permitir criar um novo cadastro com login e senha.
+> - O sistema deve permitir efetuar login utilizando as credenciais do cadastro inicial.
+> - Ao efetuar o login, o sistema deve permitir que sejam alterados os dados cadastrais de login, senha e e-mail.
