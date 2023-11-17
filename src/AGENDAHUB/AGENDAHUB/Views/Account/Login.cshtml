@@ -1,4 +1,5 @@
-﻿@model AGENDAHUB.Models.Usuario
+﻿//Login
+@model AGENDAHUB.Models.Usuario
 <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <script src="~/js/MostrarSenha.js"></script>
@@ -14,6 +15,7 @@
     ViewData["Title"] = "Login";
 }
 
+<script src="~/js/MostrarSenha.js"></script>
 
 <div class="elipses">
     <div class="elipseDireita"></div>
@@ -48,14 +50,14 @@
                 <img src="~/images/LineHorizontal.png" alt="Ícone de liknha Horizontal" class="lineHorizontal" />
             </div>
 
-            <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Create">Criar conta </a></button>
+            <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Create">Criar conta</a></button>
 
         </div>
         @*Lado Direito *@
 
 
         <div class="col text-center" id="formInput">
-            
+
             <form asp-action="Login" asp-controller="Account">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -104,4 +106,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
     }
