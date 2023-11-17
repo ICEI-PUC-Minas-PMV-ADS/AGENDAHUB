@@ -22,3 +22,9 @@ Objetivo do Teste:
 Passos:
 > - Acessar o site: 
 > - 
+
+Critérios de Êxito:
+> - A página deve abrir em todos os navegadores dos listados no requisito.
+> - A home deve deve ser responsiva no mobile e no computador.
+> - O usuário conseguir obter informações da aplicação.
+> - O usuário conseguir encontrar o local para efetuar login e criar conta.
