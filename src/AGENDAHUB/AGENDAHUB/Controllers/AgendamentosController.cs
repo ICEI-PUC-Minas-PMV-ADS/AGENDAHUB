@@ -160,6 +160,7 @@ namespace AGENDAHUB.Controllers
             }
         }
 
+        // Recuperar dias de atendimento configurados
         private static List<DateTime> GetDiasAtendimento(string diasAtendimento)
         {
             var diasAtendimentoList = new List<DateTime>();
@@ -200,7 +201,7 @@ namespace AGENDAHUB.Controllers
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    // Ignore datas que não são representáveis
+                    // Tratativa de erros
                 }
             }
             return diasAtendimentoList;
@@ -234,6 +235,12 @@ namespace AGENDAHUB.Controllers
 
             if (servico != null)
             {
+                // Obter profissionais disponíveis para o serviço
+                var horariosOcupados = _context.Agendamentos
+                    .Where(a => a.ID_Servico == serviceId && a.Status != Agendamentos.StatusAgendamento.Cancelado)
+                    .Select(a => a.Hora.ToString(@"hh\:mm"))
+                    .ToList();
+
                 // Obter horários disponíveis com base nas propriedades do serviço
                 var horarios = GetHorariosDisponiveis(
                     configuracao.HoraInicio.ToString(),
@@ -241,6 +248,9 @@ namespace AGENDAHUB.Controllers
                     (int)servico.TempoDeExecucao.TotalMinutes,
                     10 // intervaloAdicional, substitua pelo valor correto se necessário
                 );
+
+                // Remover os horários que estão ocupados pelos agendamentos
+                horarios.RemoveAll(h => horariosOcupados.Contains(h));
 
                 return Json(horarios);
             }
@@ -279,7 +289,6 @@ namespace AGENDAHUB.Controllers
 
 
 
-
         // POST: Agendamentos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -315,19 +324,33 @@ namespace AGENDAHUB.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var configuracao = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId)?.Configuracao;
+
             ViewBag.UsuarioID = userId;
+
             var agendamentos = await _context.Agendamentos.FindAsync(id);
 
             if (agendamentos == null || agendamentos.UsuarioID != int.Parse(userId))
             {
                 return NotFound();
             }
-            ViewBag.Clientes = new SelectList(_context.Clientes, "ID_Cliente", "Nome", "Contato");
-            ViewBag.Servicos = new SelectList(_context.Servicos, "ID_Servico", "Nome");
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
+
+            // Filtrar clientes, serviços e profissionais pelo userId
+            var clientes = _context.Clientes.Where(c => c.UsuarioID == int.Parse(userId)).ToList();
+            var servicos = _context.Servicos.Where(s => s.UsuarioID == int.Parse(userId)).ToList();
+            var profissionais = _context.Profissionais.Where(p => p.UsuarioID == int.Parse(userId)).ToList();
+
+            ViewBag.Clientes = new SelectList(clientes, "ID_Cliente", "Nome", "Contato");
+            ViewBag.Servicos = new SelectList(servicos, "ID_Servico", "Nome");
+            ViewBag.Profissionais = new SelectList(profissionais, "ID_Profissional", "Nome");
+
+            // Filtrar os dias disponíveis com base nas configurações do usuário
+            var diasAtendimento = string.Join(",", Enumerable.Range(0, 7).Where(i => configuracao.DiasDaSemanaJson.Contains(i.ToString())));
+            ViewBag.DiasDisponiveis = GetDiasAtendimento(diasAtendimento).Select(d => d.ToString("yyyy-MM-dd")).ToList();
 
             return View(agendamentos);
         }
+
 
         // POST: Agendamentos/Edit/5
         [HttpPost]
