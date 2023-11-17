@@ -15,6 +15,7 @@
     <Compile Remove="Models\Cliente.cs" />
     <Compile Remove="Models\ConfiguracaoUsuario.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
+    <Compile Remove="Views\AgendamentosClientes\Create.cshtml.cs" />
     <Compile Remove="Views\Home\Caixa.cshtml.cs" />
     <Compile Remove="Views\Home\Index.cshtml.cs" />
   </ItemGroup>

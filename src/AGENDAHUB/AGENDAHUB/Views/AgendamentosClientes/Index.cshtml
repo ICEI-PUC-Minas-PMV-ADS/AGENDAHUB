@@ -1,0 +1,211 @@
+﻿@model IEnumerable<AGENDAHUB.Models.Agendamentos>
+<link rel="stylesheet" href="~/css/Agendamentos.css" asp-append-version="true" />
+@{
+    ViewData["Title"] = "Agendamentos";
+}
+
+<h1 class="text-center pb-3">Agendamentos</h1>
+
+<!-- Botão Novo Agendamento -->
+<div class="row d-flex justify-content-center">
+    <div class="col-xl-4 col-12">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-6 col-12">
+                <a asp-action="Create" asp-controller="AgendamentosClientes" class="btn btn-outline-info" id="btnNovoAgendamento">+ Novo Agendamento</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filtro de data -->
+    <div class="col-xl-4 col-8 d-flex justify-content-center pb-3 form-inline">
+        <form asp-action="SearchByDate" method="get" class="w-100">
+            <div class="input-group w-100">
+                <label class="mt-2 me-2" for="dataInicio">Início:</label>
+                <input class="form-control me-2 text-center" type="date" name="dataInicio" id="dataInicio" />
+                <label class="mt-2 me-2" for="dataFim">Fim:</label>
+                <input class="form-control text-center" type="date" name="dataFim" id="dataFim" />
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">
+                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" title="Pesquisar" />
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Campo de Pesquisa -->
+    <div class="col-xl-4 col-12 d-flex justify-content-center">
+        <form asp-action="SearchAgendamentos" method="get">
+            <div class="input-group w-100">
+                <input type="text" class="form-control" name="search" placeholder="Pesquisar Agendamento" id="pesquisar">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">
+                        <img src="~/images/pesquisar.png" style="height:1.5rem; width:auto" title="Pesquisar" />
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Filtro Status -->
+<div class="row d-flex justify-content-center pb-3">
+    <div class="col-xl-3 col-8" id="statusSelect">
+        <select id="statusFilter" class="form-select w-100">
+            <option value="all">Todos</option>
+            <option value="pendente">Pendentes</option>
+            <option value="concluido">Concluídos</option>
+            <option value="cancelado">Cancelados</option>
+        </select>
+    </div>
+</div>
+
+@if (TempData.ContainsKey("MessageNenhumAgendamento"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageNenhumAgendamento"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (TempData.ContainsKey("MessageSearch"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageData"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (TempData.ContainsKey("MessageData"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageData"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (TempData.ContainsKey("MessageConcluido"))
+{
+    <div class="alert alert-success text-center" id="messageConcluido">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageConcluido"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@foreach (var item in Model)
+{
+    <div class="container d-flex justify-content-center">
+        <div class="card mb-3 col-xl-6" id="cardView" data-status="@item.Status.ToString().ToLower()">
+            <span class="text-white mb-2 @GetStatusColor(item.Status)" id="spanView">
+                @Html.DisplayFor(modelItem => item.Status)
+            </span>
+            <div class="card-header text-center">
+                <h5 class="card-title">
+                    @Html.DisplayFor(modelItem => item.Servicos.Nome)
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.Cliente.Nome)<br>
+                    <strong>Contato: </strong>@item.Cliente.FormatarContato() <a href="https://wa.me/@item.Cliente.Contato" target="_blank"><img src="~/images/whatsapp.png" alt="Whatsapp-icon" style="height: 1.2rem; width: auto" /></a><br>
+                    <strong>Data: </strong>@string.Format("{0:dd MMM yyyy}", item.Data)<br>
+                    <strong>Horário: </strong>@item.Hora.ToString(@"hh\:mm")<br>
+                    <strong>Preço: </strong>
+                    @if (item.Servicos != null && item.Servicos.Preco != 0)
+                    {
+                        <span>R$ @item.Servicos.Preco.ToString("N2")</span>
+                    }
+                    else
+                    {
+                        <span>Preço não definido</span>
+                    }
+                    <br>
+                </p>
+                <cite class="card-subtitle mb-2 text-muted">
+                    <strong>Profissional: </strong>@Html.DisplayFor(modelItem => item.Profissionais.Nome)
+                </cite>
+                <div class="btn-group d-flex justify-content-end" role="group">
+                    <a asp-action="Edit" asp-route-id="@item.ID_Agendamentos" title="Editar">
+                        <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.ID_Agendamentos" title="Excluir">
+                        <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                    </a>
+                    @if (item.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Pendente)
+                    {
+                        <a asp-action="MarcarConcluido" asp-route-id="@item.ID_Agendamentos" title="Concluir">
+                            <img class="btn btn-outline-success" src="~/images/concluido.png" alt="Concluir" style="height: 2rem; width: auto" />
+                        </a>
+                    }
+                    @if (item.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido)
+                    {
+                        <div class="dropdown btn-group dropend d-inline">
+                            <button title="Mais Opções" class="btn btn-outline-info btn-sm dropdown-toggle bg-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 2rem; width: auto">
+                                <img class="pb-2 ms-1" src="~/images/mais.png" style="height: 2rem; width: auto" />
+                            </button>
+                            <div class="dropdown-menu p-0 mb-2">
+                                <a asp-action="MarcarPendente" asp-route-id="@item.ID_Agendamentos" title="Marcar como Pendente">
+                                    <img class="btn btn-outline-warning" src="~/images/pendente.png" alt="Pendente" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="MarcarCancelado" asp-route-id="@item.ID_Agendamentos" title="Cancelar" title="Marcar como Cancelado">
+                                    <img class="btn btn-outline-danger" src="~/images/cancelado.png" alt="Cancelar" style="height: 2rem; width: auto" />
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    @if (item.Status == AGENDAHUB.Models.Agendamentos.StatusAgendamento.Cancelado)
+                    {
+                        <div class="dropdown btn-group dropend">
+                            <button title="Mais Opções" class="btn btn-outline-info btn-sm dropdown-toggle bg-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 2rem; width: auto">
+                                <img class="pb-2 ms-1" src="~/images/mais.png" style="height: 2rem; width: auto" />
+                            </button>
+                            <div class="dropdown-menu p-0 mb-2">
+                                <a asp-action="MarcarConcluido" asp-route-id="@item.ID_Agendamentos" title="Marcar como Concluído">
+                                    <img class="btn btn-outline-success" src="~/images/concluido.png" alt="Concluir" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="MarcarPendente" asp-route-id="@item.ID_Agendamentos" title="Marcar como Pendente">
+                                    <img class="btn btn-outline-warning" src="~/images/pendente.png" alt="Pendente" style="height: 2rem; width: auto" />
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@* Função para deixar o Card de Status colorido *@
+@functions {
+    string GetStatusColor(AGENDAHUB.Models.Agendamentos.StatusAgendamento status)
+    {
+        switch (status)
+        {
+            case AGENDAHUB.Models.Agendamentos.StatusAgendamento.Pendente:
+                return "badge bg-warning"; // Laranja
+            case AGENDAHUB.Models.Agendamentos.StatusAgendamento.Concluido:
+                return "badge bg-success"; // Verde
+            case AGENDAHUB.Models.Agendamentos.StatusAgendamento.Cancelado:
+                return "badge bg-danger";  // Vermelho
+            default:
+                return "badge bg-secondary";
+        }
+    }
+}
+<script src="~/js/Agendamentos.js"></script>
