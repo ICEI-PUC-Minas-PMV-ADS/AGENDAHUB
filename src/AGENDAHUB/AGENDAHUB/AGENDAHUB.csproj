@@ -7,13 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Usuario\**" />
+    <Content Remove="Views\Usuario\**" />
+    <EmbeddedResource Remove="Views\Usuario\**" />
+    <None Remove="Views\Usuario\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\UsuarioController.cs" />
     <Compile Remove="Controllers\UsuariosController.cs" />
     <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.cs" />
     <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.Designer.cs" />
     <Compile Remove="Migrations\20231111060035_NomeDaMigracao.cs" />
     <Compile Remove="Migrations\20231111060035_NomeDaMigracao.Designer.cs" />
+    <Compile Remove="Models\Administrador.cs" />
     <Compile Remove="Models\Cliente.cs" />
+    <Compile Remove="Models\Colaborador.cs" />
     <Compile Remove="Models\ConfiguracaoUsuario.cs" />
+    <Compile Remove="Models\DadosBancarios.cs" />
+    <Compile Remove="Models\Empresa.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
     <Compile Remove="Views\Home\Caixa.cshtml.cs" />
     <Compile Remove="Views\Home\Index.cshtml.cs" />

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -74,7 +75,14 @@
             @* Segunda linha alinhada com a parte inferior / User Menu *@
             <div class="dropdown" id="menuUser">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="~/images/logoAgendaHub.png" alt="" width="43" height="43" class="rounded-circle me-2">
+                    @if (hasImageClaim)
+                    {
+                        <img src="@Url.Action("GetImg", "Configuracao", new { Id = userId })" alt="Imagem do Usuário" width="43" height="43" class="rounded-circle me-2">
+                    }
+                    else
+                    {
+                        <img src="~/images/logoAgendaHub.png" alt="Logo AgendaHub" width="43" height="43" class="rounded-circle me-2">
+                    }
                     <strong>@User.Identity.Name</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">

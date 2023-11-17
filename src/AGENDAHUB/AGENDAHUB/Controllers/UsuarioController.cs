@@ -56,7 +56,7 @@ public class UsuarioController : Controller
 
             _context.Add(usuario);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Configuracao");
+            return RedirectToAction("Edit", "Configuracao");
         }
         return View(usuario);
     }
