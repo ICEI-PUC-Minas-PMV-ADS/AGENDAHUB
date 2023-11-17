@@ -151,40 +151,6 @@ namespace AGENDAHUB.Controllers
             return View(usuario);
         }
 
-        // GET: Usuario/Create
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IFormFile file)
-        {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
-
-            if (ModelState.IsValid)
-            {
-                if (file.Headers != null && file.Length > 0)
-                {
-                    using var memoryStream = new MemoryStream();
-                    await file.CopyToAsync(memoryStream);
-                    usuario.Imagem = memoryStream.ToArray();
-                }
-
-                _context.Attach(usuario);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("Edit", "Configuracao");
-            }
-
-            return View(usuario);
-        }
-
-
-
         [HttpGet]
         public IActionResult Edit()
         {
@@ -372,9 +338,7 @@ namespace AGENDAHUB.Controllers
                         return NotFound();
                     }
 
-                    // Deserializar a string JSON antes de atribuir ao modelo
-                    usuario.Configuracao.DiaAtendimento = JsonConvert.DeserializeObject<List<DiasAtendimento>>(configuracao.DiasDaSemanaJson);
-
+                    usuario.Configuracao.DiaAtendimento = configuracao.DiaAtendimento;
                     usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
                     usuario.Configuracao.HoraFim = configuracao.HoraFim;
 
@@ -391,12 +355,6 @@ namespace AGENDAHUB.Controllers
             // Se houver erros de validação, retorne para a View com os dados existentes
             return View(configuracao);
         }
-
-
-
-
-
-
 
 
         [HttpGet]
