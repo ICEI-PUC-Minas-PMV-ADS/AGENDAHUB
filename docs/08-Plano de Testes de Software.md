@@ -20,12 +20,16 @@ Objetivo do Teste:
 > - Verificar se ao acessar o site, a página home está apresentando informações necessárias para que o usuário crie sua conta, faça login e descubra mais sobre o objetivo da aplicação.
 
 Passos:
-> - Acessar o site: 
-> - 
+> - Acessar o site:
+> - Verificar se a página home é carregada corretamente.
+> - Confirmar a responsividade da página em dispositivos móveis e computadores.
+> - Validar se a página é exibida corretamente nos navegadores Chrome e Edge.
+> - Localizar as seções de criação de conta e login na página.
+> - Avaliar a presença de informações relevantes sobre o propósito da aplicação.
 
 Critérios de Êxito:
 > - A página deve abrir em todos os navegadores dos listados no requisito.
-> - A home deve deve ser responsiva no mobile e no computador.
+> - A home deve ser responsiva tanto em dispositivos móveis quanto em computadores.
 > - O usuário conseguir obter informações da aplicação.
 > - O usuário conseguir encontrar o local para efetuar login e criar conta.
 
@@ -37,11 +41,16 @@ Requisitos Associados:
 
 
 Objetivo do Teste:
-> - Verificar se é possível efetuar um novo cadastro e após efetuar o login utilizando as mesmas credenciais, obetendo êxito, o sistema deve permitir alterar as informações cadastrais iniciais. 
+> - Verificar se é possível efetuar um novo cadastro e, após efetuar o login utilizando as mesmas credenciais, obter êxito. Além disso, o sistema deve permitir a alteração das informações cadastrais iniciais.
 
 Passos:
-> - 
-> - 
+> - Acessar o site:
+> - Realizar um novo cadastro inserindo informações válidas.
+> - Efetuar o login utilizando as credenciais cadastradas.
+> - Verificar se o login é bem-sucedido.
+> - Acessar a seção de alteração de informações cadastrais.
+> - Modificar o login, senha e e-mail cadastrados.
+> - Confirmar se as alterações foram salvas com sucesso.
 
 Critérios de Êxito:
 > - O sistema deve permitir criar um novo cadastro com login e senha.
