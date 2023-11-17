@@ -15,3 +15,10 @@ Requisitos Associados:
 > - RNF – 04 - O sistema deve ser responsivo, com tempos de carregamento curtos para evitar frustração do usuário.
 > - RNF – 07 - A interface do usuário deve ser intuitiva e de fácil utilização, mesmo para usuários não familiarizados com sistemas similares.
 > - RNF - 08 - O sistema deve ser compatível com uma variedade de dispositivos e navegadores populares como Chrome e Edge.
+
+Objetivo do Teste:
+> - Verificar se ao acessar o site, a página home está apresentando informações necessárias para que o usuário crie sua conta, faça login e descubra mais sobre o objetivo da aplicação.
+
+Passos:
+> - Acessar o site: 
+> - 
