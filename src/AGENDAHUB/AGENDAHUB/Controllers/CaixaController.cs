@@ -32,6 +32,7 @@ namespace AGENDAHUB.Controllers
         {
             int userId = GetUserId();
             ViewBag.UsuarioID = userId;
+
             if (userId == 0)
             {
                 return Forbid();
@@ -57,6 +58,7 @@ namespace AGENDAHUB.Controllers
         {
             int userId = GetUserId();
             ViewBag.UsuarioID = userId;
+
             if (userId == 0)
             {
                 return Forbid();
