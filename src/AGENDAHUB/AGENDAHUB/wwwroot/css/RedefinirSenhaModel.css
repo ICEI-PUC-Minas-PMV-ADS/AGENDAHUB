@@ -1,4 +1,6 @@
-﻿//loginCSS
+﻿//redefinirCSS
+
+
 body {
     display: flex;
     justify-content: center;
@@ -136,10 +138,9 @@ h3 {
     border-radius: 3.21375rem;
     background: rgba(255, 255, 255, 0.35);
     box-shadow: -7.9108px 7.9108px 19.77699px 0px rgba(0, 0, 0, 0.25);
-    padding-left: 20%;
+    padding-left: 22%;
     border: none;
 }
-
 
     /* Seletor específico para o input onde deseja ajustar o texto do placeholder */
     .camposTextoLg::placeholder {
@@ -152,7 +153,6 @@ h3 {
         letter-spacing: 0.23281rem;
         text-indent: 5%; /*Ajuste o valor conforme necessário */
     }
-
 
 /*Interior caixas de texto*/
 .input-with-icon {
@@ -184,15 +184,6 @@ h3 {
     flex-shrink: 0;
 }
 
-.iconeOlho {
-    z-index: 1;
-    width: 1.37769rem;
-    height: 1.36769rem;
-    flex-shrink: 0;
-    position: absolute;
-    right: 16%; /* Ajuste conforme necessário */
-}
-
 .iconC {
     position: absolute;
     left: 10%; /* Ajuste essa posição conforme necessário */
@@ -211,23 +202,46 @@ h3 {
 }
 
 
+/*Botoes*/
 
-.redefinirSenha {
-    color: #000;
+#botaoVoltar {
+    width: 9.74875rem;
+    height: 3.26894rem;
+    flex-shrink: 0;
+    line-height: 3.26894rem; /* Adicione esta linha para centralizar verticalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*Estilo*/
+    border: none;
+    border-radius: 3.227rem;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: -7.94332px 7.94332px 19.8583px 0px rgba(0, 0, 0, 0.25);
     text-align: center;
     font-family: Inter;
-    font-size: 1rem;
+    font-size: 1.1915rem;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 500;
     line-height: normal;
-    letter-spacing: 0.21031rem;
+    letter-spacing: 0.17875rem;
+    text-decoration: none; /* Remover sublinhado (se desejado) */
 }
-/*Botoes*/
+
+
+    #botaoVoltar a {
+        width: 9.60181rem;
+        height: 1.44344rem;
+        flex-shrink: 0;
+        /*estilo*/
+        color: #000;
+    }
+
 
 .botaoEntrar {
     width: 9.74875rem;
     height: 3.26894rem;
     flex-shrink: 0;
+    line-height: 3.26894rem; /* Adicione esta linha para centralizar verticalmente */
     /*Estilo*/
     border-radius: 3.227rem;
     box-shadow: -7.94332px 7.94332px 19.8583px 0px rgba(0, 0, 0, 0.25);
@@ -243,6 +257,36 @@ h3 {
     text-decoration: none; /* Remover sublinhado (se desejado) */
 }
 
+    .botaoEntrar a {
+        width: 9.60181rem;
+        height: 1.44344rem;
+        flex-shrink: 0;
+        line-height: 3.26894rem; /* Adicione esta linha para centralizar verticalmente */
+        /*estilo*/
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 1.1915rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.17875rem;
+        text-decoration: none; /* Remover sublinhado (se desejado) */
+    }
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3%; /* Ajuste conforme necessário */
+}
+
+
+#botaoVoltar a,
+.botaoEntrar a {
+    width: 100%; /* Preenche todo o espaço do botão */
+    height: 100%; /* Preenche todo o espaço do botão */
+}
 
 
 /*Circulos*/
