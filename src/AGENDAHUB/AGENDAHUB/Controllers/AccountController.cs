@@ -23,18 +23,15 @@ namespace AGENDAHUB.Controllers
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly UserManager<Usuario> _userManager;
-        private readonly IEmailService _emailService;
 
         // Construtor para injetar o DbContext, UserManager e IEmailService
-        public AccountController(AppDbContext context, UserManager<Usuario> userManager, IEmailService emailService)
+        public AccountController(AppDbContext context)
         {
             _context = context;
-            _userManager = userManager;
-            _emailService = emailService;
+
         }
 
-        // GET: Usuarios
+        //GET: Usuarios
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
@@ -272,7 +269,7 @@ namespace AGENDAHUB.Controllers
             return View("ForgotPasswordConfirmation");
         }*/
 
-        [HttpPost]
+       /* [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(string Email)
@@ -301,7 +298,7 @@ namespace AGENDAHUB.Controllers
             {
                 throw new Exception(ex.Message);
             }
-        }
+        }*/
 
     }
 }

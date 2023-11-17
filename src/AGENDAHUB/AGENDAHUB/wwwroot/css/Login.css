@@ -224,32 +224,7 @@ h3 {
 }
 /*Botoes*/
 
-#botaoVoltar {
-    width: 9.74875rem;
-    height: 3.26894rem;
-    flex-shrink: 0;
-    /*Estilo*/
-    border: none;
-    border-radius: 3.227rem;
-    background: rgba(255, 255, 255, 0.35);
-    box-shadow: -7.94332px 7.94332px 19.8583px 0px rgba(0, 0, 0, 0.25);
-}
-
-    #botaoVoltar a {
-        /*estilo*/
-        color: #000;
-        text-align: center;
-        font-family: Inter;
-        font-size: 1.1915rem;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        letter-spacing: 0.17875rem;
-        text-decoration: none; /* Remover sublinhado (se desejado) */
-    }
-
-
-#botaoEntrar {
+.botaoEntrar {
     width: 9.74875rem;
     height: 3.26894rem;
     flex-shrink: 0;

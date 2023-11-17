@@ -128,7 +128,7 @@ h3 {
 }
 
 
-#camposTextoLg {
+.camposTextoLg {
     width: 22.29063rem;
     height: 3.20625rem;
     flex-shrink: 0;
@@ -136,11 +136,12 @@ h3 {
     border-radius: 3.21375rem;
     background: rgba(255, 255, 255, 0.35);
     box-shadow: -7.9108px 7.9108px 19.77699px 0px rgba(0, 0, 0, 0.25);
-    padding-left: 20%;
+    padding-left: 22%;
+    border:none;
 }
 
     /* Seletor específico para o input onde deseja ajustar o texto do placeholder */
-    #camposTextoLg::placeholder {
+    .camposTextoLg::placeholder {
         color: #393874;
         font-family: Inter;
         font-size: 1.164rem;
@@ -234,7 +235,7 @@ h3 {
     }
 
 
-#botaoEntrar {
+.botaoEntrar {
     width: 9.74875rem;
     height: 3.26894rem;
     flex-shrink: 0;
@@ -254,7 +255,7 @@ h3 {
     text-decoration: none; /* Remover sublinhado (se desejado) */
 }
 
-    #botaoEntrar a {
+    .botaoEntrar a {
         width: 9.60181rem;
         height: 1.44344rem;
         flex-shrink: 0;
@@ -280,7 +281,7 @@ h3 {
 
 
     #botaoVoltar a,
-    #botaoEntrar a {
+    .botaoEntrar a {
         width: 100%; /* Preenche todo o espaço do botão */
         height: 100%; /* Preenche todo o espaço do botão */
     }

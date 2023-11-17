@@ -66,13 +66,13 @@
                     <div class="input-container">
                         <img src="~/images/emailLogin.png" alt="Ícone de email" class="icon" />
                         <img src="~/images/line.png" alt="Ícone de linha Vertical" class="line" />
-                        <input asp-for="Email" class="form-control" id="camposTextoLg" placeholder="EMAIL" />
+                        <input asp-for="Email" class="camposTextoLg" placeholder="EMAIL" />
                     </div>
                 </div>
 
                 <div class="form-group pt-2">
-                    <a asp-area="" asp-controller="Account" asp-action="Login" class="btn " id="botaoVoltar">Voltar</a>
-                    <button type="submit" value="Acessar" class="btn btn-secondary " id="botaoEntrar">Solicitar</button>
+                    <a asp-area="" asp-controller="Account" asp-action="Login" class="btn" id="botaoVoltar">Voltar</a>
+                    <button type="submit" value="Acessar" class="botaoEntrar btn-secondary"  style="color: red;"><s>Solicitar</s></button>
                 </div>
             </form>
         </div>
