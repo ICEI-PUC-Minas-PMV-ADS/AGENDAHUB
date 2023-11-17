@@ -1,4 +1,5 @@
 ﻿using AGENDAHUB.Models;
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -225,38 +226,47 @@ namespace AGENDAHUB.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetHorariosPorServico(int serviceId)
+        public JsonResult GetHorariosPorServicoEProfissional(int serviceId, int profissionalId)
         {
+            // Obtém o ID do usuário atualmente logado
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Obter o serviço pelo ID
+            // Obtém o serviço com base no ID fornecido
             var servico = _context.Servicos.FirstOrDefault(s => s.ID_Servico == serviceId);
+
+            // Obtém o profissional com base no ID fornecido
+            var profissional = _context.Profissionais.FirstOrDefault(p => p.ID_Profissional == profissionalId);
+
+            // Obtém a configuração do usuário atual, incluindo a configuração de horários
             var configuracao = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId)?.Configuracao;
 
-            if (servico != null)
+            if (servico != null && profissional != null)
             {
-                // Obter profissionais disponíveis para o serviço
+                // Obtém os horários ocupados pelos agendamentos existentes para o serviço e o profissional específicos
                 var horariosOcupados = _context.Agendamentos
-                    .Where(a => a.ID_Servico == serviceId && a.Status != Agendamentos.StatusAgendamento.Cancelado)
-                    .Select(a => a.Hora.ToString(@"hh\:mm"))
+                    .Where(a => a.ID_Servico == serviceId && a.ID_Profissional == profissionalId && a.Status != Agendamentos.StatusAgendamento.Cancelado)
+                    .Select(a => a.Data + " " + a.Hora.ToString(@"hh\:mm")) // Combina a data e a hora
                     .ToList();
 
-                // Obter horários disponíveis com base nas propriedades do serviço
+                // Obtém os horários disponíveis com base nas propriedades do serviço, do profissional e na configuração do usuário
                 var horarios = GetHorariosDisponiveis(
                     configuracao.HoraInicio.ToString(),
                     configuracao.HoraFim.ToString(),
                     (int)servico.TempoDeExecucao.TotalMinutes,
-                    10 // intervaloAdicional, substitua pelo valor correto se necessário
+                    10 // tempo de intervalo entre um horário e outro
                 );
 
-                // Remover os horários que estão ocupados pelos agendamentos
+                // Remove os horários que já estão ocupados pelos agendamentos
                 horarios.RemoveAll(h => horariosOcupados.Contains(h));
 
+                // Retorna os horários disponíveis como resultado JSON
                 return Json(horarios);
             }
 
+            // Retorna uma lista vazia se o serviço ou o profissional não for encontrado
             return Json(new List<string>());
         }
+
 
 
         [HttpGet]
