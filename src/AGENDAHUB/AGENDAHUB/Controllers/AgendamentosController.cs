@@ -160,14 +160,103 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-        // GET: Agendamentos/Create
+        private static List<DateTime> GetDiasAtendimento(string diasAtendimento)
+        {
+            var diasAtendimentoList = new List<DateTime>();
+            int diasNoMesAtual = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            int diasNoProximoMes = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month + 1);
+
+            for (int i = 1; i <= diasNoMesAtual + diasNoProximoMes; i++)
+            {
+                try
+                {
+                    var ano = DateTime.Now.Year;
+                    var mes = DateTime.Now.Month;
+                    var dia = i;
+
+                    if (i > diasNoMesAtual)
+                    {
+                        // Se o dia for maior que os dias no mês atual, ajustamos para o próximo mês
+                        mes++;
+                        dia = i - diasNoMesAtual;
+
+                        if (mes > 12)
+                        {
+                            // Se estamos no último mês do ano, ajustamos para o próximo ano
+                            ano++;
+                            mes = 1;
+                        }
+                    }
+
+                    var data = new DateTime(ano, mes, dia);
+
+                    int diaDaSemana = (int)data.DayOfWeek;
+
+                    // Certifique-se de que o dia está configurado como disponível
+                    if (diasAtendimento.Contains(diaDaSemana.ToString()))
+                    {
+                        diasAtendimentoList.Add(data);
+                    }
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    // Ignore datas que não são representáveis
+                }
+            }
+            return diasAtendimentoList;
+        }
+
+
+        private static List<string> GetHorariosDisponiveis(string horaInicio, string horaFim, int tempoDeExecucao, int intervaloAdicional)
+        {
+            TimeSpan inicio = TimeSpan.Parse(horaInicio);
+            TimeSpan fim = TimeSpan.Parse(horaFim);
+
+            List<string> horarios = new();
+
+            while (inicio <= fim)
+            {
+                horarios.Add(inicio.ToString(@"hh\:mm"));
+                inicio = inicio.Add(TimeSpan.FromMinutes(tempoDeExecucao + intervaloAdicional));
+            }
+
+            return horarios;
+        }
+
+        [HttpGet]
+        public JsonResult GetHorariosPorServico(int serviceId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // Obter o serviço pelo ID
+            var servico = _context.Servicos.FirstOrDefault(s => s.ID_Servico == serviceId);
+            var configuracao = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId)?.Configuracao;
+
+            if (servico != null)
+            {
+                // Obter horários disponíveis com base nas propriedades do serviço
+                var horarios = GetHorariosDisponiveis(
+                    configuracao.HoraInicio.ToString(),
+                    configuracao.HoraFim.ToString(),
+                    (int)servico.TempoDeExecucao.TotalMinutes,
+                    10 // intervaloAdicional, substitua pelo valor correto se necessário
+                );
+
+                return Json(horarios);
+            }
+
+            return Json(new List<string>());
+        }
+
+
         [HttpGet]
         public IActionResult Create()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-            if (int.TryParse(userId, out int usuarioIDInt))
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var configuracao = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId)?.Configuracao;
+
+            if (int.TryParse(userId, out int usuarioIDInt) && configuracao != null)
             {
-                // Filtra os clientes, serviços e profissionais com base no UsuarioID convertido para int
                 var clientes = _context.Clientes.Where(c => c.UsuarioID == usuarioIDInt).ToList();
                 var servicos = _context.Servicos.Where(s => s.UsuarioID == usuarioIDInt).ToList();
                 var profissionais = _context.Profissionais.Where(p => p.UsuarioID == usuarioIDInt).ToList();
@@ -176,20 +265,28 @@ namespace AGENDAHUB.Controllers
                 ViewBag.Servicos = new SelectList(servicos, "ID_Servico", "Nome");
                 ViewBag.Profissionais = new SelectList(profissionais, "ID_Profissional", "Nome");
 
+
+                var diasAtendimento = string.Join(",", Enumerable.Range(0, 7).Where(i => configuracao.DiasDaSemanaJson.Contains(i.ToString())));
+                ViewBag.DiasDisponiveis = GetDiasAtendimento(diasAtendimento).Select(d => d.ToString("yyyy-MM-dd")).ToList();
+
                 return View();
             }
             else
             {
-                return View("Index"); // Redireciona para a página inicial
+                return View("Index");
             }
         }
+
+
+
 
         // POST: Agendamentos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID_Agendamento,ID_Servico,ID_Cliente,Data,Hora,Status,ID_Profissional")] Agendamentos agendamentos)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var configuracao = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId)?.Configuracao;
             if (int.TryParse(userId, out int usuarioIDInt))
             {
                 agendamentos.UsuarioID = usuarioIDInt; // Define o UsuarioID do agendamento como um int

@@ -29,16 +29,27 @@
                 <span asp-validation-for="ID_Cliente" class="text-danger"></span>
             </div>
 
-
             <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <select asp-for="Data" class="form-control">
+                    <option value="">Selecione uma Data</option>
+                    @foreach (var dia in ViewBag.DiasDisponiveis as List<string>)
+                    {
+                        var dataFormatada = DateTime.Parse(dia);
+                        if (dataFormatada >= DateTime.Today)
+                        {
+                            <option value="@dia">@dataFormatada.ToString("dd/MMM/yyyy")</option>
+                        }
+                    }
+                </select>
                 <span asp-validation-for="Data" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Hora" class="control-label"></label>
-                <input asp-for="Hora" class="form-control" type="time" />
+                <select asp-for="Hora" asp-items="@ViewBag.HorariosDisponiveis" class="form-control">
+                    <option value="">Selecione um Horário</option>
+                </select>
                 <span asp-validation-for="Hora" class="text-danger"></span>
             </div>
 
@@ -65,6 +76,36 @@
         </form>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Evento de mudança no campo de seleção de serviço
+        $("#ID_Servico").change(function () {
+            // Obtenha o ID do serviço selecionado
+            var selectedServiceId = $(this).val();
+
+            // Faça uma solicitação AJAX para obter os horários disponíveis com base no serviço selecionado
+            $.ajax({
+                url: "/Agendamentos/GetHorariosPorServico",
+                type: "GET",
+                data: { serviceId: selectedServiceId },
+                success: function (horarios) {
+                    // Atualize os horários disponíveis no campo de seleção de horários
+                    $("#Hora").empty();
+                    $.each(horarios, function (index, hora) {
+                        $("#Hora").append('<option value="' + hora + '">' + hora + '</option>');
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+
 
 @section Scripts {
     @{
