@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -20,6 +21,24 @@ namespace AGENDAHUB.Controllers
         {
             _context = context;
         }
+
+        // Imagem do Usuário
+        public IActionResult GetImg(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == int.Parse(userId));
+
+            byte[] byteArray = usuario?.Imagem;
+
+            if (byteArray != null && byteArray.Length > 0)
+            {
+                return File(byteArray, "image/jpeg");
+            }
+
+            var defaultImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "logoAgendaHub.png");
+            return PhysicalFile(defaultImagePath, "image/jpeg");
+        }
+
 
         // GET: Usuarios
         public async Task<IActionResult> Index()

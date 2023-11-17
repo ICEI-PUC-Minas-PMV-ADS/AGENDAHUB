@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace AGENDAHUB.Controllers
 {
@@ -15,34 +16,55 @@ namespace AGENDAHUB.Controllers
         {
             _logger = logger;
         }
+        private int GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return userId;
+            }
+            return 0;
+        }
 
         public IActionResult Index()
         {
+            var userId = GetUserId();
+            ViewBag.UserId = userId;
             return View();
         }
 
         public IActionResult Clientes()
         {
+            var userId = GetUserId();
+            ViewBag.UserId = userId;
             return View();
         }
 
         public IActionResult Caixa()
         {
+            var userId = GetUserId();
+            ViewBag.UserId = userId;
             return View();
         }
 
         public IActionResult Servicos()
         {
+            var userId = GetUserId();
+            ViewBag.UserId = userId;
             return View();
         }
 
         public IActionResult Configurações()
         {
+            var userId = GetUserId();
+            ViewBag.UserId = userId;
             return View();
         }
 
         public IActionResult Profissionais()
         {
+            var userId = GetUserId();
+            ViewBag.UserId = userId;
             return View();
         }
 

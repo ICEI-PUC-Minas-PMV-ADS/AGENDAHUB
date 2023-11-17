@@ -75,15 +75,18 @@
             @* Segunda linha alinhada com a parte inferior / User Menu *@
             <div class="dropdown" id="menuUser">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    @if (hasImageClaim)
+                    @{
+                        var userId = ViewBag.UserId;
+                        var imgSrc = Url.Action("GetImg", "Account", new { id = userId });
+                    }
+                    @if (!string.IsNullOrEmpty(imgSrc))
                     {
-                        <img src="@Url.Action("GetImg", "Configuracao", new { Id = userId })" alt="Imagem do Usuário" width="43" height="43" class="rounded-circle me-2">
+                        <img src="@imgSrc" alt="Imagem do Usuário" width="43" height="43" class="rounded-circle me-2"> <strong>@User.Identity.Name</strong>
                     }
                     else
                     {
-                        <img src="~/images/logoAgendaHub.png" alt="Logo AgendaHub" width="43" height="43" class="rounded-circle me-2">
+                        <img src="~/images/logoAgendaHub.png" alt="Logo AgendaHub" width="43" height="43" class="rounded-circle me-2">  <strong>@User.Identity.Name</strong>
                     }
-                    <strong>@User.Identity.Name</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                     <li>
