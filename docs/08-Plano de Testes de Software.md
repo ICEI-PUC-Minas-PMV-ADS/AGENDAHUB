@@ -61,8 +61,6 @@ Critérios de Êxito:
 Requisitos Associados:
 > - RF – 03 - O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional
 
-
-
 Objetivo do Teste:
 > - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo serviço oferecido pelo profissional no sistema
 
@@ -83,4 +81,31 @@ Critérios de Êxito:
 > - A consulta do serviço recém-cadastrado exibe todas as informações corretamente.
 > - A atualização do serviço reflete as modificações feitas.
 > - A exclusão do serviço remove efetivamente o serviço da lista.
+
+
+## CT - 04 - CRUD de Cliente.
+Requisitos Associados:
+> - RF – 04 - O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo cliente no sistema.
+
+Passos:
+> - Acessar o site:
+> - Acessar a seção de novo cliente.
+> - Selecionar a opção para cadastrar um novo cliente.
+> - Preencher todos os campos obrigatórios.
+> - Submeter o formulário.
+> - Verificar se as informações do cliente estão corretas e correspondem aos dados fornecidos no cadastro.
+> - Editar os detalhes do cliente cadastrado.
+> - Confirmar se as informações foram atualizadas corretamente.
+> - Remover o cliente cadastrado.
+> - Verificar se o cliente não está mais presente na lista de clientes cadastrados.
+
+Critérios de Êxito:
+> - O cadastro de um novo cliente é bem-sucedido, sem erros ou mensagens de falha.
+> - A consulta do cliente recém-cadastrado exibe todas as informações corretamente.
+> - A atualização do cliente reflete as modificações feitas.
+> - A exclusão do cliente remove efetivamente o cliente da lista.
+
 
