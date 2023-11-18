@@ -12,28 +12,33 @@
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID_Servico" />
+
             <div class="form-group">
-                <label asp-for="ID_Profissional" class="control-label">Profissional</label>
-                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
-                    <option value="">Selecione um Profissional</option>
+                <label asp-for="ServicosProfissionais" class="control-label">Profissionais</label>
+                <select asp-for="ServicosProfissionais" asp-items="@ViewBag.Profissionais" class="form-control" multiple>
+                    <option value="">Selecione um ou mais Profissionais</option>
                 </select>
-                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
+                <span asp-validation-for="ServicosProfissionais" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Preco" class="control-label">Preço</label>
                 <input asp-for="Preco" class="form-control" data-val="false" />
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="TempoDeExecucao" class="control-label"></label>
                 <input asp-for="TempoDeExecucao" class="form-control" />
                 <span asp-validation-for="TempoDeExecucao" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
 

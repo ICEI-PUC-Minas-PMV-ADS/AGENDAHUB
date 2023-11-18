@@ -4,6 +4,7 @@ using AGENDAHUB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AGENDAHUB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231118013351_AlterandoNomeDasColunas_ServicosProfissionais")]
+    partial class AlterandoNomeDasColunas_ServicosProfissionais
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,6 +251,9 @@ namespace AGENDAHUB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Servico"), 1L, 1);
 
+                    b.Property<int>("ID_Profissional")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Imagem")
                         .HasColumnType("varbinary(max)");
 
@@ -259,9 +264,6 @@ namespace AGENDAHUB.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ProfissionaisID_Profissional")
-                        .HasColumnType("int");
-
                     b.Property<TimeSpan>("TempoDeExecucao")
                         .HasColumnType("time");
 
@@ -270,7 +272,7 @@ namespace AGENDAHUB.Migrations
 
                     b.HasKey("ID_Servico");
 
-                    b.HasIndex("ProfissionaisID_Profissional");
+                    b.HasIndex("ID_Profissional");
 
                     b.HasIndex("UsuarioID");
 
@@ -418,15 +420,19 @@ namespace AGENDAHUB.Migrations
 
             modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
                 {
-                    b.HasOne("AGENDAHUB.Models.Profissionais", null)
+                    b.HasOne("AGENDAHUB.Models.Profissionais", "Profissional")
                         .WithMany("Servicos")
-                        .HasForeignKey("ProfissionaisID_Profissional");
+                        .HasForeignKey("ID_Profissional")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AGENDAHUB.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Profissional");
 
                     b.Navigation("Usuario");
                 });

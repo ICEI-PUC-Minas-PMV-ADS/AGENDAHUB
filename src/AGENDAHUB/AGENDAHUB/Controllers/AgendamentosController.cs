@@ -225,17 +225,19 @@ namespace AGENDAHUB.Controllers
             return horarios;
         }
 
+
+        // Mudar os horários disponiveis de acordo com o serviço(Tempo de Execução) e o profissional
         [HttpGet]
-        public JsonResult GetHorariosPorServicoEProfissional(int serviceId, int profissionalId)
+        public JsonResult GetHorariosPorServicoEProfissional(int selected_ID_Servico, int selected_ID_Profissional)
         {
             // Obtém o ID do usuário atualmente logado
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             // Obtém o serviço com base no ID fornecido
-            var servico = _context.Servicos.FirstOrDefault(s => s.ID_Servico == serviceId);
+            var servico = _context.Servicos.FirstOrDefault(s => s.ID_Servico == selected_ID_Servico);
 
             // Obtém o profissional com base no ID fornecido
-            var profissional = _context.Profissionais.FirstOrDefault(p => p.ID_Profissional == profissionalId);
+            var profissional = _context.Profissionais.FirstOrDefault(p => p.ID_Profissional == selected_ID_Profissional);
 
             // Obtém a configuração do usuário atual, incluindo a configuração de horários
             var configuracao = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId)?.Configuracao;
@@ -244,8 +246,8 @@ namespace AGENDAHUB.Controllers
             {
                 // Obtém os horários ocupados pelos agendamentos existentes para o serviço e o profissional específicos
                 var horariosOcupados = _context.Agendamentos
-                    .Where(a => a.ID_Servico == serviceId && a.ID_Profissional == profissionalId && a.Status != Agendamentos.StatusAgendamento.Cancelado)
-                    .Select(a => a.Data + " " + a.Hora.ToString(@"hh\:mm")) // Combina a data e a hora
+                    .Where(a => a.ID_Servico == selected_ID_Servico && a.ID_Profissional == selected_ID_Profissional && a.Status != Agendamentos.StatusAgendamento.Cancelado)
+                    .Select(a => a.Data + " " + a.Hora.ToString(@"hh\:mm"))
                     .ToList();
 
                 // Obtém os horários disponíveis com base nas propriedades do serviço, do profissional e na configuração do usuário
@@ -256,8 +258,8 @@ namespace AGENDAHUB.Controllers
                     10 // tempo de intervalo entre um horário e outro
                 );
 
-                // Remove os horários que já estão ocupados pelos agendamentos
-                horarios.RemoveAll(h => horariosOcupados.Contains(h));
+                // Remove os horários que já estão ocupados pelos agendamentos específicos
+                horarios = horarios.Except(horariosOcupados).ToList();
 
                 // Retorna os horários disponíveis como resultado JSON
                 return Json(horarios);
@@ -267,6 +269,30 @@ namespace AGENDAHUB.Controllers
             return Json(new List<string>());
         }
 
+
+        [HttpGet]
+        public JsonResult GetProfissionaisByServico(int servicoId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (int.TryParse(userId, out int usuarioIDInt))
+            {
+                // Certifique-se de que o serviço está sendo encontrado corretamente
+                var servico = _context.Servicos
+                    .Include(s => s.ServicosProfissionais)
+                    .ThenInclude(sp => sp.Profissional)
+                    .FirstOrDefault(s => s.UsuarioID == usuarioIDInt && s.ID_Servico == servicoId);
+
+                if (servico != null)
+                {
+                    // Recupere os profissionais associados a esse serviço
+                    var profissionaisSelecionaveis = servico.ServicosProfissionais.Select(sp => new { sp.Profissional.ID_Profissional, sp.Profissional.Nome }).ToList();
+
+                    return Json(profissionaisSelecionaveis);
+                }
+            }
+            return Json(null);
+        }
 
 
         [HttpGet]
