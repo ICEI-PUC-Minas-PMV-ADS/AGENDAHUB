@@ -133,4 +133,27 @@ Critérios de Êxito:
 > - A atualização do agendamento reflete as modificações feitas.
 > - A exclusão do agendamento remove efetivamente o cliente da lista.
 
+## CT - 06 - CRUD de Movimentação Financeira.
+Requisitos Associados:
+> - RF – 06 - O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira
 
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de uma nova movimentação financeira no sistema.
+
+Passos:
+> - Acessar o site:
+> - Acessar a seção de movimentação financeira.
+> - Selecionar a opção para cadastrar uma nova movimentação.
+> - Preencher todos os campos obrigatórios do formulário de cadastro de movimentação financeira.
+> - Submeter o formulário.
+> - Verificar se as informações da movimentação estão corretas e correspondem aos dados fornecidos no cadastro.
+> - Editar os detalhes da movimentação cadastrada.
+> - Confirmar se as informações foram atualizadas corretamente.
+> - Remover a movimentação cadastrada.
+> - Verificar se a movimentação financeira não está mais presente na lista de movimentações cadastradas.
+
+Critérios de Êxito:
+> - O cadastro de uma nova movimentação financeira é bem-sucedido, sem erros ou mensagens de falha.
+> - A consulta da movimentação financeira recém-cadastrada exibe todas as informações corretamente.
+> - A atualização da movimentação financeira reflete as modificações feitas.
+> - A exclusão da movimentação financeira remove efetivamente a movimentação financeira da lista.
