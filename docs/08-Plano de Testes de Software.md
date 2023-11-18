@@ -157,3 +157,31 @@ Critérios de Êxito:
 > - A consulta da movimentação financeira recém-cadastrada exibe todas as informações corretamente.
 > - A atualização da movimentação financeira reflete as modificações feitas.
 > - A exclusão da movimentação financeira remove efetivamente a movimentação financeira da lista.
+
+## CT - 07 - CRUD de Colaborador.
+Requisitos Associados:
+> - RF – 07 - O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo colaborador no sistema.
+
+Passos:
+> - Acessar o site:
+> - Acessar a seção de administração.
+> - Selecionar a opção para cadastrar um novo colaborador.
+> - Preencher todos os campos obrigatórios do formulário de cadastro de colaborador.
+> - Submeter o formulário.
+> - Vá para a lista de colaboradores cadastrados.
+> - Localizar o colaborador adicionado no passo anterior.
+> - Verificar se as informações do colaborador estão corretas e correspondem aos dados fornecidos no cadastro.
+> - Editar os detalhes do colaborador cadastrado.
+> - Confirmar se as informações foram atualizadas corretamente.
+> - Remover o colaborador cadastrado.
+> - Verificar se o colaborador não está mais presente na lista de colaboradores cadastrados.
+
+Critérios de Êxito:
+> - O cadastro de um novo colaborador é bem-sucedido, sem erros ou mensagens de falha.
+> - A consulta do colaborador recém-cadastrado exibe todas as informações corretamente.
+> - A atualização do colaborador reflete as modificações feitas.
+> - A exclusão do colaborador remove efetivamente o colaborador da lista.
+
