@@ -175,6 +175,7 @@ Através de uma interface amigável, a aplicação oferecerá um conjunto de fun
 | RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento | ALTA       |
 | RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional e tirar dúvidas   | ALTA      |
 | RF-13 | O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado | MÉDIA       |
+| RF-14 | O sistema deve permitir ao administrador realizar o CRUD de um novo profissional | ALTA       |
 
 
 
