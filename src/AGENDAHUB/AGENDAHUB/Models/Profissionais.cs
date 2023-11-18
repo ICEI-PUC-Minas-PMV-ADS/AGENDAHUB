@@ -37,6 +37,6 @@ namespace AGENDAHUB.Models
         public Usuario Usuario { get; set; }
         public List<Servicos> Servicos { get; set; }
         public List<Agendamentos> Agendamentos { get; set; }
-
+        public List<ServicoProfissional> ServicosProfissionais { get; set; }
     }
 }

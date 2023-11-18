@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -49,7 +50,7 @@ namespace AGENDAHUB.Controllers
             int userId = GetUserId();
             var servicos = await _context.Servicos
                 .Where(s => s.UsuarioID == userId)
-                .Include(s => s.Profissional)
+                .Include(s => s.ServicosProfissionais)
                 .ToListAsync();
 
             if (servicos.Count == 0)
@@ -69,9 +70,11 @@ namespace AGENDAHUB.Controllers
             {
                 // Se a pesquisa estiver vazia, exiba todos os serviços do usuário
                 var servicos = await _context.Servicos
-                    .Where(s => s.UsuarioID == userId)
-                    .Include(s => s.Profissional)
-                    .ToListAsync();
+                     .Where(s => s.UsuarioID == userId)
+                     .Include(s => s.ServicosProfissionais)
+                     .ThenInclude(sp => sp.Profissional)
+                     .ToListAsync();
+
 
                 return View("Index", servicos);
             }
@@ -82,10 +85,10 @@ namespace AGENDAHUB.Controllers
             {
                 // Se a pesquisa for um número (preço), realiza a filtragem
                 var servicos = await _context.Servicos
-                    .Where(s => s.UsuarioID == userId)
-                    .Include(s => s.Profissional)
-                    .Where(s => s.Preco == priceSearch)
-                    .ToListAsync();
+                     .Where(s => s.UsuarioID == userId)
+                     .Include(s => s.ServicosProfissionais)
+                     .ThenInclude(sp => sp.Profissional)
+                     .ToListAsync();
 
                 if (servicos.Count == 0)
                 {
@@ -98,10 +101,10 @@ namespace AGENDAHUB.Controllers
                 // Pesquisa pelo nome do serviço ou nome do profissional
                 var servicos = await _context.Servicos
                     .Where(s => s.UsuarioID == userId)
-                    .Include(s => s.Profissional)
+                    .Include(s => s.ServicosProfissionais)
                     .Where(s =>
                         s.Nome.ToLower().Contains(search) ||
-                        s.Profissional.Nome.ToLower().Contains(search) ||
+                        s.ServicosProfissionais.Any(sp => sp.Profissional.Nome.ToLower().Contains(search)) ||
                         s.Preco.ToString().Contains(search))
                     .ToListAsync();
 
@@ -116,34 +119,78 @@ namespace AGENDAHUB.Controllers
         [Authorize(Roles = "Admin, User, Profissional")]
         public IActionResult Create()
         {
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
-            return View();
+            int userId = GetUserId();
+
+            // Carregue os profissionais associados ao usuário atual
+            var profissionais = _context.Profissionais.Where(p => p.Usuario.Id == userId).ToList();
+
+            // Inicialize SelectedProfissionais como uma lista vazia
+            var servicos = new Servicos { SelectedProfissionais = new List<int>() };
+
+            // Configure o ViewBag.Profissionais e passe o modelo para a visualização
+            ViewBag.Profissionais = new SelectList(profissionais, "ID_Profissional", "Nome");
+            return View(servicos);
         }
 
-        [Authorize(Roles = "Admin, User, Profissional")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem, ID_Profissional")] Servicos servicos, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ID_Servico,Nome,Preco,TempoDeExecucao,Imagem,SelectedProfissionais")] Servicos servicos, IFormFile file)
         {
             int userId = GetUserId();
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais.Where(p => p.Usuario.Id == userId), "ID_Profissional", "Nome");
 
             if (ModelState.IsValid)
             {
-                servicos.UsuarioID = userId;
-                if (file.Headers != null && file.Length > 0)
+                // Busque os IDs de profissionais associados ao usuário
+                var profissionaisDoUsuario = _context.Profissionais
+                    .Where(p => p.Usuario.Id == userId)
+                    .Select(p => p.ID_Profissional)
+                    .ToList();
+
+                // Verifique se todos os IDs selecionados pertencem ao usuário
+                var profissionaisIdsExistem = servicos.SelectedProfissionais.All(selectedId => profissionaisDoUsuario.Contains(selectedId));
+
+                if (!profissionaisIdsExistem)
+                {
+                    foreach (var profissionalId in servicos.SelectedProfissionais)
+                    {
+                        if (!profissionaisDoUsuario.Contains(profissionalId))
+                        {
+                            ModelState.AddModelError("SelectedProfissionais", $"ID de profissional inválido: {profissionalId}");
+                        }
+                    }
+                    return View(servicos);
+                }
+
+                // Limpe a lista atual de ServicosProfissionais e adicione os profissionais selecionados
+                servicos.ServicosProfissionais.Clear();
+                servicos.ServicosProfissionais.AddRange(servicos.SelectedProfissionais
+                    .Select(profissionalId => new ServicoProfissional { ID_Profissional = profissionalId })
+                    .ToList());
+
+                // Restante da lógica para salvar a imagem e outras propriedades
+                if (file != null && file.Length > 0)
                 {
                     using var memoryStream = new MemoryStream();
-                    await file.CopyToAsync(target: memoryStream);
-                    byte[] data = memoryStream.ToArray();
+                    await file.CopyToAsync(memoryStream);
                     servicos.Imagem = memoryStream.ToArray();
                 }
+
+                servicos.UsuarioID = userId;
+
                 _context.Add(servicos);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(servicos);
         }
+
+
+
+
 
         [Authorize(Roles = "Admin, User, Profissional")]
         public async Task<IActionResult> Edit(int? id)
@@ -223,7 +270,7 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
             var servicos = await _context.Servicos
-                .Include(s => s.Profissional)
+                .Include(s => s.ServicosProfissionais)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
             if (servicos == null)
@@ -244,7 +291,7 @@ namespace AGENDAHUB.Controllers
             }
             int userId = GetUserId();
             var servicos = await _context.Servicos
-                .Include(s => s.Profissional)
+                .Include(s => s.ServicosProfissionais)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
             if (servicos != null)
             {
