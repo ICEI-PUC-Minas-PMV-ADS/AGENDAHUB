@@ -56,3 +56,31 @@ Critérios de Êxito:
 > - O sistema deve permitir criar um novo cadastro com login e senha.
 > - O sistema deve permitir efetuar login utilizando as credenciais do cadastro inicial.
 > - Ao efetuar o login, o sistema deve permitir que sejam alterados os dados cadastrais de login, senha e e-mail.
+
+## CT - 03 - CRUD de Serviço.
+Requisitos Associados:
+> - RF – 03 - O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional
+
+
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo serviço oferecido pelo profissional no sistema
+
+Passos:
+> - Acessar o site:
+> - Acessar a seção de novo serviço.
+> - Selecionar a opção para cadastrar um novo serviço.
+> - Preencher todos os campos obrigatórios.
+> - Submeter o formulário e verificar se o novo serviço é corretamente registrado no sistema.
+> - Editar os detalhes do serviço cadastrado.
+> - Verificar se as alterações foram registradas corretamente.
+> - Remover o serviço cadastrado.
+> - Verificar se o serviço foi excluído corretamente.
+
+
+Critérios de Êxito:
+> - O cadastro de um novo serviço é bem-sucedido, sem erros ou mensagens de falha.
+> - A consulta do serviço recém-cadastrado exibe todas as informações corretamente.
+> - A atualização do serviço reflete as modificações feitas.
+> - A exclusão do serviço remove efetivamente o serviço da lista.
+
