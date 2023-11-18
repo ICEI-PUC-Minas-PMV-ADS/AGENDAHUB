@@ -93,12 +93,22 @@ Objetivo do Teste:
 Passos:
 > - Acessar o site:
 > - Acessar a seção de novo cliente.
+
+Cadastro de Novo Cliente:
 > - Selecionar a opção para cadastrar um novo cliente.
 > - Preencher todos os campos obrigatórios.
 > - Submeter o formulário.
+
+Consulta do Cliente Cadastrado:
+> - Vá para a lista de clientes cadastrados.
+> - Localizar o cliente adicionado no passo anterior.
 > - Verificar se as informações do cliente estão corretas e correspondem aos dados fornecidos no cadastro.
+
+Atualização do Cliente:
 > - Editar os detalhes do cliente cadastrado.
 > - Confirmar se as informações foram atualizadas corretamente.
+
+Exclusão do Cliente:
 > - Remover o cliente cadastrado.
 > - Verificar se o cliente não está mais presente na lista de clientes cadastrados.
 
@@ -118,12 +128,22 @@ Objetivo do Teste:
 Passos:
 > - Acessar o site:
 > - Acessar a seção de agendamento.
+
+Cadastro de Novo Agendamento:
 > - Selecionar a opção para cadastrar um novo agendamento.
 > - Preencher todos os campos obrigatórios do formulário de cadastro de agendamento.
 > - Submeter o formulário.
+
+Consulta do Agendamento Cadastrado:
+> - Vá para a lista de agendamentos cadastrados.
+> - Localizar o agendamento adicionado no passo anterior.
 > - Verificar se as informações do agendamento estão corretas e correspondem aos dados fornecidos no cadastro.
+
+Atualização do Agendamento:
 > - Editar os detalhes do agendamento cadastrado.
 > - Confirmar se as informações foram atualizadas corretamente.
+
+Exclusão do Agendamento:
 > - Remover o agendamento cadastrado.
 > - Verificar se o agendamento não está mais presente na lista de agendamentos cadastrados.
 
@@ -143,12 +163,22 @@ Objetivo do Teste:
 Passos:
 > - Acessar o site:
 > - Acessar a seção de movimentação financeira.
+
+Cadastro de Nova Movimentação Financeira:
 > - Selecionar a opção para cadastrar uma nova movimentação.
 > - Preencher todos os campos obrigatórios do formulário de cadastro de movimentação financeira.
 > - Submeter o formulário.
+
+Consulta da Nova Movimentação Financeira:
+> - Vá para a lista de movimentações cadastradas.
+> - Localizar a movimentação adicionada no passo anterior.
 > - Verificar se as informações da movimentação estão corretas e correspondem aos dados fornecidos no cadastro.
+
+Atualização da Nova Movimentação Financeira:
 > - Editar os detalhes da movimentação cadastrada.
 > - Confirmar se as informações foram atualizadas corretamente.
+
+Exclusão da Nova Movimentação Financeira:
 > - Remover a movimentação cadastrada.
 > - Verificar se a movimentação financeira não está mais presente na lista de movimentações cadastradas.
 
@@ -168,14 +198,22 @@ Objetivo do Teste:
 Passos:
 > - Acessar o site:
 > - Acessar a seção de administração.
+
+Cadastro de Novo Colaborador:
 > - Selecionar a opção para cadastrar um novo colaborador.
 > - Preencher todos os campos obrigatórios do formulário de cadastro de colaborador.
 > - Submeter o formulário.
+
+Consulta do Novo Colaborador:
 > - Vá para a lista de colaboradores cadastrados.
 > - Localizar o colaborador adicionado no passo anterior.
 > - Verificar se as informações do colaborador estão corretas e correspondem aos dados fornecidos no cadastro.
+
+Atualização do Colaborador:
 > - Editar os detalhes do colaborador cadastrado.
 > - Confirmar se as informações foram atualizadas corretamente.
+
+Exclusão do Colaborador:
 > - Remover o colaborador cadastrado.
 > - Verificar se o colaborador não está mais presente na lista de colaboradores cadastrados.
 
@@ -200,7 +238,7 @@ Cadastro de Novo Profissional:
 > - Selecionar a opção para cadastrar um novo profissional.
 > - Preencher todos os campos obrigatórios do formulário de cadastro de profissional.
 > - Submeter o formulário.
-> - 
+
 Consulta do Profissional Cadastrado:
 > - Vá para a lista de profissionais cadastrados.
 > - Localizar o profissional adicionado no passo anterior.
