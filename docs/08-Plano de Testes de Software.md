@@ -195,14 +195,22 @@ Objetivo do Teste:
 Passos:
 > - Acessar o site:
 > - Acessar a seção de administração.
+
+Cadastro de Novo Profissional:
 > - Selecionar a opção para cadastrar um novo profissional.
 > - Preencher todos os campos obrigatórios do formulário de cadastro de profissional.
 > - Submeter o formulário.
+> - 
+Consulta do Profissional Cadastrado:
 > - Vá para a lista de profissionais cadastrados.
 > - Localizar o profissional adicionado no passo anterior.
 > - Verificar se as informações do profissional estão corretas e correspondem aos dados fornecidos no cadastro.
+
+Atualização do Profissional:
 > - Editar os detalhes do profissional cadastrado.
 > - Confirmar se as informações foram atualizadas corretamente.
+
+Exclusão do Profissional:
 > - Remover o profissional cadastrado.
 > - Verificar se o profissional não está mais presente na lista de profissionais cadastrados.
 
