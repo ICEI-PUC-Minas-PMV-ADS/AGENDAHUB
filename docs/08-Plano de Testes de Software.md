@@ -185,3 +185,29 @@ Critérios de Êxito:
 > - A atualização do colaborador reflete as modificações feitas.
 > - A exclusão do colaborador remove efetivamente o colaborador da lista.
 
+## CT - 08 - CRUD de Profissional.
+Requisitos Associados:
+> - RF – 14 - O sistema deve permitir ao administrador realizar o CRUD de um novo profissional
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo profissional no sistema.
+
+Passos:
+> - Acessar o site:
+> - Acessar a seção de administração.
+> - Selecionar a opção para cadastrar um novo profissional.
+> - Preencher todos os campos obrigatórios do formulário de cadastro de profissional.
+> - Submeter o formulário.
+> - Vá para a lista de profissionais cadastrados.
+> - Localizar o profissional adicionado no passo anterior.
+> - Verificar se as informações do profissional estão corretas e correspondem aos dados fornecidos no cadastro.
+> - Editar os detalhes do profissional cadastrado.
+> - Confirmar se as informações foram atualizadas corretamente.
+> - Remover o profissional cadastrado.
+> - Verificar se o profissional não está mais presente na lista de profissionais cadastrados.
+
+Critérios de Êxito:
+> - O cadastro de um novo profissional é bem-sucedido, sem erros ou mensagens de falha.
+> - A consulta do profissional recém-cadastrado exibe todas as informações corretamente.
+> - A atualização do profissional reflete as modificações feitas.
+> - A exclusão do profissional remove efetivamente o profissional da lista.
