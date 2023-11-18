@@ -67,13 +67,24 @@ Objetivo do Teste:
 Passos:
 > - Acessar o site:
 > - Acessar a seção de novo serviço.
+
+Cadastro de Novo Serviço:
 > - Selecionar a opção para cadastrar um novo serviço.
 > - Preencher todos os campos obrigatórios.
-> - Submeter o formulário e verificar se o novo serviço é corretamente registrado no sistema.
+> - Submeter o formulário.
+
+Consulta do Serviço Cadastrado:
+> - Vá para a lista de serviços cadastrados.
+> - Localizar o serviço adicionado no passo anterior.
+> - Verificar se as informações do serviço estão corretas e correspondem aos dados fornecidos no cadastro.
+
+Atualização do Serviço:
 > - Editar os detalhes do serviço cadastrado.
-> - Verificar se as alterações foram registradas corretamente.
+> - Confirmar se as informações foram atualizadas corretamente.
+
+Exclusão do Serviço:
 > - Remover o serviço cadastrado.
-> - Verificar se o serviço foi excluído corretamente.
+> - Verificar se o serviço não está mais presente na lista de clientes cadastrados.
 
 
 Critérios de Êxito:
