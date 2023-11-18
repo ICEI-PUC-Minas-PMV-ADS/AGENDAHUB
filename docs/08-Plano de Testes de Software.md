@@ -108,4 +108,29 @@ Critérios de Êxito:
 > - A atualização do cliente reflete as modificações feitas.
 > - A exclusão do cliente remove efetivamente o cliente da lista.
 
+## CT - 05 - CRUD de Agendamento.
+Requisitos Associados:
+> - RF – 05 - O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo agendamento no sistema.
+
+Passos:
+> - Acessar o site:
+> - Acessar a seção de agendamento.
+> - Selecionar a opção para cadastrar um novo agendamento.
+> - Preencher todos os campos obrigatórios do formulário de cadastro de agendamento.
+> - Submeter o formulário.
+> - Verificar se as informações do agendamento estão corretas e correspondem aos dados fornecidos no cadastro.
+> - Editar os detalhes do agendamento cadastrado.
+> - Confirmar se as informações foram atualizadas corretamente.
+> - Remover o agendamento cadastrado.
+> - Verificar se o agendamento não está mais presente na lista de agendamentos cadastrados.
+
+Critérios de Êxito:
+> - O cadastro de um novo agendamento é bem-sucedido, sem erros ou mensagens de falha.
+> - A consulta do agendamento recém-cadastrado exibe todas as informações corretamente.
+> - A atualização do agendamento reflete as modificações feitas.
+> - A exclusão do agendamento remove efetivamente o cliente da lista.
+
 
