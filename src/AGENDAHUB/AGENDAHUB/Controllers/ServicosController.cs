@@ -189,9 +189,6 @@ namespace AGENDAHUB.Controllers
         }
 
 
-
-
-
         [Authorize(Roles = "Admin, User, Profissional")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -212,15 +209,21 @@ namespace AGENDAHUB.Controllers
             // Adiciona uma informação sobre a existência da imagem à ViewBag
             ViewBag.HasExistingImage = (servicos.Imagem != null && servicos.Imagem.Length > 0);
 
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
+            // Filtra os profissionais relacionados ao userId
+            var profissionaisRelacionados = _context.Profissionais
+                .Where(p => p.UsuarioID == userId)
+                .ToList();
+
+            ViewBag.Profissionais = new SelectList(profissionaisRelacionados, "ID_Profissional", "Nome");
 
             return View(servicos);
         }
 
+
         [Authorize(Roles = "Admin, User, Profissional")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao, ID_Profissional")] Servicos servicos, IFormFile Imagem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao,ID_Profissional")] Servicos servicos, IFormFile Imagem)
         {
             int userId = GetUserId();
             if (id != servicos.ID_Servico)
@@ -232,12 +235,16 @@ namespace AGENDAHUB.Controllers
             {
                 try
                 {
+                    // Verificar se uma nova imagem foi fornecida
                     if (Imagem != null)
                     {
                         using var stream = new MemoryStream();
                         await Imagem.CopyToAsync(stream);
                         servicos.Imagem = stream.ToArray();
                     }
+
+                    // Se nenhuma nova imagem foi fornecida, não fazemos alterações na propriedade Imagem
+
                     servicos.UsuarioID = userId;
                     _context.Update(servicos);
                     await _context.SaveChangesAsync();
@@ -255,9 +262,11 @@ namespace AGENDAHUB.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
+
 
 
         [Authorize(Roles = "Admin, User, Profissional")]

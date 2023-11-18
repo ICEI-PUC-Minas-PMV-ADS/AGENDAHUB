@@ -53,3 +53,7 @@ input[type="date"] {
     border-color: aqua;
     border-radius: 100px;
 }
+
+table.dataTable > tbody > tr > td.select-checkbox:before, table.dataTable > tbody > tr > th.select-checkbox:before {
+    margin-top: 0 !important;
+}

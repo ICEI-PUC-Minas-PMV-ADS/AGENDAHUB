@@ -622,7 +622,7 @@ namespace AGENDAHUB.Controllers
             var caixaEntrada = new Caixa
             {
                 Categoria = Caixa.CategoriaMovimentacao.Entrada,
-                Descricao = "Pagamento pelo serviço: <strong>" + agendamento.Servicos.Nome + "</strong>",
+                Descricao = $"Pagamento pelo serviço: \"{agendamento.Servicos.Nome}\"",
                 Valor = agendamento.Servicos.Preco,
                 Data = agendamento.Data,
                 ID_Agendamento = agendamento.ID_Agendamentos,

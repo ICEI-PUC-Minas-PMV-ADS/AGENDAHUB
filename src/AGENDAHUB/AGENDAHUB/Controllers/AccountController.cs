@@ -43,7 +43,9 @@ namespace AGENDAHUB.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuarios.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuarios = await _context.Usuarios.Where(u => u.Id == int.Parse(userId)).ToListAsync();
+            return View(usuarios);
         }
 
         public IActionResult Login()
@@ -101,29 +103,35 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync();
 
-            return RedirectToAction("Login", "Account");
+        // GET: Usuarios/NovoUsuario
+        [Authorize]
+        public IActionResult NovoUsuario()
+        {
+            return View();
         }
 
-        // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // POST: Usuarios/NovoUsuario
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> NovoUsuario([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
         {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
+            // Garante que o novo usuário seja associado ao userId do usuário autenticado
+            usuario.Id = int.Parse(userId);
+
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Account");
             }
             return View(usuario);
         }
+
 
         // GET: Usuarios/Create
         public IActionResult Create()
@@ -149,16 +157,21 @@ namespace AGENDAHUB.Controllers
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuarios
+                .Where(u => u.Id == id && u.Id == int.Parse(userId))
+                .FirstOrDefaultAsync();
+
             if (usuario == null)
             {
                 return NotFound();
             }
+
             return View(usuario);
         }
 
@@ -199,17 +212,23 @@ namespace AGENDAHUB.Controllers
         // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
 
             var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Where(u => u.Id == id && u.Id == int.Parse(userId))
+                .FirstOrDefaultAsync();
+
             if (usuario == null)
             {
                 return NotFound();
             }
+
+            ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
+
             return View(usuario);
         }
 
@@ -243,5 +262,13 @@ namespace AGENDAHUB.Controllers
             bool isNomeUsuarioAvailable = !_context.Usuarios.Any(u => u.NomeUsuario == NomeUsuario);
             return Json(isNomeUsuarioAvailable);
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+
+            return RedirectToAction("Login", "Account");
+        }
+
     }
 }

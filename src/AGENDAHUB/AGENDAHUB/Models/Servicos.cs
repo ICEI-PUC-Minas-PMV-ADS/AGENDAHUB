@@ -27,7 +27,6 @@ namespace AGENDAHUB.Models
         [Display(Name = "Tempo de Execução")]
         [DataType(DataType.Time)]
         public TimeSpan TempoDeExecucao { get; set; }
-
         public byte[] Imagem { get; set; }
 
         public List<ServicoProfissional> ServicosProfissionais { get; set; }

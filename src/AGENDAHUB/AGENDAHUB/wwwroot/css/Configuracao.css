@@ -5,3 +5,7 @@
     background-color: #007bff;
     color: #fff;
 }
+
+table.dataTable > tbody > tr > td.select-checkbox:before, table.dataTable > tbody > tr > th.select-checkbox:before {
+    margin-top: 0 !important;
+}
