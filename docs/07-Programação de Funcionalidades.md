@@ -16,7 +16,7 @@ Por exemplo: a tabela a seguir deverá ser preenchida considerando os artefatos 
 | RF-06 | O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira   |       |       |
 | RF-07 | O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador |        |       |
 | RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   |       |       |
-| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. |        |       |
+| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. |  Usuario.cs, Index.cshtml, Edit.cshtml, Delete.cshtml, AccountController.cs      |   Álvaro e Lucas    |
 | RF-10 | O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos   |       |       |
 | RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento |        |       |
 | RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional |        |       |
