@@ -150,13 +150,12 @@ namespace AGENDAHUB.Controllers
         {
             if (EmailEmUso(usuario.Email))
             {
-                ModelState.AddModelError("Error de email duplicado", "Este email está em uso");
-
+                ModelState.AddModelError("EmailEmUso", "Este email está em uso");
                 //return RedirectToAction("Create", "Account");
             }
             else if (NomeEmUso(usuario.NomeUsuario))
             {
-                ModelState.AddModelError("Error de Nome de Usuario duplicado", "Este nome de usuario está em uso");
+                ModelState.AddModelError("NomeEmUso", "Este nome de usuario está em uso");
             }
             else
             {

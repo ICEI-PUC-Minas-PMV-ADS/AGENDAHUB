@@ -1,9 +1,11 @@
 ﻿@model AGENDAHUB.Models.Usuario
 
+
 <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <script src="~/js/MostrarSenha.js"></script>
+
 @* Fonte de letra:*@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,10 +67,11 @@
                 <div class="mb-3 pt-3 input-with-icon">
                     <div class="input-container">
                         <img src="~/images/iconUsuarios.png" alt="Ícone de usuário" class="iconC" />
-                        <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
+                        <img src="~/images/line.png" alt="Ícone de linha Vertical" class="lineC" />
                         <input asp-for="NomeUsuario" class="camposTextoLg" placeholder="USUÁRIO" />
                     </div>
                 </div>
+
 
                 <div class="mb-3  pt-3 input-with-icon">
                     <div class="input-container">
@@ -76,6 +79,7 @@
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
                         <input asp-for="Email" class="camposTextoLg" placeholder="EMAIL" />
                     </div>
+
                 </div>
 
                 <div class="mb-3  pt-3 input-with-icon">
@@ -101,17 +105,10 @@
     </div>
 </div>
 
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
 }
 
-
-
-
-@*<div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label text-black" for="exampleCheck1">Lembrar de mim</label>
-                </div> *@
