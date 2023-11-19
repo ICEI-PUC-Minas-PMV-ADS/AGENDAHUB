@@ -32,9 +32,17 @@ Passos:
 
 <b>Resultado CT - 01: </b> A página não foi aberta nos navegadores listados por não estar disponível em uma hospedagem, os demais objetivos foram atendidos, como apresentar informações necessárias para que o usuário crie a sua conta, faça login e descubra mais sobre o objetivo da aplicação.
 
+
 ## CT - 02 - Cadastro e Login.
 
+Objetivo do Teste:
+> - Verificar se é possível efetuar um novo cadastro e, após efetuar o login utilizando as mesmas credenciais, obter êxito. Além disso, o sistema deve permitir a alteração das informações cadastrais iniciais.
 
+Passos:
+> - Acessar o site: https://localhost:44331
+> - Realizar um novo cadastro inserindo informações válidas.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/4e10863f-7b47-4036-afaa-fb05930046af)
 
 
 
