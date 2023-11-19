@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ColaboradorProfissional\**" />
     <Compile Remove="Views\Usuario\**" />
+    <Content Remove="Views\ColaboradorProfissional\**" />
     <Content Remove="Views\Usuario\**" />
+    <EmbeddedResource Remove="Views\ColaboradorProfissional\**" />
     <EmbeddedResource Remove="Views\Usuario\**" />
+    <None Remove="Views\ColaboradorProfissional\**" />
     <None Remove="Views\Usuario\**" />
   </ItemGroup>
 
@@ -35,6 +39,7 @@
   <ItemGroup>
     <Content Remove="Models\UsuarioConfiguracaoViewModel.cshtml" />
     <Content Remove="Views\Account\Details.cshtml" />
+    <Content Remove="Views\Configuracao\Index.cshtml" />
     <Content Remove="Views\Home\Caixa.cshtml" />
     <Content Remove="Views\Home\Clientes.cshtml" />
     <Content Remove="Views\Home\Configurações.cshtml" />

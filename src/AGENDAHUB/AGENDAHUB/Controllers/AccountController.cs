@@ -66,6 +66,13 @@ namespace AGENDAHUB.Controllers
             var profissionalDados = await _context.Profissionais
                 .FirstOrDefaultAsync(p => p.Login == usuario.NomeUsuario);
 
+            // Verifica se o NomeUsuario ou senha foi digitado errado
+            if (_context.Usuarios.Any(u => u.NomeUsuario != usuario.NomeUsuario || u.Senha != usuario.Senha))
+            {
+                ModelState.AddModelError("NomeUsuario + Senha", "Usuário e/ou senha incorretos");
+                return View(usuario);
+            }
+
             if (usuarioDados != null && BCrypt.Net.BCrypt.Verify(usuario.Senha, usuarioDados.Senha))
             {
                 // Usuário encontrado na tabela de Usuarios
@@ -128,9 +135,31 @@ namespace AGENDAHUB.Controllers
 
             if (ModelState.IsValid)
             {
+
+                // Verifica se o email já está em uso
+                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(usuario);
+                }
+
+                // Verifica se o NomeUsuario já está em uso
+                if (_context.Usuarios.Any(u => u.NomeUsuario == usuario.NomeUsuario))
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso.");
+                    return View(usuario);
+                }
+
+                // Hash da senha
                 usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+
+                // Adiciona o novo usuário
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
+
+                // Adiciona uma mensagem de sucesso
+                TempData["Mensagem"] = "Usuário cadastrado com sucesso!";
+
                 return RedirectToAction("Index", "Account");
             }
             return View(usuario);
@@ -150,13 +179,36 @@ namespace AGENDAHUB.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Verifica se o email já está em uso
+                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(usuario);
+                }
+
+                // Verifica se o NomeUsuario já está em uso
+                if (_context.Usuarios.Any(u => u.NomeUsuario == usuario.NomeUsuario))
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso.");
+                    return View(usuario);
+                }
+
+                // Hash da senha
                 usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+
+                // Adiciona o novo usuário
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
+
+                // Adiciona uma mensagem de sucesso
+                TempData["Mensagem"] = "Usuário cadastrado com sucesso!";
+
                 return RedirectToAction("Login", "Account");
             }
+
             return View(usuario);
         }
+
 
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)

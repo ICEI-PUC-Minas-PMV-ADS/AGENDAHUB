@@ -67,6 +67,7 @@
                         <img src="~/images/iconUsuarios.png" alt="Ícone de usuário" class="iconC" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
                         <input asp-for="NomeUsuario" class="camposTextoLg" placeholder="USUÁRIO" />
+                        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -75,6 +76,7 @@
                         <img src="~/images/emailLogin.png" alt="Ícone de email" class="iconC" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
                         <input asp-for="Email" class="camposTextoLg" placeholder="EMAIL" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -84,6 +86,7 @@
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
                         <input asp-for="Senha" class="camposTextoLg" id="textSenha" placeholder="SENHA" />
                         <img src="~/images/hideEye.png" id="iconeSenha" class="iconeOlho" onclick="MostrarSenha()" />
+                        <span asp-validation-for="Senha" class="text-danger"></span>
                     </div>
                 </div>
 

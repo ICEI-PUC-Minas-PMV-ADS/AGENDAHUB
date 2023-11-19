@@ -1,5 +1,7 @@
 ﻿@model AGENDAHUB.Models.Usuario
 
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
+
 @{
     ViewData["Title"] = "Informações Cadastrais";
 }
@@ -10,10 +12,9 @@
         <div class="col-md-5">
             <div class="container">
 
-                <a asp-controller="Account" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
+                <a asp-controller="Account" asp-action="Index" class="btn btn-outline-info" id="btnNovoUsuario">Cadastrar Usuario</a>
                 <br />
-                <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info mt-2">Cadastrar Profissional</a>
-
+                <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info mt-2" id="btnNovoProfissional">Cadastrar Profissional</a>
 
                 <ul class="contentMenu">
                     <li class="nav-item">
@@ -53,7 +54,6 @@
                     {
                         <a asp-action="CreateImg" asp-controller="Configuracao">Cadastrar imagem</a>
                     }
-
                     <input asp-for="Imagem" type="file" class="form-control" onchange="previewImage(this)" placeholder="Alterar imagem" />
                     <span asp-validation-for="Imagem" class="text-danger"></span>
                 </div>
@@ -97,8 +97,6 @@
                         <span asp-validation-for="Senha" class="text-danger"></span>
                     </div>
                 </div>
-
-
 
                 <div class="text-center">
                     <div class="form-group pt-4">

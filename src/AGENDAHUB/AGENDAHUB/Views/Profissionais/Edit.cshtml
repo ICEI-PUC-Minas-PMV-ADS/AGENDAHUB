@@ -1,5 +1,7 @@
 ﻿@model AGENDAHUB.Models.Profissionais
 
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
+
 @{
     ViewData["Title"] = "Editar Profissional";
 }
@@ -32,6 +34,12 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="CPF" class="control-label"></label>
+                <input asp-for="CPF" class="form-control" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
@@ -47,12 +55,6 @@
                 <label asp-for="Senha" class="control-label"></label>
                 <input asp-for="Senha" class="form-control" type="password" placeholder="Não exibida por segurança" />
                 <span asp-validation-for="Senha" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
             </div>
 
             <div class="form-group pt-4">
