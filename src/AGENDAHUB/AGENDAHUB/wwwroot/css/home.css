@@ -247,8 +247,8 @@ p {
         bottom: 0;
         height: 5px;
         width: 55px;
-        background-color: #36C9C9;
-        border-radius: 50px;
+        
+       
     }
 
     .titleservicos h3:after {
@@ -259,8 +259,7 @@ p {
         height: 1px;
         width: 95%;
         max-width: 255px;
-        background-color: #36C9C9;
-        border-radius: 50%;
+       
     }
 
 h3 {
@@ -595,7 +594,7 @@ nav {
     
 #page-section {
     padding-top: 72px;
-    min-height: calc(600vh - 72px);
+    min-height: calc(600vh - 350px);
     overflow: hidden;
 }
 
@@ -741,9 +740,10 @@ nav {
 /* Estilos para a seção do rodapé */
 #section-footer {
     width: 100%;
-    background:  rgba(13, 202, 240, 1) 100%;
+    background-color: rgba(33, 150, 243, 0); /* Cor azul com 50% de transparência */
+    box-shadow: 0 10px 15px -3px rgba(33,150,243,.4), 0 4px 6px -4px rgba(33,150,243,.4);
     padding-top: 60px;
-    margin-top: auto; 
+    margin-top: auto;
     position: relative;
     z-index: 1;
 }
@@ -774,10 +774,12 @@ footer {
 
 /* Estilos para imagens dentro do rodapé */
 footer > img {
-    margin-top: 10px;
-    width: 60px;
-    height: 60px;
+    width: 180px;
+    height: 180px;
+    margin-bottom: -50px;
+  
 }
+
 
 /* Estilos para telas maiores ou iguais a 620px */
 @media (width >= 620px) {

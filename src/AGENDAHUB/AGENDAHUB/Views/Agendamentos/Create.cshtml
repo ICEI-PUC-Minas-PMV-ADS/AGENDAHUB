@@ -22,6 +22,14 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="ID_Profissional" class="control-label"></label>
+                <select id="ID_Profissional" asp-for="ID_Profissional" class="form-control">
+                    <option value="">Selecione um Profissional</option>
+                </select>
+                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="ID_Cliente" class="control-label"></label>
                 <select asp-for="ID_Cliente" asp-items="@ViewBag.Clientes" class="form-control">
                     <option value="">Selecione um cliente</option>
@@ -38,7 +46,7 @@
                         var dataFormatada = DateTime.Parse(dia);
                         if (dataFormatada >= DateTime.Today)
                         {
-                            <option value="@dia">@dataFormatada.ToString("dd/MMM/yyyy")</option>
+                            <option value="@dia">@dataFormatada.ToString("dd/MMM/yyyy") / @dataFormatada.ToString("dddd")</option>
                         }
                     }
                 </select>
@@ -47,7 +55,7 @@
 
             <div class="form-group">
                 <label asp-for="Hora" class="control-label"></label>
-                <select asp-for="Hora" asp-items="@ViewBag.HorariosDisponiveis" class="form-control">
+                <select id="Hora" asp-for="Hora" class="form-control">
                     <option value="">Selecione um Horário</option>
                 </select>
                 <span asp-validation-for="Hora" class="text-danger"></span>
@@ -61,14 +69,6 @@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="ID_Profissional" class="control-label"></label>
-                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
-                    <option value="">Selecione um Profissional</option>
-                </select>
-                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
-            </div>
-
             <div class="form-group pt-4">
                 <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
                 <input type="submit" value="Salvar" class="btn btn-outline-info" />
@@ -77,25 +77,66 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
 <script>
-    $(document).ready(function () {
-        // Evento de mudança no campo de seleção de serviço
-        $("#ID_Servico").change(function () {
-            // Obtenha o ID do serviço selecionado
-            var selectedServiceId = $(this).val();
 
-            // Faça uma solicitação AJAX para obter os horários disponíveis com base no serviço selecionado
+    $(document).ready(function () {
+        $("#ID_Servico").change(function () {
+            atualizarProfissionais();
+        });
+
+        $("#ID_Profissional").change(function () {
+            atualizarHorarios();
+        });
+
+        function atualizarProfissionais() {
+            var selected_ID_Servico = $("#ID_Servico").val();
+            console.log(selected_ID_Servico)
+
             $.ajax({
-                url: "/Agendamentos/GetHorariosPorServico",
+                url: "/Agendamentos/GetProfissionaisByServico",
                 type: "GET",
-                data: { serviceId: selectedServiceId },
+                data: {
+                    servicoId: selected_ID_Servico
+                },
+                success: function (profissionais) {
+                    console.log(profissionais);
+
+                    var dropdownProfissionais = $("#ID_Profissional");
+                    dropdownProfissionais.empty();
+
+                    $.each(profissionais.$values, function (index, profissional) {
+                        console.log(profissional.iD_Profissional, profissional.nome);
+
+                        dropdownProfissionais.append('<option value="' + profissional.iD_Profissional + '">' + profissional.nome + '</option>');
+                    });
+                    atualizarHorarios();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function atualizarHorarios() {
+            var selected_ID_Servico = $("#ID_Servico").val();
+            var selected_ID_Profissional = $("#ID_Profissional").val();
+
+            $.ajax({
+                url: "/Agendamentos/GetHorariosPorServicoEProfissional",
+                type: "GET",
+                data: {
+                    selected_ID_Servico: selected_ID_Servico,
+                    selected_ID_Profissional: selected_ID_Profissional
+                },
                 success: function (horarios) {
-                    // Atualize os horários disponíveis no campo de seleção de horários
+                    console.log("Horários recebidos:", horarios);
+
                     $("#Hora").empty();
-                    $.each(horarios, function (index, hora) {
+                    $("#Hora").append('<option value="">Selecione um Horário</option>');
+
+                    $.each(horarios.$values, function (index, hora) {
                         $("#Hora").append('<option value="' + hora + '">' + hora + '</option>');
                     });
                 },
@@ -103,8 +144,9 @@
                     console.log(error);
                 }
             });
-        });
+        }
     });
+
 </script>
 
 
