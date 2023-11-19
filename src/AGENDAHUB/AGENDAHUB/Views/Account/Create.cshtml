@@ -59,7 +59,7 @@
         <div class="col text-center " id="formInput">
 
             <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="ModelOnly"></div>
 
                 <h1>CADASTRE-SE</h1>
                 <div class="mb-3 pt-3 input-with-icon">
@@ -67,7 +67,6 @@
                         <img src="~/images/iconUsuarios.png" alt="Ícone de usuário" class="iconC" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
                         <input asp-for="NomeUsuario" class="camposTextoLg" placeholder="USUÁRIO" />
-                        <span asp-validation-for="NomeUsuario" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -76,7 +75,6 @@
                         <img src="~/images/emailLogin.png" alt="Ícone de email" class="iconC" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
                         <input asp-for="Email" class="camposTextoLg" placeholder="EMAIL" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -86,7 +84,6 @@
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="lineC" />
                         <input asp-for="Senha" class="camposTextoLg" id="textSenha" placeholder="SENHA" />
                         <img src="~/images/hideEye.png" id="iconeSenha" class="iconeOlho" onclick="MostrarSenha()" />
-                        <span asp-validation-for="Senha" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -94,8 +91,19 @@
                 <input type="hidden" name="Perfil" value="Admin" />
 
 
-                <div class="form-group p-3">
-                    <button type="submit" value="Create" class="btn btn-secondary" id="botaoEntrar">Cadastrar</button>
+                <div class="form-group p-1">
+                    <div class="mb-3">
+                        <div>
+                            <span asp-validation-for="NomeUsuario" class="text-danger "></span>
+                        </div>
+                        <div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="submit" value="Create" class="botaoEntrar btn-secondary">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -111,10 +119,3 @@
     }
 }
 
-
-
-
-@*<div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label text-black" for="exampleCheck1">Lembrar de mim</label>
-                </div> *@
