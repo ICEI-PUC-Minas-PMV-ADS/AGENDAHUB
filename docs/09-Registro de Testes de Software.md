@@ -1,5 +1,7 @@
 # Registro de Testes de Software
 
+<span style="color:red">Pré-requisitos: <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="04-Projeto de Interface.md"> Projeto de Interface</a>,  <a href="08-Plano de Testes de Software.md"> Projeto de de Testes de Software</a>
+
 RF-02 O sistema deve verificar se reconhece o usuário e permite o login de usuário
 
 - Objetivo do teste: Verificar se o sistema autoriza os dados do usuário.
