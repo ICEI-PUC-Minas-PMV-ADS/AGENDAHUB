@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<AGENDAHUB.Models.Profissionais>
 
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
+
 @{
     ViewData["Title"] = "Profissionais Cadastrados";
 }
@@ -25,7 +27,7 @@
 
 <h1 class="text-center">Profissionais Cadastrados</h1>
 
-<a class="btn btn-outline-info" asp-action="Create">+Novo Profissional</a>
+<a class="btn btn-outline-info" asp-action="Create" id="btnNovoProfissional">+Novo Profissional</a>
 
 <div class="container d-flex justify-content-center col-xl-12 col-12">
     <div class="table-responsive-lg p-3">

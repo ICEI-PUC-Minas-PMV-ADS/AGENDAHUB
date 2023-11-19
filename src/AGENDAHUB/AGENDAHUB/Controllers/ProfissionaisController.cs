@@ -67,6 +67,20 @@ namespace AGENDAHUB.Controllers
 
             if (ModelState.IsValid)
             {
+                // Verifica se o email já está em uso
+                if (_context.Profissionais.Any(u => u.Email == profissionais.Email))
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(profissionais);
+                }
+
+                // Verifica se o NomeUsuario já está em uso
+                if (_context.Profissionais.Any(u => u.Login == profissionais.Login))
+                {
+                    ModelState.AddModelError("login", "Este nome de usuário já está em uso.");
+                    return View(profissionais);
+                }
+
                 if (!string.IsNullOrEmpty(profissionais.Nome) && !string.IsNullOrEmpty(profissionais.Email) && !string.IsNullOrEmpty(profissionais.Senha))
                 {
                     profissionais.Senha = BCrypt.Net.BCrypt.HashPassword(profissionais.Senha);

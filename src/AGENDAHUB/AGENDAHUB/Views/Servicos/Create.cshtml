@@ -1,10 +1,13 @@
 ﻿@model AGENDAHUB.Models.Servicos
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Cadastrar Serviço";
 }
+
+
 <h1 class="text-center">Novo Serviço</h1>
 
 <hr />
@@ -18,7 +21,7 @@
                 <label asp-for="SelectedProfissionais" class="control-label"><h5>Profissionais</h5></label>
                 <p>Selecione um ou mais profissionais que prestam este serviço</p>
 
-                <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple">
+                <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple" id="selectMultiple">
                     @foreach (var profissional in ViewBag.Profissionais)
                     {
                         <option value="@profissional.Value">@profissional.Text</option>

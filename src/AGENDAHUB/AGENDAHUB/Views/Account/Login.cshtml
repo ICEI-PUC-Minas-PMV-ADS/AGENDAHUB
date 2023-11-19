@@ -53,50 +53,52 @@
             <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Create">Criar conta</a></button>
 
         </div>
+
+
         @*Lado Direito *@
 
-
         <div class="col text-center" id="formInput">
-
             <form asp-action="Login" asp-controller="Account">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <h1>FAÇA LOGIN</h1>
-
-                <div class="mb-3  pt-3 input-with-icon">
+                <div class="mb-3 pt-3 input-with-icon">
                     <div class="input-container">
                         <img src="~/images/iconUsuarios.png" alt="Ícone de usuário" class="icon" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="line" />
                         <input asp-for="NomeUsuario" class="camposTextoLg" placeholder="USUÁRIO" />
                     </div>
+                    <span asp-validation-for="NomeUsuario" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3  pt-3 input-with-icon ">
+                <div class="mb-3 pt-3 input-with-icon">
                     <div class="input-container">
                         <img src="~/images/cadeado.png" alt="Ícone de cadeado" class="icon" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="line" />
                         <input asp-for="Senha" class="camposTextoLg" id="textSenha" placeholder="SENHA" />
                         <img src="~/images/hideEye.png" id="iconeSenha" class="iconeOlho" onclick="MostrarSenha()" />
                     </div>
+                    <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3 pt-2">
-
                     <p class="redefinirSenha">
                         Esqueceu sua senha?
                         <a asp-area="" asp-controller="Account" asp-action="RedefinirSenha"> Redefinir minha senha. </a>
                     </p>
-
                 </div>
 
                 <div class="form-group pt-2">
+                    <p class="text-danger">
+                        @if (!ViewData.ModelState.IsValid && ViewBag.Message != null)
+                        {
+                            <span>@ViewBag.Message</span>
+                        }
+                    </p>
                     <button type="submit" value="Acessar" class="botaoEntrar btn-secondary">Entrar</button>
                 </div>
             </form>
         </div>
-
     </div>
-
 </div>
 
 
@@ -107,4 +109,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    }
+}

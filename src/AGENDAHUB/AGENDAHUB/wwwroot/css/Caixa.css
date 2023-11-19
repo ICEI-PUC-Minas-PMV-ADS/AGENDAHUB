@@ -1,7 +1,7 @@
 ﻿body {
 }
 
-#btnNovaMovimentação, #dataInicio, #dataFim {
+#btnNovaMovimentação, #dataInicio, #dataFim, input, select {
     -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);

@@ -83,6 +83,7 @@ namespace AGENDAHUB.Controllers
 
                 return RedirectToAction("Index", "Agendamentos");
             }
+
             else if (profissionalDados != null && BCrypt.Net.BCrypt.Verify(usuario.Senha, profissionalDados.Senha))
             {
                 // Profissional encontrado na tabela de Profissionais
@@ -102,8 +103,8 @@ namespace AGENDAHUB.Controllers
             }
             else
             {
-                ViewBag.Message = "Usuário e/ou senha inválidos!";
-                return View();
+                ViewBag.Message = "Usuário e/ou senha incorretos!";
+                return View(usuario);
             }
         }
 
@@ -128,9 +129,31 @@ namespace AGENDAHUB.Controllers
 
             if (ModelState.IsValid)
             {
+
+                // Verifica se o email já está em uso
+                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(usuario);
+                }
+
+                // Verifica se o NomeUsuario já está em uso
+                if (_context.Usuarios.Any(u => u.NomeUsuario == usuario.NomeUsuario))
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso.");
+                    return View(usuario);
+                }
+
+                // Hash da senha
                 usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+
+                // Adiciona o novo usuário
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
+
+                // Adiciona uma mensagem de sucesso
+                TempData["Mensagem"] = "Usuário cadastrado com sucesso!";
+
                 return RedirectToAction("Index", "Account");
             }
             return View(usuario);
@@ -148,39 +171,38 @@ namespace AGENDAHUB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
         {
-            if (EmailEmUso(usuario.Email))
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("EmailEmUso", "Este email está em uso");
-                //return RedirectToAction("Create", "Account");
-            }
-            else if (NomeEmUso(usuario.NomeUsuario))
-            {
-                ModelState.AddModelError("NomeEmUso", "Este nome de usuario está em uso");
-            }
-            else
-            {
-                if (ModelState.IsValid)
+                // Verifica se o email já está em uso
+                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
                 {
-                    usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
-                    _context.Add(usuario);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("Login", "Account");
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(usuario);
                 }
 
+                // Verifica se o NomeUsuario já está em uso
+                if (_context.Usuarios.Any(u => u.NomeUsuario == usuario.NomeUsuario))
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso.");
+                    return View(usuario);
+                }
+
+                // Hash da senha
+                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+
+                // Adiciona o novo usuário
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+
+                // Adiciona uma mensagem de sucesso
+                TempData["Mensagem"] = "Usuário cadastrado com sucesso!";
+
+                return RedirectToAction("Login", "Account");
             }
 
             return View(usuario);
         }
 
-        private bool EmailEmUso(string email)
-        {
-            return _context.Usuarios.Any(u => u.Email == email);
-        }
-
-        private bool NomeEmUso(string nomeUsuario)
-        {
-            return _context.Usuarios.Any(u => u.NomeUsuario == nomeUsuario);
-        }
 
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)

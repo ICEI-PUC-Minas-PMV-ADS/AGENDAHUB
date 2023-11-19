@@ -2,17 +2,21 @@
    
 }
 
+.card {
+    background: #e8e8e8;
+    box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #dadada;
+    transition: 0.4s;
+}
+
+.card:hover {
+    translate: 0 -10px;
+}
 
 
-
-
-
-
-#btnNovoAgendamentoo {
+#btnNovoServico, input, select, #selectMultiple {
     -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
-
 }
 
 #pesquisar {
@@ -52,9 +56,6 @@
 .cardCSS:hover {
     transform: translateY(-10px);
 }
-
-
-
 
 .card-titulo {
     font-size: 18px;

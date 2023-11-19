@@ -61,7 +61,7 @@
         <div class="col text-center " id="formInput">
 
             <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="ModelOnly"></div>
 
                 <h1>CADASTRE-SE</h1>
                 <div class="mb-3 pt-3 input-with-icon">
@@ -95,8 +95,19 @@
                 <input type="hidden" name="Perfil" value="Admin" />
 
 
-                <div class="form-group pt-2">
-                    <button type="submit" value="Create" class="botaoEntrar btn-secondary">Criar Usuário</button>
+                <div class="form-group p-1">
+                    <div class="mb-3">
+                        <div>
+                            <span asp-validation-for="NomeUsuario" class="text-danger "></span>
+                        </div>
+                        <div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="submit" value="Create" class="botaoEntrar btn-secondary">Cadastrar</button>
                 </div>
             </form>
         </div>

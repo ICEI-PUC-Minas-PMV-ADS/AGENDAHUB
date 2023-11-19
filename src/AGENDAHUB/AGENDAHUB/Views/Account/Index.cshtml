@@ -4,6 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Usuários Cadastrados";
@@ -30,7 +31,7 @@
 
 <h1 class="text-center">Usuários Cadastrados</h1>
 
-<a asp-action="NovoUsuario" asp-controller="Account" class="btn btn-outline-info">+ Novo Usuário</a>
+<a asp-action="NovoUsuario" asp-controller="Account" class="btn btn-outline-info" id="btnNovoUsuario">+ Novo Usuário</a>
 
 <div class="container d-flex justify-content-center col-xl-12 col-12">
     <div class="table-responsive-lg p-3">
