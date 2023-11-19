@@ -140,14 +140,39 @@ namespace AGENDAHUB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
         {
-            if (ModelState.IsValid)
+            if (EmailEmUso(usuario.Email))
             {
-                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Login", "Account");
+                ModelState.AddModelError("Error de email duplicado", "Este email está em uso");
+
+                //return RedirectToAction("Create", "Account");
             }
+            else if (NomeEmUso(usuario.NomeUsuario))
+            {
+                ModelState.AddModelError("Error de Nome de Usuario duplicado", "Este nome de usuario está em uso");
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                    _context.Add(usuario);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Login", "Account");
+                }
+
+            }
+
             return View(usuario);
+        }
+
+        private bool EmailEmUso(string email)
+        {
+            return _context.Usuarios.Any(u => u.Email == email);
+        }
+
+        private bool NomeEmUso(string nomeUsuario)
+        {
+            return _context.Usuarios.Any(u => u.NomeUsuario == nomeUsuario);
         }
 
         // GET: Usuarios/Edit/5
