@@ -50,12 +50,24 @@
             <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
 
-                @if (ViewBag.HasExistingImage)
-                {
-                    <div class="card-image" style="text-align: center; margin-bottom: 3%">
-                        <img id="existingImage" style="width: 10rem; height: 11rem; border-radius: 0.7rem;" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3 text-center">
+                            @if (ViewBag.HasExistingImage)
+                            {
+                                <div class="cardImagemEdit">
+                                    <div class="card-images">
+                                        <img id="existingImage" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
-                }
+                </div>
+
+           
+
 
                 <input asp-for="Imagem" type="file" class="form-control" onchange="previewImage(this)" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>

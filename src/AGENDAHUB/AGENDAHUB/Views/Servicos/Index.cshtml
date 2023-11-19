@@ -54,25 +54,31 @@
     </div>
 }
 
+
 <div class="container">
     <div class="row justify-content-center">
-        <!-- Centraliza os cards -->
         @foreach (var item in Model)
         {
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
-                <div class="card mb-4" style="border-radius: 1rem;">
-                    <div style="text-align: center; margin-bottom: -5%; margin-top: 3%">
-                        <h5 style="text-align: center; font-weight: 700 " class="card-title ">@item.Nome</h5>
-                    </div>
-                    <div class="card-image">
-                        <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
-                    </div>
-                    <div class="card-body">
-                        <p style="" class="card-text">
-                            <strong>Preço:</strong> R$ @item.Preco<br />
-                            <strong>Tempo de Execução:</strong> @item.TempoDeExecucao.ToString("h\\h\\ mm\\m")<br /><br />
+            <div class="col-md-4">
+                <!-- Divide a largura da tela em 3 colunas para exibir 3 cards por linha em telas médias e grandes -->
+                <div class="containerCard">
+                    <div class="cardCSS">
+                        <div class="card-images">
+                            <img src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" />
+                        </div>
+
+
+                        <h5 class="card-titulo">@item.Nome</h5>
+
+                        <h5 class="card-preco">
+                            Preço: R$@item.Preco<br>
+                            
+                        </h5>
+                       
+
+                        <h5 class="footer">Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br>
                             <cite class="card-subtitle mb-2 text-muted">
-                                <strong>Profissionais:</strong>
+                                <strong>Profissionais:</strong><br>
                             </cite> @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
                             {
                                 var nomesProfissionais = item.ServicosProfissionais
@@ -83,9 +89,9 @@
                             }
                             else
                             {
-                            <p>Nenhum profissional associado.</p>
+                                <p>Nenhum profissional associado.</p>
                             }
-                        </p>
+                        </h5>
                         @if (User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Profissional"))
                         {
                             <div class="d-flex justify-content-end">
@@ -98,6 +104,7 @@
                             </div>
                         }
                     </div>
+
                 </div>
             </div>
         }

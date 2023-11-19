@@ -37,5 +37,6 @@ namespace AGENDAHUB.Models
         // Propriedade de navegação para Usuario
         public int UsuarioID { get; set; }
         public Usuario Usuario { get; set; }
+        public ICollection<Agendamentos> Agendamentos { get; set; }
     }
 }
