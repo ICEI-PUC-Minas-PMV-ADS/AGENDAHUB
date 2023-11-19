@@ -66,13 +66,6 @@ namespace AGENDAHUB.Controllers
             var profissionalDados = await _context.Profissionais
                 .FirstOrDefaultAsync(p => p.Login == usuario.NomeUsuario);
 
-            // Verifica se o NomeUsuario ou senha foi digitado errado
-            if (_context.Usuarios.Any(u => u.NomeUsuario != usuario.NomeUsuario || u.Senha != usuario.Senha))
-            {
-                ModelState.AddModelError("NomeUsuario + Senha", "Usuário e/ou senha incorretos");
-                return View(usuario);
-            }
-
             if (usuarioDados != null && BCrypt.Net.BCrypt.Verify(usuario.Senha, usuarioDados.Senha))
             {
                 // Usuário encontrado na tabela de Usuarios
@@ -90,6 +83,7 @@ namespace AGENDAHUB.Controllers
 
                 return RedirectToAction("Index", "Agendamentos");
             }
+
             else if (profissionalDados != null && BCrypt.Net.BCrypt.Verify(usuario.Senha, profissionalDados.Senha))
             {
                 // Profissional encontrado na tabela de Profissionais
@@ -109,8 +103,8 @@ namespace AGENDAHUB.Controllers
             }
             else
             {
-                ViewBag.Message = "Usuário e/ou senha inválidos!";
-                return View();
+                ViewBag.Message = "Usuário e/ou senha incorretos!";
+                return View(usuario);
             }
         }
 

@@ -89,9 +89,9 @@
 
                 <div class="form-group pt-2">
                     <p class="text-danger">
-                        @if (!ViewData.ModelState.IsValid)
+                        @if (!ViewData.ModelState.IsValid && ViewBag.Message != null)
                         {
-                            <span>Usuário e/ou senha incorretos.</span>
+                            <span>@ViewBag.Message</span>
                         }
                     </p>
                     <button type="submit" value="Acessar" class="botaoEntrar btn-secondary">Entrar</button>
