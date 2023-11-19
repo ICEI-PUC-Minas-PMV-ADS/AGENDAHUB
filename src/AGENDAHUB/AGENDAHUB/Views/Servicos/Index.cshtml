@@ -54,29 +54,30 @@
     </div>
 }
 
+
 <div class="container">
     <div class="row justify-content-center">
-        <!-- Centraliza os cards -->
         @foreach (var item in Model)
         {
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
-                <div class="card mb-4" style="border-radius: 1rem;">
-                    <div style="text-align: center; margin-bottom: -5%; margin-top: 3%">
-                        @foreach (var servico in Model)
-                        {
-                            <h1 style="font-size: 19px" class="card-text">@servico.ServicosProfissionais.FirstOrDefault()?.Profissional?.Nome</h1>
-                        }
+            <div class="col-md-4">
+                <!-- Divide a largura da tela em 3 colunas para exibir 3 cards por linha em telas médias e grandes -->
+                <div class="containerCard">
+                <div class="cardCSS">
+                    <div class="card-images">
+                        <img src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" />
                     </div>
-                    <div class="card-image">
-                    <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
-                    </div>
-                    <div class="card-body">
-                        <h5 style="text-align: center; font-weight: 700 " class="card-title ">@item.Nome</h5>
-                        <p style="" class="card-text">
-                            Preço: R$ @item.Preco<br />
-                            Tempo de Execução: @item.TempoDeExecucao.ToString("h\\h\\ mm\\m")
-                        </p>
 
+                   
+                    <h5 class="card-titulo">@item.Nome</h5>
+
+                    <h5 class="card-preco">
+                        Preço: R$@item.Preco
+                    </h5>
+                        <h5 class="card-title dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @item.ServicosProfissionais.FirstOrDefault()?.Profissional?.Nome
+                        </h5>
+
+                    <h5 class="footer">Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span></h5>
                         @if (User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Profissional"))
                         {
                             <div class="d-flex justify-content-end">
@@ -88,9 +89,13 @@
                                 </a>
                             </div>
                         }
-                    </div>
+                </div>
+
                 </div>
             </div>
         }
     </div>
 </div>
+
+
+
