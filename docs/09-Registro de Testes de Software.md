@@ -7,6 +7,11 @@ Os registros dos testes realizados na aplicação estão descritos abaixo.
 ## Casos de Sucesso
 
 ## CT - 01 - Apresentação Página Home.
+
+Objetivo do Teste:
+> - Verificar se ao acessar o site, a página home está apresentando informações necessárias para que o usuário crie sua conta, faça login e descubra mais sobre o objetivo da aplicação.
+
+Passos:
 > - Acessar o site: https://localhost:44331
 > - Verificar se a página home é carregada corretamente.
 
@@ -27,7 +32,7 @@ Os registros dos testes realizados na aplicação estão descritos abaixo.
 
 <b>Resultado CT - 01: </b> A página não foi aberta nos navegadores listados por não estar disponível em uma hospedagem, os demais objetivos foram atendidos, como apresentar informações necessárias para que o usuário crie a sua conta, faça login e descubra mais sobre o objetivo da aplicação.
 
-
+## CT - 02 - Cadastro e Login.
 
 
 
