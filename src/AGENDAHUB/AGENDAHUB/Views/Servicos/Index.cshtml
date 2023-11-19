@@ -54,15 +54,15 @@
     </div>
 }
 
-
 <div class="container">
     <div class="row justify-content-center">
+        <!-- Centraliza os cards -->
         @foreach (var item in Model)
         {
             <div class="col-12 col-sm-6 col-md-4 mb-4">
                 <div class="card mb-4" style="border-radius: 1rem;">
                     <div style="text-align: center; margin-bottom: -5%; margin-top: 3%">
-                        <h5 style="text-align: center; font-weight: 700 " class="card-title">@item.Nome</h5>
+                        <h5 style="text-align: center; font-weight: 700 " class="card-title ">@item.Nome</h5>
                     </div>
                     <div class="card-image">
                         <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
@@ -95,13 +95,9 @@
                                 </a>
                             </div>
                         }
-                </div>
-
+                    </div>
                 </div>
             </div>
         }
     </div>
 </div>
-
-
-
