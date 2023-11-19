@@ -8,15 +8,15 @@ Por exemplo: a tabela a seguir deverá ser preenchida considerando os artefatos 
 
 |ID    | Descrição do Requisito  | Artefato(s) produzido(s) | Responsável |
 |------|-----------------------------------------|----|----|
-| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema |        |       |
-| RF-02 | O sistema deve ser protegido por autenticação de login e senha   |       |
-| RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional | Servicos.cs, Servicos.cshtml, ServicosController.| Evellyn |
-| RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | Clientes.cs, Clientes.cshtml, ClientesController.| Lucas |
-| RF-05 | O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento | Agendamentos.cs, Agendamentos.cshtml, AgendamentosController.| Lucas |
-| RF-06 | O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira   |       |       |
-| RF-07 | O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador |        |       |
-| RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   |       |       |
-| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. |        |       |
+| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema |   Usuario.cs, Create.cshtml e AccountController.cs|  Álvaro  |
+| RF-02 | O sistema deve ser protegido por autenticação de login e senha   |   Usuario.cs, Login.cshtml e AccountController.cs     |  Álvaro   |
+| RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional | Servicos.cs, Servicos.cshtml e ServicosController.cs| Evellyn |
+| RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | Clientes.cs, Clientes.cshtmle  ClientesController.cs| Lucas |
+| RF-05 | O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento | Agendamentos.cs, Agendamentos.cshtml, AgendamentosController.cs| Lucas |
+| RF-06 | O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira   | Caixa.cs, Caixa.cshtml e CaixaController.cs | Lucas |
+| RF-07 | O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador | NovoUsuario.cshtml, Usuario.cs, AccountController.cs  |  Lucas     |
+| RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   | Configuracao.cs, Edit.cshtml, ConfiguracaoController.cs |   Josué  |
+| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. |  Usuario.cs, Edit.cshtml e ConfiguracaoController.cs      |   Josué  |
 | RF-10 | O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos   |       |       |
 | RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento |        |       |
 | RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional |        |       |
