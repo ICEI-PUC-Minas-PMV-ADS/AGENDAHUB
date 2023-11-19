@@ -13,7 +13,7 @@
     @if (User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Profissional"))
     {
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-            <a asp-action="Create" class="btn btn-outline-info rounded-pill">+ Novo Serviço</a>
+            <a asp-action="Create" class="btn btn-outline-info rounded-pill" id="btnNovoServico">+ Novo Serviço</a>
         </div>
     }
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
@@ -62,21 +62,28 @@
             <div class="col-12 col-sm-6 col-md-4 mb-4">
                 <div class="card mb-4" style="border-radius: 1rem;">
                     <div style="text-align: center; margin-bottom: -5%; margin-top: 3%">
-                        @foreach (var servico in Model)
-                        {
-                            <h1 style="font-size: 19px" class="card-text">@servico.ServicosProfissionais.FirstOrDefault()?.Profissional?.Nome</h1>
-                        }
+                        <h5 style="text-align: center; font-weight: 700 " class="card-title">@item.Nome</h5>
                     </div>
                     <div class="card-image">
-                    <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
+                        <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = item.ID_Servico })" alt="servico" />
                     </div>
                     <div class="card-body">
-                        <h5 style="text-align: center; font-weight: 700 " class="card-title ">@item.Nome</h5>
                         <p style="" class="card-text">
                             Preço: R$ @item.Preco<br />
-                            Tempo de Execução: @item.TempoDeExecucao.ToString("h\\h\\ mm\\m")
-                        </p>
+                            Tempo de Execução: @item.TempoDeExecucao.ToString("h\\h\\ mm\\m")<br />
+                            Profissionais: @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
+                            {
+                                var nomesProfissionais = item.ServicosProfissionais
+                                .Select(sp => sp.Profissional.Nome)
+                                .ToList();
 
+                                @string.Join(", ", nomesProfissionais)
+                            }
+                            else
+                            {
+                            <p>Nenhum profissional associado.</p>
+                            }
+                        </p>
                         @if (User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Profissional"))
                         {
                             <div class="d-flex justify-content-end">

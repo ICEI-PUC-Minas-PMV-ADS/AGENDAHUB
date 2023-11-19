@@ -48,17 +48,28 @@ namespace AGENDAHUB.Controllers
         public async Task<IActionResult> Index()
         {
             int userId = GetUserId();
+
             var servicos = await _context.Servicos
-                .Where(s => s.UsuarioID == userId)
                 .Include(s => s.ServicosProfissionais)
+                .ThenInclude(sp => sp.Profissional)
+                .Where(s => s.UsuarioID == userId)
                 .ToListAsync();
 
             if (servicos.Count == 0)
             {
                 TempData["MessageVazio"] = "Nenhum serviço cadastrado por enquanto 😕";
             }
+
+            // Obtenha os nomes de todos os profissionais associados
+            var nomesProfissionais = servicos
+                .SelectMany(s => s.ServicosProfissionais.Select(sp => sp.Profissional.Nome))
+                .ToList();
+
+            ViewBag.NomesProfissionais = nomesProfissionais;
+
             return View(servicos);
         }
+
 
         // Método de pesquisa no banco de dados
         [HttpGet("SearchServicos")]
@@ -278,16 +289,28 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
+
             var servicos = await _context.Servicos
                 .Include(s => s.ServicosProfissionais)
+                .ThenInclude(sp => sp.Profissional) // Certifique-se de incluir a entidade Profissional
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
-            if (servicos == null)
+            if (servicos == null || servicos.ServicosProfissionais == null)
             {
                 return NotFound();
             }
+
+            // Obtenha os nomes de todos os profissionais associados
+            var nomesProfissionais = servicos.ServicosProfissionais
+                .Select(sp => sp.Profissional.Nome)
+                .ToList();
+
+            ViewBag.NomesProfissionais = nomesProfissionais;
+
             return View(servicos);
         }
+
+
 
         [Authorize(Roles = "Admin, User, Profissional")]
         [HttpPost, ActionName("Delete")]

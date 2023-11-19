@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Novo Usuário";
 }
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
 
 <h1 class="text-center">Novo Usuário</h1>
 
@@ -42,3 +43,10 @@
         </form>
     </div>
 </div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

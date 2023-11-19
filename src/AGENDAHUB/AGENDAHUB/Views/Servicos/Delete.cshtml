@@ -13,15 +13,29 @@
         <!-- Centraliza os cards -->
         <div class="col-12 col-md-4 mb-4">
             <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
-                <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
-                    <h1 style="font-size:19px" class="card-text">
-                        @foreach (var servicoProfissional in Model.ServicosProfissionais)
-                        {
-                            <p>@servicoProfissional.Profissional.Nome</p>
-                        }
-                    </h1>
+                <div style="text-align: center; margin-bottom: -5%; margin-top: 3%">
+                    @if (Model.ServicosProfissionais != null && Model.ServicosProfissionais.Any())
+                    {
+                        <div class="text-center" style="margin-bottom: -5%; margin-top: 3%">
+                            <h1 style="font-size: 19px" class="card-text">
+                                <p>Profissionais Associados:</p>
+                                @foreach (var servicoProfissional in Model.ServicosProfissionais)
+                                {
+                                    <p>@servicoProfissional.Profissional.Nome</p>
+                                }
+                            </h1>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center" style="margin-bottom: -5%; margin-top: 3%">
+                            <h1 style="font-size: 19px" class="card-text">
+                                <p>Nenhum profissional associado.</p>
+                            </h1>
+                        </div>
+                    }
                 </div>
-                <div class="card-image">
+                <div class="card-image pt-2">
                     <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = Model.ID_Servico })" alt="servico" />
                 </div>
                 <div class="card-body">
