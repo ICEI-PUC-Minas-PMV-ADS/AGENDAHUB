@@ -268,3 +268,20 @@ Critérios de Êxito:
 > - A consulta do profissional recém-cadastrado exibe todas as informações corretamente.
 > - A atualização do profissional reflete as modificações feitas.
 > - A exclusão do profissional remove efetivamente o profissional da lista.
+
+## CT - 09 - Agendamento Cliente.
+Requisitos Associados:
+> - RF – 11 - O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento	
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o cliente consiga realizar, visualizar, eitar e cancelar um agendamento efetuado por ele mesmo.
+
+Passos:
+> - Acessar o site:
+
+Critérios de Êxito:
+> - O cadastro de um novo agendamento é bem-sucedido, sem erros ou mensagens de falha.
+> - A visualização do agendamento recém-cadastrado exibte todas as informações corretamente.
+> - A atualização do agendamento refelete as modificações feitas.
+> - O cancelamento é bem-sucedido, sem erros ou mensagens de falha. 
+
