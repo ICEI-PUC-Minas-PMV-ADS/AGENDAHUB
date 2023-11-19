@@ -8,8 +8,8 @@ Por exemplo: a tabela a seguir deverá ser preenchida considerando os artefatos 
 
 |ID    | Descrição do Requisito  | Artefato(s) produzido(s) | Responsável |
 |------|-----------------------------------------|----|----|
-| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema |        |       |
-| RF-02 | O sistema deve ser protegido por autenticação de login e senha   |       |
+| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema |   Usuario.cs, Create.cshtml, AccountController.cs|  Álvaro  |
+| RF-02 | O sistema deve ser protegido por autenticação de login e senha   |   Usuario.cs, Login.cshtml, AccountController.cs     |  Álvaro   |
 | RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional | Servicos.cs, Servicos.cshtml, ServicosController.| Evellyn |
 | RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | Clientes.cs, Clientes.cshtml, ClientesController.| Lucas |
 | RF-05 | O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento | Agendamentos.cs, Agendamentos.cshtml, AgendamentosController.| Lucas |
