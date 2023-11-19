@@ -1,4 +1,5 @@
 ﻿using AGENDAHUB.Models;
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -210,6 +211,7 @@ namespace AGENDAHUB.Controllers
             }
 
             var servicos = await _context.Servicos
+                .Include(s => s.ServicosProfissionais) // Certifique-se de incluir os profissionais relacionados
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
             if (servicos == null)
@@ -225,16 +227,19 @@ namespace AGENDAHUB.Controllers
                 .Where(p => p.UsuarioID == userId)
                 .ToList();
 
-            ViewBag.Profissionais = new SelectList(profissionaisRelacionados, "ID_Profissional", "Nome");
+            // Use uma ViewBag diferente para a lista de profissionais
+            ViewBag.ProfissionaisList = new SelectList(profissionaisRelacionados, "ID_Profissional", "Nome");
+
+            // Inicialize a lista de profissionais selecionados
+            servicos.SelectedProfissionais = servicos.ServicosProfissionais.Select(p => p.ID_Profissional).ToList();
 
             return View(servicos);
         }
 
-
         [Authorize(Roles = "Admin, User, Profissional")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao,ID_Profissional")] Servicos servicos, IFormFile Imagem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao,ID_Profissional,SelectedProfissionais")] Servicos servicos, IFormFile Imagem)
         {
             int userId = GetUserId();
             if (id != servicos.ID_Servico)
@@ -254,7 +259,17 @@ namespace AGENDAHUB.Controllers
                         servicos.Imagem = stream.ToArray();
                     }
 
-                    // Se nenhuma nova imagem foi fornecida, não fazemos alterações na propriedade Imagem
+                    // Remover os profissionais existentes associados ao serviço
+                    var existingProfissionais = _context.ServicoProfissional
+                        .Where(sp => sp.ID_Servico == id)
+                        .ToList();
+
+                    _context.ServicoProfissional.RemoveRange(existingProfissionais);
+
+                    // Adicionar os novos profissionais associados ao serviço
+                    servicos.ServicosProfissionais = servicos.SelectedProfissionais
+                        .Select(profissionalId => new ServicoProfissional { ID_Profissional = profissionalId })
+                        .ToList();
 
                     servicos.UsuarioID = userId;
                     _context.Update(servicos);
@@ -274,7 +289,7 @@ namespace AGENDAHUB.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Profissionais = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
+            ViewBag.ProfissionaisList = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
 
@@ -317,20 +332,23 @@ namespace AGENDAHUB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Servicos == null)
-            {
-                return Problem("Entity set 'AppDbContext.Servicos' is null.");
-            }
             int userId = GetUserId();
+
             var servicos = await _context.Servicos
                 .Include(s => s.ServicosProfissionais)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
+
             if (servicos != null)
             {
-                _context.Servicos.Remove(servicos);
+                // Definir ID_Servico para null
+                servicos.ID_Servico = 0;
+
+                // Salvar as alterações no contexto
+                await _context.SaveChangesAsync();
             }
-            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

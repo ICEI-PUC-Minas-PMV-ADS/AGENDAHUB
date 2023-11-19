@@ -20,7 +20,7 @@
                 <p>Selecione um ou mais profissionais que prestam este serviço</p>
 
                 <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple" id="selectMultiple">
-                    @foreach (var profissional in ViewBag.Profissionais)
+                    @foreach (var profissional in ViewBag.ProfissionaisList)
                     {
                         <option value="@profissional.Value">@profissional.Text</option>
                     }
