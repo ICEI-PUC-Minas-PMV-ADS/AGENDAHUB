@@ -33,13 +33,53 @@
     border-radius: 0 20px 20px 0;
 }
 
-.card-title {
+/*Cards*/
+
+
+.containerCard {
+    display: flex;
+    justify-content: center; /* Centraliza os cards horizontalmente */
+    gap: 20px; /* Adicione espaço entre os cards */
+    margin-top: 50px;
+}
+
+.cardCSS {
+    padding: 20px;
+    width: 330px;
+    min-height: 370px;
+    border-radius: 20px;
+    background: #e8e8e8;
+    box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;
+    transition: 0.4s;
+}
+
+.cardCSS:hover {
+    transform: translateY(-10px);
+}
+
+
+
+
+.card-titulo {
     font-size: 18px;
     font-weight: 600;
     color: #2e54a7;
+    margin: 15px 0 0 10px;
 }
-.card-body {
-    margin: 1px 0 0 10px;
+
+.card-images img {
+    min-height: 11.067708333333334vw;
+    max-height: 13.020833333333334vw;
+    width: 100%; /* Para garantir que a imagem se ajuste ao contêiner */
+    object-fit: cover;
+    background-color: #c9c9c9;
+    border-radius: 15px;
+    box-shadow: inset 8px 8px 10px #c3c3c3, inset -8px -8px 10px #cfcfcf;
+}
+
+.card-preco {
+    margin: 0 0 0 0;
+    padding-left:10px;
     color: rgb(31, 31, 31);
     font-size: 15px;
     font-weight: 700;
@@ -53,14 +93,8 @@
     color: #636363;
 }
 
-.card-image img {
-    min-height: 11.067708333333334vw;
-    max-height: 13.020833333333334vw;
-    width: 100%; /* Para garantir que a imagem se ajuste ao contêiner */
-    object-fit: cover;
-    background-color: #c9c9c9;
-    border-radius: 15px;
-    box-shadow: inset 8px 8px 10px #c3c3c3, inset -8px -8px 10px #cfcfcf;
+.by-name {
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
@@ -73,8 +107,7 @@
         width: 90%; /* Ajuste a largura para ocupar a largura da viewport */
     }
 
-    /* Aumente o max-height para telas menores */
     .card-image img {
-        max-height: 200px; /* Ajuste este valor conforme necessário */
+        max-height: 150px; /* Reduza a altura máxima da imagem */
     }
 }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Content Remove="Models\UsuarioConfiguracaoViewModel.cshtml" />
     <Content Remove="Views\Account\Details.cshtml" />
+    <Content Remove="Views\Home\Caixa.cshtml" />
     <Content Remove="Views\Home\Clientes.cshtml" />
     <Content Remove="Views\Home\Configurações.cshtml" />
     <Content Remove="Views\Profissionais\Details.cshtml" />

@@ -52,6 +52,10 @@ namespace AGENDAHUB.Controllers
         {
             return View();
         }
+        public IActionResult RedefinirSenha()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(Usuario usuario)
