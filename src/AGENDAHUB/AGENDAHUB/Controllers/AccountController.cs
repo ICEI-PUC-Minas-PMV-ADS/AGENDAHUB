@@ -71,9 +71,9 @@ namespace AGENDAHUB.Controllers
                 // Usuário encontrado na tabela de Usuarios
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, usuarioDados.NomeUsuario),
-                    new Claim(ClaimTypes.NameIdentifier, usuarioDados.Id.ToString()),
-                    new Claim(ClaimTypes.Role, usuarioDados.Perfil.ToString())
+                    new(ClaimTypes.Name, usuarioDados.NomeUsuario),
+                    new(ClaimTypes.NameIdentifier, usuarioDados.Id.ToString()),
+                    new(ClaimTypes.Role, usuarioDados.Perfil.ToString())
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -89,9 +89,9 @@ namespace AGENDAHUB.Controllers
                 // Profissional encontrado na tabela de Profissionais
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, profissionalDados.Nome),
-                    new Claim(ClaimTypes.NameIdentifier, profissionalDados.UsuarioID.ToString()),
-                    new Claim(ClaimTypes.Role, "Profissional")
+                    new(ClaimTypes.Name, profissionalDados.Nome),
+                    new(ClaimTypes.NameIdentifier, profissionalDados.UsuarioID.ToString()),
+                    new(ClaimTypes.Role, "Profissional")
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

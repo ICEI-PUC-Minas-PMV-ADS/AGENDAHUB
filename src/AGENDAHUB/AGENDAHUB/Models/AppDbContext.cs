@@ -15,6 +15,8 @@ namespace AGENDAHUB.Models
         public DbSet<Configuracao> Configuracao { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Caixa> Caixa { get; set; }
+        public DbSet<ServicoProfissional> ServicoProfissional { get; set; }
+
 
 
         //Para deixar unico o nome de usuario

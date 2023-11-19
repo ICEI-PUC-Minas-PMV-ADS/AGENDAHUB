@@ -69,9 +69,11 @@
                     </div>
                     <div class="card-body">
                         <p style="" class="card-text">
-                            Preço: R$ @item.Preco<br />
-                            Tempo de Execução: @item.TempoDeExecucao.ToString("h\\h\\ mm\\m")<br />
-                            Profissionais: @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
+                            <strong>Preço:</strong> R$ @item.Preco<br />
+                            <strong>Tempo de Execução:</strong> @item.TempoDeExecucao.ToString("h\\h\\ mm\\m")<br /><br />
+                            <cite class="card-subtitle mb-2 text-muted">
+                                <strong>Profissionais:</strong>
+                            </cite> @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
                             {
                                 var nomesProfissionais = item.ServicosProfissionais
                                 .Select(sp => sp.Profissional.Nome)
