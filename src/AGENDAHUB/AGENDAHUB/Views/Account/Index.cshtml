@@ -6,57 +6,121 @@
 
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Usuários Cadastrados";
 }
 
-<main>
-<h1>Index</h1>
+@* DataTable *@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Perfil)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.NomeUsuario)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(model => model.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Perfil)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-</main>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+
+<h1 class="text-center">Usuários Cadastrados</h1>
+
+<a asp-action="NovoUsuario" asp-controller="Account" class="btn btn-outline-info">+ Novo Usuário</a>
+
+<div class="container d-flex justify-content-center col-xl-12 col-12">
+    <div class="table-responsive-lg p-3">
+        <table id="tabelaUsuarios" class="table table-hover mt-3 mx-auto" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomeUsuario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Perfil)
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomeUsuario)
+                        </td>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Perfil)
+                        </td>
+                        <td>
+                            <div class="btn-group d-flex justify-content-end" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.Id">
+                                    <img class="btn btn-outline-warning" src="~/images/editar.png" alt="Editar" style="height: 2rem; width: auto" />
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id">
+                                    <img class="btn btn-outline-danger" src="~/images/excluir.png" alt="Excluir" style="height: 2rem; width: auto" />
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var table = new DataTable('#tabelaUsuarios', {
+            "language": {
+                "url": "/lib/dataTable_PT_BR.json"
+            },
+            columnDefs: [
+                {
+                    targets: 0,
+                    data: null,
+                    defaultContent: '',
+                    orderable: false,
+                    className: 'select-checkbox'
+                }
+            ],
+            select: {
+                info: false,
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            order: [[1, 'asc']],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copy',
+                    text: 'Copiar Selecionados'
+                },
+                {
+                    extend: 'selectNone',
+                    text: 'Desmarcar Selecionados'
+                },
+                'csv', 'excel', 'pdf', 'print'
+            ],
+        });
+    });
+</script>

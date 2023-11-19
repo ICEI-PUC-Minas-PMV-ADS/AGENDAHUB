@@ -10,7 +10,6 @@
             <div class="container">
                 <a asp-controller="Profissionais" asp-action="Index" class="btn btn-outline-info">Cadastrar Usuario</a>
                 <ul class="contentMenu">
-
                     <li class="nav-item">
                         <a class="nav-link form-Partial active" asp-area="" asp-controller="Configuracao" asp-action="Edit" asp-route-section="InformacoesCadastrais">
                             Informações Cadastrais
@@ -26,19 +25,18 @@
                             Informações de Atendimento
                         </a>
                     </li>
-
-
                 </ul>
             </div>
         </div>
+
         <div class="col-md-4">
 
             <form asp-action="EditInforAtendimento" asp-controller="Configuracao" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="form-group">
-                    <label class="control-label text-center">
-                        <h3 class="text-center">Dias de Atendimento</h3>
+                    <label class="control-label">
+                        <h5 class="text-center">Dias de Atendimento</h5>
                     </label>
                     <br />
                     @for (int i = 0; i < Enum.GetValues(typeof(DiasAtendimento)).Length; i++)
@@ -49,35 +47,33 @@
                             <label class="form-check-label">@dia</label>
                         </div>
                     }
-
                     <span asp-validation-for="DiaAtendimento" class="text-danger"></span>
                 </div>
 
-
-
-                <div class="form-group pt-3">
+                <div class="form-group pt-5">
                     <label asp-for="HoraInicio" class="control-label">
-                        <h3 class="text-center">Hora de Abertura</h3>
+                        <h5 class="text-center">Horário de Abertura</h5>
                     </label>
                     <input asp-for="HoraInicio" class="form-control" />
                     <span asp-validation-for="HoraInicio" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group pt-2">
                     <label asp-for="HoraFim" class="control-label">
-                        <h3 class="text-center">Hora de Fechamento</h3>
+                        <h5 class="text-center">Horário de Fechamento</h5>
                     </label>
                     <input asp-for="HoraFim" class="form-control" />
                     <span asp-validation-for="HoraFim" class="text-danger"></span>
                 </div>
 
                 <div class="text-center">
-                    <div class="form-group pt-4">
+                    <div class="form-group pt-2">
                         <button type="submit" class="btn btn-outline-info">Salvar</button>
                     </div>
                 </div>
             </form>
+
         </div>
+
     </div>
 </div>
-

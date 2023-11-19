@@ -27,14 +27,18 @@
     <Compile Remove="Models\DadosBancarios.cs" />
     <Compile Remove="Models\Empresa.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
+    <Compile Remove="Views\Account\NovoUsuario.cs" />
     <Compile Remove="Views\Home\Caixa.cshtml.cs" />
     <Compile Remove="Views\Home\Index.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Models\UsuarioConfiguracaoViewModel.cshtml" />
+    <Content Remove="Views\Account\Details.cshtml" />
+    <Content Remove="Views\Home\Caixa.cshtml" />
     <Content Remove="Views\Home\Clientes.cshtml" />
     <Content Remove="Views\Home\Configurações.cshtml" />
+    <Content Remove="Views\Profissionais\Details.cshtml" />
     <Content Remove="Views\Shared\_EditPartial.cshtml" />
     <Content Remove="wwwroot\css\Login.cs" />
     <Content Remove="wwwroot\js\modal.js" />

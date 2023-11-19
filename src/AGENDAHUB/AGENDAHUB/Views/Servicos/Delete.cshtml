@@ -8,27 +8,32 @@
 <h3 class="text-center">Tem certeza que deseja excluir este serviço?</h3>
 
 <hr />
-    <div class="container">
-        <div class="row justify-content-center">
-            <!-- Centraliza os cards -->
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
-                    <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
-                    <h1 style="font-size:19px" class="card-text"> @Html.DisplayFor(model => model.Profissional.Nome)</h1>
-                    </div>
-                    <div class="card-image">
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Centraliza os cards -->
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
+                <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
+                    <h1 style="font-size:19px" class="card-text">
+                        @foreach (var servicoProfissional in Model.ServicosProfissionais)
+                        {
+                            <p>@servicoProfissional.Profissional.Nome</p>
+                        }
+                    </h1>
+                </div>
+                <div class="card-image">
                     <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = Model.ID_Servico })" alt="servico" />
-                    </div>
-                        <div class="card-body">
+                </div>
+                <div class="card-body">
 
 
                     <h5 style="text-align: center;" class="card-title text-uppercase"> @Html.DisplayFor(model => model.Nome)</h5>
-                            <p style="" class="card-text">
-                            Preço: @Html.DisplayFor(model => model.Preco) <br/>
-                            Tempo de Execução: @Html.DisplayFor(model => model.TempoDeExecucao)
-                            </p>
-                        </div>
-                    </div>
+                    <p style="" class="card-text">
+                        Preço: @Html.DisplayFor(model => model.Preco) <br />
+                        Tempo de Execução: @Html.DisplayFor(model => model.TempoDeExecucao)
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 

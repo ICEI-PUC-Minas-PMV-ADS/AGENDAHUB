@@ -1,5 +1,7 @@
 ﻿@model AGENDAHUB.Models.Servicos
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @{
     ViewData["Title"] = "Cadastrar Serviço";
 }
@@ -13,11 +15,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="ID_Profissional" class="control-label">Profissionais</label>
-                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
-                    <option value="">Selecione um Profissional</option>
+                <label asp-for="SelectedProfissionais" class="control-label"><h5>Profissionais</h5></label>
+                <p>Selecione um ou mais profissionais que prestam este serviço</p>
+
+                <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple">
+                    @foreach (var profissional in ViewBag.Profissionais)
+                    {
+                        <option value="@profissional.Value">@profissional.Text</option>
+                    }
                 </select>
-                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
+
+                <span asp-validation-for="SelectedProfissionais" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -40,6 +48,7 @@
                 <label asp-for="Imagem" class="control-label"></label>
                 <input type="file" name="file" asp-for="Imagem" class="form-control" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
+                <span asp-validation-message="Imagem" class="text-danger"></span>
             </div>
             <div class="form-group pt-4">
                 <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
@@ -54,4 +63,13 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('select[multiple]').select2();
+        });
+    </script>
 }
+

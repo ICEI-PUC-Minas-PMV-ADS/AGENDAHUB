@@ -172,9 +172,10 @@ Através de uma interface amigável, a aplicação oferecerá um conjunto de fun
 | RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   | MÉDIA      |
 | RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. | MÉDIA       |
 | RF-10 | O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos   | BAIXA      |
-| RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento | ALTA       |
-| RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional e tirar dúvidas   | ALTA      |
-| RF-13 | O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado | MÉDIA       |
+| RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento | BAIXA       |
+| RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional e tirar dúvidas   | BAIXA      |
+| RF-13 | O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado | BAIXA       |
+| RF-14 | O sistema deve permitir ao administrador realizar o CRUD de um novo profissional | ALTA       |
 
 
 
