@@ -128,26 +128,39 @@ namespace AGENDAHUB.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateImg(Usuario usuario, IFormFile file)
+        public async Task<IActionResult> CreateImg(IFormFile file)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            usuario.Id = int.Parse(userId);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuarios.FindAsync(int.Parse(userId));
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                if (file.Headers != null && file.Length > 0)
+                if (file != null && file.Length > 0)
                 {
                     using var memoryStream = new MemoryStream();
-                    await file.CopyToAsync(target: memoryStream);
+                    await file.CopyToAsync(memoryStream);
                     byte[] data = memoryStream.ToArray();
-                    usuario.Imagem = memoryStream.ToArray();
+                    usuario.Imagem = data;
                 }
 
-                _context.Usuarios.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Edit", "Configuracao");
             }
+
             return View(usuario);
         }
+
 
         [HttpGet]
         public IActionResult Edit()
