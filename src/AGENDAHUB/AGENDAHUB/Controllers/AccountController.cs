@@ -23,7 +23,7 @@ namespace AGENDAHUB.Controllers
         }
 
         // Imagem do Usuário
-        public IActionResult GetImg(int id)
+        public IActionResult GetImg()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == int.Parse(userId));

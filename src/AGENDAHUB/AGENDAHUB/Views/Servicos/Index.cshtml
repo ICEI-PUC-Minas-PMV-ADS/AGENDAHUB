@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
 
-<h1 class="text-center pb-3">Serviços Cadastrados</h1>
+<h1 class="text-center">Serviços Cadastrados</h1>
 
 <div class="row">
     @if (User.IsInRole("Administrador") || User.IsInRole("Usuario") || User.IsInRole("Profissional"))
@@ -68,7 +68,7 @@
 }
 
 
-<div class="container">
+<div class="container pb-5">
     <div class="row justify-content-center">
         @foreach (var item in Model)
         {
@@ -80,16 +80,16 @@
                             <img src="@Url.Action("GetImg", "Servicos", new { id = item.ID_Servico })" />
                         </div>
 
-                        <h5 class="card-titulo">@item.Nome</h5>
+                        <h5 class="card-titulo text-center">@item.Nome</h5>
 
-                        <h5 class="card-preco">
+                        <h5 class="card-preco mt-2">
                             Preço: R$@item.Preco<br>
                         </h5>
 
                         <div class="footer">
-                            Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br />
+                            Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br /><br />
                             <cite class="card-subtitle mb-2 text-muted">
-                                <strong>Profissionais:</strong><br />
+                                <strong>Profissionais:</strong>
                             </cite>
 
                             @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
