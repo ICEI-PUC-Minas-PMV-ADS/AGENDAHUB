@@ -34,7 +34,13 @@ Oferecer uma experiência profissional satisfatória desde o primeiro contato co
 
 Link para acessar o Sistema: [AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 
-Basta criar um novo usuário para ter acesso a todas as funcionalidades.
+Basta utilizar as credenciais fornecidas abaixo para acessar o sistema e conseguir testar o fluxo da aplicação.
+
+Usuário: 
+    testeGitHub
+
+Senha: 
+    123456
 
 
 # Documentação

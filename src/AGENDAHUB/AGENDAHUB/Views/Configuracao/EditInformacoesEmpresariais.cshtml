@@ -52,7 +52,7 @@
                 <div class="form-group pt-2">
                     <label asp-for="Cnpj" class="pt-2"></label>
                     <div class="pt-2">
-                        <input asp-for="Cnpj" class="form-control" />
+                        <input asp-for="Cnpj" class="form-control" value="@Model.FormatarCNPJ()" />
                         <span asp-validation-for="Cnpj" class="text-danger"></span>
                     </div>
                 </div>

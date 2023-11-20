@@ -62,10 +62,10 @@
                             @Html.DisplayFor(modelItem => item.Cargo)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Telefone)
+                            @item.FormatarContato()
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CPF)
+                            @item.FormatarCPF()
                         </td>
                         <td>
                             <div class="btn-group d-flex justify-content-end" role="group">
