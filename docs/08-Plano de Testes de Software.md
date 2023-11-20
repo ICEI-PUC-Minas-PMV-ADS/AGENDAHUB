@@ -20,7 +20,7 @@ Objetivo do Teste:
 > - Verificar se ao acessar o site, a página home está apresentando informações necessárias para que o usuário crie sua conta, faça login e descubra mais sobre o objetivo da aplicação.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Verificar se a página home é carregada corretamente.
 > - Confirmar a responsividade da página em dispositivos móveis e computadores.
 > - Validar se a página é exibida corretamente nos navegadores Chrome e Edge.
@@ -44,7 +44,7 @@ Objetivo do Teste:
 > - Verificar se é possível efetuar um novo cadastro e, após efetuar o login utilizando as mesmas credenciais, obter êxito. Além disso, o sistema deve permitir a alteração das informações cadastrais iniciais.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Realizar um novo cadastro inserindo informações válidas.
 > - Efetuar o login utilizando as credenciais cadastradas.
 > - Verificar se o login é bem-sucedido.
@@ -65,7 +65,7 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo serviço oferecido pelo profissional no sistema
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Acessar a seção de novo serviço.
 
 Cadastro de Novo Serviço:
@@ -102,7 +102,7 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo cliente no sistema.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Acessar a seção de novo cliente.
 
 Cadastro de Novo Cliente:
@@ -137,7 +137,7 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo agendamento no sistema.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Acessar a seção de agendamento.
 
 Cadastro de Novo Agendamento:
@@ -172,7 +172,7 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de uma nova movimentação financeira no sistema.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Acessar a seção de movimentação financeira.
 
 Cadastro de Nova Movimentação Financeira:
@@ -207,7 +207,7 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo colaborador no sistema.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Acessar a seção de administração.
 
 Cadastro de Novo Colaborador:
@@ -242,7 +242,7 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo profissional no sistema.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Acessar a seção de administração.
 
 Cadastro de Novo Profissional:
@@ -277,7 +277,7 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o cliente consiga realizar, visualizar, eitar e cancelar um agendamento efetuado por ele mesmo.
 
 Passos:
-> - Acessar o site:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 
 Critérios de Êxito:
 > - O cadastro de um novo agendamento é bem-sucedido, sem erros ou mensagens de falha.
