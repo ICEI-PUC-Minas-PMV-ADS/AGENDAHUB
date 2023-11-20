@@ -11,7 +11,7 @@
     <div class="col-xl-4 col-12">
         <div class="row d-flex justify-content-center">
             <div class="col-xl-6 col-12">
-                <a asp-action="Create" class="btn btn-outline-info" id="btnNovoAgendamento">+ Novo Agendamento</a>
+                <a asp-action="VerificarConfiguracoes" class="btn btn-outline-info" id="btnNovoAgendamento">+ Novo Agendamento</a>
             </div>
         </div>
     </div>
@@ -109,7 +109,7 @@
     </div>
 }
 
-@foreach (var item in Model ?? Enumerable.Empty<AGENDAHUB.Models.Agendamentos>())
+@foreach (var item in Model)
 {
     <div class="container d-flex justify-content-center">
         <div class="card mb-3 col-xl-6" id="cardView" data-status="@item.Status.ToString().ToLower()">

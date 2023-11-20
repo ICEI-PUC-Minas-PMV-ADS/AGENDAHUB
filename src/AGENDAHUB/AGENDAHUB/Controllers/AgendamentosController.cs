@@ -23,6 +23,16 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
+        private int GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return userId;
+            }
+            return 0;
+        }
+
         private bool AgendamentosExists(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado como uma string
@@ -31,6 +41,83 @@ namespace AGENDAHUB.Controllers
                 return _context.Agendamentos.Any(a => a.ID_Agendamentos == id && a.UsuarioID == usuarioIDInt);
             }
             return false;
+        }
+
+
+        public IActionResult VerificarConfiguracoes()
+        {
+            try
+            {
+                // Verifique se as configurações necessárias estão cadastradas
+                bool configuracoesCadastradas = VerificarConfiguracoesCadastradas();
+
+                if (configuracoesCadastradas)
+                {
+                    // Se as configurações estiverem cadastradas, redirecione para a página Create
+                    return RedirectToAction("Create");
+                }
+                else
+                {
+                    // Se as configurações não estiverem cadastradas, verifique qual configuração específica está ausente
+                    var userId = GetUserId();
+
+                    if (!_context.Configuracao.Any(c => c.UsuarioID == userId))
+                    {
+                        return RedirectToAction("Edit", "Configuracao");
+                    }
+                    else if (!_context.Servicos.Any(s => s.UsuarioID == userId))
+                    {
+                        return RedirectToAction("Create", "Servicos");
+                    }
+                    else if (!_context.Clientes.Any(cl => cl.UsuarioID == userId))
+                    {
+                        return RedirectToAction("Create", "Clientes");
+                    }
+                    else if (!_context.Profissionais.Any(p => p.UsuarioID == userId))
+                    {
+                        return RedirectToAction("Create", "Profissionais");
+                    }
+                    else
+                    {
+                        // Se nenhuma configuração específica estiver ausente, retorne para a página inicial ou outra página de erro.
+                        TempData["Message"] = "Ocorreu um erro desconhecido ao verificar as configurações.";
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Adicione um log para entender melhor qualquer exceção que ocorra
+                // Isso é útil para depurar problemas
+                // Logger.LogError(ex, "Erro ao verificar configurações");
+
+                TempData["Message"] = "Ocorreu um erro ao verificar as configurações.";
+                return RedirectToAction("Index", "Home"); // Redireciona para a página inicial ou outra página de erro.
+            }
+        }
+
+
+        private bool VerificarConfiguracoesCadastradas()
+        {
+            try
+            {
+                // Supondo que você tenha o userId disponível aqui
+                var userId = GetUserId();
+
+                bool configuracaoCadastrada = _context.Configuracao.Any(c => c.UsuarioID == userId);
+                bool servicoCadastrado = _context.Servicos.Any(s => s.UsuarioID == userId);
+                bool clienteCadastrado = _context.Clientes.Any(cl => cl.UsuarioID == userId);
+                bool profissionalCadastrado = _context.Profissionais.Any(p => p.UsuarioID == userId);
+
+                return configuracaoCadastrada && servicoCadastrado && clienteCadastrado && profissionalCadastrado;
+            }
+            catch (Exception ex)
+            {
+                // Adicione um log para entender melhor qualquer exceção que ocorra
+                // Isso é útil para depurar problemas
+                // Logger.LogError(ex, "Erro ao verificar configurações");
+                throw; // Re-lança a exceção para que ela seja capturada pela ação VerificarConfiguracoes
+            }
         }
 
 
@@ -53,7 +140,7 @@ namespace AGENDAHUB.Controllers
 
                 if (agendamentosOrdenados.Count == 0)
                 {
-                    TempData["MessageNenhumAgendamento"] = "Nenhum agendamento por enquanto 😕";
+                    TempData["MessageNenhumAgendamento"] = "Para criar um agendamento, é necessário configurar o sistema! Ao clicar em novo agendamento você será redirecionado para as páginas que precisam de configuração.";
                 }
                 return View(agendamentosOrdenados);
             }
