@@ -85,16 +85,20 @@
 
                         <h5 class="card-preco">
                             Preço: R$@item.Preco<br>
-                            
-                        </h5>
-                       
 
-                        <h5 class="footer">Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br>
+                        </h5>
+
+
+                        <div class="footer">
+                            Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br />
                             <cite class="card-subtitle mb-2 text-muted">
-                                <strong>Profissionais:</strong><br>
-                            </cite> @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
+                                <strong>Profissionais:</strong><br />
+                            </cite>
+
+                            @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
                             {
                                 var nomesProfissionais = item.ServicosProfissionais
+                                .Where(sp => sp.Profissional != null)  // Verifica se Profissional não é nulo
                                 .Select(sp => sp.Profissional.Nome)
                                 .ToList();
 
