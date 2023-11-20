@@ -18,12 +18,10 @@ namespace AGENDAHUB.Controllers
     public class ConfiguracaoController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-        public ConfiguracaoController(IHttpContextAccessor httpContextAccessor, AppDbContext context)
+        public ConfiguracaoController(AppDbContext context)
         {
-            _httpContextAccessor = httpContextAccessor;
             _context = context;
 
         }
@@ -36,7 +34,7 @@ namespace AGENDAHUB.Controllers
 
         public IActionResult Index()
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
             if (usuario == null)
@@ -168,12 +166,6 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                var url = Url.Action("Edit", "Configuracao");
-                return PartialView("_UsuariosPartial", usuario);
-            }
-
             ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
 
             return View(usuario);
@@ -248,12 +240,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
-            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                return PartialView("_InforEmpresaPartial", usuario.Configuracao);
-            }
-            // Aqui você pode incluir lógica adicional se necessário
 
             return View(usuario.Configuracao);
         }

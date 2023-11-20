@@ -12,6 +12,9 @@ using Azure.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -55,5 +58,22 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "Account",
+    pattern: "Account/{action=Login}/{id?}",
+    defaults: new { controller = "Account", action = "Login" }
+);
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Configuracao}/{action=Edit}/{id?}"
+);
+
+app.MapControllerRoute(
+    name: "EditConfiguracao",
+    pattern: "Configuracao/Edit/{id?}",
+    defaults: new { controller = "Configuracao", action = "Edit" }
+);
 
 app.Run();
