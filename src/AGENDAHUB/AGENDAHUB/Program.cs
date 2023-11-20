@@ -7,23 +7,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-});
-
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -35,10 +29,10 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.AccessDeniedPath = "/Account/AccessDenied";
-        options.LoginPath = "/Account/Login";
-
+        options.AccessDeniedPath = "/Usuarios/AccessDenied";
+        options.LoginPath = "/Usuarios/Login";
     });
+
 
 var app = builder.Build();
 
@@ -52,29 +46,14 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.MapControllerRoute(
-    name: "Account",
-    pattern: "Account/{action=Login}/{id?}",
-    defaults: new { controller = "Account", action = "Login" }
-);
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Configuracao}/{action=Edit}/{id?}"
-);
-
-app.MapControllerRoute(
-    name: "EditConfiguracao",
-    pattern: "Configuracao/Edit/{id?}",
-    defaults: new { controller = "Configuracao", action = "Edit" }
-);
 
 app.Run();
