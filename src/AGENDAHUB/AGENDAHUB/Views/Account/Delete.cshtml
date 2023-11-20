@@ -9,71 +9,75 @@
 
 <div class="container">
     <div class="col-md-5 mx-auto">
-        <hr />
+        <form asp-action="Delete">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
 
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Perfil)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Perfil)
-            </dd>
-        </dl>
+            <hr />
 
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Perfil)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Perfil)
+                </dd>
+            </dl>
 
-        <div class="form-group">
-            <label asp-for="Imagem" class="control-label"></label>
+            <div class="form-group">
+                <label asp-for="Imagem" class="control-label"></label>
 
-            @if (ViewBag.HasExistingImage)
-            {
-                <div class="card-image" style="text-align: center; margin-bottom: 3%">
-                    <img id="existingImage" style="width: 10rem; height: 11rem; border-radius: 0.7rem;" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
-                </div>
-            }
-        </div>
-
-         <div class="form-group pt-2">
-            <label asp-for="Email" class="pt-2"></label>
-            <div class="pt-2">
-                <input asp-for="Email" class="form-control" readonly />
-            </div>
-        </div>
-
-        <div class="form-group pt-2">
-            <label class="mt-2 me-2" for="NomeUsuario">Usuario</label>
-            <div class="pt-2">
-                <input asp-for="NomeUsuario" class="form-control" readonly />
-            </div>
-        </div>
-
-        <div class="form-group pt-2">
-            <label asp-for="Senha" class="pt-2"></label>
-            <div class="pt-2">
-                <input asp-for="Senha" class="form-control" readonly placeholder="Não exibida por segurança" />
-            </div>
-        </div>
-
-        <script>
-            function previewImage(input) {
-                var existingImage = document.getElementById('existingImage');
-
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        existingImage.src = e.target.result;
-                    };
-
-                    reader.readAsDataURL(input.files[0]);
+                @if (ViewBag.HasExistingImage)
+                {
+                    <div class="card-image" style="text-align: center; margin-bottom: 3%">
+                        <img id="existingImage" style="width: 10rem; height: 11rem; border-radius: 0.7rem;" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
+                    </div>
                 }
-            }
-        </script>
-
-        <div class="text-center">
-            <div class="form-group pt-4">
-                <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
-                <input type="submit" value="Excluir" class="btn btn-outline-danger" />
             </div>
-        </div>
+
+            <div class="form-group pt-2">
+                <label asp-for="Email" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="Email" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group pt-2">
+                <label class="mt-2 me-2" for="NomeUsuario">Usuario</label>
+                <div class="pt-2">
+                    <input asp-for="NomeUsuario" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group pt-2">
+                <label asp-for="Senha" class="pt-2"></label>
+                <div class="pt-2">
+                    <input asp-for="Senha" class="form-control" readonly placeholder="Não exibida por segurança" />
+                </div>
+            </div>
+
+            <script>
+                function previewImage(input) {
+                    var existingImage = document.getElementById('existingImage');
+
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            existingImage.src = e.target.result;
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
+
+            <div class="text-center">
+                <div class="form-group pt-4">
+                    <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                    <input type="submit" value="Excluir" class="btn btn-outline-danger" />
+                </div>
+            </div>
+        </form>
     </div>
 </div>

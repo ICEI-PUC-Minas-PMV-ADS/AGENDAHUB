@@ -21,7 +21,6 @@ namespace AGENDAHUB.Models
         [Required(ErrorMessage = "é Obrigatório informar a data")]
         [Column(TypeName = "date")]
         public DateTime Data { get; set; }
-
         public string Descricao { get; set; }
 
         // Propriedade de navegação para Usuario

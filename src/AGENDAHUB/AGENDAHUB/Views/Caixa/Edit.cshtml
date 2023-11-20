@@ -13,6 +13,7 @@
     <div class="col-md-4 text-center">
 
         <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID_Caixa" />
             <input type="hidden" asp-for="UsuarioID" value="@ViewBag.UsuarioID" />
 

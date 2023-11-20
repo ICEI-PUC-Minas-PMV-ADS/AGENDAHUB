@@ -27,7 +27,6 @@ namespace AGENDAHUB.Models
         public TimeSpan Hora { get; set; }
 
         public StatusAgendamento Status { get; set; }
-
         [Required(ErrorMessage = "Obrigatório informar o profissional!")]
         [Display(Name = "Profissional")]
         public int ID_Profissional { get; set; }
