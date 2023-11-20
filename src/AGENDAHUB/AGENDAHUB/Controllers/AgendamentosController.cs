@@ -58,25 +58,28 @@ namespace AGENDAHUB.Controllers
                 }
                 else
                 {
-                    // Se as configurações não estiverem cadastradas, verifique qual configuração específica está ausente
                     var userId = GetUserId();
-
+                    // Manda cadastrar informações de atendimento
                     if (!_context.Configuracao.Any(c => c.UsuarioID == userId))
                     {
-                        return RedirectToAction("Edit", "Configuracao");
+                        return RedirectToAction("EditInforAtendimento", "Configuracao");
                     }
-                    else if (!_context.Servicos.Any(s => s.UsuarioID == userId))
-                    {
-                        return RedirectToAction("Create", "Servicos");
-                    }
-                    else if (!_context.Clientes.Any(cl => cl.UsuarioID == userId))
-                    {
-                        return RedirectToAction("Create", "Clientes");
-                    }
+                    // Manda cadastrar um profissional
                     else if (!_context.Profissionais.Any(p => p.UsuarioID == userId))
                     {
                         return RedirectToAction("Create", "Profissionais");
                     }
+                    // Manda cadastrar um serviço
+                    else if (!_context.Servicos.Any(s => s.UsuarioID == userId))
+                    {
+                        return RedirectToAction("Create", "Servicos");
+                    }
+                    // Manda cadastrar um cliente, depois daqui, já é possível cadastrar um agendamento.
+                    else if (!_context.Clientes.Any(cl => cl.UsuarioID == userId))
+                    {
+                        return RedirectToAction("Create", "Clientes");
+                    }
+
                     else
                     {
                         // Se nenhuma configuração específica estiver ausente, retorne para a página inicial ou outra página de erro.
