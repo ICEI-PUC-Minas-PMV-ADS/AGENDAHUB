@@ -85,7 +85,7 @@ Atualização do Serviço:
 
 Exclusão do Serviço:
 > - Remover o serviço cadastrado.
-> - Verificar se o serviço não está mais presente na lista de clientes cadastrados.
+> - Verificar se o serviço não está mais presente na lista de serviços cadastrados.
 
 
 Critérios de Êxito:
