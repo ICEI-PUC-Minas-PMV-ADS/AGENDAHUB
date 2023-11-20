@@ -168,12 +168,6 @@ namespace AGENDAHUB.Controllers
                 return NotFound();
             }
 
-            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                var url = Url.Action("Edit", "Configuracao");
-                return PartialView("_UsuariosPartial", usuario);
-            }
-
             ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
 
             return View(usuario);
@@ -248,12 +242,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
-            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                return PartialView("_InforEmpresaPartial", usuario.Configuracao);
-            }
-            // Aqui você pode incluir lógica adicional se necessário
 
             return View(usuario.Configuracao);
         }
