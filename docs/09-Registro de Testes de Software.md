@@ -95,7 +95,41 @@ Passos:
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/0a12d62b-b103-487c-9251-28fa3ddd2f1c)
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ca2d18e9-6c42-4966-82d5-7fb335f80f8a)
 
-<b>Resultado CT - 03: </b> 
+> - Preencher todos os campos obrigatórios.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/cc2385d2-c69c-4fed-b969-db5bd8367725)
+
+> - Submeter o formulário.
+
+Consulta do Serviço Cadastrado:
+> - Vá para a lista de serviços cadastrados.
+> - Localizar o serviço adicionado no passo anterior.
+> - Verificar se as informações do serviço estão corretas e correspondem aos dados fornecidos no cadastro.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/4fbcdc03-513b-42b0-83bc-05d3bfe7f2cd)
+
+Atualização do Serviço:
+> - Editar os detalhes do serviço cadastrado.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/a3cd391b-e395-4815-91a2-58a0ab1f1815)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/51ac5ffb-c792-4fea-b1e3-9dcc9ab72c2c)
+
+>- Confirmar se as informações foram atualizadas corretamente.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ffc581c8-0075-426e-8112-ca7c014fa7db)
+
+Exclusão do Serviço:
+> - Remover o serviço cadastrado.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/e48fef6e-5614-4e2c-9213-35214f0562f2)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/1f2f430e-8961-4680-b3bb-50e736f9445c)
+
+> - Verificar se o serviço não está mais presente na lista de serviços cadastrados.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ad5b6838-23f2-4796-a48a-f3128a90f616)
+
+
+<b>Resultado CT - 03: </b> O teste obteve êxito em todos os critérios elencados, cadastrou um novo serviço com sucesso, sem erros ou falhas, a consulta do serviço recém-cadastrado exibiu todas as informações corretamente, a atualização do serviço refletiu as modificações feitas e a exclusão removeu efetivamente o serviço da lista. 
 
 ## CT - 08 - CRUD de Profissional
 
