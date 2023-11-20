@@ -13,33 +13,65 @@
         <form asp-action="Delete" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="NomeEmpresa" class="control-label">Nome da Empresa</label>
+            <input type="hidden" asp-for="ID_Configuracao" />
+
+            <div class="form-group pt-2">
+                <label asp-for="NomeEmpresa" class="control-label"><strong>Nome da Empresa</strong></label>
                 <input asp-for="NomeEmpresa" class="form-control" readonly />
             </div>
 
-            <div class="form-group">
-                <label asp-for="Cnpj" class="control-label">CNPJ</label>
+            <div class="form-group pt-2">
+                <label asp-for="Cnpj" class="control-label"><strong>CNPJ</strong></label>
                 <input asp-for="Cnpj" class="form-control" readonly />
             </div>
 
-            <div class="form-group">
-                <label asp-for="Endereco" class="control-label">Endereço</label>
+            <div class="form-group pt-2">
+                <label asp-for="Endereco" class="control-label"><strong>Endereço</strong></label>
                 <input asp-for="Endereco" class="form-control" readonly />
             </div>
 
-            <div class="form-group">
-                <label asp-for="Email" class="control-label">Email</label>
+            <div class="form-group pt-2">
+                <label asp-for="Email" class="control-label"><strong>Email</strong></label>
                 <input asp-for="Email" class="form-control" readonly />
             </div>
 
-            <div class="form-group">
-                <p>Tem certeza que deseja excluir esta configuração?</p>
+            <div class="form-group pt-2">
+                <label class="control-label">
+                    <strong>Dias de Atendimento</strong>
+                </label>
+                <br />
+                @for (int i = 0; i < Enum.GetValues(typeof(DiasAtendimento)).Length; i++)
+                {
+                    var dia = (DiasAtendimento)i;
+                    <div class="form-check form-check-inline d-flex justify-content-start">
+                        <input type="checkbox" name="DiaAtendimento" value="@dia" @(Model?.DiaAtendimento?.Contains(dia) ?? false ? "checked" : "") class="form-check-input" readonly />
+                        <label class="form-check-label" readonly>@dia</label>
+                    </div>
+                }
+                <span asp-validation-for="DiaAtendimento" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Excluir" class="btn btn-danger" />
-                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <div class="form-group pt-5">
+                <label asp-for="HoraInicio" class="control-label">
+                    <strong>Horário de Abertura</strong>
+                </label>
+                <input asp-for="HoraInicio" class="form-control" readonly />
+                <span asp-validation-for="HoraInicio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group pt-2">
+                <label asp-for="HoraFim" class="control-label">
+                    <strong>Horário de Fechamento</strong>
+                </label>
+                <input asp-for="HoraFim" class="form-control" readonly />
+                <span asp-validation-for="HoraFim" class="text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <div class="form-group pt-4">
+                    <a asp-action="Edit" class="btn btn-outline-warning">Voltar</a>
+                    <button type="submit" class="btn btn-outline-danger">Excluir</button>
+                </div>
             </div>
         </form>
     </div>
