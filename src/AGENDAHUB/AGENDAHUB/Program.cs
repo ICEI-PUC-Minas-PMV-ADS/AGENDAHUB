@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -67,7 +68,7 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
-    name: "default",
+    name: "ConfiguracaoDefault",
     pattern: "{controller=Configuracao}/{action=Edit}/{id?}"
 );
 
