@@ -12,7 +12,7 @@ Objetivo do Teste:
 > - Verificar se ao acessar o site, a página home está apresentando informações necessárias para que o usuário crie sua conta, faça login e descubra mais sobre o objetivo da aplicação.
 
 Passos:
-> - Acessar o site: https://localhost:44331
+> - Acessar o site: [AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 > - Verificar se a página home é carregada corretamente.
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/222dd46d-1f9d-4571-8cef-ed5e39442ca2)
@@ -50,10 +50,24 @@ Objetivo do Teste:
 > - Verificar se é possível efetuar um novo cadastro e, após efetuar o login utilizando as mesmas credenciais, obter êxito. Além disso, o sistema deve permitir a alteração das informações cadastrais iniciais.
 
 Passos:
-> - Acessar o site: https://localhost:44331
+> - Acessar o site: [AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/c572adb1-c554-4ccc-bf67-1a8bac5ad87f)
+
 > - Realizar um novo cadastro inserindo informações válidas.
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/4e10863f-7b47-4036-afaa-fb05930046af)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/52c0a5e7-53bc-4725-9a56-2b7a42d95335)
+
+> - Efetuar o login utilizando as credenciais cadastradas.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/267ae4af-a759-45bf-aedf-89f27d13edc1)
+
+> - Verificar se o login é bem-sucedido.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/1d388984-ca3b-491d-84ae-dac080fc0336)
+
+> - Acessar a seção de alteração de informações cadastrais.
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/e2f29c47-48cc-43d2-819e-7aa0bf219a9e)
 
 
 
@@ -69,20 +83,8 @@ Passos:
 
 
 
-RF-03 O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional
-
-- Objetivo do teste: Verificar se o sistema permite o administrador realizar o CRUD de um serviço oferecido pelo profissional.
-- Resultado: O agendamento feito com sucesso.
-
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/5261f63c-4374-46cc-8167-c58ecb1efbf8)
 
 
-RF-08 O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.
-
-- Objetivo do teste: Verificar se o sistema permite o administrador alterar uma informação.
-- Resultado: O agendamento foi editado com sucesso!>
-
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/129282137/ab99c492-01ff-4619-875a-4c6692e52826)
 
 
 
