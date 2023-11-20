@@ -75,6 +75,9 @@
                 <div class="text-center">
                     <div class="form-group pt-4">
                         <button type="submit" class="btn btn-outline-info">Salvar</button>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model?.ID_Configuracao">
+                            Excluir
+                        </a>
                     </div>
                 </div>
             </form>

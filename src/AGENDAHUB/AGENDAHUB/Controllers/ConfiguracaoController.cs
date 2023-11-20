@@ -333,18 +333,27 @@ namespace AGENDAHUB.Controllers
                     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                     var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
-                    if (usuario == null)
+                    if (usuario.Configuracao == null)
                     {
-                        return NotFound();
+                        // Se não existir, é uma operação de criação
+                        //Cria associando ao UsuarioID
+                        configuracao.UsuarioID = int.Parse(userId);
+                        _context.Configuracao.Add(configuracao);
+                    }
+                    else
+                    {
+                        // Se existir, é uma operação de atualização
+                        usuario.Configuracao.DiaAtendimento = configuracao.DiaAtendimento;
+                        usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
+                        usuario.Configuracao.HoraFim = configuracao.HoraFim;
+
+                        _context.Entry(usuario).State = EntityState.Detached; // Desanexar o objeto existente
+                        _context.Entry(usuario.Configuracao).State = EntityState.Modified;
                     }
 
-                    usuario.Configuracao.DiaAtendimento = configuracao.DiaAtendimento;
-                    usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
-                    usuario.Configuracao.HoraFim = configuracao.HoraFim;
-
                     await _context.SaveChangesAsync();
-
                     return RedirectToAction("Edit", "Configuracao");
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -357,6 +366,7 @@ namespace AGENDAHUB.Controllers
         }
 
 
+
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -367,12 +377,12 @@ namespace AGENDAHUB.Controllers
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Recupere a configuração do usuário
+            // Verifique se ID_Configuracao é nulo antes de prosseguir
             var configuracao = await _context.Configuracao
-                .Where(a => a.UsuarioID == int.Parse(userId))
-                .FirstOrDefaultAsync(m => m.ID_Configuracao == id);
+                .Where(a => a.UsuarioID == int.Parse(userId) && a.ID_Configuracao == id)
+                .FirstOrDefaultAsync();
 
-            // Se a configuração não existir, retorne NotFound
+            // Se a configuração ou ID_Configuracao for nulo, retorne NotFound
             if (configuracao == null)
             {
                 return NotFound();
@@ -380,6 +390,7 @@ namespace AGENDAHUB.Controllers
 
             return View(configuracao);
         }
+
 
 
         [HttpPost, ActionName("Delete")]

@@ -37,7 +37,7 @@ namespace AGENDAHUB.Controllers
             return 0;
         }
 
-        public FileContentResult getImg(int id)
+        public FileContentResult GetImg(int id)
         {
             byte[] byteArray = _context.Servicos.Find(id).Imagem;
             return byteArray != null
@@ -128,7 +128,7 @@ namespace AGENDAHUB.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin, User, Profissional")]
+        [Authorize(Roles = "Administrador, Usuario, Profissional")]
         public IActionResult Create()
         {
             int userId = GetUserId();
@@ -201,7 +201,7 @@ namespace AGENDAHUB.Controllers
         }
 
 
-        [Authorize(Roles = "Admin, User, Profissional")]
+        [Authorize(Roles = "Administrador, Usuario, Profissional")]
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
@@ -307,7 +307,7 @@ namespace AGENDAHUB.Controllers
 
 
 
-        [Authorize(Roles = "Admin, User, Profissional")]
+        [Authorize(Roles = "Administrador, User, Profissional")]
         public async Task<IActionResult> Delete(int? id)
         {
             int userId = GetUserId();
@@ -339,7 +339,7 @@ namespace AGENDAHUB.Controllers
 
 
 
-        [Authorize(Roles = "Admin, User, Profissional")]
+        [Authorize(Roles = "Administrador, User, Profissional")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
