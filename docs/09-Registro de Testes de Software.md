@@ -95,15 +95,63 @@ Passos:
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/0a12d62b-b103-487c-9251-28fa3ddd2f1c)
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ca2d18e9-6c42-4966-82d5-7fb335f80f8a)
 
+<b>Resultado CT - 03: </b> 
 
+## CT - 08 - CRUD de Profissional
 
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo profissional no sistema.
 
+Passos:
+> - Acessar o site: [AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/c572adb1-c554-4ccc-bf67-1a8bac5ad87f)
 
+> - Efetuar o login utilizando as credenciais cadastradas.
 
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/267ae4af-a759-45bf-aedf-89f27d13edc1)
 
+> - Acessar a seção de administração.
 
+Cadastro de Novo Profissional:
 
+> - Selecionar a opção para cadastrar um novo profissional.
 
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ae2a1cba-5d13-4008-8200-2a9506bed4f8)
 
+> - Preencher todos os campos obrigatórios do formulário de cadastro de profissional.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/4474e83c-9e03-4097-b41a-0e08f16e9611)
+
+> - Submeter o formulário.
+
+Consulta do Profissional Cadastrado:
+
+> - Vá para a lista de profissionais cadastrados.
+> - Localizar o profissional adicionado no passo anterior.
+> - Verificar se as informações do profissional estão corretas e correspondem aos dados fornecidos no cadastro.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/8a392d6f-dc0c-4c7c-96ef-cb0de9d9fba4)
+
+Atualização do Profissional:
+
+> - Editar os detalhes do profissional cadastrado:
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/b0375b7a-77b7-47dc-be1c-b297aeeb1a5d)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/e33addbe-802e-4c21-9112-4886099bca43)
+
+> - Confirmar se as informações foram atualizadas corretamente.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/7dfb4fa1-d0c7-48cc-8b95-da4c813c91ff)
+
+> - Exclusão do Profissional:
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ca87425c-f91e-42bc-81d4-3ebfa486a1cf)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ccb4a3a9-9da5-4441-b462-394d8a13606e)
+
+> - Verificar se o profissional não está mais presente na lista de profissionais cadastrados.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/b31a1c02-bbd3-4ecf-a18d-2cf2bf687bde)
+
+<b>Resultado CT - 08: </b> O Teste obteve êxito, visto que o cadastro do novo profissional foi bem-sucedido, sem erros ou falhas. A consulta retornou o profissional recém-cadastrado e exibiu todas as informações corretamente. A atualização das informações refletiram as modificações feitas e a exclusão do profissional foi efetivada com sucesso. 
 
