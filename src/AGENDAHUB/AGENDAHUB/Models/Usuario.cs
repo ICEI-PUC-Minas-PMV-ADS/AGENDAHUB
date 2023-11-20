@@ -34,7 +34,7 @@ namespace AGENDAHUB.Models
 
     public enum Perfil
     {
-        Admin,
-        User
+        Administrador,
+        Usario
     }
 }
