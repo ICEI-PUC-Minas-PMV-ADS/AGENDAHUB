@@ -66,6 +66,7 @@ Objetivo do Teste:
 
 Passos:
 > - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+> - Efetuar o login utilizando as credenciais cadastradas.
 > - Acessar a seção de novo serviço.
 
 Cadastro de Novo Serviço:
@@ -103,6 +104,7 @@ Objetivo do Teste:
 
 Passos:
 > - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+> - Efetuar o login utilizando as credenciais cadastradas.
 > - Acessar a seção de novo cliente.
 
 Cadastro de Novo Cliente:
@@ -138,6 +140,7 @@ Objetivo do Teste:
 
 Passos:
 > - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+> - Efetuar o login utilizando as credenciais cadastradas.
 > - Acessar a seção de agendamento.
 
 Cadastro de Novo Agendamento:
@@ -173,6 +176,7 @@ Objetivo do Teste:
 
 Passos:
 > - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+> - Efetuar o login utilizando as credenciais cadastradas.
 > - Acessar a seção de movimentação financeira.
 
 Cadastro de Nova Movimentação Financeira:
@@ -208,6 +212,7 @@ Objetivo do Teste:
 
 Passos:
 > - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+> - Efetuar o login utilizando as credenciais cadastradas.
 > - Acessar a seção de administração.
 
 Cadastro de Novo Colaborador:
@@ -243,6 +248,7 @@ Objetivo do Teste:
 
 Passos:
 > - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+> - Efetuar o login utilizando as credenciais cadastradas.
 > - Acessar a seção de administração.
 
 Cadastro de Novo Profissional:
@@ -278,6 +284,7 @@ Objetivo do Teste:
 
 Passos:
 > - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+
 
 Critérios de Êxito:
 > - O cadastro de um novo agendamento é bem-sucedido, sem erros ou mensagens de falha.
