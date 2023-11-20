@@ -236,7 +236,6 @@ namespace AGENDAHUB.Controllers
             return View(servicos);
         }
 
-        [Authorize(Roles = "Admin, User, Profissional")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID_Servico,Nome,Preco,TempoDeExecucao,ID_Profissional,SelectedProfissionais")] Servicos servicos, IFormFile Imagem)
@@ -251,13 +250,25 @@ namespace AGENDAHUB.Controllers
             {
                 try
                 {
+                    // Carregar a entidade existente do contexto
+                    var existingServico = await _context.Servicos.FindAsync(id);
+
                     // Verificar se uma nova imagem foi fornecida
                     if (Imagem != null)
                     {
                         using var stream = new MemoryStream();
                         await Imagem.CopyToAsync(stream);
-                        servicos.Imagem = stream.ToArray();
+                        existingServico.Imagem = stream.ToArray();
                     }
+                    // Se nenhuma nova imagem foi fornecida, mantenha a imagem existente
+
+                    // Atualizar outras propriedades individualmente
+                    existingServico.Nome = servicos.Nome;
+                    existingServico.Preco = servicos.Preco;
+                    existingServico.TempoDeExecucao = servicos.TempoDeExecucao;
+                  
+
+                    // Restante do seu código...
 
                     // Remover os profissionais existentes associados ao serviço
                     var existingProfissionais = _context.ServicoProfissional
@@ -267,17 +278,16 @@ namespace AGENDAHUB.Controllers
                     _context.ServicoProfissional.RemoveRange(existingProfissionais);
 
                     // Adicionar os novos profissionais associados ao serviço
-                    servicos.ServicosProfissionais = servicos.SelectedProfissionais
+                    existingServico.ServicosProfissionais = servicos.SelectedProfissionais
                         .Select(profissionalId => new ServicoProfissional { ID_Profissional = profissionalId })
                         .ToList();
 
-                    servicos.UsuarioID = userId;
-                    _context.Update(servicos);
+                    existingServico.UsuarioID = userId;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ServicosExists(servicos.ID_Servico, userId))
+                    if (!ServicosExists(id, userId))
                     {
                         return NotFound();
                     }
@@ -292,6 +302,8 @@ namespace AGENDAHUB.Controllers
             ViewBag.ProfissionaisList = new SelectList(_context.Profissionais, "ID_Profissional", "Nome");
             return View(servicos);
         }
+
+
 
 
 
@@ -334,21 +346,34 @@ namespace AGENDAHUB.Controllers
         {
             int userId = GetUserId();
 
-            var servicos = await _context.Servicos
+            var servico = await _context.Servicos
                 .Include(s => s.ServicosProfissionais)
+                .Include(s => s.Agendamentos)
                 .FirstOrDefaultAsync(s => s.ID_Servico == id && s.UsuarioID == userId);
 
-            if (servicos != null)
+            if (servico == null)
             {
-                // Definir ID_Servico para null
-                servicos.ID_Servico = 0;
-
-                // Salvar as alterações no contexto
-                await _context.SaveChangesAsync();
+                // Serviço não encontrado
+                return NotFound();
             }
+
+            // Verificar se há agendamentos vinculados ao serviço
+            if (servico.Agendamentos.Any())
+            {
+                // Se houver agendamentos, não permitir a exclusão
+                TempData["ErrorMessage"] = "Não é possível excluir o serviço, pois existem agendamentos associados a ele.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            
+
+            // Se não houver agendamentos ou registros vinculados, prosseguir com a exclusão
+            _context.Servicos.Remove(servico);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
+
 
     }
 }
