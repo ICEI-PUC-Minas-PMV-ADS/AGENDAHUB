@@ -70,11 +70,30 @@ Passos:
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/e2f29c47-48cc-43d2-819e-7aa0bf219a9e)
 
 
+> - Modificar o login, senha e e-mail cadastrados.
+> - Confirmar se as alterações foram salvas com sucesso.
 
+<b>Resultado CT - 02: </b> 
 
+## CT - 03 - CRUD de Serviço
 
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o administrador consiga realizar as operações CRUD (Create, Read, Update, Delete) de um novo serviço oferecido pelo profissional no sistema
 
+Passos:
+> - Acessar o site: [AgendaHub](https://agendahub20231119201019.azurewebsites.net)
 
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/c572adb1-c554-4ccc-bf67-1a8bac5ad87f)
+
+> - Efetuar o login utilizando as credenciais cadastradas.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/267ae4af-a759-45bf-aedf-89f27d13edc1)
+
+> - Acessar a seção de novo serviço.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/a71bfdb8-5817-4575-82fa-4fecc2bcf155)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/0a12d62b-b103-487c-9251-28fa3ddd2f1c)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/ca2d18e9-6c42-4966-82d5-7fb335f80f8a)
 
 
 
