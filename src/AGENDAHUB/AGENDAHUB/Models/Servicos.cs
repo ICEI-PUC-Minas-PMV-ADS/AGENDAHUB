@@ -40,3 +40,6 @@ namespace AGENDAHUB.Models
         public ICollection<Agendamentos> Agendamentos { get; set; }
     }
 }
+
+
+
