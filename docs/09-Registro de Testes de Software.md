@@ -15,22 +15,33 @@ Passos:
 > - Acessar o site: https://localhost:44331
 > - Verificar se a página home é carregada corretamente.
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/22bfeca2-fd30-4dc7-9936-2844f2a729d2)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/222dd46d-1f9d-4571-8cef-ed5e39442ca2)
+
 
 > - Confirmar a responsividade da página em dispositivos móveis e computadores.
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/345431a1-b7e6-4e57-adf6-ce17683cd7b5)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/f7b6f8d1-6624-44f0-be50-92a76c161447)
+
 
 > - Validar se a página é exibida corretamente nos navegadores Chrome e Edge.
 
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/c0fb7f93-8261-42f4-a0d3-dd6751cdcbca)
+Edge
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/47e7ece2-40ea-4852-a265-1c51b0d43bf2)
+Google Chrome
+
 > - Localizar as seções de criação de conta e login na página.
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/438f6f4b-8611-4e01-a7e1-d2265fb43929)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/5995c9d6-6ce1-4928-8ec0-32ae10b5a0ce)
+
 
 > - Avaliar a presença de informações relevantes sobre o propósito da aplicação.
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/e23753b0-f34f-48d7-97b0-b3596dcefb93)
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/dc325bf3-92f8-4548-bc22-f274e1368d63)
 
 
-<b>Resultado CT - 01: </b> A página não foi aberta nos navegadores listados por não estar disponível em uma hospedagem, os demais objetivos foram atendidos, como apresentar informações necessárias para que o usuário crie a sua conta, faça login e descubra mais sobre o objetivo da aplicação.
+
+<b>Resultado CT - 01: </b> Todos os objetivos elencados para o Caso de Teste foram atendidos, o site apresentou responsividade, informações necessárias para que o usuário crie a sua conta, faça login e descubra mais sobre o objetivo da aplicação.
 
 
 ## CT - 02 - Cadastro e Login.
