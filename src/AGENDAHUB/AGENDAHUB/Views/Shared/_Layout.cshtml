@@ -76,7 +76,7 @@
             <div class="dropdown" id="menuUser">
                 <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                     @{
-                        var userId = ViewBag.UserId;
+                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                         var imgSrc = Url.Action("GetImg", "Account", new { id = userId });
                     }
                     @if (!string.IsNullOrEmpty(imgSrc))

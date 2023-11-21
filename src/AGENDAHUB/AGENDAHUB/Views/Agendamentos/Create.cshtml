@@ -92,7 +92,6 @@
 
         function atualizarProfissionais() {
             var selected_ID_Servico = $("#ID_Servico").val();
-            console.log(selected_ID_Servico)
 
             $.ajax({
                 url: "/Agendamentos/GetProfissionaisByServico",
@@ -101,13 +100,12 @@
                     servicoId: selected_ID_Servico
                 },
                 success: function (profissionais) {
-                    console.log(profissionais);
 
                     var dropdownProfissionais = $("#ID_Profissional");
                     dropdownProfissionais.empty();
 
                     $.each(profissionais.$values, function (index, profissional) {
-                        console.log(profissional.iD_Profissional, profissional.nome);
+                        console.log(profissional.nome);
 
                         dropdownProfissionais.append('<option value="' + profissional.iD_Profissional + '">' + profissional.nome + '</option>');
                     });
@@ -131,7 +129,6 @@
                     selected_ID_Profissional: selected_ID_Profissional
                 },
                 success: function (horarios) {
-                    console.log("Horários recebidos:", horarios);
 
                     $("#Hora").empty();
                     $("#Hora").append('<option value="">Selecione um Horário</option>');
