@@ -19,7 +19,7 @@ namespace AGENDAHUB.Models
         [Required(ErrorMessage = "Obrigatório informar o nome!")]
         public string Nome { get; set; }
 
-        [DataType(DataType.Currency)]
+       
         [Range(0, double.MaxValue, ErrorMessage = "O preço deve ser maior ou igual a 0.")]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Preco { get; set; }
