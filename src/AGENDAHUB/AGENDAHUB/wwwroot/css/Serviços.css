@@ -1,5 +1,4 @@
 ﻿body {
-   
 }
 
 .card {
@@ -8,9 +7,9 @@
     transition: 0.4s;
 }
 
-.card:hover {
-    translate: 0 -10px;
-}
+    .card:hover {
+        transition: 0.4s;
+    }
 
 
 #btnNovoServico, input, select, #selectMultiple {
@@ -55,9 +54,9 @@
 
 .cardImagemEdit {
     margin-top: 10px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     padding: 20px;
-    width: 330px;
+    width: 100%;
     border-radius: 20px;
     background: #e8e8e8;
     box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;
@@ -87,14 +86,14 @@
 
 .card-preco {
     margin: 0 0 0 0;
-    padding-left:10px;
+    padding-left: 10px;
     color: rgb(31, 31, 31);
     font-size: 15px;
     font-weight: 700;
     color: #636363;
 }
 
-.footer {
+#footer {
     float: inherit;
     margin: 1px 0 0 10px;
     font-size: 13px;

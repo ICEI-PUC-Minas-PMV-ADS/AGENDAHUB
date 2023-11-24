@@ -72,35 +72,31 @@ namespace AGENDAHUB.Controllers
         }
 
 
-        // Método de pesquisa no banco de dados
         [HttpGet("SearchServicos")]
         public async Task<IActionResult> SearchServicos(string search)
         {
-            int userId = GetUserId(); // Valida o usuário
+            int userId = GetUserId();
 
             if (string.IsNullOrEmpty(search))
             {
-                // Se a pesquisa estiver vazia, exiba todos os serviços do usuário
                 var servicos = await _context.Servicos
-                     .Where(s => s.UsuarioID == userId)
-                     .Include(s => s.ServicosProfissionais)
-                     .ThenInclude(sp => sp.Profissional)
-                     .ToListAsync();
-
+                    .Where(s => s.UsuarioID == userId)
+                    .Include(s => s.ServicosProfissionais)
+                        .ThenInclude(sp => sp.Profissional)
+                    .ToListAsync();
 
                 return View("Index", servicos);
             }
 
-            // Converte a palavra-chave de pesquisa para minúsculas
             search = search.ToLower();
             if (decimal.TryParse(search, out decimal priceSearch))
             {
-                // Se a pesquisa for um número (preço), realiza a filtragem
                 var servicos = await _context.Servicos
-                     .Where(s => s.UsuarioID == userId)
-                     .Include(s => s.ServicosProfissionais)
-                     .ThenInclude(sp => sp.Profissional)
-                     .ToListAsync();
+                    .Where(s => s.UsuarioID == userId)
+                    .Include(s => s.ServicosProfissionais)
+                        .ThenInclude(sp => sp.Profissional)
+                    .Where(s => s.Preco.ToString().Contains(search))
+                    .ToListAsync();
 
                 if (servicos.Count == 0)
                 {
@@ -110,14 +106,13 @@ namespace AGENDAHUB.Controllers
             }
             else
             {
-                // Pesquisa pelo nome do serviço ou nome do profissional
                 var servicos = await _context.Servicos
                     .Where(s => s.UsuarioID == userId)
                     .Include(s => s.ServicosProfissionais)
+                        .ThenInclude(sp => sp.Profissional)
                     .Where(s =>
                         s.Nome.ToLower().Contains(search) ||
-                        s.ServicosProfissionais.Any(sp => sp.Profissional.Nome.ToLower().Contains(search)) ||
-                        s.Preco.ToString().Contains(search))
+                        s.ServicosProfissionais.Any(sp => sp.Profissional.Nome.ToLower().Contains(search)))
                     .ToListAsync();
 
                 if (servicos.Count == 0)
@@ -127,6 +122,7 @@ namespace AGENDAHUB.Controllers
                 return View("Index", servicos);
             }
         }
+
 
         [Authorize(Roles = "Administrador, Usuario, Profissional")]
         public IActionResult Create()

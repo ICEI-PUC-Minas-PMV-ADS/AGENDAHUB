@@ -19,7 +19,7 @@
                 <label asp-for="SelectedProfissionais" class="control-label"><h5>Profissionais</h5></label>
                 <p>Selecione um ou mais profissionais que prestam este serviço</p>
 
-                <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple" id="selectMultiple">
+                <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple" id="selectMultiple" required>
                     @foreach (var profissional in ViewBag.ProfissionaisList)
                     {
                         <option value="@profissional.Value">@profissional.Text</option>
@@ -50,26 +50,14 @@
 
             <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
-
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3 text-center">
-                            @if (ViewBag.HasExistingImage != null && ViewBag.HasExistingImage)
-                            {
-                                <div class="cardImagemEdit">
-                                    <div class="card-images">
-                                        <img id="existingImage" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
-                                    </div>
-                                </div>
-                            }
+                @if (ViewBag.HasExistingImage != null && ViewBag.HasExistingImage)
+                {
+                    <div class="cardImagemEdit d-flex justify-content-center">
+                        <div class="card-images">
+                            <img id="existingImage" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual"/>
                         </div>
                     </div>
-                </div>
-
-           
-
-
+                }
                 <input asp-for="Imagem" type="file" class="form-control" onchange="previewImage(this)" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>

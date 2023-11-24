@@ -38,13 +38,17 @@
 
         <div class="col-md-4">
             <h2 class="text-center">Configurações da Conta</h2>
-
+            @if (ViewBag.HasExistingImage ?? false)
+            {
+                <form method="post" asp-action="RemoveImg" asp-controller="Configuracao">
+                    <button type="submit" class="btn btn-outline-danger w-100">Remover Imagem</button>
+                </form>
+            }
             <form asp-action="Edit" asp-controller="Configuracao" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label asp-for="Imagem" class="control-label"></label>
-
-                    @if (ViewBag.HasExistingImage)
+                    @if (ViewBag.HasExistingImage ?? false)
                     {
                         <div class="card-image" style="text-align: center; margin-bottom: 3%">
                             <img id="existingImage" style="width: 10rem; height: 11rem; border-radius: 0.7rem;" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
@@ -93,7 +97,7 @@
                 <div class="form-group pt-2">
                     <label asp-for="Senha" class="pt-2"></label>
                     <div class="pt-2">
-                        <input asp-for="Senha" class="form-control" placeholder="Não exibida por segurança" required/>
+                        <input asp-for="Senha" class="form-control" placeholder="Não exibida por segurança" required />
                         <span asp-validation-for="Senha" class="text-danger"></span>
                     </div>
                 </div>

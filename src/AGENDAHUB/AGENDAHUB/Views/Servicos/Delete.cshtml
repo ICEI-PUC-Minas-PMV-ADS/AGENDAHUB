@@ -12,38 +12,38 @@
     <div class="row justify-content-center">
         <!-- Centraliza os cards -->
         <div class="containerCard">
-           
-                <div class="cardCSS">
-                    <div class="card-images">
-                        <img src="@Url.Action("GetImg", "Servicos", new { id = Model.ID_Servico })" alt="Imagem do Serviço" />
-                    </div>
-
-                    <h5 class="card-titulo">@Model.Nome</h5>
-
-                    <h5 class="card-preco">
-                        Preço: R$@Model.Preco<br />
-                    </h5>
-
-                    <h5 class="footer">
-                        Tempo de Execução: <span class="by-name">@Model.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br />
-                        <strong>Profissionais:</strong><br />
-
-                        @if (Model.ServicosProfissionais != null && Model.ServicosProfissionais.Any())
-                        {
-                            var nomesProfissionais = Model.ServicosProfissionais
-                            .Select(sp => sp.Profissional.Nome)
-                            .ToList();
-
-                            @string.Join(", ", nomesProfissionais)
-                        }
-                        else
-                        {
-                            <p>Nenhum profissional associado.</p>
-                        }
-                    </h5>
+            <div class="cardCSS">
+                <div class="card-images">
+                    <img src="@Url.Action("GetImg", "Servicos", new { id = Model.ID_Servico })" />
                 </div>
 
-           
+                <h5 class="card-titulo text-center">@Model.Nome</h5>
+
+                <h5 class="card-preco mt-2">
+                    Preço: R$@Model.Preco<br>
+                </h5>
+
+                <div id="footer">
+                    Tempo de Execução: <span class="by-name">@Model.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br /><br />
+                    <cite class="card-subtitle mb-2 text-muted">
+                        <strong>Profissionais:</strong>
+                    </cite>
+
+                    @if (Model.ServicosProfissionais != null && Model.ServicosProfissionais.Any())
+                    {
+                        var nomesProfissionais = Model.ServicosProfissionais
+                        .Where(sp => sp.Profissional != null)  // Verifica se Profissional não é nulo
+                        .Select(sp => sp.Profissional.Nome)
+                        .ToList();
+
+                       <cite>@string.Join(", ", nomesProfissionais)</cite>
+                    }
+                    else
+                    {
+                        <cite>Nenhum profissional associado.</cite>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 

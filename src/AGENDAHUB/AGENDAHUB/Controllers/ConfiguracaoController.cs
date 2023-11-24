@@ -52,56 +52,6 @@ namespace AGENDAHUB.Controllers
             return View(viewModel);
         }
 
-
-        //// GET: Configuracao/Create
-        //[HttpGet]
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(Configuracao configuracao)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    configuracao.UsuarioID = int.Parse(userId); // Define o UsuarioID da configuracao
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
-
-        //        if (usuario == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        // Verifique se já existe uma configuração para o usuário
-        //        if (usuario.Configuracao != null)
-        //        {
-        //            // Atualize as propriedades da configuração existente
-        //            usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
-        //            usuario.Configuracao.Cnpj = configuracao.Cnpj;
-        //            usuario.Configuracao.Endereco = configuracao.Endereco;
-        //            usuario.Configuracao.Email = configuracao.Email;
-
-        //            _context.Update(usuario.Configuracao);
-        //        }
-        //        else
-        //        {
-        //            // Adicione uma nova configuração
-        //            _context.Add(configuracao);
-        //        }
-
-        //        await _context.SaveChangesAsync();
-
-        //        return RedirectToAction("Index", "Configuracao");
-        //    }
-
-        //    // Se houver erros de validação, retorne para a View com os dados existentes
-        //    return View(configuracao);
-        //}
-
         private int GetUserId()
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
@@ -120,6 +70,37 @@ namespace AGENDAHUB.Controllers
                 ? new FileContentResult(byteArray, "image/jpeg")
                 : null;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveImg()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuarios.FindAsync(int.Parse(userId));
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                usuario.Imagem = null;
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro ao remover a imagem: {ex.Message}";
+            }
+
+            return RedirectToAction("Edit", "Configuracao");
+        }
+
 
         [HttpGet]
         public IActionResult CreateImg()

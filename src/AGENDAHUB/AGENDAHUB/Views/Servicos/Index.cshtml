@@ -86,7 +86,7 @@
                             Preço: R$@item.Preco<br>
                         </h5>
 
-                        <div class="footer">
+                        <div id="footer">
                             Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br /><br />
                             <cite class="card-subtitle mb-2 text-muted">
                                 <strong>Profissionais:</strong>
@@ -99,7 +99,7 @@
                                 .Select(sp => sp.Profissional.Nome)
                                 .ToList();
 
-                                @string.Join(", ", nomesProfissionais)
+                                <cite>@string.Join(", ", nomesProfissionais)</cite>
                             }
                             else
                             {
