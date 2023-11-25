@@ -473,6 +473,7 @@ namespace AGENDAHUB.Controllers
             // Filtrar os dias disponíveis com base nas configurações do usuário
             var diasAtendimento = string.Join(",", Enumerable.Range(0, 7).Where(i => configuracao.DiasDaSemanaJson.Contains(i.ToString())));
             ViewBag.DiasDisponiveis = GetDiasAtendimento(diasAtendimento).Select(d => d.ToString("yyyy-MM-dd")).ToList();
+            ViewBag.Data = agendamentos.Data.ToString("yyyy-MM-dd");
 
             return View(agendamentos);
         }

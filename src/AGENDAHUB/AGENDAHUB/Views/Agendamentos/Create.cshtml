@@ -105,9 +105,7 @@
                     var dropdownProfissionais = $("#ID_Profissional");
                     dropdownProfissionais.empty();
 
-                    $.each(profissionais.$values, function (index, profissional) {
-                        console.log(profissionais.$values);
-
+                    $.each(profissionais, function (index, profissional) {
                         dropdownProfissionais.append('<option value="' + profissional.iD_Profissional + '">' + profissional.nome + '</option>');
                     });
                     atualizarHorarios();
@@ -134,7 +132,7 @@
                     $("#Hora").empty();
                     $("#Hora").append('<option value="">Selecione um Horário</option>');
 
-                    $.each(horarios.$values, function (index, hora) {
+                    $.each(horarios, function (index, hora) {
                         $("#Hora").append('<option value="' + hora + '">' + hora + '</option>');
                     });
                 },
