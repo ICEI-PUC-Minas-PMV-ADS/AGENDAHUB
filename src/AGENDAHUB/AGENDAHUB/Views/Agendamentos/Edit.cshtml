@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label asp-for="ID_Cliente" class="control-label"></label>
                 <select asp-for="ID_Cliente" asp-items="@ViewBag.Clientes" class="form-control custom-select">
-                    <option value="">Selecione um cliente</option>
+                    <option value="">Selecione um Cliente</option>
                 </select>
                 <span asp-validation-for="ID_Cliente" class="text-danger"></span>
             </div>
@@ -73,7 +73,7 @@
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <select asp-for="Status" asp-items="Html.GetEnumSelectList<Agendamentos.StatusAgendamento>()" class="form-control custom-select">
-                    <option value="">Selecione o status</option>
+                    <option value="">Selecione o Status</option>
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
