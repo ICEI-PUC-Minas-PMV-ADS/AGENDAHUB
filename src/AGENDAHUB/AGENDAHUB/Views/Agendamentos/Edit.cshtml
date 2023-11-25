@@ -53,16 +53,14 @@
                         var dataFormatada = DateTime.Parse(dia);
                         if (dataFormatada >= DateTime.Today)
                         {
-                            <option value="@dia" selected="@{
-                        if (dia == selectedData) { <text>selected</text> }}">
-                                @dataFormatada.ToString("dd/MMM/yyyy")
+                            <option value="@dia" selected="@{if (dia == selectedData) { <text>selected</text> }}">
+                                @dataFormatada.ToString("dd/MMM/yyyy / dddd", new System.Globalization.CultureInfo("pt-BR"))
                             </option>
                         }
                     }
                 </select>
                 <span asp-validation-for="Data" class="text-danger"></span>
             </div>
-
 
             <div class="form-group">
                 <label asp-for="Hora" class="control-label"></label>

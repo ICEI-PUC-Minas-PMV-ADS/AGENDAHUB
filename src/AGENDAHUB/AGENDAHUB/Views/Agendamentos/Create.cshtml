@@ -46,7 +46,8 @@
                         var dataFormatada = DateTime.Parse(dia);
                         if (dataFormatada >= DateTime.Today)
                         {
-                            <option value="@dia">@dataFormatada.ToString("dd/MMM/yyyy") / @dataFormatada.ToString("dddd")</option>
+                            var diaDaSemana = dataFormatada.ToString("dddd", new System.Globalization.CultureInfo("pt-BR"));
+                            <option value="@dia">@dataFormatada.ToString("dd/MMM/yyyy") / @diaDaSemana</option>
                         }
                     }
                 </select>
