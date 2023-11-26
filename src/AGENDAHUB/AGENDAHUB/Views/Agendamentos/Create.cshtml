@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label asp-for="ID_Cliente" class="control-label"></label>
                 <select asp-for="ID_Cliente" asp-items="@ViewBag.Clientes" class="form-control">
-                    <option value="">Selecione um cliente</option>
+                    <option value="">Selecione um Cliente</option>
                 </select>
                 <span asp-validation-for="ID_Cliente" class="text-danger"></span>
             </div>
@@ -46,7 +46,8 @@
                         var dataFormatada = DateTime.Parse(dia);
                         if (dataFormatada >= DateTime.Today)
                         {
-                            <option value="@dia">@dataFormatada.ToString("dd/MMM/yyyy") / @dataFormatada.ToString("dddd")</option>
+                            var diaDaSemana = dataFormatada.ToString("dddd", new System.Globalization.CultureInfo("pt-BR"));
+                            <option value="@dia">@dataFormatada.ToString("dd/MMM/yyyy") / @diaDaSemana</option>
                         }
                     }
                 </select>
@@ -64,7 +65,7 @@
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <select asp-for="Status" asp-items="Html.GetEnumSelectList<Agendamentos.StatusAgendamento>()" class="form-control">
-                    <option value="">Selecione o status</option>
+                    <option value="">Selecione o Status</option>
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
@@ -105,9 +106,7 @@
                     var dropdownProfissionais = $("#ID_Profissional");
                     dropdownProfissionais.empty();
 
-                    $.each(profissionais.$values, function (index, profissional) {
-                        console.log(profissionais.$values);
-
+                    $.each(profissionais, function (index, profissional) {
                         dropdownProfissionais.append('<option value="' + profissional.iD_Profissional + '">' + profissional.nome + '</option>');
                     });
                     atualizarHorarios();
@@ -134,7 +133,7 @@
                     $("#Hora").empty();
                     $("#Hora").append('<option value="">Selecione um Horário</option>');
 
-                    $.each(horarios.$values, function (index, hora) {
+                    $.each(horarios, function (index, hora) {
                         $("#Hora").append('<option value="' + hora + '">' + hora + '</option>');
                     });
                 },
