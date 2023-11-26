@@ -75,9 +75,16 @@
 
     <script>
         $(document).ready(function () {
+            var locale = 'en-US';
             $('select[multiple]').select2();
-            $('#preco').mask('000.000.000,00', { reverse: true });
+            console.log("Valor antes da formatação:", $('#preco').val());
+
+            // Configurar a máscara com o local desejado
+            $('#preco').mask('000,000,000.00', { reverse: true, locale: locale });
+
+            console.log("Valor após a formatação:", $('#preco').val());
         });
+
     </script>
 }
 
