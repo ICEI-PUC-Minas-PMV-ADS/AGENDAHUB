@@ -56,12 +56,13 @@ public class UsuarioController : Controller
 
             _context.Add(usuario);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Configuracao");
+            return RedirectToAction("Edit", "Configuracao");
         }
         return View(usuario);
     }
 
-    // GET: Usuario/Edit/5
+
+
     [HttpGet]
     public async Task<IActionResult> Edit(int? id)
     {
@@ -83,7 +84,7 @@ public class UsuarioController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,NomeUsuario,Email,Senha,Perfil,Imagem")] Usuario usuario, IFormFile file)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,NomeUsuario,Email,Senha,Perfil,Imagem")] Usuario usuario, IFormFile Imagem)
     {
         if (id != usuario.Id)
         {
@@ -102,11 +103,12 @@ public class UsuarioController : Controller
                     usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
                 }
 
-                if (usuario.Imagem != null)
+                // Processa a imagem apenas se um novo arquivo foi enviado
+                if (Imagem != null && Imagem.Length > 0)
                 {
-                    using var stream = new MemoryStream();
-                    await file.CopyToAsync(stream);
-                    usuario.Imagem = stream.ToArray();
+                    using var memoryStream = new MemoryStream();
+                    await Imagem.CopyToAsync(memoryStream);
+                    usuario.Imagem = memoryStream.ToArray();
                 }
 
                 _context.Update(usuario);
@@ -126,8 +128,13 @@ public class UsuarioController : Controller
                 }
             }
         }
+
+        // Se o modelo não for válido, redefina ViewBag.HasExistingImage para evitar problemas na View
+        ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
+
         return View(usuario);
     }
+
 
     // GET: Usuario/Delete/5
     [HttpGet]

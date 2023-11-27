@@ -1,53 +1,72 @@
 ﻿@model AGENDAHUB.Models.Profissionais
 
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
+
 @{
     ViewData["Title"] = "Editar Profissional";
 }
 
-<h1>Editar Profissional</h1>
+<h1 class="text-center">Editar Profissional</h1>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4 text-center">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID_Profissional" />
+
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Cargo" class="control-label"></label>
-                <input asp-for="Cargo" class="form-control" />
+                <input asp-for="Cargo" class="form-control" placeholder="*Opcional* / Exemplo: Barbeiro, Recepcionista..." />
                 <span asp-validation-for="Cargo" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
+                <input asp-for="Telefone" class="form-control" placeholder='*Opcional* / Digite apenas números exemplo: 33911113333' />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="CPF" class="control-label"></label>
+                <input asp-for="CPF" class="form-control" placeholder="*Opcional* / Digite apenas números exemplo: 11133377700" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
+                <label asp-for="Login" class="control-label"></label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="Senha" class="control-label"></label>
+                <input asp-for="Senha" class="form-control" type="password" placeholder="Não exibida por segurança" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <div class="form-group pt-4">
+                <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                <input type="submit" value="Salvar" class="btn btn-outline-info" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -5,12 +5,29 @@
 }
 
 header {
+  
     height: 15vh;
     background: rgb(208, 208, 208);
     background: linear-gradient(90deg, rgba(208, 208, 208, 1) 0%, rgba(13, 202, 240, 1) 100%);
+    align-items: center;
+   
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+
+}
+
+::-webkit-scrollbar-thumb {
+    background-color:rgb(208, 208, 208); ; /* Cor da parte arrastável da barra de rolagem */
+    border-radius: 5px; /* Raio dos cantos da parte arrastável */
 }
 
 .imgLogo {
+    height: 12vh;
+}
+
+.imgLogoOfCanvas {
     height: 15vh;
 }
 
@@ -18,6 +35,13 @@ header {
     font-size: 30px;
     color: cornflowerblue;
 }
+
+.navbar-brand {
+    position:absolute;
+    margin-left:65px;
+   
+}
+
 
 main {
     min-height: 70vh;
@@ -27,6 +51,8 @@ main {
 .menu-button {
     position: relative;
     display: inline-block;
+    margin-right: auto; /* Adicionado para empurrar o menu para a esquerda */
+    margin-left: 10px;
 }
 
 .menu-text {
@@ -107,3 +133,5 @@ footer {
         text-decoration: none;
         color: inherit;
     }
+
+

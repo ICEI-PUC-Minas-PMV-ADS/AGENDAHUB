@@ -11,7 +11,6 @@ body {
 
 h1 {
     all: initial;
-
     color: #000;
     text-align: center;
     text-shadow: 0px 4.016444206237793px 10.04111099243164px rgba(0, 0, 0, 0.25);
@@ -88,7 +87,7 @@ h3 {
 }
 
 .lineHorizontal {
-    display:flex;
+    display: flex;
     margin-left: 25%;
 }
 
@@ -124,12 +123,12 @@ h3 {
     display: flex; /* Ativar o modelo de caixa flexível */
     align-items: center; /* Alinhar verticalmente o conteúdo */
     justify-content: center;
-    width: 100% - 23.77669rem;
+    width: 100%-23.77669rem;
     height: auto;
 }
 
 
-#camposTextoLg {
+.camposTextoLg {
     width: 22.29063rem;
     height: 3.20625rem;
     flex-shrink: 0;
@@ -138,10 +137,12 @@ h3 {
     background: rgba(255, 255, 255, 0.35);
     box-shadow: -7.9108px 7.9108px 19.77699px 0px rgba(0, 0, 0, 0.25);
     padding-left: 20%;
+    border: none;
 }
 
+
     /* Seletor específico para o input onde deseja ajustar o texto do placeholder */
-    #camposTextoLg::placeholder {
+    .camposTextoLg::placeholder {
         color: #393874;
         font-family: Inter;
         font-size: 1.164rem;
@@ -149,13 +150,16 @@ h3 {
         font-weight: 500;
         line-height: normal;
         letter-spacing: 0.23281rem;
-        text-indent: -40%; /*Ajuste o valor conforme necessário */
-        text-align: center;
+        text-indent: 5%; /*Ajuste o valor conforme necessário */
     }
+
 
 /*Interior caixas de texto*/
 .input-with-icon {
+    display: flex;
+    align-items: center;
     position: relative;
+    justify-content: center;
 }
 
 .input-container {
@@ -165,7 +169,7 @@ h3 {
 
 .icon {
     position: absolute;
-    left: 5%; /* Ajuste essa posição conforme necessário */
+    left: 16%; /* Ajuste essa posição conforme necessário */
     z-index: 1;
     width: 2.37769rem;
     height: 2.36769rem;
@@ -174,27 +178,53 @@ h3 {
 
 .line {
     position: absolute;
-    left: 18%; /* Ajuste essa posição conforme necessário */
+    left: 26%; /* Ajuste essa posição conforme necessário */
     z-index: 1;
     height: 2.36769rem;
     flex-shrink: 0;
 }
 
-/*Botoes*/
-.lembrarCheck {
-    color: #000;
-    text-align: center;
-    font-family: Inter;
-    font-size: 1.24113rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    letter-spacing: 0.31031rem;
+.iconeOlho {
+    z-index: 1;
+    width: 1.37769rem;
+    height: 1.36769rem;
+    flex-shrink: 0;
+    position: absolute;
+    right: 16%; /* Ajuste conforme necessário */
+}
+
+.iconC {
+    position: absolute;
+    left: 10%; /* Ajuste essa posição conforme necessário */
+    z-index: 1;
+    width: 2.37769rem;
+    height: 2.36769rem;
+    flex-shrink: 0;
+}
+
+.lineC {
+    position: absolute;
+    left: 22%; /* Ajuste essa posição conforme necessário */
+    z-index: 1;
+    height: 2.36769rem;
+    flex-shrink: 0;
 }
 
 
 
-#botaoEntrar {
+.redefinirSenha {
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.21031rem;
+}
+/*Botoes*/
+
+.botaoEntrar {
     width: 9.74875rem;
     height: 3.26894rem;
     flex-shrink: 0;
@@ -202,6 +232,15 @@ h3 {
     border-radius: 3.227rem;
     box-shadow: -7.94332px 7.94332px 19.8583px 0px rgba(0, 0, 0, 0.25);
     border: none;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1.1915rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.17875rem;
+    text-decoration: none; /* Remover sublinhado (se desejado) */
 }
 
 

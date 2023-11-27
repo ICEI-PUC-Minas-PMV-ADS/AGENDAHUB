@@ -1,5 +1,7 @@
 ﻿@model AGENDAHUB.Models.Servicos
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @{
     ViewData["Title"] = "Editar Serviço";
 }
@@ -9,41 +11,53 @@
 <hr />
 <div class="row d-flex justify-content-center">
     <div class="col-md-4 text-center">
-        <form asp-action="Edit"  method="post" enctype="multipart/form-data">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID_Servico" />
+
             <div class="form-group">
-                <label asp-for="ID_Profissional" class="control-label">Profissional</label>
-                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
-                    <option value="">Selecione um Profissional</option>
+                <label asp-for="SelectedProfissionais" class="control-label"><h5>Profissionais</h5></label>
+                <p>Selecione um ou mais profissionais que prestam este serviço</p>
+
+                <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple" id="selectMultiple" required>
+                    @foreach (var profissional in ViewBag.ProfissionaisList)
+                    {
+                        <option value="@profissional.Value">@profissional.Text</option>
+                    }
                 </select>
-                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
+
+                <span asp-validation-for="SelectedProfissionais" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Preco" class="control-label">Preço</label>
-                <input asp-for="Preco" class="form-control" data-val="false" />
+                <input asp-for="Preco" id="preco" class="form-control preco-input" data-val="false" />
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="TempoDeExecucao" class="control-label"></label>
                 <input asp-for="TempoDeExecucao" class="form-control" />
                 <span asp-validation-for="TempoDeExecucao" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Imagem" class="control-label"></label>
-
-                @if (ViewBag.HasExistingImage)
+                @if (ViewBag.HasExistingImage != null && ViewBag.HasExistingImage)
                 {
-                    <div class="card-image" style="text-align: center; margin-bottom: 3%">
-                        <img id="existingImage" style="width: 10rem; height: 11rem; border-radius: 0.7rem;" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual" />
+                    <div class="cardImagemEdit d-flex justify-content-center">
+                        <div class="card-images">
+                            <img id="existingImage" src="data:image;base64,@Convert.ToBase64String(Model.Imagem)" alt="Imagem Atual"/>
+                        </div>
                     </div>
                 }
-
                 <input asp-for="Imagem" type="file" class="form-control" onchange="previewImage(this)" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
@@ -63,7 +77,7 @@
                     }
                 }
             </script>
-        <div class="form-group pt-4">
+            <div class="form-group pt-4">
                 <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
                 <input type="submit" value="Salvar" class="btn btn-outline-info" />
             </div>
@@ -71,8 +85,26 @@
     </div>
 </div>
 
-
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var locale = 'en-US';
+            $('select[multiple]').select2();
+            console.log("Valor antes da formatação:", $('#preco').val());
+
+            // Configurar a máscara com o local desejado
+            $('#preco').mask('000,000,000.00', { reverse: true, locale: locale });
+
+            console.log("Valor após a formatação:", $('#preco').val());
+        });
+
+    </script>
 }
+

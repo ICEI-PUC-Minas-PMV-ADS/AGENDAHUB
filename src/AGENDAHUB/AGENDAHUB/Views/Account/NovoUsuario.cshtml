@@ -1,0 +1,53 @@
+﻿@model AGENDAHUB.Models.Usuario
+
+@{
+    ViewData["Title"] = "Novo Usuário";
+}
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
+
+<h1 class="text-center">Novo Usuário</h1>
+
+<hr />
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-4 text-center">
+        <form asp-action="NovoUsuario" asp-controller="Account" method="post">
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NomeUsuario" class="control-label">Nome de Usuário</label>
+                <input asp-for="NomeUsuario" class="form-control" />
+                <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Senha" class="control-label">Senha</label>
+                <input asp-for="Senha" type="password" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Perfil" class="control-label"></label>
+                <select asp-for="Perfil" class="form-control" asp-items="Html.GetEnumSelectList<Perfil>()"></select>
+                <span asp-validation-for="Perfil" class="text-danger"></span>
+            </div>
+
+            <div class="form-group pt-4">
+                <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                <input type="submit" value="Salvar" class="btn btn-outline-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

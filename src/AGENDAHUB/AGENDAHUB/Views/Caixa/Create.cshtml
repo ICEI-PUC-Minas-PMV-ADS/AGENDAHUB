@@ -13,6 +13,7 @@
     <div class="col-md-4 text-center">
         <form asp-action="Create">
             <input type="hidden" asp-for="UsuarioID" value="@ViewBag.UsuarioID" />
+
             <div class="form-group">
                 <label asp-for="Categoria">Categoria</label>
                 <select asp-for="Categoria" class="form-control">
@@ -24,7 +25,7 @@
 
             <div class="form-group">
                 <label asp-for="Valor">Valor</label>
-                <input asp-for="Valor" class="form-control" />
+                <input asp-for="Valor" class="form-control" data-val="false" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
 
@@ -36,7 +37,7 @@
 
             <div class="form-group">
                 <label asp-for="Descricao">Descrição</label>
-                <input asp-for="Descricao" class="form-control" />
+                <input asp-for="Descricao" class="form-control" placeholder="Opcional" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
 

@@ -8,32 +8,20 @@ Por exemplo: a tabela a seguir deverá ser preenchida considerando os artefatos 
 
 |ID    | Descrição do Requisito  | Artefato(s) produzido(s) | Responsável |
 |------|-----------------------------------------|----|----|
-| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema |        |       |
-| RF-02 | O sistema deve ser protegido por autenticação de login e senha   |       |
-| RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional |        |       |
-| RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | Clientes.cs, Clientes.cshtml, ClientesController.| Lucas |
-| RF-05 | O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento | Agendamentos.cs, Agendamentos.cshtml, AgendamentosController.| Lucas |
-| RF-06 | O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira   |       |       |
-| RF-07 | O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador |        |       |
-| RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   |       |       |
-| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. |        |       |
+| RF-01 | O sistema deve permitir uma empresa/autônomo se cadastrar para receber acesso ao sistema |   Usuario.cs, Create.cshtml e AccountController.cs|  Álvaro  |
+| RF-02 | O sistema deve ser protegido por autenticação de login e senha   |   Usuario.cs, Login.cshtml e AccountController.cs     |  Álvaro   |
+| RF-03 | O sistema deve permitir ao administrador realizar o CRUD de um novo serviço oferecido pelo profissional | Servicos.cs, Servicos.cshtml e ServicosController.cs| Evellyn |
+| RF-04 | O sistema deve permitir ao administrador realizar o CRUD de um novo cliente na base de dados   | Clientes.cs, Clientes.cshtmle  ClientesController.cs| Lucas |
+| RF-05 | O sistema deve permitir ao administrador realizar o CRUD de um novo agendamento | Agendamentos.cs, Agendamentos.cshtml, AgendamentosController.cs| Lucas |
+| RF-06 | O sistema deve permitir ao administrador realizar o CRUD de uma nova movimentação financeira   | Caixa.cs, Caixa.cshtml e CaixaController.cs | Lucas |
+| RF-07 | O sistema deve permitir ao administrador realizar o CRUD de um novo colaborador | NovoUsuario.cshtml, Usuario.cs, AccountController.cs  |  Lucas     |
+| RF-08 | O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.   | Configuracao.cs, Edit.cshtml, ConfiguracaoController.cs |   Josué  |
+| RF-09 | O sistema deve permitir alterar informações cadastrais ex: login, senha e e-mail. |  Usuario.cs, Edit.cshtml e ConfiguracaoController.cs      |   Josué  |
 | RF-10 | O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos   |       |       |
 | RF-11 | O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento |        |       |
-| RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional e tirar dúvidas   |       |       |
+| RF-12 | O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional |        |       |
 | RF-13 | O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado |        |       |
 
 # Instruções de acesso
 
-Não deixe de informar o link onde a aplicação estiver disponível para acesso (por exemplo: https://adota-pet.herokuapp.com/src/index.html).
-
-Se houver usuário de teste, o login e a senha também deverão ser informados aqui (por exemplo: usuário - admin / senha - admin).
-
-O link e o usuário/senha descritos acima são apenas exemplos de como tais informações deverão ser apresentadas.
-
-> **Links Úteis**:
->
-> - [Trabalhando com HTML5 Local Storage e JSON](https://www.devmedia.com.br/trabalhando-com-html5-local-storage-e-json/29045)
-> - [JSON Tutorial](https://www.w3resource.com/JSON)
-> - [JSON Data Set Sample](https://opensource.adobe.com/Spry/samples/data_region/JSONDataSetSample.html)
-> - [JSON - Introduction (W3Schools)](https://www.w3schools.com/js/js_json_intro.asp)
-> - [JSON Tutorial (TutorialsPoint)](https://www.tutorialspoint.com/json/index.htm)
+Link para acessar o Sistema: [AgendaHub](https://agendahub20231119201019.azurewebsites.net)

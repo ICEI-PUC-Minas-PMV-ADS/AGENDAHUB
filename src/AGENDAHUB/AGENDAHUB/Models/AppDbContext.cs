@@ -15,6 +15,8 @@ namespace AGENDAHUB.Models
         public DbSet<Configuracao> Configuracao { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Caixa> Caixa { get; set; }
+        public DbSet<ServicoProfissional> ServicoProfissional { get; set; }
+
 
 
         //Para deixar unico o nome de usuario
@@ -36,16 +38,26 @@ namespace AGENDAHUB.Models
                 .HasForeignKey<Caixa>(c => c.ID_Agendamento);
 
             modelBuilder.Entity<Configuracao>()
-        .Property(c => c.DiasDaSemanaJson)
-        .HasColumnName("DiasDaSemanaJson")
-        .IsRequired();
+                .Property(c => c.DiasDaSemanaJson)
+                .HasColumnName("DiasDaSemanaJson")
+                .IsRequired();
 
             modelBuilder.Entity<Configuracao>()
                 .Property(c => c.HoraInicio)
                 .IsRequired();
 
+            modelBuilder.Entity<ServicoProfissional>()
+                .HasKey(sp => new { sp.ID_Servico, sp.ID_Profissional });
 
+            modelBuilder.Entity<ServicoProfissional>()
+                .HasOne(sp => sp.Servico)
+                .WithMany(s => s.ServicosProfissionais)
+                .HasForeignKey(sp => sp.ID_Servico);
 
+            modelBuilder.Entity<ServicoProfissional>()
+                .HasOne(sp => sp.Profissional)
+                .WithMany(p => p.ServicosProfissionais)
+                .HasForeignKey(sp => sp.ID_Profissional);
 
             base.OnModelCreating(modelBuilder);
         }

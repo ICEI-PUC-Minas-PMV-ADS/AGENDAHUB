@@ -1,0 +1,26 @@
+﻿@model AGENDAHUB.Models.Usuario
+
+<link rel="stylesheet" href="~/css/Configuracao.css" asp-append-version="true" />
+
+@{
+    ViewData["Title"] = "Cadastrar Imagem";
+}
+
+<h2 class="text-center">Cadastrar Imagem</h2>
+
+<div class="d-flex justify-content-center">
+    <form asp-action="CreateImg" asp-controller="Configuracao" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Imagem" class="control-label"></label>
+            <input type="file" name="file" asp-for="Imagem" class="form-control" />
+            <span asp-validation-for="Imagem" class="text-danger"></span>
+        </div>
+
+        <div class="form-group text-center mt-2">
+            <a asp-action="Edit" asp-controller="Configuracao" class="btn btn-outline-warning">Voltar</a>
+            <input type="submit" value="Salvar" class="btn btn-outline-info" />
+        </div>
+    </form>
+</div>

@@ -5,35 +5,49 @@
 }
 <link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
 
-<h3 class="text-center">Tem certeza que deseja excluir este serviço?</h3>
+<h3 class="text-center">Tem certeza que deseja excluir este serviço?</h3><br />
 
 <hr />
-    <div class="container">
-        <div class="row justify-content-center">
-            <!-- Centraliza os cards -->
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card mb-4" style="border-radius: 1rem; background: #e8e8e8; box-shadow: 5px 5px 6px #dadada, -5px -5px 6px #f6f6f6;">
-                    <div style="text-align: center; margin-bottom:-5%; margin-top: 3%">
-                    <h1 style="font-size:19px" class="card-text"> @Html.DisplayFor(model => model.Profissional.Nome)</h1>
-                    </div>
-                    <div class="card-image">
-                    <img style="width: 12rem; height: 13rem; border-radius: 0.7rem;" class="mx-auto d-block mt-4" src="@Url.Action("getImg", "Servicos", new { id = Model.ID_Servico })" alt="servico" />
-                    </div>
-                        <div class="card-body">
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Centraliza os cards -->
+        <div class="containerCard">
+            <div class="cardCSS">
+                <div class="card-images">
+                    <img src="@Url.Action("GetImg", "Servicos", new { id = Model.ID_Servico })" />
+                </div>
 
+                <h5 class="card-titulo text-center">@Model.Nome</h5>
 
-                    <h5 style="text-align: center;" class="card-title text-uppercase"> @Html.DisplayFor(model => model.Nome)</h5>
-                            <p style="" class="card-text">
-                            Preço: @Html.DisplayFor(model => model.Preco) <br/>
-                            Tempo de Execução: @Html.DisplayFor(model => model.TempoDeExecucao)
-                            </p>
-                        </div>
-                    </div>
+                <h5 class="card-preco mt-2">
+                    Preço: R$@Model.Preco<br>
+                </h5>
+
+                <div id="footer">
+                    Tempo de Execução: <span class="by-name">@Model.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br /><br />
+                    <cite class="card-subtitle mb-2 text-muted">
+                        <strong>Profissionais:</strong>
+                    </cite>
+
+                    @if (Model.ServicosProfissionais != null && Model.ServicosProfissionais.Any())
+                    {
+                        var nomesProfissionais = Model.ServicosProfissionais
+                        .Where(sp => sp.Profissional != null)  // Verifica se Profissional não é nulo
+                        .Select(sp => sp.Profissional.Nome)
+                        .ToList();
+
+                       <cite>@string.Join(", ", nomesProfissionais)</cite>
+                    }
+                    else
+                    {
+                        <cite>Nenhum profissional associado.</cite>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 
-
-    <div class="row">
+    <div class="row mt-4  mb-4">
         <div class="col d-flex justify-content-center">
             <div class="btn-group items-align-center" role="group">
                 <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
@@ -44,5 +58,6 @@
             </div>
         </div>
     </div>
+
 </div>
 

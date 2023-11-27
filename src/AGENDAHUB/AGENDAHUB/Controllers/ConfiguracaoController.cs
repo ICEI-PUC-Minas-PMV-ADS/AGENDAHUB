@@ -1,4 +1,5 @@
 ﻿using AGENDAHUB.Models;
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -16,14 +18,12 @@ namespace AGENDAHUB.Controllers
     public class ConfiguracaoController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-       
 
-        public ConfiguracaoController(IHttpContextAccessor httpContextAccessor, AppDbContext context)
+
+        public ConfiguracaoController(AppDbContext context)
         {
-            _httpContextAccessor = httpContextAccessor;
             _context = context;
-           
+
         }
         public class UsuarioConfiguracaoViewModel
         {
@@ -34,7 +34,7 @@ namespace AGENDAHUB.Controllers
 
         public IActionResult Index()
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
             if (usuario == null)
@@ -52,116 +52,176 @@ namespace AGENDAHUB.Controllers
             return View(viewModel);
         }
 
+        private int GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return userId;
+            }
+            return 0;
+        }
+
+        // Imagem
+        public FileContentResult GetImg(int id)
+        {
+            byte[] byteArray = _context.Usuario.Find(id).Imagem;
+            return byteArray != null
+                ? new FileContentResult(byteArray, "image/jpeg")
+                : null;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveImg()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuarios.FindAsync(int.Parse(userId));
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                usuario.Imagem = null;
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro ao remover a imagem: {ex.Message}";
+            }
+
+            return RedirectToAction("Edit", "Configuracao");
+        }
 
 
-
-        // GET: Configuracao/Create
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateImg()
         {
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Configuracao configuracao)
+        public async Task<IActionResult> CreateImg(IFormFile file)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            configuracao.UsuarioID = int.Parse(userId); // Define o UsuarioID da configuracao
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuarios.FindAsync(int.Parse(userId));
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
-                var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
-
-                if (usuario == null)
+                if (file != null && file.Length > 0)
                 {
-                    return NotFound();
-                }
-
-                // Verifique se já existe uma configuração para o usuário
-                if (usuario.Configuracao != null)
-                {
-                    // Atualize as propriedades da configuração existente
-                    usuario.Configuracao.NomeEmpresa = configuracao.NomeEmpresa;
-                    usuario.Configuracao.Cnpj = configuracao.Cnpj;
-                    usuario.Configuracao.Endereco = configuracao.Endereco;
-                    usuario.Configuracao.Email = configuracao.Email;
-
-                    _context.Update(usuario.Configuracao);
-                }
-                else
-                {
-                    // Adicione uma nova configuração
-                    _context.Add(configuracao);
+                    using var memoryStream = new MemoryStream();
+                    await file.CopyToAsync(memoryStream);
+                    byte[] data = memoryStream.ToArray();
+                    usuario.Imagem = data;
                 }
 
                 await _context.SaveChangesAsync();
-
-                return RedirectToAction("Index", "Configuracao");
-            }
-
-            // Se houver erros de validação, retorne para a View com os dados existentes
-            return View(configuracao);
-        }
-
-
-
-
-         [HttpGet]
-         public IActionResult Edit()
-         {
-             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-             var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
-
-             if (usuario == null)
-             {
-                 return NotFound();
-             }
-
-            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                var url = Url.Action("Index", "Configuracao");
-                return PartialView("_UsuariosPartial", usuario);
+                return RedirectToAction("Edit", "Configuracao");
             }
 
             return View(usuario);
-         }
-       
+        }
+
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return NotFound();
+            }
+
+            var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
+
+            return View(usuario);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Usuario usuario)
+        public async Task<IActionResult> Edit([Bind("Id,NomeUsuario,Email,Senha,Perfil,Imagem")] Usuario usuario, IFormFile Imagem)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    var usuarioDados = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
+                    // Carrega o usuário existente do banco de dados
+                    var usuarioNoBanco = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
-                    if (usuarioDados == null)
+                    if (usuarioNoBanco == null)
                     {
                         return NotFound();
                     }
 
-                    // Atualizar propriedades da entidade Usuario com base no modelo do formulário
-                    usuarioDados.NomeUsuario = usuario.NomeUsuario;
-                    usuarioDados.Email = usuario.Email;
+                    // Atualiza as propriedades do usuário existente com as novas informações
+                    usuarioNoBanco.NomeUsuario = usuario.NomeUsuario;
+                    usuarioNoBanco.Email = usuario.Email;
+                    usuarioNoBanco.Perfil = usuario.Perfil;
 
-                    _context.Entry(usuarioDados).State = EntityState.Modified;
+                    // Verifica se a senha foi alterada
+                    if (!string.IsNullOrEmpty(usuario.Senha) && usuario.Senha != usuarioNoBanco.Senha)
+                    {
+                        // A senha foi alterada, então re-hasha a nova senha
+                        usuarioNoBanco.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                    }
+
+                    // Se a imagem é fornecida, atualize-a
+                    if (Imagem != null && Imagem.Length > 0)
+                    {
+                        using var memoryStream = new MemoryStream();
+                        await Imagem.CopyToAsync(memoryStream);
+                        usuarioNoBanco.Imagem = memoryStream.ToArray();
+                    }
+
+                    // Salva as alterações no banco de dados
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Index", "Configuracao");
+                    return RedirectToAction("Edit", "Configuracao");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    ModelState.AddModelError(string.Empty, "Erro de concorrência ao salvar as alterações. Tente novamente.");
+                    if (!UsuarioExists(usuario.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
             return View(usuario);
         }
-
-
 
 
         [HttpGet]
@@ -174,12 +234,6 @@ namespace AGENDAHUB.Controllers
             {
                 return NotFound();
             }
-
-            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                return PartialView("_InforEmpresaPartial", usuario.Configuracao);
-            }
-            // Aqui você pode incluir lógica adicional se necessário
 
             return View(usuario.Configuracao);
         }
@@ -218,7 +272,7 @@ namespace AGENDAHUB.Controllers
 
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Index", "Configuracao");
+                    return RedirectToAction("Edit", "Configuracao");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -259,20 +313,27 @@ namespace AGENDAHUB.Controllers
                     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                     var usuario = _context.Usuarios.Include(u => u.Configuracao).FirstOrDefault(u => u.Id.ToString() == userId);
 
-                    if (usuario == null)
+                    if (usuario.Configuracao == null)
                     {
-                        return NotFound();
+                        // Se não existir, é uma operação de criação
+                        //Cria associando ao UsuarioID
+                        configuracao.UsuarioID = int.Parse(userId);
+                        _context.Configuracao.Add(configuracao);
+                    }
+                    else
+                    {
+                        // Se existir, é uma operação de atualização
+                        usuario.Configuracao.DiaAtendimento = configuracao.DiaAtendimento;
+                        usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
+                        usuario.Configuracao.HoraFim = configuracao.HoraFim;
+
+                        _context.Entry(usuario).State = EntityState.Detached; // Desanexar o objeto existente
+                        _context.Entry(usuario.Configuracao).State = EntityState.Modified;
                     }
 
-                    // Deserializar a string JSON antes de atribuir ao modelo
-                    usuario.Configuracao.DiaAtendimento = JsonConvert.DeserializeObject<List<DiasAtendimento>>(configuracao.DiasDaSemanaJson);
-
-                    usuario.Configuracao.HoraInicio = configuracao.HoraInicio;
-                    usuario.Configuracao.HoraFim = configuracao.HoraFim;
-
                     await _context.SaveChangesAsync();
+                    return RedirectToAction("Edit", "Configuracao");
 
-                    return RedirectToAction("Index", "Configuracao");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -286,11 +347,6 @@ namespace AGENDAHUB.Controllers
 
 
 
-
-
-
-
-
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -301,12 +357,12 @@ namespace AGENDAHUB.Controllers
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Recupere a configuração do usuário
+            // Verifique se ID_Configuracao é nulo antes de prosseguir
             var configuracao = await _context.Configuracao
-                .Where(a => a.UsuarioID == int.Parse(userId))
-                .FirstOrDefaultAsync(m => m.ID_Configuracao == id);
+                .Where(a => a.UsuarioID == int.Parse(userId) && a.ID_Configuracao == id)
+                .FirstOrDefaultAsync();
 
-            // Se a configuração não existir, retorne NotFound
+            // Se a configuração ou ID_Configuracao for nulo, retorne NotFound
             if (configuracao == null)
             {
                 return NotFound();
@@ -314,6 +370,7 @@ namespace AGENDAHUB.Controllers
 
             return View(configuracao);
         }
+
 
 
         [HttpPost, ActionName("Delete")]
@@ -339,7 +396,12 @@ namespace AGENDAHUB.Controllers
             _context.Configuracao.Remove(usuario.Configuracao);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit");
+        }
+
+        private bool UsuarioExists(int id)
+        {
+            return _context.Usuarios.Any(e => e.Id == id);
         }
 
     }

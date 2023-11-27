@@ -7,23 +7,43 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ColaboradorProfissional\**" />
+    <Compile Remove="Views\Usuario\**" />
+    <Content Remove="Views\ColaboradorProfissional\**" />
+    <Content Remove="Views\Usuario\**" />
+    <EmbeddedResource Remove="Views\ColaboradorProfissional\**" />
+    <EmbeddedResource Remove="Views\Usuario\**" />
+    <None Remove="Views\ColaboradorProfissional\**" />
+    <None Remove="Views\Usuario\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\UsuarioController.cs" />
     <Compile Remove="Controllers\UsuariosController.cs" />
     <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.cs" />
     <Compile Remove="Migrations\20231108143430_TentativaRelacaoProfissional+Dados.Designer.cs" />
     <Compile Remove="Migrations\20231111060035_NomeDaMigracao.cs" />
     <Compile Remove="Migrations\20231111060035_NomeDaMigracao.Designer.cs" />
+    <Compile Remove="Models\Administrador.cs" />
     <Compile Remove="Models\Cliente.cs" />
+    <Compile Remove="Models\Colaborador.cs" />
     <Compile Remove="Models\ConfiguracaoUsuario.cs" />
+    <Compile Remove="Models\DadosBancarios.cs" />
+    <Compile Remove="Models\Empresa.cs" />
     <Compile Remove="Models\UserAuthentication.cs" />
-    <Compile Remove="Views\AgendamentosClientes\Create.cshtml.cs" />
+    <Compile Remove="Views\Account\NovoUsuario.cs" />
     <Compile Remove="Views\Home\Caixa.cshtml.cs" />
     <Compile Remove="Views\Home\Index.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Models\UsuarioConfiguracaoViewModel.cshtml" />
+    <Content Remove="Views\Account\Details.cshtml" />
+    <Content Remove="Views\Configuracao\Index.cshtml" />
+    <Content Remove="Views\Home\Caixa.cshtml" />
     <Content Remove="Views\Home\Clientes.cshtml" />
     <Content Remove="Views\Home\Configurações.cshtml" />
+    <Content Remove="Views\Profissionais\Details.cshtml" />
     <Content Remove="Views\Shared\_EditPartial.cshtml" />
     <Content Remove="wwwroot\css\Login.cs" />
     <Content Remove="wwwroot\js\modal.js" />
@@ -35,6 +55,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.0" />
+    <PackageReference Include="Azure.Identity" Version="1.10.4" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Chart.js" Version="3.7.1" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />

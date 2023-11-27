@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,13 +22,37 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
+        // Imagem do Usuário
+        public IActionResult GetImg()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == int.Parse(userId));
+
+            byte[] byteArray = usuario?.Imagem;
+
+            if (byteArray != null && byteArray.Length > 0)
+            {
+                return File(byteArray, "image/jpeg");
+            }
+
+            var defaultImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "logoAgendaHub.png");
+            return PhysicalFile(defaultImagePath, "image/jpeg");
+        }
+
+
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuarios.ToListAsync());
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var usuarios = await _context.Usuarios.Where(u => u.Id == int.Parse(userId)).ToListAsync();
+            return View(usuarios);
         }
 
         public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult RedefinirSenha()
         {
             return View();
         }
@@ -46,9 +71,9 @@ namespace AGENDAHUB.Controllers
                 // Usuário encontrado na tabela de Usuarios
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, usuarioDados.NomeUsuario),
-                    new Claim(ClaimTypes.NameIdentifier, usuarioDados.Id.ToString()),
-                    new Claim(ClaimTypes.Role, usuarioDados.Perfil.ToString())
+                    new(ClaimTypes.Name, usuarioDados.NomeUsuario),
+                    new(ClaimTypes.NameIdentifier, usuarioDados.Id.ToString()),
+                    new(ClaimTypes.Role, usuarioDados.Perfil.ToString())
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -58,14 +83,15 @@ namespace AGENDAHUB.Controllers
 
                 return RedirectToAction("Index", "Agendamentos");
             }
+
             else if (profissionalDados != null && BCrypt.Net.BCrypt.Verify(usuario.Senha, profissionalDados.Senha))
             {
                 // Profissional encontrado na tabela de Profissionais
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, profissionalDados.Nome),
-                    new Claim(ClaimTypes.NameIdentifier, profissionalDados.UsuarioID.ToString()),
-                    new Claim(ClaimTypes.Role, "Profissional")
+                    new(ClaimTypes.Name, profissionalDados.Nome),
+                    new(ClaimTypes.NameIdentifier, profissionalDados.UsuarioID.ToString()),
+                    new(ClaimTypes.Role, "Profissional")
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -77,34 +103,62 @@ namespace AGENDAHUB.Controllers
             }
             else
             {
-                ViewBag.Message = "Usuário e/ou senha inválidos!";
-                return View();
+                ViewBag.Message = "Usuário e/ou senha incorretos!";
+                return View(usuario);
             }
         }
 
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync();
 
-            return RedirectToAction("Login", "Account");
+        // GET: Usuarios/NovoUsuario
+        [Authorize]
+        public IActionResult NovoUsuario()
+        {
+            return View();
         }
 
-        // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // POST: Usuarios/NovoUsuario
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> NovoUsuario([Bind("Id,NomeUsuario,Email,Senha,Perfil")] Usuario usuario)
         {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
+            // Garante que o novo usuário seja associado ao userId do usuário autenticado
+            usuario.Id = int.Parse(userId);
+
+            if (ModelState.IsValid)
             {
-                return NotFound();
+
+                // Verifica se o email já está em uso
+                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(usuario);
+                }
+
+                // Verifica se o NomeUsuario já está em uso
+                if (_context.Usuarios.Any(u => u.NomeUsuario == usuario.NomeUsuario))
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso.");
+                    return View(usuario);
+                }
+
+                // Hash da senha
+                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+
+                // Adiciona o novo usuário
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+
+                // Adiciona uma mensagem de sucesso
+                TempData["Mensagem"] = "Usuário cadastrado com sucesso!";
+
+                return RedirectToAction("Index", "Account");
             }
             return View(usuario);
         }
+
 
         // GET: Usuarios/Create
         public IActionResult Create()
@@ -119,27 +173,55 @@ namespace AGENDAHUB.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Verifica se o email já está em uso
+                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
+                {
+                    ModelState.AddModelError("Email", "Este e-mail já está em uso.");
+                    return View(usuario);
+                }
+
+                // Verifica se o NomeUsuario já está em uso
+                if (_context.Usuarios.Any(u => u.NomeUsuario == usuario.NomeUsuario))
+                {
+                    ModelState.AddModelError("NomeUsuario", "Este nome de usuário já está em uso.");
+                    return View(usuario);
+                }
+
+                // Hash da senha
                 usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+
+                // Adiciona o novo usuário
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
+
+                // Adiciona uma mensagem de sucesso
+                TempData["Mensagem"] = "Usuário cadastrado com sucesso!";
+
                 return RedirectToAction("Login", "Account");
             }
+
             return View(usuario);
         }
+
 
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
 
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuarios
+                .Where(u => u.Id == id && u.Id == int.Parse(userId))
+                .FirstOrDefaultAsync();
+
             if (usuario == null)
             {
                 return NotFound();
             }
+
             return View(usuario);
         }
 
@@ -180,17 +262,23 @@ namespace AGENDAHUB.Controllers
         // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
             }
 
             var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Where(u => u.Id == id && u.Id == int.Parse(userId))
+                .FirstOrDefaultAsync();
+
             if (usuario == null)
             {
                 return NotFound();
             }
+
+            ViewBag.HasExistingImage = (usuario.Imagem != null && usuario.Imagem.Length > 0);
+
             return View(usuario);
         }
 
@@ -224,5 +312,13 @@ namespace AGENDAHUB.Controllers
             bool isNomeUsuarioAvailable = !_context.Usuarios.Any(u => u.NomeUsuario == NomeUsuario);
             return Json(isNomeUsuarioAvailable);
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+
+            return RedirectToAction("Login", "Account");
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿body {
 }
 
-#btnNovaMovimentação, #dataInicio, #dataFim {
+#btnNovaMovimentação, #dataInicio, #dataFim, input, select {
     -webkit-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     -moz-box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
     box-shadow: -8px 7px 10px 0px rgba(171,169,171,0.29);
@@ -52,4 +52,8 @@ input[type="date"] {
     border-width: 2px;
     border-color: aqua;
     border-radius: 100px;
+}
+
+table.dataTable > tbody > tr > td.select-checkbox:before, table.dataTable > tbody > tr > th.select-checkbox:before {
+    margin-top: 0 !important;
 }

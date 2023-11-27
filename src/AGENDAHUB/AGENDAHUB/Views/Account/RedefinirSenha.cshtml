@@ -1,0 +1,91 @@
+﻿@model AGENDAHUB.Models.RedefinirSenhaModel
+
+<link rel="stylesheet" href="~/css/RedefinirSenha.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@* Fonte de letra:*@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+@{
+    Layout = null;
+}
+
+@{
+    ViewData["Title"] = "Redefinir Senha";
+}
+
+
+<div class="elipses">
+    <div class="elipseDireita"></div>
+    <div class="elipseEsquerda"></div>
+    <div class="elipseBolaMaior"></div>
+    <div class="elipseBolinha">
+        <svg xmlns="http://www.w3.org/2000/svg" width="160" height="159" viewBox="0 0 160 159" fill="none">
+            <defs>
+                <linearGradient id="paint0_linear_107_87" x1="120.236" y1="19.8815" x2="30.5744" y2="139.764"
+                                gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FEEA37" />
+                    <stop offset="1" stop-color="#DFA309" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+</div>
+
+<div id="boxLogin">
+
+    <div class="divColuna fw-bold">
+        @* Lado esquerda *@
+        <div class="col-4 text-center pt-5" id="bemVindo">
+
+            <h2>BEM VINDO</h2>
+
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="/images/logoAgendaHub.png" id="logoLogin">
+            </a>
+            <div class="text-container mb-5">
+                <h3>Novo Login</h3>
+                <img src="~/images/LineHorizontal.png" alt="Ícone de liknha Horizontal" class="lineHorizontal" />
+            </div>
+
+            <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Create">Criar conta </a></button>
+
+        </div>
+        @*Lado Direito *@
+
+
+        <div class="col text-center " id="formInput">
+
+            <form asp-action="ForgotPassword" asp-controller="Account">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                <h2>REDEFINA SUA SENHA</h2>
+                    
+                <div class="mb-3  pt-3 input-with-icon ">
+                    <div class="input-container">
+                        <img src="~/images/emailLogin.png" alt="Ícone de email" class="icon" />
+                        <img src="~/images/line.png" alt="Ícone de linha Vertical" class="line" />
+                        <input asp-for="Email" class="camposTextoLg" placeholder="EMAIL" />
+                    </div>
+                </div>
+
+                <div class="form-group pt-2">
+                    <a asp-area="" asp-controller="Account" asp-action="Login" class="btn" id="botaoVoltar">Voltar</a>
+                    <button type="submit" value="Acessar" class="botaoEntrar btn-secondary" style="color: red;" disabled><s>Solicitar</s></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

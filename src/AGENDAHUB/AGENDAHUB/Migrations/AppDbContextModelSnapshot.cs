@@ -150,7 +150,9 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DiasDaSemanaJson")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DiasDaSemanaJson");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -165,7 +167,6 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("time");
 
                     b.Property<string>("NomeEmpresa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioID")
@@ -225,6 +226,21 @@ namespace AGENDAHUB.Migrations
                     b.ToTable("Profissionais");
                 });
 
+            modelBuilder.Entity("AGENDAHUB.Models.ServicoProfissional", b =>
+                {
+                    b.Property<int>("ID_Servico")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID_Profissional")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID_Servico", "ID_Profissional");
+
+                    b.HasIndex("ID_Profissional");
+
+                    b.ToTable("ServicoProfissional");
+                });
+
             modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
                 {
                     b.Property<int>("ID_Servico")
@@ -232,9 +248,6 @@ namespace AGENDAHUB.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_Servico"), 1L, 1);
-
-                    b.Property<int>("ID_Profissional")
-                        .HasColumnType("int");
 
                     b.Property<byte[]>("Imagem")
                         .HasColumnType("varbinary(max)");
@@ -246,6 +259,9 @@ namespace AGENDAHUB.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("ProfissionaisID_Profissional")
+                        .HasColumnType("int");
+
                     b.Property<TimeSpan>("TempoDeExecucao")
                         .HasColumnType("time");
 
@@ -254,7 +270,7 @@ namespace AGENDAHUB.Migrations
 
                     b.HasKey("ID_Servico");
 
-                    b.HasIndex("ID_Profissional");
+                    b.HasIndex("ProfissionaisID_Profissional");
 
                     b.HasIndex("UsuarioID");
 
@@ -305,7 +321,7 @@ namespace AGENDAHUB.Migrations
                         .IsRequired();
 
                     b.HasOne("AGENDAHUB.Models.Profissionais", "Profissionais")
-                        .WithMany()
+                        .WithMany("Agendamentos")
                         .HasForeignKey("ID_Profissional")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -381,13 +397,30 @@ namespace AGENDAHUB.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
+            modelBuilder.Entity("AGENDAHUB.Models.ServicoProfissional", b =>
                 {
                     b.HasOne("AGENDAHUB.Models.Profissionais", "Profissional")
-                        .WithMany()
+                        .WithMany("ServicosProfissionais")
                         .HasForeignKey("ID_Profissional")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("AGENDAHUB.Models.Servicos", "Servico")
+                        .WithMany("ServicosProfissionais")
+                        .HasForeignKey("ID_Servico")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Profissional");
+
+                    b.Navigation("Servico");
+                });
+
+            modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
+                {
+                    b.HasOne("AGENDAHUB.Models.Profissionais", null)
+                        .WithMany("Servicos")
+                        .HasForeignKey("ProfissionaisID_Profissional");
 
                     b.HasOne("AGENDAHUB.Models.Usuario", "Usuario")
                         .WithMany()
@@ -395,14 +428,26 @@ namespace AGENDAHUB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Profissional");
-
                     b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Agendamentos", b =>
                 {
                     b.Navigation("Caixa");
+                });
+
+            modelBuilder.Entity("AGENDAHUB.Models.Profissionais", b =>
+                {
+                    b.Navigation("Agendamentos");
+
+                    b.Navigation("Servicos");
+
+                    b.Navigation("ServicosProfissionais");
+                });
+
+            modelBuilder.Entity("AGENDAHUB.Models.Servicos", b =>
+                {
+                    b.Navigation("ServicosProfissionais");
                 });
 
             modelBuilder.Entity("AGENDAHUB.Models.Usuario", b =>

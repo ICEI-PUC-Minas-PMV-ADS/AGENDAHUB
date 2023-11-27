@@ -1,8 +1,15 @@
 ﻿@model AGENDAHUB.Models.Servicos
+@using System.Globalization
+
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Cadastrar Serviço";
 }
+
+
 <h1 class="text-center">Novo Serviço</h1>
 
 <hr />
@@ -13,11 +20,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="ID_Profissional" class="control-label">Profissionais</label>
-                <select asp-for="ID_Profissional" asp-items="@ViewBag.Profissionais" class="form-control">
-                    <option value="">Selecione um Profissional</option>
+                <label asp-for="SelectedProfissionais" class="control-label"><h5>Profissionais</h5></label>
+                <p>Selecione um ou mais profissionais que prestam este serviço</p>
+
+                <select asp-for="SelectedProfissionais" class="form-control" multiple="multiple" id="selectMultiple">
+                    @foreach (var profissional in ViewBag.Profissionais)
+                    {
+                        <option value="@profissional.Value">@profissional.Text</option>
+                    }
                 </select>
-                <span asp-validation-for="ID_Profissional" class="text-danger"></span>
+
+                <span asp-validation-for="SelectedProfissionais" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -27,9 +40,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Preco" class="control-label">Preço</label>
-                <input asp-for="Preco" class="form-control" data-val="false" />
+                <input asp-for="Preco" id="preco" class="form-control preco-input" data-val="false" />
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
+
 
             <div class="form-group">
                 <label asp-for="TempoDeExecucao" class="control-label">Tempo de execução</label>
@@ -40,6 +54,7 @@
                 <label asp-for="Imagem" class="control-label"></label>
                 <input type="file" name="file" asp-for="Imagem" class="form-control" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
+                <span asp-validation-message="Imagem" class="text-danger"></span>
             </div>
             <div class="form-group pt-4">
                 <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
@@ -54,4 +69,23 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var locale = 'en-US';
+            $('select[multiple]').select2();
+            console.log("Valor antes da formatação:", $('#preco').val());
+
+            // Configurar a máscara com o local desejado
+            $('#preco').mask('000,000,000.00', { reverse: true, locale: locale });
+
+            console.log("Valor após a formatação:", $('#preco').val());
+        });
+
+    </script>
 }
+
+

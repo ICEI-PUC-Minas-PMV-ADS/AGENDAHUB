@@ -32,19 +32,22 @@ namespace AGENDAHUB.Controllers
         {
             int userId = GetUserId();
             ViewBag.UsuarioID = userId;
+
             if (userId == 0)
             {
                 return Forbid();
             }
 
-            var caixaItems = await _context.Caixa.ToListAsync();
+            var caixaItems = await _context.Caixa
+                .Where(c => c.UsuarioID == userId)
+                .ToListAsync();
 
-            var entradas = _context.Caixa
-               .Where(c => c.Categoria == CategoriaMovimentacao.Entrada && c.UsuarioID == userId)
-               .Sum(c => c.Valor);
+            var entradas = caixaItems
+                .Where(c => c.Categoria == CategoriaMovimentacao.Entrada)
+                .Sum(c => c.Valor);
 
-            var saidas = _context.Caixa
-                .Where(c => c.Categoria == CategoriaMovimentacao.Saída && c.UsuarioID == userId)
+            var saidas = caixaItems
+                .Where(c => c.Categoria == CategoriaMovimentacao.Saída)
                 .Sum(c => c.Valor);
 
             ViewBag.Entradas = entradas;
@@ -53,19 +56,57 @@ namespace AGENDAHUB.Controllers
             return View(caixaItems);
         }
 
-        public IActionResult SearchByDate(DateTime dataInicio, DateTime dataFim)
+
+        public IActionResult SearchByDate(DateTime? dataInicio, DateTime? dataFim)
         {
             int userId = GetUserId();
             ViewBag.UsuarioID = userId;
+
             if (userId == 0)
             {
                 return Forbid();
             }
 
-            //Falta Criar
+            //// Certifique-se de que pelo menos uma das datas seja fornecida
+            //if (!dataInicio.HasValue && !dataFim.HasValue)
+            //{
+            //    ModelState.AddModelError("dataInicio", "Forneça pelo menos uma data de início ou uma data de fim.");
+            //    return View();
+            //}
 
-            return View();
+            // Consulta os itens do caixa dentro do intervalo de datas, se fornecido
+            var caixaItemsQuery = _context.Caixa
+                .Where(c => c.UsuarioID == userId);
+
+            if (dataInicio.HasValue)
+            {
+                caixaItemsQuery = caixaItemsQuery.Where(c => c.Data >= dataInicio.Value);
+            }
+
+            if (dataFim.HasValue)
+            {
+                caixaItemsQuery = caixaItemsQuery.Where(c => c.Data <= dataFim.Value);
+            }
+
+            var caixaItems = caixaItemsQuery.ToList();
+
+            var entradas = caixaItems
+                .Where(c => c.Categoria == CategoriaMovimentacao.Entrada)
+                .Sum(c => c.Valor);
+
+            var saidas = caixaItems
+                .Where(c => c.Categoria == CategoriaMovimentacao.Saída)
+                .Sum(c => c.Valor);
+
+            ViewBag.Entradas = entradas;
+            ViewBag.Saidas = saidas;
+            ViewBag.DataInicio = dataInicio?.ToString("yyyy-MM-dd");
+            ViewBag.DataFim = dataFim?.ToString("yyyy-MM-dd");
+
+            return View("Index", caixaItems);
         }
+
+
 
         // Função para exibir a tela de cadastro de movimentação de caixa
         public IActionResult Create()
@@ -112,6 +153,7 @@ namespace AGENDAHUB.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             int userId = GetUserId();
+            ViewBag.UsuarioID = userId;
 
             if (userId == 0)
             {
@@ -137,10 +179,11 @@ namespace AGENDAHUB.Controllers
         // Resposta HTTP para atualizar uma movimentação de caixa no banco de dados
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Caixa caixa)
+        public async Task<IActionResult> Edit(int id, [Bind("ID_Caixa, UsuarioID, Categoria, Valor, Data, Descricao")] Caixa caixa)
         {
             int userId = GetUserId();
             ViewBag.UsuarioID = userId;
+
             if (userId == 0 || id != caixa.ID_Caixa || caixa.UsuarioID != userId)
             {
                 return Forbid();

@@ -1,6 +1,8 @@
-﻿@model AGENDAHUB.Models.Usuario
+﻿//Login
+@model AGENDAHUB.Models.Usuario
 <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<script src="~/js/MostrarSenha.js"></script>
 @* Fonte de letra:*@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +15,7 @@
     ViewData["Title"] = "Login";
 }
 
+<script src="~/js/MostrarSenha.js"></script>
 
 <div class="elipses">
     <div class="elipseDireita"></div>
@@ -47,14 +50,14 @@
                 <img src="~/images/LineHorizontal.png" alt="Ícone de liknha Horizontal" class="lineHorizontal" />
             </div>
 
-            <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Create">Criar conta </a></button>
+            <button id="botoesLgCriar"><a asp-area="" asp-controller="Account" asp-action="Create">Criar conta</a></button>
 
         </div>
+
+
         @*Lado Direito *@
 
-
         <div class="col text-center" id="formInput">
-            
             <form asp-action="Login" asp-controller="Account">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -64,31 +67,40 @@
                     <div class="input-container">
                         <img src="~/images/iconUsuarios.png" alt="Ícone de usuário" class="icon" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="line" />
-                        <input asp-for="NomeUsuario" class="form-control" id="camposTextoLg" placeholder="USUÁRIO" />
+                        <input asp-for="NomeUsuario" class="camposTextoLg" placeholder="USUÁRIO" />
                     </div>
+                    <span asp-validation-for="NomeUsuario" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3  pt-3 input-with-icon">
+                <div class="mb-3 pt-3 input-with-icon">
                     <div class="input-container">
                         <img src="~/images/cadeado.png" alt="Ícone de cadeado" class="icon" />
                         <img src="~/images/line.png" alt="Ícone de liknha Vertical" class="line" />
-                        <input asp-for="Senha" class="form-control" id="camposTextoLg" placeholder="SENHA" />
+                        <input asp-for="Senha" class="camposTextoLg" id="textSenha" placeholder="SENHA" />
+                        <img src="~/images/hideEye.png" id="iconeSenha" class="iconeOlho" onclick="MostrarSenha()" />
                     </div>
+                    <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="lembrarCheck" for="exampleCheck1">Lembrar de mim</label>
+                <div class="mb-3 pt-2">
+                    <p class="redefinirSenha">
+                        Esqueceu sua senha?
+                        <a asp-area="" asp-controller="Account" asp-action="RedefinirSenha"> Redefinir minha senha. </a>
+                    </p>
                 </div>
 
-                <div class="form-group">
-                    <button type="submit" value="Acessar" class="btn btn-outline-info text-black" id="botaoEntrar">Entrar</button>
+                <div class="form-group pt-2">
+                    <p class="text-danger">
+                        @if (!ViewData.ModelState.IsValid && ViewBag.Message != null)
+                        {
+                            <span>@ViewBag.Message</span>
+                        }
+                    </p>
+                    <button type="submit" value="Acessar" class="botaoEntrar btn-secondary">Entrar</button>
                 </div>
             </form>
         </div>
-
     </div>
-
 </div>
 
 
@@ -98,4 +110,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    }
+
+}
