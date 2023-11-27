@@ -15,28 +15,46 @@
 <body>
 
     @* Header Logo + botão Menu *@
+   
     <header>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
+        <nav class="navbar bg-body-tertiary align-items-center">
+            <div class="container-fluid d-flex mt-4">
+                <div class="menu-button me-4">
+                    <img src="~/images/menu.png" style="width: 2rem; height: 2rem;" alt="menu-icon" id="openMenu" />
+                    <span class="menu-text">MENU</span>
+                </div>
+                <a class="navbar-brand" href="#">
+                    
                     <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogo">
-                </div>
-                <div class="col">
-                    <div class="menu-button">
-                        <img src="~/images/menu.png" style="width: 2rem; height: 2rem;" alt="menu-icon" id="openMenu" />
-                        <span class="menu-text">MENU</span>
-                    </div>
-                </div>
-
+                   
+                </a>
+             
             </div>
-        </div>
+        </nav>
     </header>
+
+
+
+
+
+   
+
+
+
+
+
+
+    
+
+   
+
+
 
 
     @* Menu Lateral *@
     <div class="offcanvas offcanvas-start offCanvasMenu" tabindex="-1" id="myOffcanvas" data-bs-backdrop="false">
         <div class="offcanvas-header d-flex justify-content-center">
-            <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogo">
+            <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogoOfCanvas">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar" id="closeMenu"></button>
         </div>
 
@@ -108,7 +126,7 @@
     </div>
 
     @* Renderização das páginas *@
-    <div class="main-container pt-5">
+    <div class="main-container">
         <main role="main" class="container-fluid p-3">
             @RenderBody()
         </main>
