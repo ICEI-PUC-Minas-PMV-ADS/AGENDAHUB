@@ -22,6 +22,7 @@ namespace AGENDAHUB.Controllers
             _context = context;
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -29,31 +30,27 @@ namespace AGENDAHUB.Controllers
 
             if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int usuarioIDInt))
             {
-                var clienteDoUsuario = await _context.Clientes
-                    .FirstOrDefaultAsync(c => c.CPF == User.Identity.Name && c.UsuarioID == usuarioIDInt);
+                var agendamentos = await _context.Agendamentos
+                  .Where(a => a.Cliente.CPF == User.Identity.Name) //CPF do cliente
+                  .Include(a => a.Cliente)
+                  .Include(a => a.Servicos)
+                  .Include(a => a.Profissionais)
+                  .ToListAsync();
 
-                if (clienteDoUsuario != null)
+                var agendamentosOrdenados = agendamentos.OrderBy(a => a.Data).ToList();
+
+                if (agendamentosOrdenados.Count == 0)
                 {
-                    var agendamentos = await _context.Agendamentos
-                        .Where(a => a.ID_Cliente == clienteDoUsuario.ID_Cliente)
-                        .Include(a => a.Cliente)
-                        .Include(a => a.Servicos)
-                        .Include(a => a.Profissionais)
-                        .ToListAsync();
-
-                    var agendamentosOrdenados = agendamentos.OrderBy(a => a.Data).ToList();
-
-                    if (agendamentosOrdenados.Count == 0)
-                    {
-                        TempData["MessageNenhumAgendamento"] = "Nenhum agendamento por enquanto 😕";
-                    }
-
-                    return View(agendamentosOrdenados);
+                    TempData["MessageNenhumAgendamento"] = "Nenhum agendamento por enquanto 😕";
                 }
+                return View(agendamentosOrdenados);
             }
-
-            return View(new List<Agendamentos>());
+            else
+            {
+                return View(new List<Agendamentos>());
+            }
         }
+
 
 
 
