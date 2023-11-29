@@ -1,0 +1,63 @@
+﻿@model AGENDAHUB.Models.Servicos
+
+@{
+    ViewData["Title"] = "Excluir Serviço";
+}
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
+
+<h3 class="text-center">Tem certeza que deseja excluir este serviço?</h3><br />
+
+<hr />
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Centraliza os cards -->
+        <div class="containerCard">
+            <div class="cardCSS">
+                <div class="card-images">
+                    <img src="@Url.Action("GetImg", "Servicos", new { id = Model.ID_Servico })" />
+                </div>
+
+                <h5 class="card-titulo text-center">@Model.Nome</h5>
+
+                <h5 class="card-preco mt-2">
+                    Preço: R$@Model.Preco<br>
+                </h5>
+
+                <div id="footer">
+                    Tempo de Execução: <span class="by-name">@Model.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br /><br />
+                    <cite class="card-subtitle mb-2 text-muted">
+                        <strong>Profissionais:</strong>
+                    </cite>
+
+                    @if (Model.ServicosProfissionais != null && Model.ServicosProfissionais.Any())
+                    {
+                        var nomesProfissionais = Model.ServicosProfissionais
+                        .Where(sp => sp.Profissional != null)  // Verifica se Profissional não é nulo
+                        .Select(sp => sp.Profissional.Nome)
+                        .ToList();
+
+                       <cite>@string.Join(", ", nomesProfissionais)</cite>
+                    }
+                    else
+                    {
+                        <cite>Nenhum profissional associado.</cite>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4  mb-4">
+        <div class="col d-flex justify-content-center">
+            <div class="btn-group items-align-center" role="group">
+                <a asp-action="Index" class="btn btn-outline-warning">Voltar</a>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="ID_Servico" />
+                    <button type="submit" class="btn btn-outline-danger ms-1">Excluir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+

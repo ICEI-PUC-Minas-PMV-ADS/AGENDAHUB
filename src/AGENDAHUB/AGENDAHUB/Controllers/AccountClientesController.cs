@@ -73,6 +73,15 @@ namespace AGENDAHUB.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+
+            return RedirectToAction("Login", "AccountClientes");
+        }
+
     }
 
 }

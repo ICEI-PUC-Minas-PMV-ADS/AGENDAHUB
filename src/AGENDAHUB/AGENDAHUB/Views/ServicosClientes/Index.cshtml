@@ -1,0 +1,127 @@
+﻿@model IEnumerable<AGENDAHUB.Models.Servicos>
+
+
+@{
+    ViewData["Title"] = "Serviços Cadastrados";
+    Layout = "~/Views/Shared/_LayoutClientes.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Serviços.css" asp-append-version="true" />
+
+<h1 class="text-center">Serviços Cadastrados</h1>
+
+<div class="row">
+    @if (User.IsInRole("Administrador") || User.IsInRole("Usuario") || User.IsInRole("Profissional"))
+    {
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+            <a asp-action="Create" class="btn btn-outline-info rounded-pill" id="btnNovoServico">+ Novo Serviço</a>
+        </div>
+    }
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 d-flex justify-content-end">
+        <form asp-action="SearchServicos" method="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="search" placeholder="Pesquisar Serviço" id="pesquisar">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="submit" id="botaoPesquisar">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["Message"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData.ContainsKey("MessageConfiguracao"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["Message"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData.ContainsKey("MessageVazio"))
+{
+    <div class="alert alert-info text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mx-auto">
+                    @TempData["MessageVazio"]
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <!-- Divide a largura da tela em 3 colunas para exibir 3 cards por linha em telas médias e grandes -->
+                <div class="containerCard">
+                    <div class="cardCSS">
+                        <div class="card-images">
+                            <img src="@Url.Action("GetImg", "Servicos", new { id = item.ID_Servico })" />
+                        </div>
+
+                        <h5 class="card-titulo text-center">@item.Nome</h5>
+
+                        <h5 class="card-preco mt-2">
+                            Preço: R$@item.Preco<br>
+                        </h5>
+
+                        <div id="footer">
+                            Tempo de Execução: <span class="by-name">@item.TempoDeExecucao.ToString("h\\h\\ mm\\m")</span><br /><br />
+                            <cite class="card-subtitle mb-2 text-muted">
+                                <strong>Profissionais:</strong>
+                            </cite>
+
+                            @if (item.ServicosProfissionais != null && item.ServicosProfissionais.Any())
+                            {
+                                var nomesProfissionais = item.ServicosProfissionais
+                                .Where(sp => sp.Profissional != null)  // Verifica se Profissional não é nulo
+                                .Select(sp => sp.Profissional.Nome)
+                                .ToList();
+
+                                <cite>@string.Join(", ", nomesProfissionais)</cite>
+                            }
+                            else
+                            {
+                                <cite>Nenhum profissional associado.</cite>
+                            }
+
+                            @if (User.IsInRole("Administrador") || User.IsInRole("Usuario") || User.IsInRole("Profissional"))
+                            {
+                                <div class="d-flex justify-content-end">
+                                    <a href="@Url.Action("Edit", new { id = item.ID_Servico })">
+                                        <img class="btn btn-outline-warning" style="height: 2rem; width: auto" src="images/editar.png">
+                                    </a>
+                                    <a href="@Url.Action("Delete", new { id = item.ID_Servico })">
+                                        <img class="btn btn-outline-danger" style="height: 2rem; width: auto" src="images/excluir.png">
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

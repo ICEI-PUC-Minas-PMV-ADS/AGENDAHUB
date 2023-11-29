@@ -1,0 +1,151 @@
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AGENDAHUB</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AGENDAHUB.styles.css" asp-append-version="true" />
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    @* Header Logo + botão Menu *@
+   
+    <header>
+        <nav class="navbar bg-body-tertiary align-items-center">
+            <div class="container-fluid d-flex mt-4">
+                <div class="menu-button me-4">
+                    <img src="~/images/menu.png" style="width: 2rem; height: 2rem;" alt="menu-icon" id="openMenu" />
+                    <span class="menu-text">MENU</span>
+                </div>
+                <a class="navbar-brand" href="#">
+                    
+                    <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogo">
+                   
+                </a>
+             
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+   
+
+
+
+
+
+
+    
+
+   
+
+
+
+
+    @* Menu Lateral *@
+    <div class="offcanvas offcanvas-start offCanvasMenu" tabindex="-1" id="myOffcanvas" data-bs-backdrop="false">
+        <div class="offcanvas-header d-flex justify-content-center">
+            <img src="~/images/logoAgendaHub.png" alt="Logo" class="imgLogoOfCanvas">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar" id="closeMenu"></button>
+        </div>
+
+        <hr class="dropdown-divider">
+
+        <div class="offcanvas-body">
+            <ul class="contentMenu">
+                <li>
+                    <a class="nav_link" asp-area="" asp-controller="AgendamentosClientes" asp-action="Index">
+                        <img src="~/images/calendario.png" style="width: 2rem; height: 2rem;" alt="calendar-icon" />
+                        <span class="nav_name">Agendamentos</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav_link" asp-area="" asp-controller="ServicosClientes" asp-action="Index">
+                        <img src="~/images/serviços.png" style="width: 2rem; height: 2rem;" alt="services-icon" />
+                        <span class="nav_name">Servicos</span>
+                    </a>
+                </li>
+            </ul>
+
+            <hr class="dropdown-divider">
+
+            @* Segunda linha alinhada com a parte inferior / User Menu *@
+            <div class="dropdown" id="menuUser">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                    @{
+                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        var imgSrc = Url.Action("GetImg", "Account", new { id = userId });
+                    }
+                    @if (!string.IsNullOrEmpty(imgSrc))
+                    {
+                        <img src="@imgSrc" alt="Imagem do Usuário" width="43" height="43" class="rounded-circle me-2"> <strong>@User.Identity.Name</strong>
+                    }
+                    else
+                    {
+                        <img src="~/images/logoAgendaHub.png" alt="Logo AgendaHub" width="43" height="43" class="rounded-circle me-2">  <strong>@User.Identity.Name</strong>
+                    }
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                    <li>
+                        <a class="nav-link" asp-area="" asp-controller="Configuracao" asp-action="Edit">
+                            <img src="~/images/config.png" style="width: 1rem; height: 1rem;">
+                            <span class="nav_name">Configurações</span>
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item" asp-area="" asp-controller="AccountClientes" asp-action="Logout">
+                            <img src="~/images/sair.png" style="width: 1rem; height: 1rem;">
+                            <span class="nav_name">Sair</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @* Renderização das páginas *@
+    <div class="main-container">
+        <main role="main" class="container-fluid p-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @* Footer *@
+    <footer class="border-top footer text-center text-black pt-4">
+        <div class="container">
+            <div class="row" id="footerContatos">
+                <div class="col-xl-6 col-5 pt-3">
+                    <img src="~/images/copy.png" style="width: 3rem; height: 3rem;"> AGENDAHUB, @DateTime.Now.Year
+                </div>
+                <div class="col-xl-6 col-7  text-start d-grid justify-content-end" id="contatosAgendaHub">
+                    <a class="text-black" href="mailto:agendahub@outlook.com">
+                        <img src="~/images/email.png" style="width: 1rem; height: 1rem;"> agendahub@outlook.com
+                    </a>
+                    <a class="text-black" href="https://www.instagram.com/agendahub_oficial/" target="_blank">
+                        <img src="~/images/instagram.png" style="width: 1rem; height: 1rem;"> agendahub
+                    </a>
+                    <a class="text-black" href="https://api.whatsapp.com/send?phone=313199999999" target="_blank">
+                        <img src="~/images/whatsapp.png" style="width: 1rem; height: 1rem;"> (31)9 9999-9999
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
