@@ -248,3 +248,9 @@ Atualização do Profissional:
 
 <b>Resultado CT - 08: </b> O Teste obteve êxito, visto que o cadastro do novo profissional foi bem-sucedido, sem erros ou falhas. A consulta retornou o profissional recém-cadastrado e exibiu todas as informações corretamente. A atualização das informações refletiram as modificações feitas e a exclusão do profissional foi efetivada com sucesso. 
 
+## CT - 09 - Agendamento Cliente.
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o cliente consiga realizar, visualizar, eitar e cancelar um agendamento efetuado por ele mesmo.
+
+<b>Resultado CT - 09: O Teste falhou, visto que a RF – 11 - O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento, não foi desenvolvida.
