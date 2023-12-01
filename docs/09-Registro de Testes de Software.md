@@ -1,6 +1,6 @@
 # Registro de Testes de Software
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="04-Projeto de Interface.md"> Projeto de Interface</a>,  <a href="08-Plano de Testes de Software.md"> Projeto de de Testes de Software</a>
+<span style="color:red">Pré-requisitos: <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="04-Projeto de Interface.md"> Projeto de Interface</a>,  <a href="08-Plano de Testes de Software.md"> Projeto de Testes de Software</a>
 
 Os registros dos testes realizados na aplicação estão descritos abaixo.
 
