@@ -99,17 +99,29 @@ A análise heurística foi conduzida para avaliar a usabilidade da aplicação A
 |5.3|O sistema alerta o usuário se ele está prestes a fazer erros críticos?| x | o | o |Sinais de alerta e validações são utilizados para prevenir erros durante o preenchimento de formulários.|
 | 6 | Reconhecimento ao invés de recordação |
 |6.1|Há distinção clara quando é possível selecionar um item ou vários?| x | o | o |
-|6.2|Quando necessário, a aplicação fornece instruções contextuais que ajudam os usuários a entenderem melhor o contexto ou as opções disponíveis, facilitando o reconhecimento das funcionalidades?| x | o | o |
+|6.2|Os rótulos de campo estão próximos dos campos e separados por pelo menos um espaço?| x | o | o |
 |6.3|Durante a realização de ações, a aplicação fornece feedback visual imediato para indicar o status da operação, auxiliando os usuários no reconhecimento do progresso?| x | o | o |Ícones e rótulos intuitivos ajudam os usuários a reconhecerem a função das ações.|
+|6.4|Há alguma diferença visível para identificar a janela ativa?| o | o | x |
+|6.5|São utilizadas bordas para identificar possíveis grupos de elementos?| x | o | o |
 | 7 | Flexibilidade e Eficicência do Uso |
-|7.1|A aplicação oferece atalhos e comandos rápidos que permitem aos usuários experientes realizar tarefas de forma eficiente, sem depender exclusivamente de menus tradicionais.?| o | x | o | Para trocar de tela é necessário acessar o menu.|
+|7.1|Existem atalhos para as funções disponíveis no sistema?| o | x | o | Para trocar de tela é necessário acessar o menu.|
 |7.2|A aplicação é projetada para se adaptar aos diferentes níveis de habilidade dos usuários, proporcionando uma experiência eficiente tanto para novos usuários quanto para usuários experientes?| x | o | o |
 |7.3|Os fluxos de trabalho são projetados de maneira eficiente, minimizando o número de etapas necessárias para completar tarefas comuns e otimizando a produtividade?| x | o | o |
 | 8 | Estética e Design Minimalista |
-|8.1|A interface possui clareza visual que facilita a compreensão das informações e a navegação pelos diferentes elementos da aplicação?| x | o | o |
-|8.2|Os elementos visuais são, como cores, tipografia e ícones, são consistentes em toda a aplicação, proporcionando uma experiência visual unificada?| x | o | o |
+|8.1|Apenas a informação necessária para ação está vísivel na tela?| x | o | o |
+|8.2|Os ícones e ilustrações estão distintos do seu fundo?| x | o | o |
 |8.3|Existe uma hierarquia clara de informações, destacando elementos importantes e orientando o usuário sobre a organização da página?| x | o | o |
-|8.4|O design da interface é limpo e organizado, evitando poluição visual e proporcionando uma experiência mais agradável ao usuário.?| x | o | o |O design é claro e minimamente complexo.|
+|8.4|O design da interface é limpo e organizado, evitando poluição visual e proporcionando uma experiência mais agradável ao usuário?| x | o | o |O design é claro e minimamente complexo.|
+| 9 | Ajudar os usuários a reconhecer, diagnosticar e se recuperar de erros |
+|9.1|É utilizado um sinal sonoro para alertar erros?| o | x | o |
+|9.2|Os questionamentos são breves e sem ambiguidade?| x | o | o |
+|9.3|Se um erro é detectado, o usuário tem visibilidade sobre qual o local gerador do erro?| x | o | o |
+|9.4|As mensagens de erro identificam a severidade e a causa do erro?| x | o | o |
+|9.5|As mensagens de erro sugerem uma ação para correção?| x | o | o |
+| 10 | Ajuda e documentação |
+|10.1|As instruções online estão visualmente distintas?| x | o | o |
+|10.2|Existe ajuda online sensível ao contexto?| o | o | x |
+|10.3|É simples o acesso a ajuda do sistema e o retorno ao sistema?| o | o | x |
 
 # Conclusão:
 A análise heurística destaca várias áreas positivas na usabilidade da aplicação AGENDAHUB. No entanto, há oportunidades para melhorias, especialmente na consistência, visibilidade de feedback e aprimoramento das mensagens de erro. Recomenda-se uma revisão iterativa com base nessas sugestões para aprimorar ainda mais a experiência do usuário.
