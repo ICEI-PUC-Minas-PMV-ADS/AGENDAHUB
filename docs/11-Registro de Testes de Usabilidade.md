@@ -75,3 +75,31 @@ Após realizar os testes de usabilidade, obtém-se um relatório a partir das an
 | Josué | Editar Serviços | Josué: 4 | 4 | Sim | Funcionalidade em desenvolvimento, ainda apresentando erros de usabilidade. | Ao editar o serviço no formulário não recupera do banco de dados a imagem correspondente, deixando o campo vazio.| |
 | Josué | Excluir Serviço | Josué: 4 | 4 | Sim | Funcionalidade em desenvolvimento, ainda apresentando erros de usabilidade. | |
 | Josué | Campo Pesquisa | Josué: 2 | 2 | Sim | O Campo de Pesquisa funciona com a busca do serviço especificado.| **1.** Não foi possível voltar à lista de serviços sem usar a seta fornecida pelo navegador. | **1.** Considere a inclusão de voltar a todos os serviços, ou limpar a busca realizada. |
+
+# Tabela de Análise Heurística
+
+Introdução:
+A análise heurística foi conduzida para avaliar a usabilidade da aplicação "AGENDAHUB". Foram considerados princípios de usabilidade e boas práticas de design, seguindo heurísticas estabelecidas. A análise abrange funcionalidades críticas para empresas/profissionais autônomos/prestadores de serviços e usuários (clientes) da empresa.
+
+
+| ID | Caracteríscias | Sim | Não |N/A | Comentários |
+|----|----------------|-----|-----|----|-------------|
+| 1 | Visibilidade do status do sistema|
+|1.1|As telas do sistema iniciam com um título que descreve seu conteúdo?| x | o | o | 
+|1.2|O ícone selecionado é destacado dos demais não selecionados?| x | o | o |
+|1.3|Há feedback visual do menu ou escolhas selecionadas?| x | o | o | Indicadores visuais de sucesso/falha durante o processo de login e operações CRUD.|
+|1.4|O sistema provê visibilidade do estado atual e alternativas para ação?| x | o | o | Melhorar a visibilidade de feedback para ações que envolvem alterações de dados, como cadastros e atualizações.|
+| 2 | Correspondência entre sistema e mundo real|
+|2.1|Os ícones e ilustrações são concretos e familiares?| x | o | o | 
+|2.2|As cores, quando utilizadas, correspondem aos códigos de cores comuns?| x | o | o | 
+|2.3|A linguagem utilizada evita jargões técnicos?| x | o | o |  A terminologia usada nas funcionalidades reflete de forma clara as ações no mundo real.|
+|2.4|Os números são devidamente separados nos milhares e nos decimais?| x | o | o | 
+| 3 | Controle do usuário e liberdade |
+|3.1|Se o sistema utiliza janelas que se sobrepõem, ele permite a organização e a troca simples?| o | o | x | O sistema não tem janelas que se sobrepões. |
+|3.2|Quando o usuário conclui uma tarefa, o sistema aguarda uma ação antes de processar?| o | o | x | 
+|3.3|O usuário é solicitado a confirmar tarefas que possuem consequências drásticas?| x | o | o | Opções de cancelamento e confirmação estão presentes durante operações críticas, proporcionando segurança ao usuário..|
+|3.4|Existe uma funcionalidade para desfazer ações realizadas pelo usuário?| o | x | o | 
+|3.5|O usuário pode editar, copiar e colar durante a entrada de dados?| x | o | o |
+|3.6|O usuário pode pode se mover entre campos e janelas livremente?| x | o | o |
+|3.7|O usuário pode configurar o sistema, a sessão, a tela conforme sua preferência?| x | o | o | É possível alterar para o modo Dark do navegador. |
+| 4 | Consistência e padrões |
