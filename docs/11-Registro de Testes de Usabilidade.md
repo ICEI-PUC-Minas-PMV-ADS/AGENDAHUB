@@ -100,7 +100,14 @@ A análise heurística foi conduzida para avaliar a usabilidade da aplicação "
 | 6 | Reconhecimento ao invés de recordação |
 |6.1|Há distinção clara quando é possível selecionar um item ou vários?| x | o | o |Ícones e rótulos intuitivos ajudam os usuários a reconhecerem a função das ações.|
 | 7 | Flexibilidade e Eficicência do Uso |
+|7.1|A aplicação oferece atalhos e comandos rápidos que permitem aos usuários experientes realizar tarefas de forma eficiente, sem depender exclusivamente de menus tradicionais.?| o | x | o | Para trocar de tela é necessário acessar o menu.|
+|7.2|A aplicação é projetada para se adaptar aos diferentes níveis de habilidade dos usuários, proporcionando uma experiência eficiente tanto para novos usuários quanto para usuários experientes?| x | o | o |
+|7.3|Os fluxos de trabalho são projetados de maneira eficiente, minimizando o número de etapas necessárias para completar tarefas comuns e otimizando a produtividade?| x | o | o |
 | 8 | Estética e Design Minimalista |
+|8.1|A interface possui clareza visual que facilita a compreensão das informações e a navegação pelos diferentes elementos da aplicação?| x | o | o |
+|8.2|Os elementos visuais são, como cores, tipografia e ícones, são consistentes em toda a aplicação, proporcionando uma experiência visual unificada?| x | o | o |
+|8.3|Existe uma hierarquia clara de informações, destacando elementos importantes e orientando o usuário sobre a organização da página?| x | o | o |
+|8.4|O design da interface é limpo e organizado, evitando poluição visual e proporcionando uma experiência mais agradável ao usuário.?| x | o | o |O design é claro e minimamente complexo.|
 
 # Conclusão:
 A análise heurística destaca várias áreas positivas na usabilidade da aplicação "AGENDAHUB". No entanto, há oportunidades para melhorias, especialmente na consistência, visibilidade de feedback e aprimoramento das mensagens de erro. Recomenda-se uma revisão iterativa com base nessas sugestões para aprimorar ainda mais a experiência do usuário.
