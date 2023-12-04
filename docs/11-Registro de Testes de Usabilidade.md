@@ -98,7 +98,9 @@ A análise heurística foi conduzida para avaliar a usabilidade da aplicação "
 |5.2|Se o sistema exibe múltiplas janelas, a navegação entre as janelas é simples e vísivel?| o | o | x |
 |5.3|O sistema alerta o usuário se ele está prestes a fazer erros críticos?| x | o | o |Sinais de alerta e validações são utilizados para prevenir erros durante o preenchimento de formulários.|
 | 6 | Reconhecimento ao invés de recordação |
-|6.1|Há distinção clara quando é possível selecionar um item ou vários?| x | o | o |Ícones e rótulos intuitivos ajudam os usuários a reconhecerem a função das ações.|
+|6.1|Há distinção clara quando é possível selecionar um item ou vários?| x | o | o |
+|6.2|Quando necessário, a aplicação fornece instruções contextuais que ajudam os usuários a entenderem melhor o contexto ou as opções disponíveis, facilitando o reconhecimento das funcionalidades?| x | o | o |
+|6.3|Durante a realização de ações, a aplicação fornece feedback visual imediato para indicar o status da operação, auxiliando os usuários no reconhecimento do progresso?| x | o | o |Ícones e rótulos intuitivos ajudam os usuários a reconhecerem a função das ações.|
 | 7 | Flexibilidade e Eficicência do Uso |
 |7.1|A aplicação oferece atalhos e comandos rápidos que permitem aos usuários experientes realizar tarefas de forma eficiente, sem depender exclusivamente de menus tradicionais.?| o | x | o | Para trocar de tela é necessário acessar o menu.|
 |7.2|A aplicação é projetada para se adaptar aos diferentes níveis de habilidade dos usuários, proporcionando uma experiência eficiente tanto para novos usuários quanto para usuários experientes?| x | o | o |
