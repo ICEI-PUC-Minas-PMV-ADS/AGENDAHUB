@@ -10,13 +10,6 @@ Após realizar os testes de usabilidade, obtém-se um relatório a partir das an
 | Nível 3 | Problema com alta prioridade de correção.                                                       |
 | Nível 4 | Catástrofe de usabilidade, ou seja, o produto só será liberado se a correção for feita.          |
 
-# Tabela de Avaliação das Heurísticas
-**Tela: Home Page**
-| Heurísticas  | Notas dos Avaliadores | Média | Consenso   | Considerações | Melhorias |
-|---------------------------|------------------------|-------|------------|--------------|----|
-| Visibilidade do status    | Josué: 0  |    0  |    Sim | Não se aplica a uma página inicial que é puramente informativa.|            
-| Compatibilidade com o mundo real |  Josué: 1  |    1   |      Sim      | O site é compatível com o mundo real. <br>Sugestão: Incluir um resumo no início da seção é semelhante a fornecer uma visão geral antes de entrar em detalhe. Isso ajuda os usuários a se prepararem para o conteúdo subsequente. Além disso, a "Navegação de Seção" deve ser avaliada. Adicionar um subtítulo ou um pequeno parágrafo em cada seção para tornar a informação linear. |         |                                 
-| Retorno em caso de erro   |  Josué: 3   |    3   |     Sim       | O botão "Cadastre-se" não responde direcionando para a página de login e cadastro, como era esperado.|
 
 # Tabela de Avaliação da Usabilidade Funcional
 **Atividade: Avaliação dos botões e Section (Home Page)**
@@ -29,15 +22,6 @@ Após realizar os testes de usabilidade, obtém-se um relatório a partir das an
 | Josué   | Seção - Cadastre Seus Serviços | Josué: 3 | 3 | Sim | A seção apresenta um vídeo demonstrativo que deve fornecer como o usuário deve cadastrar seus serviços na aplicação, no entanto o video ainda não está pronto. | Avaliar a necessidade de adicionar informações a seção para melhorar o preechimento dos espaços e a interface gráfica da seção correspondente | Adicionar um divisor de section e melhorar o estilo/design do título correspondente |
 | Josué | Seção - Exibe Para Seus Clientes | Josué: 1 | 1 | Sim | A seção apresenta uma interação dos serviços cadastrados em cards, o que fornece uma clara experiência da aplicação de forma prévia e visual para os usuários. | Essa prévia visualização ajuda os usuários a se familiarizar com o produto do sistema| Adicionar um divisor de section e melhorar o estilo/design do título correspondente |
 | Josué | Footer - Rodapé | Josué: 3 | 3 | Sim | O Footer apresenta a logo da aplicação com alguns ícones de redes sociais “Instagram”, “Email”, “Whatsapp”, ainda sem interação para os perfis correspondentes que devem ser usados posteriormente como suporte ao usuário e divulgação do sistema.| A logo tem sua visibilidade prejudicada pela coloração do footer. | Trabalhar na implementação dessas interações, de modo que os usuários possam clicar nos ícones de redes sociais para acessar os perfis correspondentes. Ajustar o contraste entre a logo e o fundo do footer. |
-
-# Tabela de Avaliação das Heurísticas
-**Tela: Painel Administrativo**
-
-| Heurísticas  | Notas dos Avaliadores | Média | Consenso   | Considerações | Melhorias |
-|---------------------------|------------------------|-------|------------|--------------|----|
-| **Visibilidade do status** | Josué: 1 | 1 | Sim | A presença de titulos das seções no topo da página fornece clareza sobre a localização do usuário no sistema, o que é um exemplo de visibilidade do status. Isso ajuda os usuários a entenderem onde estão e a navegar com mais eficiência pelo sistema. | Destacar visualmente a seção selecionada no menu, tornando mais fácil para o usuário entender onde eles estão no sistema. |
-| **Compatibilidade com o mundo real** | Josué: 1 | 1 | Sim | O sistema atende às expectativas de um sistema do mundo real, com titulos de seções que refletem com precisão a funcionalidade e a estrutura do sistema. | Adicionar uma coloração diferenciada no menu para indicar visualmente a seção selecionada. |
-| **Retorno em caso de erro** | Josué: 0 | 0 | Sim | Sem erros para tratar no layout padrão do painel administrativo.| |
 
 # Tabela de Avaliação da Usabilidade Funcional
 **Atividade: Seção do Painel Administrativo: Agendamento**
@@ -103,3 +87,20 @@ A análise heurística foi conduzida para avaliar a usabilidade da aplicação "
 |3.6|O usuário pode pode se mover entre campos e janelas livremente?| x | o | o |
 |3.7|O usuário pode configurar o sistema, a sessão, a tela conforme sua preferência?| x | o | o | É possível alterar para o modo Dark do navegador. |
 | 4 | Consistência e padrões |
+|4.1|O sistema evita o uso constante de letras maiúsculas?| x | o | o |
+|4.2|Os números são justificados à direita e alinhados quanto aos decimais?| x | o | o |
+|4.3|Os ícones e ilustrações são rotulados?| x | o | o |
+|4.4|As instruções aparecem de forma consistente sempre no mesmo local?| x | o | o |
+|4.5|Os objetos do sistema são nomeados de maneira consistente em todo o sistema?| x | o | o |A aplicação segue um layout consistente em várias seções.|
+|4.6|Os campos obrigatórios e opcionais são corretamente sinalizados| x | o | o |
+| 5 | Prevenções de erros |
+|5.1|As opções de menu são lógicas, distintas e mutuamente exclusivas?| x | o | o |
+|5.2|Se o sistema exibe múltiplas janelas, a navegação entre as janelas é simples e vísivel?| o | o | x |
+|5.3|O sistema alerta o usuário se ele está prestes a fazer erros críticos?| x | o | o |Sinais de alerta e validações são utilizados para prevenir erros durante o preenchimento de formulários.|
+| 6 | Reconhecimento ao invés de recordação |
+|6.1|Há distinção clara quando é possível selecionar um item ou vários?| x | o | o |Ícones e rótulos intuitivos ajudam os usuários a reconhecerem a função das ações.|
+| 7 | Flexibilidade e Eficicência do Uso |
+| 8 | Estética e Design Minimalista |
+
+# Conclusão:
+A análise heurística destaca várias áreas positivas na usabilidade da aplicação "AGENDAHUB". No entanto, há oportunidades para melhorias, especialmente na consistência, visibilidade de feedback e aprimoramento das mensagens de erro. Recomenda-se uma revisão iterativa com base nessas sugestões para aprimorar ainda mais a experiência do usuário.
