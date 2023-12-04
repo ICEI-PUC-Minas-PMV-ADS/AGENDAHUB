@@ -62,7 +62,7 @@ Após realizar os testes de usabilidade, obtém-se um relatório a partir das an
 
 # Tabela de Análise Heurística
 
-Introdução:
+
 A análise heurística foi conduzida para avaliar a usabilidade da aplicação "AGENDAHUB". Foram considerados princípios de usabilidade e boas práticas de design, seguindo heurísticas estabelecidas. A análise abrange funcionalidades críticas para empresas/profissionais autônomos/prestadores de serviços e usuários (clientes) da empresa.
 
 
