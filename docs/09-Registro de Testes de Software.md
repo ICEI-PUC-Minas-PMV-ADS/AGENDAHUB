@@ -254,3 +254,8 @@ Objetivo do Teste:
 > - O objetivo deste teste é garantir que o cliente consiga realizar, visualizar, eitar e cancelar um agendamento efetuado por ele mesmo.
 
 <b>Resultado CT - 09: O Teste falhou, visto que a RF – 11 - O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento, não foi desenvolvida.
+
+# Conclusões:
+O sistema apresentou bom desempenho nos testes realizados, com a exceção do CT - 09, onde não foi possível verificar a funcionalidade de agendamento por parte do cliente devido à uma funcionalidade não implementada.
+
+Recomenda-se a implementação da funcionalidade RF – 11 para garantir a conformidade com os requisitos estabelecidos.
