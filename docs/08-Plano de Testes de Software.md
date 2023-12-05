@@ -277,7 +277,8 @@ Critérios de Êxito:
 
 ## CT - 09 - Agendamento Cliente.
 Requisitos Associados:
-> - RF – 11 - O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento	
+> - RF – 11 - O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento.
+> - RF - 12	O sistema deve permitir o cliente visualizar os serviços oferecidos pelo profissional e tirar dúvidas
 
 Objetivo do Teste:
 > - O objetivo deste teste é garantir que o cliente consiga realizar, visualizar, eitar e cancelar um agendamento efetuado por ele mesmo.
@@ -292,3 +293,9 @@ Critérios de Êxito:
 > - A atualização do agendamento refelete as modificações feitas.
 > - O cancelamento é bem-sucedido, sem erros ou mensagens de falha. 
 
+## CT - 10 - Informações Empresa/Autônomo.
+Requisitos Associados:
+> - RF-08	O sistema deve permitir alterar informações sobre a empresa ex: endereço, conta de recebimento, dentre outros.
+
+Objetivo do Teste:
+> - O objetivo do teste é garantir que a empresa/autônomo consiga alterar seus dados como, endereço, conta e outros.
