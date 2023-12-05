@@ -255,7 +255,21 @@ Objetivo do Teste:
 
 <b>Resultado CT - 09: O Teste falhou, visto que a RF – 11 - O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento, não foi desenvolvida.
 
+## CT - 10 - Informações Empresa/Autônomo.
+
+Objetivo do Teste:
+> - O objetivo do teste é garantir que a empresa/autônomo consiga alterar seus dados como, endereço, conta e outros.
+
+<b>Resultado CT - 10: 
+
+## CT - 11 -  Pagamento Antecipado.
+
+Objetivo do Teste:
+> - O objetivo do teste é garantir que o cliente consiga efetuar um pagamento antecipado ao efetuar o agandamento e que a empresa/autônomo consiga exigir ou não um pagamento antecipado.
+
+<b>Resultado CT - 11: O Teste falhou, visto que as RFs – 10 - O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos e RF-13 O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado, não foram desenvolvidas.
+
 # Conclusões:
-O sistema apresentou bom desempenho nos testes realizados, com a exceção do CT - 09, onde não foi possível verificar a funcionalidade de agendamento por parte do cliente devido à uma funcionalidade não implementada.
+O sistema apresentou bom desempenho nos testes realizados, com a exceção do CT - 09 e CT - 11, onde não foi possível verificar a funcionalidade de agendamento por parte do cliente e a funcionalidade de pagamento antecipado, devido às funcionalidades não estarem implementadas.
 
 Recomenda-se a implementação da funcionalidade RF – 11 para garantir a conformidade com os requisitos estabelecidos.
