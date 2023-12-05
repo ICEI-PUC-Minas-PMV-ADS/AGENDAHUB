@@ -272,4 +272,4 @@ Objetivo do Teste:
 # Conclusões:
 O sistema apresentou bom desempenho nos testes realizados, com a exceção do CT - 09 e CT - 11, onde não foi possível verificar a funcionalidade de agendamento por parte do cliente e a funcionalidade de pagamento antecipado, devido às funcionalidades não estarem implementadas.
 
-Recomenda-se a implementação da funcionalidade RF – 11 para garantir a conformidade com os requisitos estabelecidos.
+Recomenda-se a implementação das funcionalidades RF – 11, RF - 10 e RF - 13, para garantir a conformidade com os requisitos estabelecidos.
