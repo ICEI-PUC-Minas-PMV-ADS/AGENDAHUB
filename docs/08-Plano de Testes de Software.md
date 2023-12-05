@@ -299,3 +299,11 @@ Requisitos Associados:
 
 Objetivo do Teste:
 > - O objetivo do teste é garantir que a empresa/autônomo consiga alterar seus dados como, endereço, conta e outros.
+
+## CT - 11 - Pagamento Antecipado.
+Requisitos Associados:
+> - RF-10	O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos
+> - RF-13	O sistema deve oferecer a possibilidade de o cliente efetuar um pagamento antecipado
+
+Objetivo do Teste:
+> - O objetivo do teste é garantir que o cliente consiga efetuar um pagamento antecipado ao efetuar o agandamento e que a empresa/autônomo consiga exigir ou não um pagamento antecipado.
