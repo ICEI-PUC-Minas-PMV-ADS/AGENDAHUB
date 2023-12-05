@@ -10,13 +10,6 @@ Após realizar os testes de usabilidade, obtém-se um relatório a partir das an
 | Nível 3 | Problema com alta prioridade de correção.                                                       |
 | Nível 4 | Catástrofe de usabilidade, ou seja, o produto só será liberado se a correção for feita.          |
 
-# Tabela de Avaliação das Heurísticas
-**Tela: Home Page**
-| Heurísticas  | Notas dos Avaliadores | Média | Consenso   | Considerações | Melhorias |
-|---------------------------|------------------------|-------|------------|--------------|----|
-| Visibilidade do status    | Josué: 0  |    0  |    Sim | Não se aplica a uma página inicial que é puramente informativa.|            
-| Compatibilidade com o mundo real |  Josué: 1  |    1   |      Sim      | O site é compatível com o mundo real. <br>Sugestão: Incluir um resumo no início da seção é semelhante a fornecer uma visão geral antes de entrar em detalhe. Isso ajuda os usuários a se prepararem para o conteúdo subsequente. Além disso, a "Navegação de Seção" deve ser avaliada. Adicionar um subtítulo ou um pequeno parágrafo em cada seção para tornar a informação linear. |         |                                 
-| Retorno em caso de erro   |  Josué: 3   |    3   |     Sim       | O botão "Cadastre-se" não responde direcionando para a página de login e cadastro, como era esperado.|
 
 # Tabela de Avaliação da Usabilidade Funcional
 **Atividade: Avaliação dos botões e Section (Home Page)**
@@ -29,15 +22,6 @@ Após realizar os testes de usabilidade, obtém-se um relatório a partir das an
 | Josué   | Seção - Cadastre Seus Serviços | Josué: 3 | 3 | Sim | A seção apresenta um vídeo demonstrativo que deve fornecer como o usuário deve cadastrar seus serviços na aplicação, no entanto o video ainda não está pronto. | Avaliar a necessidade de adicionar informações a seção para melhorar o preechimento dos espaços e a interface gráfica da seção correspondente | Adicionar um divisor de section e melhorar o estilo/design do título correspondente |
 | Josué | Seção - Exibe Para Seus Clientes | Josué: 1 | 1 | Sim | A seção apresenta uma interação dos serviços cadastrados em cards, o que fornece uma clara experiência da aplicação de forma prévia e visual para os usuários. | Essa prévia visualização ajuda os usuários a se familiarizar com o produto do sistema| Adicionar um divisor de section e melhorar o estilo/design do título correspondente |
 | Josué | Footer - Rodapé | Josué: 3 | 3 | Sim | O Footer apresenta a logo da aplicação com alguns ícones de redes sociais “Instagram”, “Email”, “Whatsapp”, ainda sem interação para os perfis correspondentes que devem ser usados posteriormente como suporte ao usuário e divulgação do sistema.| A logo tem sua visibilidade prejudicada pela coloração do footer. | Trabalhar na implementação dessas interações, de modo que os usuários possam clicar nos ícones de redes sociais para acessar os perfis correspondentes. Ajustar o contraste entre a logo e o fundo do footer. |
-
-# Tabela de Avaliação das Heurísticas
-**Tela: Painel Administrativo**
-
-| Heurísticas  | Notas dos Avaliadores | Média | Consenso   | Considerações | Melhorias |
-|---------------------------|------------------------|-------|------------|--------------|----|
-| **Visibilidade do status** | Josué: 1 | 1 | Sim | A presença de titulos das seções no topo da página fornece clareza sobre a localização do usuário no sistema, o que é um exemplo de visibilidade do status. Isso ajuda os usuários a entenderem onde estão e a navegar com mais eficiência pelo sistema. | Destacar visualmente a seção selecionada no menu, tornando mais fácil para o usuário entender onde eles estão no sistema. |
-| **Compatibilidade com o mundo real** | Josué: 1 | 1 | Sim | O sistema atende às expectativas de um sistema do mundo real, com titulos de seções que refletem com precisão a funcionalidade e a estrutura do sistema. | Adicionar uma coloração diferenciada no menu para indicar visualmente a seção selecionada. |
-| **Retorno em caso de erro** | Josué: 0 | 0 | Sim | Sem erros para tratar no layout padrão do painel administrativo.| |
 
 # Tabela de Avaliação da Usabilidade Funcional
 **Atividade: Seção do Painel Administrativo: Agendamento**
@@ -75,3 +59,69 @@ Após realizar os testes de usabilidade, obtém-se um relatório a partir das an
 | Josué | Editar Serviços | Josué: 4 | 4 | Sim | Funcionalidade em desenvolvimento, ainda apresentando erros de usabilidade. | Ao editar o serviço no formulário não recupera do banco de dados a imagem correspondente, deixando o campo vazio.| |
 | Josué | Excluir Serviço | Josué: 4 | 4 | Sim | Funcionalidade em desenvolvimento, ainda apresentando erros de usabilidade. | |
 | Josué | Campo Pesquisa | Josué: 2 | 2 | Sim | O Campo de Pesquisa funciona com a busca do serviço especificado.| **1.** Não foi possível voltar à lista de serviços sem usar a seta fornecida pelo navegador. | **1.** Considere a inclusão de voltar a todos os serviços, ou limpar a busca realizada. |
+
+# Tabela de Análise Heurística
+
+
+A análise heurística foi conduzida para avaliar a usabilidade da aplicação AGENDAHUB. Foram considerados princípios de usabilidade e boas práticas de design, seguindo heurísticas estabelecidas. A análise abrange funcionalidades críticas para empresas/profissionais autônomos/prestadores de serviços e usuários (clientes) da empresa.
+
+
+| ID | Caracteríscias | Sim | Não |N/A | Comentários |
+|----|----------------|-----|-----|----|-------------|
+| 1 | Visibilidade do status do sistema|
+|1.1|As telas do sistema iniciam com um título que descreve seu conteúdo?| x | o | o | 
+|1.2|O ícone selecionado é destacado dos demais não selecionados?| x | o | o |
+|1.3|Há feedback visual do menu ou escolhas selecionadas?| x | o | o | Indicadores visuais de sucesso/falha durante o processo de login e operações CRUD.|
+|1.4|O sistema provê visibilidade do estado atual e alternativas para ação?| x | o | o | Melhorar a visibilidade de feedback para ações que envolvem alterações de dados, como cadastros e atualizações.|
+| 2 | Correspondência entre sistema e mundo real|
+|2.1|Os ícones e ilustrações são concretos e familiares?| x | o | o | 
+|2.2|As cores, quando utilizadas, correspondem aos códigos de cores comuns?| x | o | o | 
+|2.3|A linguagem utilizada evita jargões técnicos?| x | o | o |  A terminologia usada nas funcionalidades reflete de forma clara as ações no mundo real.|
+|2.4|Os números são devidamente separados nos milhares e nos decimais?| x | o | o | 
+| 3 | Controle do usuário e liberdade |
+|3.1|Se o sistema utiliza janelas que se sobrepõem, ele permite a organização e a troca simples?| o | o | x | O sistema não tem janelas que se sobrepões. |
+|3.2|Quando o usuário conclui uma tarefa, o sistema aguarda uma ação antes de processar?| o | o | x | 
+|3.3|O usuário é solicitado a confirmar tarefas que possuem consequências drásticas?| x | o | o | Opções de cancelamento e confirmação estão presentes durante operações críticas, proporcionando segurança ao usuário..|
+|3.4|Existe uma funcionalidade para desfazer ações realizadas pelo usuário?| o | x | o | 
+|3.5|O usuário pode editar, copiar e colar durante a entrada de dados?| x | o | o |
+|3.6|O usuário pode pode se mover entre campos e janelas livremente?| x | o | o |
+|3.7|O usuário pode configurar o sistema, a sessão, a tela conforme sua preferência?| x | o | o | É possível alterar para o modo Dark do navegador. |
+| 4 | Consistência e padrões |
+|4.1|O sistema evita o uso constante de letras maiúsculas?| x | o | o |
+|4.2|Os números são justificados à direita e alinhados quanto aos decimais?| x | o | o |
+|4.3|Os ícones e ilustrações são rotulados?| x | o | o |
+|4.4|As instruções aparecem de forma consistente sempre no mesmo local?| x | o | o |
+|4.5|Os objetos do sistema são nomeados de maneira consistente em todo o sistema?| x | o | o |A aplicação segue um layout consistente em várias seções.|
+|4.6|Os campos obrigatórios e opcionais são corretamente sinalizados| x | o | o |
+| 5 | Prevenções de erros |
+|5.1|As opções de menu são lógicas, distintas e mutuamente exclusivas?| x | o | o |
+|5.2|Se o sistema exibe múltiplas janelas, a navegação entre as janelas é simples e vísivel?| o | o | x |
+|5.3|O sistema alerta o usuário se ele está prestes a fazer erros críticos?| x | o | o |Sinais de alerta e validações são utilizados para prevenir erros durante o preenchimento de formulários.|
+| 6 | Reconhecimento ao invés de recordação |
+|6.1|Há distinção clara quando é possível selecionar um item ou vários?| x | o | o |
+|6.2|Os rótulos de campo estão próximos dos campos e separados por pelo menos um espaço?| x | o | o |
+|6.3|Durante a realização de ações, a aplicação fornece feedback visual imediato para indicar o status da operação, auxiliando os usuários no reconhecimento do progresso?| x | o | o |Ícones e rótulos intuitivos ajudam os usuários a reconhecerem a função das ações.|
+|6.4|Há alguma diferença visível para identificar a janela ativa?| o | o | x |
+|6.5|São utilizadas bordas para identificar possíveis grupos de elementos?| x | o | o |
+| 7 | Flexibilidade e Eficicência do Uso |
+|7.1|Existem atalhos para as funções disponíveis no sistema?| o | x | o | Para trocar de tela é necessário acessar o menu.|
+|7.2|A aplicação é projetada para se adaptar aos diferentes níveis de habilidade dos usuários, proporcionando uma experiência eficiente tanto para novos usuários quanto para usuários experientes?| x | o | o |
+|7.3|Os fluxos de trabalho são projetados de maneira eficiente, minimizando o número de etapas necessárias para completar tarefas comuns e otimizando a produtividade?| x | o | o |
+| 8 | Estética e Design Minimalista |
+|8.1|Apenas a informação necessária para ação está vísivel na tela?| x | o | o |
+|8.2|Os ícones e ilustrações estão distintos do seu fundo?| x | o | o |
+|8.3|Existe uma hierarquia clara de informações, destacando elementos importantes e orientando o usuário sobre a organização da página?| x | o | o |
+|8.4|O design da interface é limpo e organizado, evitando poluição visual e proporcionando uma experiência mais agradável ao usuário?| x | o | o |O design é claro e minimamente complexo.|
+| 9 | Ajudar os usuários a reconhecer, diagnosticar e se recuperar de erros |
+|9.1|É utilizado um sinal sonoro para alertar erros?| o | x | o |
+|9.2|Os questionamentos são breves e sem ambiguidade?| x | o | o |
+|9.3|Se um erro é detectado, o usuário tem visibilidade sobre qual o local gerador do erro?| x | o | o |
+|9.4|As mensagens de erro identificam a severidade e a causa do erro?| x | o | o |
+|9.5|As mensagens de erro sugerem uma ação para correção?| x | o | o |
+| 10 | Ajuda e documentação |
+|10.1|As instruções online estão visualmente distintas?| x | o | o |
+|10.2|Existe ajuda online sensível ao contexto?| o | o | x |
+|10.3|É simples o acesso a ajuda do sistema e o retorno ao sistema?| o | o | x |
+
+# Conclusão:
+A análise heurística destaca várias áreas positivas na usabilidade da aplicação AGENDAHUB. No entanto, há oportunidades para melhorias, especialmente na consistência, visibilidade de feedback e aprimoramento das mensagens de erro. Recomenda-se uma revisão iterativa com base nessas sugestões para aprimorar ainda mais a experiência do usuário.

@@ -1,6 +1,6 @@
 # Registro de Testes de Software
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="04-Projeto de Interface.md"> Projeto de Interface</a>,  <a href="08-Plano de Testes de Software.md"> Projeto de de Testes de Software</a>
+<span style="color:red">Pré-requisitos: <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="04-Projeto de Interface.md"> Projeto de Interface</a>,  <a href="08-Plano de Testes de Software.md"> Projeto de Testes de Software</a>
 
 Os registros dos testes realizados na aplicação estão descritos abaixo.
 
@@ -248,3 +248,14 @@ Atualização do Profissional:
 
 <b>Resultado CT - 08: </b> O Teste obteve êxito, visto que o cadastro do novo profissional foi bem-sucedido, sem erros ou falhas. A consulta retornou o profissional recém-cadastrado e exibiu todas as informações corretamente. A atualização das informações refletiram as modificações feitas e a exclusão do profissional foi efetivada com sucesso. 
 
+## CT - 09 - Agendamento Cliente.
+
+Objetivo do Teste:
+> - O objetivo deste teste é garantir que o cliente consiga realizar, visualizar, eitar e cancelar um agendamento efetuado por ele mesmo.
+
+<b>Resultado CT - 09: O Teste falhou, visto que a RF – 11 - O sistema deve permitir o cliente realizar, visualizar, editar e cancelar um agendamento, não foi desenvolvida.
+
+# Conclusões:
+O sistema apresentou bom desempenho nos testes realizados, com a exceção do CT - 09, onde não foi possível verificar a funcionalidade de agendamento por parte do cliente devido à uma funcionalidade não implementada.
+
+Recomenda-se a implementação da funcionalidade RF – 11 para garantir a conformidade com os requisitos estabelecidos.
