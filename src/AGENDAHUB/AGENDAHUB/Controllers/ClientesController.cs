@@ -33,40 +33,6 @@ namespace AGENDAHUB.Controllers
             return View(clientes);
         }
 
-        // Método de pesquisa no banco de dados
-        [HttpGet("SearchClientes", Name = "SearchClientes")]
-        public async Task<IActionResult> SearchClientes(string search)
-        {
-            if (string.IsNullOrEmpty(search))
-            {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-                var clientes = await _context.Clientes
-                    .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
-                    .ToListAsync();
-
-                return View("Index", clientes);
-            }
-            else
-            {
-                search = search.ToLower();
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
-                var clientes = await _context.Clientes
-                    .Where(c => c.UsuarioID == int.Parse(userId)) // Restringe os clientes pelo UsuarioID
-                    .ToListAsync();
-
-                var filteredClientes = await _context.Clientes
-                    .Where(c =>
-                        c.UsuarioID == int.Parse(userId) &&
-                        (c.Nome.ToLower().Contains(search) ||
-                        c.CPF.ToLower().Contains(search) ||
-                        c.Contato.ToLower().Contains(search) ||
-                        c.Email.ToLower().Contains(search) ||
-                        (c.Observacao != null && c.Observacao.ToLower().Contains(search)))
-                    )
-                    .ToListAsync();
-                return View("Index", filteredClientes);
-            }
-        }
 
         // Função para exibir a tela de Cadastro de Clientes
         public IActionResult Create()
@@ -80,6 +46,12 @@ namespace AGENDAHUB.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Obtém o ID do usuário logado
             cliente.UsuarioID = int.Parse(userId); // Define o UsuarioID do cliente
+
+            // Verifica se o CPF já está cadastrado
+            if (_context.Clientes.Any(c => c.CPF == cliente.CPF))
+            {
+                ModelState.AddModelError("CPF", "Este CPF já está cadastrado.");
+            }
 
             if (ModelState.IsValid)
             {

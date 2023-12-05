@@ -256,7 +256,7 @@ namespace AGENDAHUB.Controllers
         {
             var diasAtendimentoList = new List<DateTime>();
             int diasNoMesAtual = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            int diasNoProximoMes = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month + 1);
+            int diasNoProximoMes = DateTime.DaysInMonth(DateTime.Now.Year + (DateTime.Now.Month == 12 ? 1 : 0), (DateTime.Now.Month % 12) + 1);
 
             for (int i = 1; i <= diasNoMesAtual + diasNoProximoMes; i++)
             {
