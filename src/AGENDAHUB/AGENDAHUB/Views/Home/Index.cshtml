@@ -1,10 +1,14 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+    
 }
 
 @{
     ViewData["Title"] = "HomePage";
 }
+
+
+
 
 <main class="main-class">
     <section id="section-main">
@@ -27,73 +31,273 @@
     </section>
 
     <section id="section-main">
-        <div class="servicos" id="servicos">
-            <div class="titleservicos">
-                <h4>CADASTRE SEUS SERVIÇOS</h4>
+       
+        
 
-                <div class="cardVideo">
-                    <div class="card__img">
-                        <iframe width="560" height="315" src="https://youtu.be/Rx4XGlGUkng?si=gevsymBDx5phJaLl" frameborder="0" allowfullscreen></iframe>
+            <div class="cardBanner">
+                <div class="tools">
+                    <div class="circle">
+                        <span class="red box"></span>
                     </div>
-                    <div class="card__descr-wrapper">
-                      
-                        <p class="card__descr">
-                            Ao cadastrar seus serviços, você está dando o primeiro <br />passo para expandir sua presença online.
-                        </p>
-                       
+                    <div class="circle">
+                        <span class="yellow box"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green box"></span>
                     </div>
                 </div>
-               @*<div class="table-container">
-                    <div class="tablet">
-                        <div class="screen">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/SE_M9noEhNE" frameborder="0" allowfullscreen></iframe>
+
+            
+                <div class="card__content">
+
+
+
+
+                <div class="container-fluid">
+                    
+                 
+
+                    <div class="primeiroTitulo">
+                        <div class="headerPrimeiroTitulo">
+                            <p class="paragrafoPrimeiroTitulo">CADASTRE SEUS SERVIÇOS</p>
+                           
+                           
                         </div>
-                    </div>*@
-                </div>
-            </div>
-        </div>
-    </section>
+                        <div class="subtitulo">
+                            <p class="paragrafoPrimeiroTitulo">Otimize e Facilite a Gestão dos Seus Serviços Profissionais de Maneira Integrada</p>
+                        </div>
+                      
+                    </div>
 
+                    <div class="row d-flex  align-items-center">
+                       
+
+                        <div class="col-6  input-group mb-3 d-inline-flex" style="display: flex; justify-content: flex-end;">
+                             <div class="col-6  novoservicobtn mb-3 d-inline-flex">
+                            <a class="btn btn-outline-info rounded-pill text-center" id="btnNovoServico">+ Novo Serviço</a>
+                        </div>
+                            <input type="text" class="form-control inputPesquisar" name="search" placeholder="Pesquisar Serviço" id="pesquisar">
+                            <button class="btn btn-outline-info botaoPesquisar" type="submit" id="botaoPesquisar">Buscar</button>
+                        </div>
+                    </div>
+
+                  
+
+
+
+                    <div class="containerServicos">
+
+                    <div class="cardServicos">
+                        <div class="card-imageServicos">
+                            <img src="/images/corteFeminino.jpg">
+                        </div>
+                        <h5 class="card-titleServicos">Corte Chanel</h5>
+                        <h5 class="card-body">
+                            Preço: R$99,00
+                        </h5>
+                        <h5 class="footer">Tempo de Execução: <span class="by-name">1h 35 min</span> </h5>
+                    </div>
+
+                    <div class="cardServicos">
+                        <div class="card-imageServicos">
+                            <img src="/images/corteBarba.jpg">
+                        </div>
+                        <h5 class="card-titleServicos">Corte e Barba</h5>
+                        <h5 class="card-body">
+                            Preço: R$46,00
+                        </h5>
+                        <h5 class="footer">Tempo de Execução: <span class="by-name">1h 35 min</span></h5>
+                    </div>
+
+                    <div class="cardServicos">
+                        <div class="card-imageServicos">
+                            <img src="/images/personal.jpg">
+                        </div>
+                        <h5 class="card-titleServicos">Bioimpedanciometria</h5>
+                        <h5 class="card-body">
+                            Preço: R$125,00
+                        </h5>
+                        <h5 class="footer">Tempo de Execução: <span class="by-name">1h 00 min</span></h5>
+                    </div>
+
+                </div>
+
+
+
+                
+
+
+                
+
+                    <div class="containerServicos">
+
+                        <div class="container">
+
+
+                            <div class="wrapper">
+
+
+                                <div class="containerMonitoreAgendametos">
+                                    <div class="cardMonitoreAgendametos">
+                                        <div class="card__image-container">
+                                        </div>
+
+                                        <svg class="card__svg" viewBox="0 0 800 500">
+
+                                            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="transparent"></path>
+                                            <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"></path>
+                                        </svg>
+
+                                        <div class="card__contentMonitoreAgendametos">
+                                            <p class="card__titleMonitoreAgendametos">MONITORE SEUS AGENDAMENTOS</p>
+                                            <p>Transforme Sua Experiência Profissional: Tenha Controle Total e organize sua agenda</p>
+
+                                            <a class="nav-link comecarAgora" asp-area="" asp-controller="Account" asp-action="Create">
+                                                <button class="summary">Começar Agora</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                          
+                                
+                                       
+                                       
+                                  
+                                    
+                            
+                            </div>
+
+                            <div class="cardCelular">
+
+
+
+                                <div class="btn1"></div>
+                                <div class="btn2"></div>
+                                <div class="btn3"></div>
+                                <div class="btn4"></div>
+
+                                <div class="card-int">
+                                   
+
+                                </div>
+                                <div class="topp">
+                                    <div class="camera">
+                                        
+                                    </div>
+                                    <div class="speaker"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="containerServicos">
+
+                    <div class="graficoClass">
+                            <div class="primeiroTitulo">
+                                <div class="headerPrimeiroTitulo">
+                                    <p class="paragrafoPrimeiroTitulo">ACOMPANHE SUAS FINANÇAS</p>
+
+                                    <a class="tag-a" href="#">Details</a>
+                                </div>
+                                <div class="subtitulo">
+                                    <p class="paragrafoPrimeiroTitulo">Controle suas Receitas e Despesas para uma Gestão Financeira Eficiente</p>
+                                </div>
+
+                            </div>
+                    <div class="col-lg-6 col-sm-6 pt-3" id="paiDoGrafico">
+                        <!-- DIV DO GRÁFICO -->
+                        <div class="row flex-row" id="grafico">
+                            <div class="col-lg-12 mb-4 p-5">
+                                <canvas id="myChart" class="pt-3">
+                                    <!-- Gráfico -->
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Gráfico -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var ctx = document.getElementById('myChart').getContext('2d');
+                            var entradas = [2500, 1200, 1800, 800, 2000];
+                            var saidas = [1500, 800, 1200, 500, 1000];
+
+                            var myChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Entradas', 'Saídas'],
+                                    datasets: [{
+                                        label: 'Valores',
+                                        data: [entradas.reduce((a, b) => a + b, 0), saidas.reduce((a, b) => a + b, 0)],
+                                        backgroundColor: ['rgb(2, 187, 187)', 'rgb(177, 177, 177)'],
+                                        borderColor: ['rgb(2, 187, 187)', 'rgb(177, 177, 177)'],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+                    </div>
+
+
+            </div>
+          </div>
+          </div>
+       
+
+      
+    </section>
+    
     <section>
-        <div class="servicos">
-            <div class="titleservicos">
-                <h3>EXIBA PARA SEUS CLIENTES</h3>
-            </div>
-        </div>
+
+
+
+
+
+        @*
         <div class="container">
-            <div class="card">
-                <div class="card-image">
-                    <img src="/images/corteFeminino.jpg"></>
-                </div>
-                <h5 class="card-title">Corte Chanel</h5>
-                <h5 class="card-body">
-                    Preço: R$99,00
-                </h5>
-                <h5 class="footer">Tempo de Execução: <span class="by-name">1h 35 min</span> </h5>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="/images/corteBarba.jpg"></>
-                </div>
-                <h5 class="card-title">Corte e Barba</h5>
-                <h5 class="card-body">
-                    Preço: R$46,00
-                </h5>
-                <h5 class="footer">Tempo de Execução: <span class="by-name">1h 35 min</span></h5>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="/images/personal.jpg"></>
-                </div>
-                <h5 class="card-title">Bioimpedanciometria</h5>
-                <h5 class="card-body">
-                    Preço: R$125,00
-                </h5>
-                <h5 class="footer">Tempo de Execução: <span class="by-name">1h 00 min</span></h5>
-            </div>
+        <div class="cardCelular">
+
+               
+
+        <div class="btn1"></div>
+        <div class="btn2"></div>
+        <div class="btn3"></div>
+        <div class="btn4"></div>
+        <div class="card-int">
+           
+        <div class="hello">
+       Monitore
+        <span class="hidden">Seus Agendamentos</span>
+        </div>
+               
+        </div>
+        <div class="topp">
+        <div class="camera">
+                        <div class="int"> <img src="/images/Mobile.png" alt="Descrição da Imagem" class="celular-imagem"></div>
+        </div>
+        <div class="speaker"></div>
+        </div>
+        </div>
 
         </div>
+        *@
+       
     </section>
+
+    @*
+    
     <section id="section-main-tres">
         <div class="servicos">
             <div class="titleservicos">
@@ -144,9 +348,10 @@
             </div>
         </div>
     </section>
-
+    *@
 
 </main>
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
