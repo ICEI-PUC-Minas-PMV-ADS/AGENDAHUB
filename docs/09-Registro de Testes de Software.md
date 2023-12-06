@@ -260,7 +260,38 @@ Objetivo do Teste:
 Objetivo do Teste:
 > - O objetivo do teste é garantir que a empresa/autônomo consiga alterar seus dados como, endereço, conta e outros.
 
-<b>Resultado CT - 10: 
+Passos:
+
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/c572adb1-c554-4ccc-bf67-1a8bac5ad87f)
+
+> - Efetuar o login utilizando as credenciais cadastradas.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/267ae4af-a759-45bf-aedf-89f27d13edc1)
+
+> - Acessar a seção de administração/configuração.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/af3c302d-9249-4c57-ba70-9da91488202a)
+
+> - Acessar a seção Informações Empresariais
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/fcded500-dc57-4b86-b91d-bd1829c86190)
+
+> - Verificar os dados atuais.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/81991fbd-2c4b-4a7e-a860-268cff3db1cc)
+
+> - Alterar os dados
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB/assets/130249437/27e4510d-9f74-4ba4-a859-d47e3fac7fc4)
+> - Dados alterados:
+> - Nome da Empresa de testeGitHub para teste TesteGit
+> - CNPJ de 28.845.552/0001-10 para 52.508.982/0001-20
+> - Endereço de Rua testeGitHub, N º 10 para Rua Git, Nº 250
+> - Email de testeGitHub3@gmail.com para GitHubTeste@gmail.com
+
+<b>Resultado CT - 10: O Teste obteve êxito parcial, visto que a configuração para cadastro de conta não foi desenvolvida. Obteve êxito nas alterações cadastrais.
 
 ## CT - 11 -  Pagamento Antecipado.
 
