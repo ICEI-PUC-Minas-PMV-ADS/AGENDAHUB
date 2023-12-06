@@ -300,6 +300,17 @@ Requisitos Associados:
 Objetivo do Teste:
 > - O objetivo do teste é garantir que a empresa/autônomo consiga alterar seus dados como, endereço, conta e outros.
 
+Passos:
+> - Acessar o site:[AgendaHub](https://agendahub20231119201019.azurewebsites.net)
+> - Efetuar o login utilizando as credenciais cadastradas.
+> - Acessar a seção de administração/configuração.
+> - Acessar a seção Informações Empresariais.
+> - Verificar os dados atuais.
+> - Alterar os dados
+
+Critérios de Êxito:
+> - A atualização das informações refelete as modificações feitas.
+
 ## CT - 11 - Pagamento Antecipado.
 Requisitos Associados:
 > - RF-10	O sistema deve oferecer a possibilidade de exigir ou não um pagamento para realizar agendamentos
