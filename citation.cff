@@ -1,22 +1,22 @@
 message: Please cite this software using these metadata.
-title: City Wave - A onda da Cidade
+title: AgendaHub
 authors:
-  - family-names: Gerassimova
-    given-names: Anna
+  - family-names: Gonçalves Rodrigues
+    given-names: Alvaro
   - family-names: Oliveira Duarte
     given-names: Mariane
-  - family-names: Nascimento Lemos
-    given-names: Pedro Henrique
+  - family-names: Gabriel Duarte Enis
+    given-names: Lucas
   - family-names: Batista Almeida
     given-names: Josué
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: Lemos Tavares
-    given-names: Clóvis
+    family-names: Alberto Marques Pietrobon
+    given-names: Carlos
 keywords:
-  - Lazer
-  - Cultura
-  - Restaurantes
-repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e1-proj-web-t17-time1-proj-citywave
+  - Controle
+  - Agendamento
+  - Atendimentos
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/AGENDAHUB
 version: 1.0.0
-date-released: 2023-06-25
+date-released: 2023-12-07
