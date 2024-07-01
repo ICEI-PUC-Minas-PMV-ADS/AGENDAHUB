@@ -1,0 +1,22 @@
+message: Please cite this software using these metadata.
+title: City Wave - A onda da Cidade
+authors:
+  - family-names: Gerassimova
+    given-names: Anna
+  - family-names: Oliveira Duarte
+    given-names: Mariane
+  - family-names: Nascimento Lemos
+    given-names: Pedro Henrique
+  - family-names: Batista Almeida
+    given-names: Josué
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Lemos Tavares
+    given-names: Clóvis
+keywords:
+  - Lazer
+  - Cultura
+  - Restaurantes
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e1-proj-web-t17-time1-proj-citywave
+version: 1.0.0
+date-released: 2023-06-25
